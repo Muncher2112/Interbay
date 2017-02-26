@@ -419,4 +419,3 @@
 	name = " "
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	layer = 18

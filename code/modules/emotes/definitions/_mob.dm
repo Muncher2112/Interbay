@@ -118,7 +118,9 @@
 		/decl/emote/visible/hug,
 		/decl/emote/visible/dap,
 		/decl/emote/visible/signal,
-		/decl/emote/visible/handshake
+		/decl/emote/visible/handshake,
+		/decl/emote/human/poo,
+		/decl/emote/human/pee
 	)
 
 /mob/living/silicon/robot
