@@ -128,6 +128,22 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
+proc/ageAndGender2Desc(age, gender)//Used for the radio
+	if(gender == FEMALE)
+		switch(age)
+			if(0 to 15)			return "Girl"
+			if(15 to 25)		return "Young Woman"
+			if(25 to 60)		return "Woman"
+			if(60 to INFINITY)	return "Old Woman"
+			else				return "Unknown"
+	else
+		switch(age)
+			if(0 to 15)			return "Boy"
+			if(15 to 25)		return "Young Man"
+			if(25 to 60)		return "Man"
+			if(60 to INFINITY)	return "Old Man"
+			else				return "Unknown"
+
 /proc/RoundHealth(health)
 	var/list/icon_states = icon_states('icons/mob/hud_med.dmi')
 	for(var/icon_state in icon_states)

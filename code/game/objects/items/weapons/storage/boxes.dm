@@ -330,10 +330,14 @@
 
 	attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
 		if(istype(W) && !W.lit && !W.burnt)
-			W.lit = 1
-			W.damtype = "burn"
-			W.icon_state = "match_lit"
-			processing_objects.Add(W)
+			if(prob(25))
+				playsound(src.loc, 'sound/items/matchstick_lit.ogg', 25, 0, -1)
+				W.lit = 1
+				W.damtype = "burn"
+				W.icon_state = "match_lit"
+				processing_objects.Add(W)
+			else
+				playsound(src.loc, 'sound/items/matchstick_hit.ogg', 25, 0, -1)
 		W.update_icon()
 		return
 

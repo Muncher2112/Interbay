@@ -444,5 +444,6 @@
 /obj/item/weapon/gun/attack_self(mob/user)
 	var/datum/firemode/new_mode = switch_firemodes(user)
 	if(new_mode)
+		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		to_chat(user, "<span class='notice'>\The [src] is now set to [new_mode.name].</span>")
 

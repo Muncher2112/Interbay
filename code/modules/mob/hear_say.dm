@@ -81,6 +81,8 @@
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
 
+	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
+
 	if(!client)
 		return
 
@@ -89,6 +91,7 @@
 		return
 
 	var/track = null
+	var/jobname // the mob's "job"
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
@@ -125,13 +128,23 @@
 		if(H.voice)
 			speaker_name = H.voice
 
+		if(H.age && H.gender)//If they have an age and gender
+			var/ageAndGender
+			jobname = H.get_assignment()
+
+			if(H.get_assignment() == "No id")//If they don't have an ID then we don't know their job.
+				jobname = "Unknown"
+
+			ageAndGender = ageAndGender2Desc(H.age, H.gender)//Get their age and gender
+
+			speaker_name += " \[" + "[jobname] " + "[ageAndGender]" + "]"//Print it out.
+
 	if(hard_to_hear)
 		speaker_name = "unknown"
 
 	var/changed_voice
 
 	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
-		var/jobname // the mob's "job"
 		var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
 
 		if (ishuman(speaker))

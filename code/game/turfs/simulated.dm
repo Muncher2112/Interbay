@@ -98,6 +98,7 @@
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
+			var/footstepsound = null
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
@@ -122,6 +123,36 @@
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
 
 				bloodDNA = null
+
+			//Shoe sounds
+			if 		(istype(src, /turf/simulated/floor/grass))
+				footstepsound = "grassfootsteps"
+			//else 	if(istype(src, /turf/stalker/floor/tropa))//Not needed for now.
+			//	footstepsound = "sandfootsteps"
+			else 	if(istype(src, /turf/simulated/floor/beach/water))
+				footstepsound = "waterfootsteps"
+			else 	if(istype(src, /turf/simulated/floor/wood))
+				footstepsound = "woodfootsteps"
+			else 	if(istype(src, /turf/simulated/floor/carpet))
+				footstepsound = "carpetfootsteps"
+			else 	if(istype(src, /turf/simulated/floor/beach/sand))
+				footstepsound = "dirtfootsteps"
+			else
+				footstepsound = "erikafootsteps"
+
+			if(istype(H.shoes, /obj/item/clothing/shoes))//This is probably the worst possible way to handle walking sfx.
+				if(H.m_intent == "run")
+					if(H.footstep >= 1)//Every two steps.
+						H.footstep = 0
+						playsound(src, footstepsound, 100, 1)
+					else
+						H.footstep++
+				else
+					if(H.footstep >= 6)
+						H.footstep = 0
+						playsound(src, footstepsound, 100, 1)
+					else
+						H.footstep++
 
 		if(src.wet)
 
