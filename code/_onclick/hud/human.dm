@@ -315,6 +315,9 @@
 	mymob.radio_use_icon.color = ui_color
 	mymob.radio_use_icon.alpha = ui_alpha
 
+	mymob.fov = new /obj/screen/fov()
+	hud_elements |= mymob.fov
+
 	mymob.client.screen = list()
 
 	mymob.client.screen += hud_elements
