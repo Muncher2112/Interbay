@@ -3,6 +3,9 @@
 	var/datum/detective_gun_skin/unique_reskin
 	var/static/list/gun_options
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
+	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 
 /obj/item/weapon/gun/projectile/colt/detective/New()
 	..()

@@ -1,3 +1,7 @@
+/obj/item/weapon/gun/projectile/shotgun
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
@@ -15,6 +19,8 @@
 	handle_casings = HOLD_CASINGS
 	requires_two_hands = 2
 	var/recentpump = 0 // to prevent spammage
+	var/pumpsound = 'sound/weapons/shotgunpump.ogg'
+
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -27,10 +33,11 @@
 		recentpump = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+	playsound(M, pumpsound, 60, 1)
 
 	if(chambered)//We have a shell in the chamber
 		chambered.loc = get_turf(src)//Eject casing
+		playsound(M, 'sound/weapons/guns/misc/shotgun_fall.ogg', 100, 1)
 		chambered = null
 
 	if(loaded.len)

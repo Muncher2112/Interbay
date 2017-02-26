@@ -11,6 +11,9 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	multi_aim = 1
 	burst_delay = 2
+	fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
+	unload_sound = 'sound/weapons/guns/interact/smg_magout.ogg'
+	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 
 	//machine pistol, easier to one-hand with
 	firemodes = list(
@@ -62,6 +65,8 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	requires_two_hands = 1
+	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 
 	//SMG
 	firemodes = list(
@@ -93,6 +98,9 @@
 	allowed_magazines = /obj/item/ammo_magazine/c762
 	requires_two_hands = 3
 	wielded_item_state = "arifle-wielded"
+	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
+
 
 	//Assault rifle, burst fire degrades quicker than SMG, worse one-handing penalty, slightly increased move delay
 	firemodes = list(
@@ -154,6 +162,8 @@
 	requires_two_hands = 5
 	burst_delay = 4
 	wielded_item_state = "z8carbine-wielded"
+	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	//would have requires_two_hands=4,5 but the added weight of a grenade launcher makes one-handing even harder
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1,    fire_delay=0,    move_delay=null, use_launcher=null, requires_two_hands=5, burst_accuracy=null, dispersion=null),
@@ -223,6 +233,8 @@
 	magazine_type = /obj/item/ammo_magazine/box/a762
 	allowed_magazines = list(/obj/item/ammo_magazine/box/a762, /obj/item/ammo_magazine/c762)
 	requires_two_hands = 6
+	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 
 	//LMG, better sustained fire accuracy than assault rifles (comparable to SMG), higer move delay and one-handing penalty
 	//No single-shot or 3-round-burst modes since using this weapon should come at a cost to flexibility.
@@ -250,12 +262,14 @@
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	if(cover_open)
 		toggle_cover(user) //close the cover
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
 	if(!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 	else
 		return ..() //once open, behave like normal
 

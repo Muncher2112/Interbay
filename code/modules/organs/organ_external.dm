@@ -731,6 +731,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					"<span class='danger'>\The [owner]'s [src.name] flies off in an arc!</span>",\
 					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
 					"<span class='danger'>You hear a terrible sound of [gore_sound].</span>")
+			playsound(owner, 'sound/effects/gore/severed.ogg', 100, 0)
 		if(DROPLIMB_BURN)
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " of burning flesh"]"
 			owner.visible_message(
@@ -744,6 +745,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='danger'>\The [owner]'s [src.name] explodes[gore]!</span>",\
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
+				playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , 0)//Splat.
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
@@ -897,17 +899,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(owner)
-		owner.visible_message(\
-			"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
-			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
-			"<span class='danger'>You hear a sickening crack.</span>")
+		//owner.visible_message(\
+		//	"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
+		//	"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
+		//	"<span class='danger'>You hear a sickening crack.</span>")
 		jostle_bone()
 		if(can_feel_pain())
 			owner.emote("scream")
 
-	playsound(src.loc, "fracture", 100, 1, -2)
+		playsound(owner, "trauma", 75, 0)
 	status |= ORGAN_BROKEN
-	broken_description = pick("broken","fracture","hairline fracture")
+	broken_description = pick("broken")//,"fracture","hairline fracture")
 
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
