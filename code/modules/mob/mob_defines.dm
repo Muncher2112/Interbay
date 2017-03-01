@@ -161,3 +161,7 @@
 
 	var/memory = ""
 	var/flavor_text = ""
+
+	var/has_limbs = 1
+
+	var/scrambling = 0

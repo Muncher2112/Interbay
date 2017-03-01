@@ -41,6 +41,14 @@
 	human_mob_list |= src
 	..()
 
+	var/obj/item/organ/external/head/U = locate() in organs
+	if(istype(U))
+		U.teeth_list.Cut() //Clear out their mouth of teeth
+		var/obj/item/stack/teeth/T = new species.teeth_type(U)
+		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
+		T.amount = T.max_amount
+		U.teeth_list += T
+
 	if(dna)
 		dna.ready_dna(src)
 		dna.real_name = real_name

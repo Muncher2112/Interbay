@@ -308,6 +308,10 @@
 	if(digitalcamo)
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
+	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in organs
+	if(O && O.get_teeth() < O.max_teeth)
+		msg += "<span class='warning'>[O.get_teeth() <= 0 ? "All" : "[O.max_teeth - O.get_teeth()]"] of [T.his] teeth are missing!</span>\n"
+
 	if(hasHUD(user,"security"))
 		var/perpname = "wot"
 		var/criminal = "None"

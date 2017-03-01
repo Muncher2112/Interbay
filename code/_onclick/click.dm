@@ -64,6 +64,10 @@
 	if(stat || paralysis || stunned || weakened)
 		return
 
+	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
+		if(A.Adjacent(src))
+			scramble(A)
+
 	face_atom(A) // change direction to face what you clicked on
 
 	if(!canClick()) // in the year 2000...
@@ -440,3 +444,33 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 	click_handler = new new_click_handler_type(src)
 	click_handler.Enter()
 	click_handlers.Push(click_handler)
+
+/mob/proc/scramble(var/atom/A)
+	var/direction
+	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || (weakened > 5))
+		return
+	if(!istype(src.loc, /turf/))
+		return
+	if(!A || !x || !y || !A.x || !A.y) return
+	if(scrambling)
+		return
+	if(!has_limbs)
+		src << "\red You can't even move yourself - you have no limbs!"
+	var/dx = A.x - x
+	var/dy = A.y - y
+	if(!dx && !dy) return
+
+	if(abs(dx) < abs(dy))
+		if(dy > 0)	direction = NORTH
+		else		direction = SOUTH
+	else
+		if(dx > 0)	direction = EAST
+		else		direction = WEST
+	if(direction)
+		scrambling = 1
+		sleep(2)
+		src.visible_message("\red <b>[src]</b> crawls!")
+		sleep(11)
+		Move(get_step(src,direction))
+		scrambling = 0
+		dir = 2

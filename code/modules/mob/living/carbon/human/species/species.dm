@@ -27,6 +27,8 @@
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
 	var/tail_hair
 
+	var/teeth_type = /obj/item/stack/teeth/generic 		 //What sort of teeth do the species have
+
 	var/default_h_style = "Bald"
 	var/default_f_style = "Shaved"
 

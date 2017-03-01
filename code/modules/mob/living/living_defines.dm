@@ -47,5 +47,6 @@
 	var/ear_damage = null	//Carbon
 	var/stuttering = null	//Carbon
 	var/slurring = null		//Carbon
+	var/lisp = null			//Carbon
 
 	var/job = null//Living
