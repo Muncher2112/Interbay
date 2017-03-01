@@ -213,7 +213,7 @@ proc/ageAndGender2Desc(age, gender)//Used for the radio
 		return 0
 	var/atom/target_loc = null
 	var/target_type = null
-	
+
 	if(target)
 		target_loc = target.loc
 		target_type = target.type
