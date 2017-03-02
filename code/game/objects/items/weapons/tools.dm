@@ -149,7 +149,7 @@
 								"<span class='danger'>[user] tears off your tooth with [src]!</span>")
 
 				H.apply_damage(rand(1, 3), BRUTE, O)
-				H.apply_damage(rand(30,50), PAIN, O)//Pulling out your teeth really fucking hurts.
+				H.apply_damage(rand(50,75), PAIN, O)//Pulling out your teeth really fucking hurts.
 				playsound(H, 'sound/effects/gore/trauma3.ogg', 40, 1, -1) //And out it goes.
 
 				user.doing_something = 0
