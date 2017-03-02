@@ -114,7 +114,7 @@
 		item_state = "cutters_yellow"
 	..()
 
-/obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/living/user as mob)
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
@@ -124,6 +124,44 @@
 			C.buckled.unbuckle_mob()
 		C.update_inv_handcuffed()
 		return
+
+	//Tearing out teeth
+	if(ishuman(C) && user.zone_sel.selecting == "mouth")
+		var/mob/living/carbon/human/H = C
+		var/obj/item/organ/external/head/O = locate() in H.organs
+		if(!O || !O.get_teeth())
+			to_chat(user, "<span class='notice'>[H] doesn't have any teeth left!</span>")
+			return
+		if(!user.doing_something)
+			user.doing_something = 1
+			H.visible_message("<span class='danger'>[user] tries to tear off [H]'s tooth with [src]!</span>",
+								"<span class='danger'>[user] tries to tear off your tooth with [src]!</span>")
+			if(do_after(user, 30))
+				if(!O || !O.get_teeth()) return
+				var/obj/item/stack/teeth/E = pick(O.teeth_list)
+				if(!E || E.zero_amount()) return
+				var/obj/item/stack/teeth/T = new E.type(H.loc, 1)
+//				T.copy_evidences(E)
+				E.use(1)
+				T.add_blood(H)
+				E.zero_amount() //Try to delete the teeth
+				H.visible_message("<span class='danger'>[user] tears off [H]'s tooth with [src]!</span>",
+								"<span class='danger'>[user] tears off your tooth with [src]!</span>")
+
+				H.apply_damage(rand(1, 3), BRUTE, O)
+				H.apply_damage(rand(30,50), PAIN, O)//Pulling out your teeth really fucking hurts.
+				playsound(H, 'sound/effects/gore/trauma3.ogg', 40, 1, -1) //And out it goes.
+
+				user.doing_something = 0
+			else
+				to_chat(user, "<span class='notice'>Your attempt to pull out a tooth fails...</span>")
+				user.doing_something = 0
+				return
+		else
+			to_chat(user, "<span class='notice'>You are already trying to pull out a tooth!</span>")
+		return
+
+
 	else
 		..()
 

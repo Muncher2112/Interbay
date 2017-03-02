@@ -50,3 +50,5 @@
 	var/lisp = null			//Carbon
 
 	var/job = null//Living
+
+	var/doing_something = 0
