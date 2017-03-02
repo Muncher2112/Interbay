@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/shotgun
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	magazine_based = 0
 
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"

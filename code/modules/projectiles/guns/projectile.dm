@@ -41,6 +41,7 @@
 	//var/magazine_states = 0
 	//var/list/icon_keys = list()		//keys
 	//var/list/ammo_states = list()	//values
+	var/magazine_based = 1
 
 /obj/item/weapon/gun/projectile/New()
 	..()
@@ -232,7 +233,9 @@
 		to_chat(user, "<span class='warning'>It looks jammed.</span>")
 	if(ammo_magazine)
 		to_chat(user, "It has \a [ammo_magazine] loaded.")
-	to_chat(user, "Has [getAmmo()] round\s remaining.")
+	if(!magazine_based)
+		to_chat(user, "[inexactAmmo()]")
+	
 	return
 
 /obj/item/weapon/gun/projectile/proc/getAmmo()
@@ -244,6 +247,23 @@
 	if(chambered)
 		bullets += 1
 	return bullets
+
+/obj/item/weapon/gun/projectile/proc/inexactAmmo()
+	var/ammo = getAmmo()
+	var/message
+
+	var/mob/living/M = loc
+	if(istype(M))
+		if(M.l_hand == src || M.r_hand == src)//Gotta be holding it or this won't work.
+			if(ammo >= 6)
+				message = "It feels very heavy."
+			if(ammo > 3 && ammo < 6)
+				message = "It feels heavy."
+			if(ammo <= 3 && ammo != 0)
+				message = "It feels light."
+			if(ammo == 0)
+				message = "It feels empty."
+	return message
 
 /* Unneeded -- so far.
 //in case the weapon has firemodes and can't unload using attack_hand()
