@@ -136,7 +136,7 @@
 			user.doing_something = 1
 			H.visible_message("<span class='danger'>[user] tries to tear off [H]'s tooth with [src]!</span>",
 								"<span class='danger'>[user] tries to tear off your tooth with [src]!</span>")
-			if(do_after(user, 30))
+			if(do_after(user, 50))
 				if(!O || !O.get_teeth()) return
 				var/obj/item/stack/teeth/E = pick(O.teeth_list)
 				if(!E || E.zero_amount()) return
