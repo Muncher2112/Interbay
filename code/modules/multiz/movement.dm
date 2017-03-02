@@ -161,7 +161,7 @@
 /mob/living/carbon/human/handle_fall(var/turf/landing)
 	if(..())
 		return
-	playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)
+	playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)//Splat
 	var/damage = 10
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
 	apply_damage(rand(0, damage), BRUTE, BP_CHEST)
