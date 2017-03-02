@@ -61,7 +61,7 @@
 		CtrlClickOn(A)
 		return 1
 
-	if(stat || paralysis || stunned || weakened)
+	if(stat || paralysis || stunned)// weakened//This stops us from crawling when we broke our legs. Which is dumb.
 		return
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
