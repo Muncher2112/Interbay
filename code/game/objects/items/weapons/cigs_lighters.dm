@@ -523,35 +523,33 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		base_state = icon_state
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
-			lit = 1
-			icon_state = "[base_state]on"
-			item_state = "[base_state]on"
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				//user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 				playsound(src.loc, 'sound/items/zippo_open.ogg', 100, 1, -4)
+				lit = 1
+				set_light(2)
+				processing_objects.Add(src)
+				icon_state = "[base_state]on"
+				item_state = "[base_state]on"
 			else
-				if(prob(95))
-					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
+				var/lightersound = list('sound/items/lighter1.ogg','sound/items/lighter2.ogg')
+				playsound(src.loc, pick(lightersound), 100, 1, -4)
+				if(prob(50))
+					return
 				else
-					to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
-					if (user.l_hand == src)
-						user.apply_damage(2,BURN,BP_L_HAND)
-					else
-						user.apply_damage(2,BURN,BP_R_HAND)
-					//user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
-				playsound(src.loc, "light_bic", 100, 1, -4)
-
-			set_light(2)
-			processing_objects.Add(src)
+					lit = 1
+					set_light(2)
+					processing_objects.Add(src)
+					icon_state = "[base_state]on"
+					item_state = "[base_state]on"
+			
+			
 		else
 			lit = 0
 			icon_state = "[base_state]"
 			item_state = "[base_state]"
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
-				//user.visible_message("<span class='rose'>You hear a quiet click, as [user] shuts off [src] without even looking at what they're doing.</span>")
 				playsound(src.loc, 'sound/items/zippo_close.ogg', 100, 1, -4)
-			else
-				user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
 			set_light(0)
 			processing_objects.Remove(src)
