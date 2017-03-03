@@ -116,6 +116,7 @@
 	description = "It's poo."
 	reagent_state = LIQUID
 	color = "#643200"
+	taste_description = "literal shit"
 
 
 /datum/reagent/poo/on_mob_life(var/mob/living/M)
@@ -156,6 +157,7 @@
 	reagent_state = LIQUID
 	color = COLOR_YELLOW
 	var/dried = 0
+	taste_description = "urine"
 
 /datum/reagent/urine/touch_turf(var/turf/T)
 	src = null
