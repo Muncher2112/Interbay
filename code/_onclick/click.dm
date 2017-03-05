@@ -212,14 +212,14 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(var/atom/A)
-	swap_hand()
+	A.MiddleClick(src)
 	return
 
 // In case of use break glass
-/*
+
 /atom/proc/MiddleClick(var/mob/M as mob)
 	return
-*/
+
 
 /*
 	Shift click
