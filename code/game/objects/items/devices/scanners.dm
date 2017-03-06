@@ -118,6 +118,12 @@ REAGENT SCANNER
 					user.show_message(reagentdata[d])
 			if(unknown)
 				user.show_message("<span class='warning'>Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.</span>")
+		
+				//Starvation!
+		var/mob/living/carbon/human/H = M
+		if(H.nutrition < STARVATION_MIN)
+			user.show_message("<span class='danger'>Warning: Severe lack of essential nutriments detected in subject's blood.</span>")
+		
 		if(C.ingested && C.ingested.total_volume)
 			var/unknown = 0
 			for(var/datum/reagent/R in C.ingested.reagent_list)
@@ -233,6 +239,7 @@ REAGENT SCANNER
 		return
 
 	analyze_gases(user.loc, user)
+	flick("atmos2", src)
 	return
 
 /obj/item/device/mass_spectrometer
