@@ -28,6 +28,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "unathiknife"
 	attack_verb = list("ripped", "torn", "cut")
+	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/hatchet/tacknife
 	name = "tactical knife"
@@ -37,6 +38,7 @@
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
+	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"

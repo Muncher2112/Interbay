@@ -74,6 +74,7 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	applies_material_colour = 0
+	drawsound = 'sound/items/unholster_knife.ogg'
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
