@@ -1,3 +1,9 @@
+mob/proc/flash_weakest_pain()
+	flick("weakest_pain",pain)
+
+mob/proc/flash_weak_pain()
+	flick("weak_pain",pain)
+
 mob/proc/flash_pain()
 	flick("pain",pain)
 
@@ -49,17 +55,18 @@ mob/living/carbon/human/proc/handle_pain()
 			paralysis = max(0, paralysis - round(maxdam/10))
 		if(maxdam > 50 && prob(maxdam / 5))
 			drop_item()
-		var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
+		//var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
 		var/msg
 		switch(maxdam)
 			if(1 to 10)
-				msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
+				//msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
+				flash_weakest_pain()
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
+				//msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
 			if(91 to 10000)
 				flash_pain()
-				msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
+				//msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ)
 
 	// Damage to internal organs hurts a lot.
