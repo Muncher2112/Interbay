@@ -48,9 +48,12 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return 1
+	if(modifiers["middle"] && modifiers["shift"])
+		ShiftMiddleClickOn(A)
+		return
 	if(modifiers["middle"])
 		MiddleClickOn(A)
-		return 1
+		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return 0
@@ -215,11 +218,18 @@
 	A.MiddleClick(src)
 	return
 
-// In case of use break glass
-
 /atom/proc/MiddleClick(var/mob/M as mob)
 	return
+// In case of use break glass
 
+
+
+/mob/proc/ShiftMiddleClickOn(var/atom/A)
+	A.ShiftMiddleClick(src)
+	return
+
+/atom/proc/ShiftMiddleClick(var/mob/user)
+	user.pointed(src)
 
 /*
 	Shift click
