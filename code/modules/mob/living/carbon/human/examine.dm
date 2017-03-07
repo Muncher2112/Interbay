@@ -226,15 +226,12 @@
 		msg += "<span class='warning'>[T.He] [T.is] on fire!.</span>\n"
 	msg += "<span class='warning'>"
 
-	/*
+
 	if(nutrition < 100)
 		msg += "[T.He] [T.is] severely malnourished.\n"
 	else if(nutrition >= 500)
-		/*if(user.nutrition < 100)
-			msg += "[T.He] [T.is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
 		msg += "[T.He] [T.is] quite chubby.\n"
-	*/
+
 
 	msg += "</span>"
 
@@ -244,6 +241,16 @@
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>\n"
 		else if(!client)
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
+
+	
+	if(health <= 75 && health > 50)//Is the person a little hurt?
+		msg += "<span class='warning'><b>[T.He] looks somewhat wounded.\n</b></span>"
+
+	if(health <= 50 && health > 25)//Hurt.
+		msg += "<span class='warning'><b>[T.He] looks wounded.</b></span>\n"
+
+	if(health <= 25)//Or incredibly hurt.
+		msg += "<span class='warning'><b>[T.He] looks incredibly wounded.</b>\n</span>"
 
 	var/list/wound_flavor_text = list()
 	var/applying_pressure = ""
@@ -277,19 +284,19 @@
 		else
 			if(E.is_stump())
 				wound_flavor_text[E.name] += "<b>[T.He] [T.has] a stump where [T.his] [organ_descriptor] should be.</b>\n"
-				if((E.wounds.len || E.open) && E.parent)
-					wound_flavor_text[E.name] += "[T.He] [T.has] [E.get_wounds_desc()] on [T.his] [E.parent.name].<br>"
+				//if((E.wounds.len || E.open) && E.parent)
+				//	wound_flavor_text[E.name] += "[T.He] [T.has] [E.get_wounds_desc()] on [T.his] [E.parent.name].<br>"
 			else
 				if(!is_synth && E.robotic >= ORGAN_ROBOT && (E.parent && E.parent.robotic < ORGAN_ROBOT))
 					wound_flavor_text[E.name] = "[T.He] [T.has] a [E.name].\n"
-				var/wounddesc = E.get_wounds_desc()
-				if(wounddesc != "nothing")
-					wound_flavor_text[E.name] += "[T.He] [T.has] [wounddesc] on [T.his] [E.name].<br>"
+				//var/wounddesc = E.get_wounds_desc()
+				//if(wounddesc != "nothing")
+				//	wound_flavor_text[E.name] += "[T.He] [T.has] [wounddesc] on [T.his] [E.name].<br>"
 		if(!hidden || distance <=1)
 			if(E.dislocated > 0)
 				wound_flavor_text[E.name] += "[T.His] [E.joint] is dislocated!<br>"
 			if(((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
-				wound_flavor_text[E.name] += "[T.His] [E.name] is dented and swollen!<br>"
+				wound_flavor_text[E.name] += "[T.His] [E.name] is broken!<br>"
 
 		for(var/datum/wound/wound in E.wounds)
 			if(wound.embedded_objects.len)
