@@ -110,7 +110,6 @@ proc/get_radio_key_from_channel(var/channel)
 		. = 1
 	if(lisp)
 		message = lisp(message, lisp)
-		verb = "lisps"
 		. = 1
 
 	message_data[1] = message
