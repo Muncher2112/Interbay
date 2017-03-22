@@ -57,6 +57,9 @@ var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','so
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
 var/list/casing_sound = list ('sound/weapons/guns/misc/casingfall1.ogg','sound/weapons/guns/misc/casingfall2.ogg','sound/weapons/guns/misc/casingfall3.ogg')
 var/list/keyboard_sound = list ('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
+var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg',
+							  'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg',
+							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/frequency)
@@ -196,5 +199,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("carpetfootsteps") soundin = pick(carpetfootsteps)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("keyboard") soundin = pick(keyboard_sound)
+			if ("terminal_type")	soundin = pick(terminal_type)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin

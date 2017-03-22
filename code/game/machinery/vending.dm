@@ -381,6 +381,7 @@
 	if(usr.stat || usr.restrained())
 		return
 
+	playsound(src, "terminal_type", 25, 0)
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
 		if(!coin)
 			to_chat(usr, "There is no coin in this machine.")
