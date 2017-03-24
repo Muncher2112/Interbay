@@ -542,10 +542,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
-				//user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 				playsound(src.loc, 'sound/items/zippo_open.ogg', 100, 1, -4)
 				lit = 1
-				set_light(2)
+				set_light(2, 1, "#E38F46")
 				processing_objects.Add(src)
 				icon_state = "[base_state]on"
 				item_state = "[base_state]on"
@@ -556,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					return
 				else
 					lit = 1
-					set_light(2)
+					set_light(2, 1, "#E38F46")
 					processing_objects.Add(src)
 					icon_state = "[base_state]on"
 					item_state = "[base_state]on"
