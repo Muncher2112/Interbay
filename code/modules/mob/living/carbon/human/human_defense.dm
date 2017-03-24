@@ -245,7 +245,7 @@ meteor_act
 
 	if(I.damtype == BRUTE)
 		var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
-		if(prob(I.force * (hit_zone == "mouth" ? 10 : 0)) && O) //Will the teeth fly out?
+		if(prob(I.force * (hit_zone == BP_MOUTH ? 10 : 0)) && O) //Will the teeth fly out?
 			if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
 				src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
 									"<span class='userdanger'>[src]'s teeth sail off in an arc!</span>")
