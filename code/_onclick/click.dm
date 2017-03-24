@@ -64,12 +64,12 @@
 		CtrlClickOn(A)
 		return 1
 
-	if(stat || paralysis || stunned)// weakened//This stops us from crawling when we broke our legs. Which is dumb.
-		return
-
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
-		if(A.Adjacent(src))
+		if(!(stat || paralysis || stunned) && A.Adjacent(src))
 			scramble(A)
+
+	if(stat || paralysis || stunned || weakened)
+		return
 
 	face_atom(A) // change direction to face what you clicked on
 

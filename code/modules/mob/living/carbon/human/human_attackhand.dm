@@ -120,7 +120,7 @@
 			if(!istype(H))
 				attack_generic(H,rand(1,3),"punched")
 				return
-
+			H.adjustStaminaLoss(rand(2,3))//Whether or not it connects, we still threw the punch so it takes up stamina.
 			var/rand_damage = rand(1, 5)
 			var/block = 0
 			var/accurate = 0
@@ -233,6 +233,7 @@
 
 		if(I_DISARM)
 			admin_attack_log(M, src, "Disarmed their victim.", "Was disarmed.", "disarmed")
+			H.adjustStaminaLoss(rand(2,3))//No more spamming disarm without consequences.
 			M.do_attack_animation(src)
 
 			if(w_uniform)

@@ -79,7 +79,7 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 	var/knockout_message = "has been knocked unconscious!"
-	var/halloss_message = "slumps to the ground, too weak to continue fighting."
+	var/halloss_message = "gives into the pain!"
 	var/halloss_message_self = "You're in too much pain to keep going..."
 
 	var/spawns_with_stack = 0

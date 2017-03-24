@@ -259,6 +259,17 @@ default behaviour is:
 	if(status_flags & GODMODE)	return 0	//godmode
 	fireloss = Clamp(fireloss + amount, 0, (maxHealth - config.health_threshold_dead))
 
+/mob/living/proc/getStaminaLoss()//Stamina shit.
+	return staminaloss
+
+/mob/living/proc/adjustStaminaLoss(var/amount)
+	if(status_flags & GODMODE)	return 0
+	staminaloss = min(max(staminaloss + amount, 0),(maxHealth*2))
+
+/mob/living/proc/setStaminaLoss(var/amount)
+	if(status_flags & GODMODE)	return 0
+	staminaloss = amount
+
 /mob/living/proc/getBrainLoss()
 	return 0
 
@@ -413,6 +424,7 @@ default behaviour is:
 	SetParalysis(0)
 	SetStunned(0)
 	SetWeakened(0)
+	setStaminaLoss(0)
 
 	// shut down ongoing problems
 	radiation = 0
@@ -574,6 +586,21 @@ default behaviour is:
 		M.update_vision_cone()
 
 	update_vision_cone()
+
+
+/mob/living/proc/CheckStamina()
+	if(staminaloss <= 0)
+		setStaminaLoss(0)
+	if(staminaloss)//If we're not doing anything and we've lost stamina we can wait to gain it back.
+		adjustStaminaLoss(-1)
+
+	if(staminaloss >= 120 && !stat)//Oh shit we've lost too much stamina and now we're tired!
+		Exhaust()
+		return
+
+/mob/living/proc/Exhaust()//Called when you run out of stamina.
+	Weaken(5)
+
 
 /mob/living/verb/resist()
 	set name = "Resist"
