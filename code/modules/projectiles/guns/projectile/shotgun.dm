@@ -20,7 +20,8 @@
 	handle_casings = HOLD_CASINGS
 	one_hand_penalty = 2
 	var/recentpump = 0 // to prevent spammage
-	var/pumpsound = 'sound/weapons/shotgunpump.ogg'
+	var/pumpsound = 'sound/weapons/shotgunpump.ogg' //Support for other kinds of pump weapons.
+	var/casingsound = 'sound/weapons/guns/misc/shotgun_fall.ogg' //Same here.
 	wielded_item_state = "rifle-wielded"
 
 
@@ -39,7 +40,7 @@
 
 	if(chambered)//We have a shell in the chamber
 		chambered.loc = get_turf(src)//Eject casing
-		playsound(M, 'sound/weapons/guns/misc/shotgun_fall.ogg', 100, 1)
+		playsound(M, casingsound, 100, 1)
 		chambered = null
 
 	if(loaded.len)
@@ -130,3 +131,15 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = 5
 	one_hand_penalty = 0
+
+
+/obj/item/weapon/gun/projectile/shotgun/pump/boltaction
+	name = "The Mark II Stormrider" //I used a random rifle generator to come up with that.
+	desc = "This piece of junk looks like something that could have been used 700 years ago"
+	icon_state = "mosin"
+	item_state = "mosin"
+	caliber = "a762"
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
+	casingsound = 'sound/weapons/guns/misc/casingfall1.ogg'
+	pumpsound = 'sound/weapons/boltpump.ogg'
+	ammo_type = /obj/item/ammo_casing/a762
