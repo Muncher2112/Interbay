@@ -60,12 +60,17 @@ mob/living/carbon/human/proc/handle_pain()
 		switch(maxdam)
 			if(1 to 10)
 				//msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
-				flash_weakest_pain()
+				if(prob(15))
+					flash_weakest_pain()
 			if(11 to 90)
-				flash_weak_pain()
+				if(prob(15))
+					flash_weak_pain()
+				stuttering += 1
 				//msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
 			if(91 to 10000)
-				flash_pain()
+				if(prob(15))
+					flash_pain()
+				stuttering += 2
 				//msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ)
 
