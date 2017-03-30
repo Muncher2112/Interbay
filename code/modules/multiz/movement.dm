@@ -173,5 +173,4 @@
 	apply_damage(rand(0, damage), BRUTE, BP_L_ARM)
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
 	Stun(rand(1,5))
-	//weakened = max(weakened,2)
 	updatehealth()
