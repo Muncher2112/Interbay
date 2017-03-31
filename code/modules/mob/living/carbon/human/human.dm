@@ -1536,3 +1536,26 @@
 
 		if((SKELETON in mutations) && (!w_uniform) && (!wear_suit))
 			play_xylophone()
+
+/mob/living/carbon/human/throw_impact(atom/hit_atom)
+	if(iswall(hit_atom))
+		var/damage = rand(0, 10)
+		var/smashsound = pick("sound/effects/gore/smash[rand(1,3)].ogg", "sound/effects/gore/trauma1.ogg")
+		playsound(loc, smashsound, 50, 1, -1)
+		
+		var/blocked = run_armor_check(BP_HEAD,"melee")
+		apply_damage(damage, BRUTE, BP_HEAD, blocked)	
+
+		blocked = run_armor_check(BP_CHEST,"melee")
+		apply_damage(damage, BRUTE, BP_CHEST, blocked)
+
+		blocked = run_armor_check(BP_GROIN,"melee")
+		apply_damage(damage, BRUTE, BP_GROIN, blocked)		
+
+		updatehealth()
+		if(damage)
+			hit_atom.add_blood(src)
+		..()
+
+	else
+		..()	

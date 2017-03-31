@@ -65,7 +65,7 @@
 		return 1
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
-		if(!(stat || paralysis || stunned) && A.Adjacent(src))
+		if(A.Adjacent(src) && (!l_hand || !r_hand))
 			scramble(A)
 
 	if(stat || paralysis || stunned || weakened)
@@ -483,4 +483,4 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 		sleep(11)
 		Move(get_step(src,direction))
 		scrambling = 0
-		dir = 2
+		//dir = 2
