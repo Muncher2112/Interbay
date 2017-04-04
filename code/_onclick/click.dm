@@ -44,15 +44,15 @@
 
 	next_click = world.time + 1
 
+	if(!canClick()) // in the year 2000...
+		return
+
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return 1
 	if(modifiers["middle"] && modifiers["shift"])
 		ShiftMiddleClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
 		return
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -65,7 +65,7 @@
 		return 1
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
-		if(A.Adjacent(src) && (!l_hand || !r_hand))
+		if(A.Adjacent(src) && !get_active_hand())
 			scramble(A)
 
 	if(stat || paralysis || stunned || weakened)
@@ -73,7 +73,8 @@
 
 	face_atom(A) // change direction to face what you clicked on
 
-	if(!canClick()) // in the year 2000...
+	if(modifiers["middle"])//This goes below everything else because of how middle click is used.
+		MiddleClickOn(A)
 		return
 
 	if(istype(loc, /obj/mecha))
@@ -218,7 +219,8 @@
 	A.MiddleClick(src)
 	return
 
-/atom/proc/MiddleClick(var/mob/M as mob)
+/atom/proc/MiddleClick(var/mob/M)
+	middle_click_intent_check(M)
 	return
 // In case of use break glass
 
@@ -483,4 +485,4 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 		sleep(11)
 		Move(get_step(src,direction))
 		scrambling = 0
-		//dir = 2
+		dir = 2

@@ -361,3 +361,13 @@ its easier to just keep the beam vertical.
 
 /atom/proc/InsertedContents()
 	return contents
+
+/atom/proc/kick_act(mob/living/carbon/human/user)
+	if(user.middle_click_intent == "kick")//We're in kick mode, we can kick.
+		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
+			var/obj/item/organ/affecting = user.get_organ(limbcheck)
+			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
+				return 0
+			else	
+				return 1 //We do have legs now though, so we can kick.
+		

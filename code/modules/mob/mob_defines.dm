@@ -36,6 +36,7 @@
 	var/obj/screen/gun/run/gun_run_icon = null
 	var/obj/screen/gun/mode/gun_setting_icon = null
 	var/obj/screen/stamina_icon = null
+	var/obj/screen/kick_icon = null
 
 	var/obj/screen/movable/ability_master/ability_master = null
 
@@ -93,6 +94,7 @@
 	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
 	var/m_intent = "run"//Living
+	var/middle_click_intent = null //For doing different things with middle click.
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
 	var/obj/item/r_hand = null//Living

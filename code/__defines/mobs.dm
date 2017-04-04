@@ -83,6 +83,7 @@
 #define APPEARANCE_ALL       0xFFFF
 
 // Click cooldown
+#define DEFAULT_SLOW_COOLDOWN	16 //The default cooldown for slow actions.	
 #define DEFAULT_ATTACK_COOLDOWN 8 //Default timeout for aggressive actions
 #define DEFAULT_QUICK_COOLDOWN  4
 
@@ -172,6 +173,7 @@
 #define BP_GBLADDER "gas bladder"
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
+#define BP_NECK 	"neck"
 
 // Limbs.
 #define BP_L_FOOT "l_foot"

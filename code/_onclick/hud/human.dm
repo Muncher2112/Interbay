@@ -290,6 +290,14 @@
 	mymob.stamina_icon.screen_loc = ui_stamina
 	hud_elements |= mymob.stamina_icon
 
+	mymob.kick_icon = new /obj/screen()
+	mymob.kick_icon.icon = ui_style
+	mymob.kick_icon.icon_state = "kick"
+	mymob.kick_icon.name = "kick"
+	mymob.kick_icon.screen_loc = ui_kick
+	hud_elements |= mymob.kick_icon
+
+
 	mymob.pain = new /obj/screen( null )
 	mymob.pain.icon = ui_style
 	mymob.pain.icon_state = "blank"

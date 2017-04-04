@@ -336,6 +336,13 @@
 		if("drop")
 			if(usr.client)
 				usr.client.drop_item()
+		if("kick")
+			if(usr.middle_click_intent == "kick")
+				usr.middle_click_intent = null
+				usr.kick_icon.icon_state = "kick"
+			else
+				usr.middle_click_intent = "kick"
+				usr.kick_icon.icon_state = "kick_on"
 
 		if("module")
 			if(isrobot(usr))

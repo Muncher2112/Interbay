@@ -519,3 +519,57 @@ meteor_act
 		perm += perm_by_part[part]
 
 	return perm
+
+/mob/living/carbon/human/kick_act(var/mob/living/user)
+	if(!..())//If we can't kick then this doesn't happen.
+		return
+	if(user == src)//Can't kick yourself dummy.
+		return
+	
+	var/hit_zone = user.zone_sel.selecting
+	var/too_high_message = "You can't reach that high."
+	var/obj/item/organ/external/affecting = get_organ(hit_zone)
+	if(!affecting || affecting.is_stump())
+		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
+		return
+
+	user.adjustStaminaLoss(rand(10,20))//Kicking someone is a big deal.
+	var/armour = run_armor_check(hit_zone, "melee")
+	switch(hit_zone)
+		if(BP_CHEST)//If we aim for the chest we kick them in the direction we're facing.
+			if(src.lying)
+				var/turf/target = get_turf(src.loc)
+				var/range = src.throw_range
+				var/throw_dir = get_dir(user, src)
+				for(var/i = 1; i < range; i++)
+					var/turf/new_turf = get_step(target, throw_dir)
+					target = new_turf
+					if(new_turf.density)
+						break
+				src.throw_at(target, rand(1,3), src.throw_speed)
+			if(user.lying)
+				to_chat(user, too_high_message)
+					return
+
+		if(BP_MOUTH)//If we aim for the mouth then we kick their teeth out.
+			if(src.lying)
+				if(istype(affecting, /obj/item/organ/external/head) && prob(95))
+					var/obj/item/organ/external/head/U = affecting
+					U.knock_out_teeth(get_dir(user, src), rand(1,3))//Knocking out one tooth at a time.
+			else
+				to_chat(user, too_high_message)
+				return
+
+		if(BP_HEAD)
+			if(!lying)
+				to_chat(user, too_high_message)
+				return
+
+	playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
+	user.do_attack_animation(src)
+	apply_damage(rand(10,20), BRUTE, hit_zone, armour)
+	user.visible_message("<span class=danger>[user] kicks [src]!<span>")
+	user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
+	admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")
+	
+	

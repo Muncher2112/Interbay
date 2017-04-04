@@ -250,6 +250,8 @@
 					break
 			//T.throw_at(target,T.throw_range,T.throw_speed)
 			T.throw_at(get_edge_target_turf(T,pick(alldirs)),rand(1,3),30)
+			T.loc:add_blood(owner)
+			
 			teeth.zero_amount() //Try to delete the teeth
 			done = 1
 	return done
@@ -262,7 +264,7 @@
 	force = 0
 	throwforce = 0
 	max_amount = 32
-	// gender = PLURAL
+	gender = PLURAL
 	desc = "Welp. Someone had their teeth knocked out."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "tooth1"
