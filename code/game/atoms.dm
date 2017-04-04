@@ -368,6 +368,19 @@ its easier to just keep the beam vertical.
 			var/obj/item/organ/affecting = user.get_organ(limbcheck)
 			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
 				return 0
-			else	
+			else
 				return 1 //We do have legs now though, so we can kick.
-		
+
+/atom/proc/jump_act(atom/target, mob/living/carbon/human/user)
+	if(user.lying)//No jumping on the ground dummy.
+		return
+	//if(user.middle_click_intent == "jump")//Yep, we're jumping.
+	for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
+		var/obj/item/organ/affecting = user.get_organ(limbcheck)
+		if(!affecting)//Oh shit, we don't have have any legs, we can't jump.
+			return 
+		else//Nice, we can jump, let's do that then.
+			user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
+			user.throw_at(target, 5, user.throw_speed, user)
+			user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
+			user.visible_message("[user] jumps.")

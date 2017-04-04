@@ -566,7 +566,7 @@ meteor_act
 				return
 
 	playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
-	user.do_attack_animation(src)
+	//user.do_attack_animation(src)
 	apply_damage(rand(10,20), BRUTE, hit_zone, armour)
 	user.visible_message("<span class=danger>[user] kicks [src]!<span>")
 	user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)

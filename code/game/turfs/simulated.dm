@@ -142,7 +142,7 @@
 			else
 				footstepsound = "erikafootsteps"
 
-			if(istype(H.shoes, /obj/item/clothing/shoes))//This is probably the worst possible way to handle walking sfx.
+			if(istype(H.shoes, /obj/item/clothing/shoes) && !H.throwing)//This is probably the worst possible way to handle walking sfx.
 				if(H.m_intent == "run")
 					if(H.footstep >= 1)//Every two steps.
 						H.footstep = 0
