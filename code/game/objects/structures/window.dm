@@ -208,6 +208,12 @@
 		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
 	return 1
 
+/obj/structure/window/kick_act(var/mob/living/user)
+	if(!..())
+		return
+	take_damage(rand(5,10))
+
+
 /obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)

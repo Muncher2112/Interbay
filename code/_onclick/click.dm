@@ -486,3 +486,9 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 		Move(get_step(src,direction))
 		scrambling = 0
 		dir = 2
+
+/atom/proc/middle_click_intent_check(var/mob/M)
+	if(M.middle_click_intent == "kick")
+		return kick_act(M)
+	if(M.middle_click_intent == "jump")
+		return jump_act(src, M)

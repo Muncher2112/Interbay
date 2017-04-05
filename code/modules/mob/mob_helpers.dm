@@ -608,9 +608,3 @@ proc/is_blind(A)
 
 /mob/proc/ssd_check()
 	return !client && !teleop
-
-/atom/proc/middle_click_intent_check(var/mob/M)
-	if(M.middle_click_intent == "kick")
-		return kick_act(M)
-	if(M.middle_click_intent == "jump")
-		return jump_act(src, M)

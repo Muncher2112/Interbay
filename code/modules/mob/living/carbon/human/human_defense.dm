@@ -533,11 +533,10 @@ meteor_act
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		return
 
-	user.adjustStaminaLoss(rand(10,20))//Kicking someone is a big deal.
 	var/armour = run_armor_check(hit_zone, "melee")
 	switch(hit_zone)
 		if(BP_CHEST)//If we aim for the chest we kick them in the direction we're facing.
-			if(src.lying)
+			if(lying)
 				var/turf/target = get_turf(src.loc)
 				var/range = src.throw_range
 				var/throw_dir = get_dir(user, src)
@@ -552,7 +551,7 @@ meteor_act
 					return
 
 		if(BP_MOUTH)//If we aim for the mouth then we kick their teeth out.
-			if(src.lying)
+			if(lying)
 				if(istype(affecting, /obj/item/organ/external/head) && prob(95))
 					var/obj/item/organ/external/head/U = affecting
 					U.knock_out_teeth(get_dir(user, src), rand(1,3))//Knocking out one tooth at a time.
@@ -566,10 +565,8 @@ meteor_act
 				return
 
 	playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
-	//user.do_attack_animation(src)
 	apply_damage(rand(10,20), BRUTE, hit_zone, armour)
-	user.visible_message("<span class=danger>[user] kicks [src]!<span>")
-	user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
+	user.visible_message("<span class=danger>[user] kicks [src] in the [hit_zone]!<span>")
 	admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")
 	
 	
