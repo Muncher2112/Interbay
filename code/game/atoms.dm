@@ -365,7 +365,7 @@ its easier to just keep the beam vertical.
 
 //Kicking
 /atom/proc/kick_act(mob/living/carbon/human/user)
-	if(!Adjacent(M))//They're not adjcent to us so we can't kick them.
+	if(!Adjacent(user))//They're not adjcent to us so we can't kick them.
 		return
 	if(user.middle_click_intent == "kick")//We're in kick mode, we can kick.
 		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
@@ -385,7 +385,7 @@ its easier to just keep the beam vertical.
 	for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
 		var/obj/item/organ/affecting = user.get_organ(limbcheck)
 		if(!affecting)//Oh shit, we don't have have any legs, we can't jump.
-			return 
+			return
 		else//Nice, we can jump, let's do that then.
 			user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
 			user.throw_at(target, 5, user.throw_speed, user)
