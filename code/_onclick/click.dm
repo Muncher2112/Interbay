@@ -480,15 +480,16 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 		else		direction = WEST
 	if(direction)
 		scrambling = 1
-		sleep(2)
-		src.visible_message("\red <b>[src]</b> crawls!")
-		sleep(11)
-		Move(get_step(src,direction))
-		scrambling = 0
-		dir = 2
+		if(do_after(src, 5))
+			Move(get_step(src,direction))
+			scrambling = 0
+			dir = 2
+			src.visible_message("\red <b>[src]</b> is trying to crawl!")
+		else 
+			scrambling = 0
 
 /atom/proc/middle_click_intent_check(var/mob/M)
 	if(M.middle_click_intent == "kick")
 		return kick_act(M)
 	if(M.middle_click_intent == "jump")
-		return jump_act(src, M)
+		jump_act(src, M)
