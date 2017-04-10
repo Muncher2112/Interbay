@@ -1,9 +1,19 @@
+var/image/exterior_light_overlay
+
+/proc/get_exterior_light_overlay()
+	if(!exterior_light_overlay)
+		exterior_light_overlay = image(icon = 'icons/planar_lighting/space.dmi')
+		exterior_light_overlay.blend_mode = BLEND_ADD
+		exterior_light_overlay.plane = LIGHTING_PLANE
+		exterior_light_overlay.mouse_opacity = 0
+	return exterior_light_overlay
+
 /turf/space
 	plane = SPACE_PLANE
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
-	dynamic_lighting = 0
+	//dynamic_lighting = 0
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -13,7 +23,9 @@
 /turf/space/New()
 	if((icon_state == "0") && (!keep_sprite))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
-	update_starlight()
+	//update_starlight()
+	if(config.starlight)
+		overlays += get_exterior_light_overlay()
 	..()
 
 /turf/space/initialize()
@@ -49,7 +61,7 @@
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
-		set_light(0)
+		kill_light()
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

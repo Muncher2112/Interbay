@@ -13,7 +13,7 @@
 /turf/proc/lighting_build_overlays()
 	if(!lighting_overlay)
 		var/area/A = loc
-		if(A.lighting_use_dynamic)
+		if(A.)
 			var/atom/movable/lighting_overlay/O = new /atom/movable/lighting_overlay(src)
 			lighting_overlay = O
 

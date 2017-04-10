@@ -54,7 +54,7 @@
 	if(icon_state == "[initial(name)]_active")
 		set_light(1.5, 2, "#FF6A00")
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/weapon/melee/baton/examine(mob/user)
 	if(!..(user, 1))

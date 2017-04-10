@@ -211,6 +211,7 @@
 /obj/structure/window/kick_act(var/mob/living/user)
 	if(!..())
 		return
+	visible_message("<span class='danger'>[user] kicks the [src]!</span>")
 	take_damage(rand(5,10))
 
 

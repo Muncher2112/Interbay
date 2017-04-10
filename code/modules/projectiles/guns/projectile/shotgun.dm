@@ -134,7 +134,7 @@
 
 
 /obj/item/weapon/gun/projectile/shotgun/pump/boltaction
-	name = "The Mark II Stormrider" //I used a random rifle generator to come up with that.
+	name = "\improper Mark II Stormrider" //I used a random rifle generator to come up with that.
 	desc = "This piece of junk looks like something that could have been used 700 years ago"
 	icon_state = "mosin"
 	item_state = "mosin"

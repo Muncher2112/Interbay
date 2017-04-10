@@ -747,16 +747,16 @@
 			return global.license_to_url;
 		if("life_event")
 			return global.life_event;
-		if("light_overlay_cache")
-			return global.light_overlay_cache;
-		if("light_type_cache")
-			return global.light_type_cache;
+		//if("light_overlay_cache")
+		//	return global.light_overlay_cache;
+		//if("light_type_cache")
+		//	return global.light_type_cache;
 		if("lighter_sound")
 			return global.lighter_sound;
-		if("lighting_update_lights")
-			return global.lighting_update_lights;
-		if("lighting_update_overlays")
-			return global.lighting_update_overlays;
+		//if("lighting_update_lights")
+		//	return global.lighting_update_lights;
+		//if("lighting_update_overlays")
+		//	return global.lighting_update_overlays;
 		if("limb_icon_cache")
 			return global.limb_icon_cache;
 		if("list_of_ais")
@@ -2202,16 +2202,16 @@
 			global.license_to_url=newval;
 		if("life_event")
 			global.life_event=newval;
-		if("light_overlay_cache")
-			global.light_overlay_cache=newval;
-		if("light_type_cache")
-			global.light_type_cache=newval;
+		//if("light_overlay_cache")
+		//	global.light_overlay_cache=newval;
+		//if("light_type_cache")
+		//	global.light_type_cache=newval;
 		if("lighter_sound")
 			global.lighter_sound=newval;
-		if("lighting_update_lights")
-			global.lighting_update_lights=newval;
-		if("lighting_update_overlays")
-			global.lighting_update_overlays=newval;
+		//if("lighting_update_lights")
+		//	global.lighting_update_lights=newval;
+		//if("lighting_update_overlays")
+		//	global.lighting_update_overlays=newval;
 		if("limb_icon_cache")
 			global.limb_icon_cache=newval;
 		if("list_of_ais")

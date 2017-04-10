@@ -82,5 +82,5 @@
 			set_light(round(seed.get_trait(TRAIT_POTENCY)/10), l_color = clr)
 			return
 
-	set_light(0)
+	kill_light()
 	return

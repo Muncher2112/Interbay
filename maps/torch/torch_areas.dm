@@ -480,7 +480,7 @@
 	name = "\improper SEV Torch Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 1
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/calypso_hangar/start
@@ -532,7 +532,7 @@
 	name = "\improper SEV Torch Landing Area"
 	icon_state = "yellow"
 	requires_power = 1
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/aquila_hangar/start
@@ -584,7 +584,7 @@
 	name = "\improper SEV Torch Hangar Deck"
 	icon_state = "yellow"
 	requires_power = 1
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 
@@ -632,7 +632,7 @@
 	name = "\improper NSV Petrov"
 	icon_state = "shuttlered"
 	requires_power = 1
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/shuttle/petrov/docked
@@ -646,7 +646,7 @@
 	name = "\improper Turbolift"
 	icon_state = "shuttle"
 	requires_power = 0
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/turbolift/start
@@ -682,12 +682,12 @@
 	name = "\improper Ninja Base"
 	icon_state = "green"
 	requires_power = 0
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
-	lighting_use_dynamic = 0
+	// = 0
 
 /area/ninja_dojo/start
 	name = "\improper Clan Dojo"
@@ -748,7 +748,7 @@
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	// = 0
 
 /area/syndicate_station
 	name = "\improper Independant Station"
@@ -857,13 +857,13 @@
 	name = "\improper Response Team Base"
 	icon_state = "yellow"
 	requires_power = 0
-	lighting_use_dynamic = 1
+	// = 1
 	flags = AREA_RAD_SHIELDED
 
 /area/rescue_base/base
 	name = "\improper Barracks"
 	icon_state = "yellow"
-	lighting_use_dynamic = 0
+	// = 0
 
 /area/rescue_base/start
 	name = "\improper Response Team Base"

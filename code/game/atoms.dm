@@ -373,7 +373,6 @@ its easier to just keep the beam vertical.
 			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
 				return 0
 			else
-				user.adjustStaminaLoss(rand(10,20))//Kicking someone is a big deal.
 				user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
 				return 1 //We do have legs now though, so we can kick.
 

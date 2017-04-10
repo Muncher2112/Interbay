@@ -17,7 +17,7 @@
 		blocks_air = ZONE_BLOCKED
 		update_icon()
 		update_air()
-		set_light(0)
+		kill_light()
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)

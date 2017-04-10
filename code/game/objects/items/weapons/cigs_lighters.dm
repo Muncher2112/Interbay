@@ -157,11 +157,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_icon()
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		set_light(2, 0.25, "#E38F46")
+		//set_light(0.75, 0.25, "#E38F46")
 		processing_objects.Add(src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
-	set_light(0)
+	//kill_light()
 	lit = 0
 	processing_objects.Remove(src)
 	update_icon()
@@ -544,7 +544,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				playsound(src.loc, 'sound/items/zippo_open.ogg', 100, 1, -4)
 				lit = 1
-				set_light(2, 1, "#E38F46")
+				set_light(1, 1, "#E38F46")
 				processing_objects.Add(src)
 				icon_state = "[base_state]on"
 				item_state = "[base_state]on"
@@ -555,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					return
 				else
 					lit = 1
-					set_light(2, 1, "#E38F46")
+					set_light(1, 1, "#E38F46")
 					processing_objects.Add(src)
 					icon_state = "[base_state]on"
 					item_state = "[base_state]on"
@@ -568,7 +568,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				playsound(src.loc, 'sound/items/zippo_close.ogg', 100, 1, -4)
 
-			set_light(0)
+			kill_light()
 			processing_objects.Remove(src)
 	else
 		return ..()

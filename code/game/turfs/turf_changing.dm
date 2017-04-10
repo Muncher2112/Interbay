@@ -27,10 +27,15 @@
 			N = below.density ? /turf/simulated/floor/airless : /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
-	var/old_opacity = opacity
-	var/old_dynamic_lighting = dynamic_lighting
+	//var/old_opacity = opacity
+	//var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
-	var/old_lighting_overlay = lighting_overlay
+	//var/old_lighting_overlay = lighting_overlay
+
+	for(var/thing in affecting_lights)
+		if(thing)
+			var/obj/effect/light/L = thing
+			L.affecting_turfs -= src
 
 //	log_debug("Replacing [src.type] with [N]")
 
@@ -68,17 +73,21 @@
 	W.post_change()
 	. = W
 
-	lighting_overlay = old_lighting_overlay
-	if(lighting_overlay)
-		lighting_overlay.update_overlay()
+	//lighting_overlay = old_lighting_overlay
+	//if(lighting_overlay)
+	//	lighting_overlay.update_overlay()
 	affecting_lights = old_affecting_lights
-	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
-		reconsider_lights()
-	if(dynamic_lighting != old_dynamic_lighting)
-		if(dynamic_lighting)
-			lighting_build_overlays()
-		else
-			lighting_clear_overlays()
+	//if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
+	//	reconsider_lights()
+	//if(dynamic_lighting != old_dynamic_lighting)
+	//	if(dynamic_lighting)
+	//		lighting_build_overlays()
+	//	else
+	//		lighting_clear_overlays()
+	for(var/thing in affecting_lights)
+		var/obj/effect/light/L = thing
+		L.affecting_turfs |= src
+
 
 /turf/proc/transport_properties_from(turf/other)
 	if(!istype(other, src.type))
