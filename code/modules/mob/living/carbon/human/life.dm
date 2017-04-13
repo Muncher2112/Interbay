@@ -932,12 +932,12 @@
 			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	if(isturf(loc) && rand(1,1000) == 1)
-		var/turf/T = loc
+//	if(isturf(loc) && rand(1,1000) == 1)
+//		var/turf/T = loc
 		//var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 		//if(L && L.lum_r + L.lum_g + L.lum_b == 0)
-		if(!T.check_lumcount())
-			playsound_local(src,pick(scarySounds),50, 1, -1)
+//		if(!T.check_lumcount())
+//			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
