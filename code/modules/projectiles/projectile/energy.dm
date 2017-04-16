@@ -4,6 +4,7 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = "energy"
+	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 
 
 //releases a burst of light on impact or after travelling a distance
@@ -58,6 +59,7 @@
 	name = "electrode"
 	icon_state = "spark"
 	fire_sound = 'sound/weapons/Taser.ogg'
+	mob_hit_sound = list('sound/weapons/tase.ogg')
 	nodamage = 1
 	taser_effect = 1
 	agony = 60

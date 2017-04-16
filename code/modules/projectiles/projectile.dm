@@ -7,6 +7,7 @@
 	anchored = 1 //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
+	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit2.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
@@ -190,8 +191,7 @@
 		to_chat(target_mob, "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>")
 	else
 		target_mob.visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-	var/bullethitnoise = "sound/effects/gore/bullethit[pick(1,2)].ogg"
-	playsound(target_mob.loc, bullethitnoise, 60, 1)
+	playsound(target_mob.loc, mob_hit_sound, 60, 1)
 	//admin logs
 	if(!no_attack_log)
 		if(istype(firer, /mob))
