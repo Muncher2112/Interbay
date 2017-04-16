@@ -80,6 +80,8 @@
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
 
+	var/safety = 0
+
 /obj/item/weapon/gun/New()
 	..()
 	for(var/i in 1 to firemodes.len)
@@ -137,6 +139,10 @@
 		else
 			handle_click_empty(user)
 		return 0
+	if(safety)
+		to_chat(user, "<span class='danger'>The gun's safety is on!</span>")
+		handle_click_empty(user)
+		return 0
 	return 1
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -153,8 +159,9 @@
 		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 		return
 
-	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-		to_chat(user, "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>")
+	//Gun safety has been implemented, this isn't needed.
+	//if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
+	//	to_chat(user, "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>")
 	else
 		Fire(A,user,params) //Otherwise, fire normally.
 
@@ -429,6 +436,11 @@
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		to_chat(user, "The fire selector is set to [current_mode.name].")
+	if(safety)
+		to_chat(user, "<span class='notice'>The safety is on.</span>")
+	else
+		to_chat(user, "<span class='notice'>The safety is off.</span>")
+
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -445,6 +457,16 @@
 /obj/item/weapon/gun/attack_self(mob/user)
 	var/datum/firemode/new_mode = switch_firemodes(user)
 	if(new_mode)
-		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
+		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>\The [src] is now set to [new_mode.name].</span>")
 
+//Gun safety
+/obj/item/weapon/gun/AltClick(mob/user)
+	..()
+	if(user.incapacitated())
+		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
+		return
+	if(src == user.get_active_hand())
+		safety = !safety
+		playsound(user, 'sound/weapons/guns/interact/selector.ogg', 50, 1)
+		to_chat(user, "<span class='notice'>You toggle the safety [safety ? "on":"off"].</span>")
