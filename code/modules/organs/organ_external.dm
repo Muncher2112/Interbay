@@ -732,12 +732,19 @@ Note that amputating the affected organ does in fact remove the infection from t
 					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
 					"<span class='danger'>You hear a terrible sound of [gore_sound].</span>")
 			playsound(owner, 'sound/effects/gore/severed.ogg', 100, 0)
+			
+			if(owner.can_feel_pain() && prob(50))
+				agony_scream(owner)
+
 		if(DROPLIMB_BURN)
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " of burning flesh"]"
 			owner.visible_message(
 				"<span class='danger'>\The [owner]'s [src.name] flashes away into ashes!</span>",\
 				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
 				"<span class='danger'>You hear a crackling sound[gore].</span>")
+			if(owner.can_feel_pain() && prob(50))
+				agony_scream(owner)
+		
 		if(DROPLIMB_BLUNT)
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " in shower of gore"]"
 			var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
@@ -746,6 +753,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
 			playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , 0)//Splat.
+			
+			if(owner.can_feel_pain() && prob(50))
+				agony_scream(owner)
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
@@ -905,6 +915,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//	"<span class='danger'>You hear a sickening crack.</span>")
 		jostle_bone()
 		if(can_feel_pain())
+			if(prob(50))
+				agony_scream(owner)
 			owner.emote("scream")
 
 		playsound(owner, "trauma", 75, 0)

@@ -21,6 +21,7 @@
 		losebreath--
 		if (prob(10)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
+			gasp_sound(src)
 	else
 		//Okay, we can breathe, now check if we can get air
 		breath = get_breath_from_internal() //First, check for air from internals

@@ -92,6 +92,9 @@
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)
 
+		playsound(loc, 'sound/voice/throat.ogg', 50, 1, -1)
+
+
 	G.last_action = world.time
 	flick(G.hud.icon_state, G.hud)
 
