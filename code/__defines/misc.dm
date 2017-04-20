@@ -187,6 +187,7 @@
 
 #define WORLD_ICON_SIZE 32
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32
+
 //Hardcore mode stuff
 
 #define STARVATION_MIN 60 //If you have less nutrition than this value, the hunger indicator starts flashing
