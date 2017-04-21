@@ -10,7 +10,7 @@ proc/agony_scream(var/mob/M)
 		screamsound = "sound/voice/woman_agony[rand(1,3)].ogg"
 
 	if(screamsound)
-		playsound(M, screamsound, 50, 1, -1)
+		playsound(M, screamsound, 25, 0, 1)
 
 proc/gasp_sound(var/mob/M)
 	var/gaspsound = null
@@ -24,4 +24,4 @@ proc/gasp_sound(var/mob/M)
 		gaspsound = "sound/voice/gasp_female[rand(1,7)].ogg"
 
 	if(gaspsound)
-		playsound(M, gaspsound, 50, 1, -1)
+		playsound(M, gaspsound, 25, 0, 1)
