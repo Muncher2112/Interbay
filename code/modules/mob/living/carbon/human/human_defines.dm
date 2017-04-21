@@ -110,3 +110,5 @@
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
 
 	var/innate_heal = 1
+
+	var/footstep = 0
