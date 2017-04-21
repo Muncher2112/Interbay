@@ -567,7 +567,7 @@ meteor_act
 	playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
 	user.adjustStaminaLoss(rand(10,20))//Kicking someone is a big deal.
 	apply_damage(rand(0,15), BRUTE, hit_zone, armour)
-	user.visible_message("<span class=danger>[user] kicks [src] in the [hit_zone]!<span>")
+	user.visible_message("<span class=danger>[user] kicks [src] in the [affecting.name]!<span>")
 	admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")
 	
 	
