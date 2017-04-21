@@ -44,9 +44,6 @@
 
 	next_click = world.time + 1
 
-	if(!canClick()) // in the year 2000...
-		return
-
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
@@ -63,6 +60,9 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return 1
+
+	if(!canClick()) // in the year 2000...
+		return
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
 		if(A.Adjacent(src) && !get_active_hand())
@@ -223,7 +223,6 @@
 	middle_click_intent_check(M)
 	return
 // In case of use break glass
-
 
 
 /mob/proc/ShiftMiddleClickOn(var/atom/A)
