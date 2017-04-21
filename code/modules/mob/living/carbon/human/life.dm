@@ -243,22 +243,24 @@
 
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
-			kill_light()
+			set_light(0)
 	else
 		if(species.appearance_flags & RADIATION_GLOWS)
 			set_light(max(1,min(10,radiation/10)), max(1,min(20,radiation/20)), species.get_flesh_colour(src))
 		// END DOGSHIT SNOWFLAKE
 
 		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
+		if (rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
+
 			radiation -= rads
 			nutrition += rads
-			adjustBruteLoss(-(rads))
-			adjustFireLoss(-(rads))
-			adjustOxyLoss(-(rads))
-			adjustToxLoss(-(rads))
-			updatehealth()
+
+			if (radiation < 2)
+				radiation = 0
+
+			nutrition = Clamp(nutrition, 0, 550)
+
 			return
 
 		var/damage = 0
@@ -583,6 +585,7 @@
 	var/obj/item/organ/internal/diona/node/light_organ = locate() in internal_organs
 
 	if(!isSynthetic())
+		// Handles adding nutrient for light organs.
 		if(light_organ && !light_organ.is_broken())
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
@@ -593,18 +596,15 @@
 				//else
 				//	light_amount =  5
 				light_amount = T.check_lumcount()
+
+			/*	var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+				if(L)
+					light_amount = max(0, min(14,(L.lum_r + L.lum_g + L.lum_b)) * 1.5) //hardcapped so it's not abused by having a ton of flashlights
+				else
+					light_amount =  5*/
 			nutrition += light_amount
 			traumatic_shock -= light_amount
-			if(species.flags & IS_PLANT)
-				if(nutrition > 450)
-					nutrition = 450
-
-				if(light_amount >= 3) //if there's enough light, heal
-					adjustBruteLoss(-(round(light_amount/2)))
-					adjustFireLoss(-(round(light_amount/2)))
-					adjustToxLoss(-(light_amount))
-					adjustOxyLoss(-(light_amount))
-					//TODO: heal wounds, heal broken limbs.
+			nutrition = Clamp(nutrition, 0, 550)
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -625,13 +625,59 @@
 	if (nutrition > 0 && stat != 2)
 		nutrition = max (0, nutrition - species.hunger_factor)
 
-	if(!isSynthetic() && (species.flags & IS_PLANT) && (!light_organ || light_organ.is_broken()))
-		if(nutrition < 200)
+	if(!isSynthetic() && (species.flags & IS_PLANT))
+		if(nutrition < 10)
 			take_overall_damage(2,0)
 
 			//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
 			//Not that it matters much for diona, who have NO_PAIN.
 			shock_stage++
+		else if (innate_heal)
+			// Heals normal damage.
+			if(getBruteLoss())
+				adjustBruteLoss(-4)
+				nutrition -= 2
+			if(getFireLoss())
+				adjustFireLoss(-4)
+				nutrition -= 2
+			if(getToxLoss())
+				adjustToxLoss(-8)
+				nutrition -= 2
+			if(getOxyLoss())
+				adjustOxyLoss(-8)
+				nutrition -= 2
+
+			if (prob(10))
+				var/obj/item/organ/external/head/D = organs_by_name["head"]
+				if (D.disfigured && nutrition > 200 && !getBruteLoss() && !getFireLoss())
+					D.disfigured = 0
+					nutrition -= 20
+
+			for(var/obj/item/organ/I in internal_organs)
+				if(I.damage > 0)
+					I.damage = max(I.damage - 2, 0)
+					nutrition -= 2
+					if (prob(1))
+						to_chat(src, "<span class='warning'>You sense your [I.name] regenerating...</span>")
+
+			if (prob(10) && nutrition > 70)
+				for(var/limb_type in species.has_limbs)
+					var/obj/item/organ/external/E = organs_by_name[limb_type]
+					for(var/datum/wound/W in E.wounds)
+						if (W.wound_damage() == 0 && prob(50))
+							E.wounds -= W
+					if(E && !E.is_usable())
+						E.removed()
+						qdel(E)
+						E = null
+					if(!E)
+						var/list/organ_data = species.has_limbs[limb_type]
+						var/limb_path = organ_data["path"]
+						var/obj/item/organ/O = new limb_path(src)
+						organ_data["descriptor"] = O.name
+						to_chat(src, "<span class='warning'>Some of your nymphs split and hurry to reform your [O.name].</span>")
+						nutrition -= 60
+						update_body()
 
 	// TODO: stomach and bloodstream organ.
 	if(!isSynthetic())
@@ -687,7 +733,7 @@
 		if(getHalLoss() >= species.total_health)
 			if(!stat)
 				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
-				src.visible_message("<B>[src]</B> [species.halloss_message]")
+				src.visible_message("<B>[src]</B> [species.halloss_message].")
 			Paralyse(10)
 
 		if(paralysis || sleeping)
@@ -721,12 +767,10 @@
 			dizziness = max(0, dizziness - 15)
 			jitteriness = max(0, jitteriness - 15)
 			adjustHalLoss(-3)
-			adjustStaminaLoss(-3)
 		else
 			dizziness = max(0, dizziness - 3)
 			jitteriness = max(0, jitteriness - 3)
 			adjustHalLoss(-1)
-			adjustStaminaLoss(-1)
 
 		if (drowsyness > 0)
 			drowsyness = max(0, drowsyness-1)
@@ -740,8 +784,6 @@
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
-
-		CheckStamina()
 
 	return 1
 
@@ -849,19 +891,7 @@
 				if(250 to 350)					nutrition_icon.icon_state = "nutrition2"
 				if(150 to 250)					nutrition_icon.icon_state = "nutrition3"
 				else							nutrition_icon.icon_state = "nutrition4"
-		if(stamina_icon)
-			switch(staminaloss)
-				if(100 to INFINITY)		stamina_icon.icon_state = "stamina10"
-				if(90 to 100)			stamina_icon.icon_state = "stamina9"
-				if(80 to 90)			stamina_icon.icon_state = "stamina8"
-				if(70 to 80)			stamina_icon.icon_state = "stamina7"
-				if(60 to 70)			stamina_icon.icon_state = "stamina6"
-				if(50 to 60)			stamina_icon.icon_state = "stamina5"
-				if(40 to 50)			stamina_icon.icon_state = "stamina4"
-				if(30 to 40)			stamina_icon.icon_state = "stamina3"
-				if(20 to 30)			stamina_icon.icon_state = "stamina2"
-				if(10 to 20)			stamina_icon.icon_state = "stamina1"
-				else					stamina_icon.icon_state = "stamina0"
+
 		if(pressure)
 			pressure.icon_state = "pressure[pressure_alert]"
 		if(toxin)
@@ -932,13 +962,12 @@
 			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-//	if(isturf(loc) && rand(1,1000) == 1)
-//		var/turf/T = loc
-		//var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-		//if(L && L.lum_r + L.lum_g + L.lum_b == 0)
-//		if(!T.check_lumcount())
-//			playsound_local(src,pick(scarySounds),50, 1, -1)
-
+	/*if(isturf(loc) && rand(1,1000) == 1)
+		var/turf/T = loc
+		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+		if(L && L.lum_r + L.lum_g + L.lum_b == 0)
+			playsound_local(src,pick(scarySounds),50, 1, -1)
+	*/
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
 		for(var/a in stomach_contents)
@@ -956,71 +985,6 @@
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
 					nutrition += 10
-	handle_excrement()
-	handle_starvation()
-
-/mob/living/carbon/human/proc/handle_starvation()
-	if(nutrition < 100) //Nutrition is below 100 = starvation
-
-		var/list/hunger_phrases = list(
-			"You feel weak and malnourished. You must find something to eat now!",
-			"You haven't eaten in ages, and your body feels weak! It's time to eat something.",
-			"You can barely remember the last time you had a proper, nutritional meal. Your body will shut down soon if you don't eat something!",
-			"Your body is running out of essential nutrients! You have to eat something soon.",
-			"If you don't eat something very soon, you're going to starve to death."
-			)
-
-		//When you're starving, the rate at which oxygen damage is healed is reduced by 80% (you only restore 1 oxygen damage per life tick, instead of 5)
-
-		switch(nutrition)
-			if(STARVATION_NOTICE to STARVATION_MIN) //60-80
-				if(sleeping) return
-
-				if(prob(2))
-					to_chat(src, "<span class='notice'>You're very hungry.</span>")
-
-			if(STARVATION_WEAKNESS to STARVATION_NOTICE) //30-60
-				if(sleeping) return
-
-				if(prob(3)) //3% chance of a tiny amount of oxygen damage (1-10)
-
-					adjustOxyLoss(rand(1,10))
-					to_chat(src, "<span class='danger'>[pick(hunger_phrases)]</span>")
-
-				else if(prob(5)) //5% chance of being weakened
-
-					eye_blurry += 10
-					Weaken(10)
-					adjustOxyLoss(rand(1,15))
-					to_chat(src, "<span class='danger'>You're starving! The lack of strength makes you black out for a few moments...</span>")
-
-			if(STARVATION_NEARDEATH to STARVATION_WEAKNESS) //5-30, 5% chance of weakening and 1-230 oxygen damage. 5% chance of a seizure. 10% chance of dropping item
-				if(sleeping) return
-
-				if(prob(5))
-
-					adjustOxyLoss(rand(1,20))
-					to_chat(src, "<span class='danger'>You're starving. You feel your life force slowly leaving your body...</span>")
-					eye_blurry += 20
-					if(weakened < 1) Weaken(20)
-
-				else if(paralysis<1 && prob(5)) //Mini seizure (25% duration and strength of a normal seizure)
-
-					visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
-							"<span class='warning'>You have a seizure!</span>")
-					Paralyse(5)
-					make_jittery(500)
-					adjustOxyLoss(rand(1,25))
-					eye_blurry += 20
-
-			if(-INFINITY to STARVATION_NEARDEATH) //Fuck the whole body up at this point
-				to_chat(src, "<span class='danger'>You are dying from starvation!</span>")
-				adjustToxLoss(STARVATION_TOX_DAMAGE)
-				adjustOxyLoss(STARVATION_OXY_DAMAGE)
-				adjustBrainLoss(STARVATION_BRAIN_DAMAGE)
-
-				if(prob(10))
-					Weaken(15)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
