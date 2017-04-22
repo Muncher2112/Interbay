@@ -785,6 +785,7 @@
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
+		CheckStamina()
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
