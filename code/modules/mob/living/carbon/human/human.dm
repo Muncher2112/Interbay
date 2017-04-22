@@ -1559,15 +1559,3 @@
 
 	else
 		..()
-
-
-/mob/living/carbon/human/verb/toggle_jump()
-	set name = "Toggle Jump"
-	set category = "Actions"
-
-	if(middle_click_intent == "jump")
-		to_chat(src, "You will no longer jump")
-		middle_click_intent = null
-	else
-		to_chat(src, "You will now jump when you middle click")
-		middle_click_intent = "jump"
