@@ -343,6 +343,15 @@
 			else
 				usr.middle_click_intent = "kick"
 				usr.kick_icon.icon_state = "kick_on"
+				usr.jump_icon.icon_state = "jump"//Holy fuck that's a convoluted way to deal with that. I'll make a better method later.
+		if("jump")
+			if(usr.middle_click_intent == "jump")
+				usr.middle_click_intent = null
+				usr.jump_icon.icon_state = "jump"
+			else
+				usr.middle_click_intent = "jump"
+				usr.jump_icon.icon_state = "jump_on"
+				usr.kick_icon.icon_state = "kick"
 
 		if("module")
 			if(isrobot(usr))

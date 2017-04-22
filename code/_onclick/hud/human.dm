@@ -297,6 +297,12 @@
 	mymob.kick_icon.screen_loc = ui_kick
 	hud_elements |= mymob.kick_icon
 
+	mymob.jump_icon = new /obj/screen()
+	mymob.jump_icon.icon = ui_style
+	mymob.jump_icon.icon_state = "jump"
+	mymob.jump_icon.name = "jump"
+	mymob.jump_icon.screen_loc = ui_kick
+	hud_elements |= mymob.jump_icon
 
 	mymob.pain = new /obj/screen( null )
 	mymob.pain.icon = ui_style

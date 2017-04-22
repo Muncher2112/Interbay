@@ -37,6 +37,7 @@
 	var/obj/screen/gun/mode/gun_setting_icon = null
 	var/obj/screen/stamina_icon = null
 	var/obj/screen/kick_icon = null
+	var/obj/screen/jump_icon = null
 
 	var/obj/screen/movable/ability_master/ability_master = null
 
