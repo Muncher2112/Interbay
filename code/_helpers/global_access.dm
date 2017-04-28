@@ -657,8 +657,6 @@
 			return global.hazard_overlays;
 		if("hidden_skill_types")
 			return global.hidden_skill_types;
-		if("highlanders")
-			return global.highlanders;
 		if("hiss_sound")
 			return global.hiss_sound;
 		if("hit_appends")
@@ -989,6 +987,8 @@
 			return global.player_list;
 		if("point_source_descriptions")
 			return global.point_source_descriptions;
+		if("points_of_interest")
+			return global.points_of_interest;
 		if("possible_cable_coil_colours")
 			return global.possible_cable_coil_colours;
 		if("possible_changeling_IDs")
@@ -2120,8 +2120,6 @@
 			global.hazard_overlays=newval;
 		if("hidden_skill_types")
 			global.hidden_skill_types=newval;
-		if("highlanders")
-			global.highlanders=newval;
 		if("hiss_sound")
 			global.hiss_sound=newval;
 		if("hit_appends")
@@ -2452,6 +2450,8 @@
 			global.player_list=newval;
 		if("point_source_descriptions")
 			global.point_source_descriptions=newval;
+		if("points_of_interest")
+			global.points_of_interest=newval;
 		if("possible_cable_coil_colours")
 			global.possible_cable_coil_colours=newval;
 		if("possible_changeling_IDs")
@@ -3254,7 +3254,6 @@
 	"hands_state",
 	"hazard_overlays",
 	"hidden_skill_types",
-	"highlanders",
 	"hiss_sound",
 	"hit_appends",
 	"hivemind_bank",
@@ -3420,6 +3419,7 @@
 	"playable_species",
 	"player_list",
 	"point_source_descriptions",
+	"points_of_interest",
 	"possible_cable_coil_colours",
 	"possible_changeling_IDs",
 	"poster_designs",
