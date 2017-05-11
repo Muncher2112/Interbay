@@ -33,8 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Added anesthetics pump above main surgery operating table"
-  - rscadd: "Added Nanomed above health monitoring console"
-  - rscadd: "Added Medical intercom at the south-west corner beside general intercom"
-  - rscdel: "Removed Nanomed above Main surgery operating table"
-  - rscdel: "Removed medical intercom above ealth monitoring console"
+  - bugfix: "EAL, Sign language, and emotes will no longer use autohiss"
