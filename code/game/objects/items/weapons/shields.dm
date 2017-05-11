@@ -180,5 +180,5 @@
 	if(active)
 		set_light(1.5, 1.5, "#006AFF")
 	else
-		kill_light()
+		set_light(0)
 

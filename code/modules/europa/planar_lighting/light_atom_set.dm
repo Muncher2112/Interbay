@@ -1,5 +1,5 @@
-// Destroys and removes a light; replaces previous system's kill_light().
-/atom/proc/kill_light()
+// Destroys and removes a light; replaces previous system's set_light(0).
+/atom/proc/set_light(0)
 	if(light_obj)
 		qdel(light_obj)
 		light_obj = null

@@ -373,7 +373,7 @@
 			//	turf_brightness = min(1, (T.lighting_overlay.lum_b + T.lighting_overlay.lum_g + T.lighting_overlay.lum_r) / 3)
 			//if(turf_brightness < 0.33)
 			//	light = 0
-			light =  T.check_lumcount()
+			light =  T.get_lumcount()
 			//else
 			//	light = round(light * turf_brightness)
 			//	if(H.equipment_light_protection)

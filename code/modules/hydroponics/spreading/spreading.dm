@@ -161,7 +161,7 @@
 		set_light(1+round(seed.get_trait(TRAIT_POTENCY)/20), l_color = clr)
 		return
 	else
-		kill_light()
+		set_light(0)
 
 /obj/effect/plant/proc/refresh_icon()
 	var/growth = min(max_growth,round(health/growth_threshold))

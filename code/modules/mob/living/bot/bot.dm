@@ -356,7 +356,7 @@
 
 /mob/living/bot/proc/turn_off()
 	on = 0
-	kill_light()
+	set_light(0)
 	update_icons()
 
 /mob/living/bot/proc/explode()

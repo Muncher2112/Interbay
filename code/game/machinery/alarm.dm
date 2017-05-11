@@ -295,11 +295,11 @@
 /obj/machinery/alarm/update_icon()
 	if(wiresexposed)
 		icon_state = "alarmx"
-		kill_light()
+		set_light(0)
 		return
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
-		kill_light()
+		set_light(0)
 		return
 
 	var/icon_level = danger_level
@@ -875,15 +875,15 @@ FIRE ALARM
 				icon_state="fire_b1"
 			if(0)
 				icon_state="fire_b0"
-		kill_light()
+		set_light(0)
 		return
 
 	if(stat & BROKEN)
 		icon_state = "firex"
-		kill_light()
+		set_light(0)
 	else if(stat & NOPOWER)
 		icon_state = "firep"
-		kill_light()
+		set_light(0)
 	else
 		if(!src.detecting)
 			icon_state = "fire1"

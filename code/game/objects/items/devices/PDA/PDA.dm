@@ -642,7 +642,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Light")
 			if(fon)
 				fon = 0
-				kill_light()
+				set_light(0)
 			else
 				fon = 1
 				set_light(f_lum)

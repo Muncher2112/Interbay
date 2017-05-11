@@ -24,7 +24,7 @@
 		processing_objects |= src
 		icon_state = "uv_on"
 	else
-		kill_light()
+		set_light(0)
 		clear_last_scan()
 		processing_objects -= src
 		icon_state = "uv_off"

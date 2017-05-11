@@ -414,13 +414,13 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/reset_view(atom/A)
 	if(camera)
-		camera.kill_light()
+		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
 		camera = A
 	..()
 	if(istype(A,/obj/machinery/camera))
 		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.kill_light()
+		else				A.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
@@ -547,7 +547,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, "Camera lights [camera_light_on ? "activated" : "deactivated"].")
 	if(!camera_light_on)
 		if(camera)
-			camera.kill_light()
+			camera.set_light(0)
 			camera = null
 	else
 		lightNearbyCamera()
@@ -562,14 +562,14 @@ var/list/ai_verbs_default = list(
 		if(src.camera)
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
 			if(camera && src.camera != camera)
-				src.camera.kill_light()
+				src.camera.set_light(0)
 				if(!camera.light_disabled)
 					src.camera = camera
 					src.camera.set_light(AI_CAMERA_LUMINOSITY)
 				else
 					src.camera = null
 			else if(isnull(camera))
-				src.camera.kill_light()
+				src.camera.set_light(0)
 				src.camera = null
 		else
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)

@@ -416,7 +416,7 @@
 		else
 			set_light(integrated_light_power)
 	else
-		kill_light()
+		set_light(0)
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()

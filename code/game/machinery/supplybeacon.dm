@@ -88,7 +88,7 @@
 		icon_state = "beacon_depleted"
 	else
 		icon_state = "beacon"
-	kill_light()
+	set_light(0)
 	use_power = 0
 	target_drop_time = null
 	if(user) to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")

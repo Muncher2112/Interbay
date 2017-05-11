@@ -6,7 +6,7 @@
 	..(user, choice)
 	invalidateCameraCache()
 	if(!can_use())
-		kill_light()
+		set_light(0)
 	cameranet.update_visibility(src)
 
 /obj/machinery/camera/New()

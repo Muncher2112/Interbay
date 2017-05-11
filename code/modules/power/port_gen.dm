@@ -407,7 +407,7 @@
 
 /obj/machinery/power/port_gen/pacman/super/update_icon()
 	if(..())
-		kill_light()
+		set_light(0)
 		return
 	if(icon_state != "[initial(icon_state)]onrad")
 		if(power_output >= 3)
@@ -416,7 +416,7 @@
 	else
 		if(power_output < 3)
 			icon_state = "[initial(icon_state)]on"
-			kill_light()
+			set_light(0)
 
 
 /obj/machinery/power/port_gen/pacman/super/explode()

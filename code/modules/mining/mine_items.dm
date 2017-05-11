@@ -263,4 +263,4 @@
 	anchored = 0
 	icon_state = initial(icon_state)
 	overlays.Cut()
-	kill_light()
+	set_light(0)

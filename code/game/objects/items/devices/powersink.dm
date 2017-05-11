@@ -54,7 +54,7 @@
 			anchored = 0
 			mode = 0
 			src.visible_message("<span class='notice'>[user] detaches [src] from the cable!</span>")
-			kill_light()
+			set_light(0)
 			icon_state = "powersink0"
 
 			return
@@ -77,7 +77,7 @@
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message("<span class='notice'>[user] deactivates [src]!</span>")
 			mode = 1
-			kill_light()
+			set_light(0)
 			icon_state = "powersink0"
 			processing_objects.Remove(src)
 			processing_power_items.Remove(src)

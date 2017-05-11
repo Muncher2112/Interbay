@@ -161,7 +161,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		processing_objects.Add(src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
-	//kill_light()
+	//set_light(0)
 	lit = 0
 	processing_objects.Remove(src)
 	update_icon()
@@ -568,7 +568,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				playsound(src.loc, 'sound/items/zippo_close.ogg', 100, 1, -4)
 
-			kill_light()
+			set_light(0)
 			processing_objects.Remove(src)
 	else
 		return ..()

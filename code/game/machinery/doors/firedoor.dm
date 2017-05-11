@@ -364,7 +364,7 @@
 
 /obj/machinery/door/firedoor/update_icon()
 	overlays.Cut()
-	kill_light()
+	set_light(0)
 	var/do_set_light = FALSE
 
 	if(density)

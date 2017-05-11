@@ -893,7 +893,7 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 	for(var/turf/T in turfstocapture)
 		atoms.Add(T)
 		for(var/atom/A in T)
-			if(istype(A, /obj/effect/light) && lighting) //Special case for lighting /atom/movable/lighting_overlay
+			if(istype(A, /atom/movable/lighting_overlay) && lighting) //Special case for lighting /atom/movable/lighting_overlay
 				atoms.Add(A)
 				continue
 			if(A.invisibility) continue

@@ -35,7 +35,7 @@
 	overlays.Cut()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "light-p"
-		kill_light()
+		set_light(0)
 	else
 		icon_state = "light[on]"
 		overlay.icon_state = "light[on]-overlay"

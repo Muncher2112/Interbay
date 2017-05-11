@@ -203,7 +203,7 @@
 	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"
-		kill_light()
+		set_light(0)
 	else if (enabled)
 		if (lethal)
 			icon_state = "control_kill"

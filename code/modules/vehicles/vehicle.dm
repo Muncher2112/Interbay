@@ -178,7 +178,7 @@
 
 /obj/vehicle/proc/turn_off()
 	on = 0
-	kill_light()
+	set_light(0)
 	update_icon()
 
 /obj/vehicle/emag_act(var/remaining_charges, mob/user as mob)

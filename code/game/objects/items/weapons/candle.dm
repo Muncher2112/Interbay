@@ -68,4 +68,4 @@
 	if(lit)
 		lit = 0
 		update_icon()
-		kill_light()
+		set_light(0)

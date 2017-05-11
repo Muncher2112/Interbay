@@ -61,7 +61,7 @@ var/image/exterior_light_overlay
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
-		kill_light()
+		set_light(0)
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

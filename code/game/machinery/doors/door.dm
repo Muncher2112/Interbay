@@ -390,9 +390,9 @@
 	set_opacity(0)
 	operating = 0
 
-	if(visible && !glass)
-		var/turf/T = get_turf(src)
-		T.door_light_update()
+	//if(visible && !glass)
+	//	var/turf/T = get_turf(src)
+	//	T.door_light_update()
 
 	if(autoclose)
 		close_door_at = next_close_time()
@@ -420,9 +420,9 @@
 		set_opacity(1)	//caaaaarn!
 	operating = 0
 
-	if(visible && !glass)
-		var/turf/T = get_turf(src)
-		T.door_light_update()
+	//if(visible && !glass)
+	//	var/turf/T = get_turf(src)
+	//	T.door_light_update()
 
 
 	//I shall not add a check every x ticks if a door has closed over some fire.

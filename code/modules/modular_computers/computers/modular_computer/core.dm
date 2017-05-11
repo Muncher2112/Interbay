@@ -77,7 +77,7 @@
 	if(!enabled)
 		if(icon_state_screensaver)
 			overlays.Add(icon_state_screensaver)
-		kill_light()
+		set_light(0)
 		return
 	set_light(light_strength)
 	if(active_program)

@@ -29,7 +29,7 @@
 			set_light(brightness_on)
 	else
 		icon_state = "[initial(icon_state)]"
-		kill_light()
+		set_light(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -268,7 +268,7 @@
 	overlays.Cut()
 	if(!fuel)
 		icon_state = "glowstick-empty"
-		kill_light()
+		set_light(0)
 	else if (on)
 		var/image/I = overlay_image(icon,"glowstick-on",color)
 		I.blend_mode = BLEND_ADD

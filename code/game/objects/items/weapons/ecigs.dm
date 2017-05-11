@@ -61,13 +61,13 @@
 		icon_state = icon_on
 		set_light(brightness_on)
 	else if (ec_cartridge)
-		kill_light()
+		set_light(0)
 		item_state = icon_off
 		icon_state = icon_off
 	else
 		icon_state = icon_empty
 		item_state = icon_empty
-		kill_light()
+		set_light(0)
 	if(ismob(loc))
 		var/mob/living/M = loc
 		M.update_inv_wear_mask(0)

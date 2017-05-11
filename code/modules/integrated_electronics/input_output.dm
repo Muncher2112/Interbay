@@ -527,7 +527,7 @@
 	if(light_toggled)
 		set_light(l_range = light_brightness, l_power = light_brightness, l_color = light_rgb)
 	else
-		kill_light()
+		set_light(0)
 
 /obj/item/integrated_circuit/output/light/advanced/update_lighting()
 	var/datum/integrated_io/R = inputs[1]
