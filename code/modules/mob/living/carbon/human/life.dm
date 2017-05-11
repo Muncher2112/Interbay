@@ -774,6 +774,7 @@
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
+		CheckStamina()
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
@@ -880,6 +881,20 @@
 				if(250 to 350)					nutrition_icon.icon_state = "nutrition2"
 				if(150 to 250)					nutrition_icon.icon_state = "nutrition3"
 				else							nutrition_icon.icon_state = "nutrition4"
+
+		if(stamina_icon)
+			switch((staminaloss))
+				if(100 to INFINITY)		stamina_icon.icon_state = "stamina10"
+				if(90 to 100)			stamina_icon.icon_state = "stamina9"
+				if(80 to 90)			stamina_icon.icon_state = "stamina8"
+				if(70 to 80)			stamina_icon.icon_state = "stamina7"
+				if(60 to 70)			stamina_icon.icon_state = "stamina6"
+				if(50 to 60)			stamina_icon.icon_state = "stamina5"
+				if(40 to 50)			stamina_icon.icon_state = "stamina4"
+				if(30 to 40)			stamina_icon.icon_state = "stamina3"
+				if(20 to 30)			stamina_icon.icon_state = "stamina2"
+				if(10 to 20)			stamina_icon.icon_state = "stamina1"
+				else					stamina_icon.icon_state = "stamina0"
 
 		if(pressure)
 			pressure.icon_state = "pressure[pressure_alert]"
