@@ -16,11 +16,11 @@
 		power_equip = 0
 		power_environ = 0
 
-	//if()
-	//	luminosity = 0
-	//else
-	//	luminosity = 1
-	luminosity = 1
+	if(dynamic_lighting)
+		luminosity = 0
+	else
+		luminosity = 1
+
 	..()
 
 /area/proc/initialize()

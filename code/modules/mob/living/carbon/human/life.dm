@@ -590,18 +590,12 @@
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
-				//var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-				//if(L)
-				//	light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 2 //hardcapped so it's not abused by having a ton of flashlights
-				//else
-				//	light_amount =  5
-				light_amount = T.check_lumcount()
-
-			/*	var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 				if(L)
 					light_amount = max(0, min(14,(L.lum_r + L.lum_g + L.lum_b)) * 1.5) //hardcapped so it's not abused by having a ton of flashlights
 				else
-					light_amount =  5*/
+					light_amount =  5
+				light_amount = T.get_lumcount() * 10
 			nutrition += light_amount
 			traumatic_shock -= light_amount
 			nutrition = Clamp(nutrition, 0, 550)
@@ -610,12 +604,7 @@
 		var/light_amount = 0
 		if(isturf(loc))
 			var/turf/T = loc
-			//var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			//if(L)
-			//	light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
-			//else
-			//	light_amount =  10
-			light_amount = T.check_lumcount()
+			light_amount = T.get_lumcount() * 10
 		if(light_amount > species.light_dam) //if there's enough light, start dying
 			take_overall_damage(1,1)
 		else //heal in the dark
@@ -785,7 +774,6 @@
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
-		CheckStamina()
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
@@ -885,20 +873,6 @@
 
 						healths.overlays += health_images
 
-		if(stamina_icon)
-			switch((staminaloss))
-				if(100 to INFINITY)		stamina_icon.icon_state = "stamina10"
-				if(90 to 100)			stamina_icon.icon_state = "stamina9"
-				if(80 to 90)			stamina_icon.icon_state = "stamina8"
-				if(70 to 80)			stamina_icon.icon_state = "stamina7"
-				if(60 to 70)			stamina_icon.icon_state = "stamina6"
-				if(50 to 60)			stamina_icon.icon_state = "stamina5"
-				if(40 to 50)			stamina_icon.icon_state = "stamina4"
-				if(30 to 40)			stamina_icon.icon_state = "stamina3"
-				if(20 to 30)			stamina_icon.icon_state = "stamina2"
-				if(10 to 20)			stamina_icon.icon_state = "stamina1"
-				else					stamina_icon.icon_state = "stamina0"
-
 		if(nutrition_icon)
 			switch(nutrition)
 				if(450 to INFINITY)				nutrition_icon.icon_state = "nutrition0"
@@ -977,12 +951,11 @@
 			spawn vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
-	/*if(isturf(loc) && rand(1,1000) == 1)
+	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
-		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-		if(L && L.lum_r + L.lum_g + L.lum_b == 0)
+		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-	*/
+
 /mob/living/carbon/human/handle_stomach()
 	spawn(0)
 		for(var/a in stomach_contents)

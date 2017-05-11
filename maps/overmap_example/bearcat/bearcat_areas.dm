@@ -135,7 +135,7 @@
 /area/ship/scrap/shuttle/
 	requires_power = 0
 	luminosity = 1
-	 = 0
+	dynamic_lighting = 0
 
 /area/ship/scrap/shuttle/ingoing
 	name = "\improper Docking Bay #1"

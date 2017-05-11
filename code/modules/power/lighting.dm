@@ -11,22 +11,13 @@
 
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 #define LIGHTING_POWER_FACTOR 5		//5W per luminosity * range
-/*
+
 var/global/list/light_type_cache = list()
 /proc/get_light_type_instance(var/light_type)
 	. = light_type_cache[light_type]
 	if(!.)
 		. = new light_type
 		light_type_cache[light_type] = .
-*/
-
-var/global/list/light_bulb_type_cache = list()
-/proc/get_light_bulb_type_instance(var/light_bulb_type)
-	. = light_bulb_type_cache[light_bulb_type]
-	if(!.)
-		. = new light_bulb_type
-		light_bulb_type_cache[light_bulb_type] = .
-
 
 /obj/machinery/light_construct
 	name = "light fixture frame"
@@ -162,7 +153,7 @@ var/global/list/light_bulb_type_cache = list()
 	var/on = 0					// 1 if on, 0 if off
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
-	var/light_bulb_type = /obj/item/weapon/light/tube		// the type of light item
+	var/light_type = /obj/item/weapon/light/tube		// the type of light item
 	var/construct_type = /obj/machinery/light_construct
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
@@ -171,8 +162,8 @@ var/global/list/light_bulb_type_cache = list()
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 
 	//default lighting - these are obtained from light_type
-	var/brightness_range = 5
-	var/brightness_power = 4
+	var/brightness_range
+	var/brightness_power
 	var/brightness_color
 	var/list/lighting_modes
 
@@ -183,19 +174,19 @@ var/global/list/light_bulb_type_cache = list()
 	icon_state = "bulb1"
 	base_state = "bulb"
 	desc = "A small lighting fixture."
-	light_bulb_type = /obj/item/weapon/light/bulb
+	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 
 /obj/machinery/light/small/emergency
-	light_bulb_type = /obj/item/weapon/light/bulb/red
+	light_type = /obj/item/weapon/light/bulb/red
 
 /obj/machinery/light/small/red
-	light_bulb_type = /obj/item/weapon/light/bulb/red
+	light_type = /obj/item/weapon/light/bulb/red
 
 /obj/machinery/light/spot
 	name = "spotlight"
 	desc = "A more robust socket for light tubes that demand more power."
-	light_bulb_type = /obj/item/weapon/light/tube/large
+	light_type = /obj/item/weapon/light/tube/large
 
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
@@ -209,7 +200,7 @@ var/global/list/light_bulb_type_cache = list()
 		construct.transfer_fingerprints_to(src)
 		set_dir(construct.dir)
 	else
-		var/obj/item/weapon/light/L = get_light_bulb_type_instance(light_bulb_type)
+		var/obj/item/weapon/light/L = get_light_type_instance(light_type)
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -259,7 +250,7 @@ var/global/list/light_bulb_type_cache = list()
 			switch_check()
 	else
 		use_power = 0
-		kill_light()
+		set_light(0)
 
 	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
@@ -325,7 +316,7 @@ var/global/list/light_bulb_type_cache = list()
 			to_chat(user, "[desc] The [fitting] has been smashed.")
 
 /obj/machinery/light/proc/get_fitting_name()
-	var/obj/item/weapon/light/L = light_bulb_type
+	var/obj/item/weapon/light/L = light_type
 	return initial(L.name)
 
 /obj/machinery/light/proc/update_from_bulb(obj/item/weapon/light/L)
@@ -354,7 +345,7 @@ var/global/list/light_bulb_type_cache = list()
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_bulb_type(src.loc, src)
+	. = new light_type(src.loc, src)
 
 	switchcount = 0
 	status = LIGHT_EMPTY
@@ -375,7 +366,7 @@ var/global/list/light_bulb_type_cache = list()
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [get_fitting_name()] already inserted.")
 			return
-		if(!istype(W, light_bulb_type))
+		if(!istype(W, light_type))
 			to_chat(user, "This type of light requires a [get_fitting_name()].")
 			return
 
@@ -580,7 +571,7 @@ var/global/list/light_bulb_type_cache = list()
 obj/machinery/light/proc/burn_out()
 	status = LIGHT_BURNED
 	update_icon()
-	kill_light()
+	set_light(0)
 
 // the light item
 // can be tube or bulb subtypes
@@ -598,9 +589,9 @@ obj/machinery/light/proc/burn_out()
 	var/rigged = 0		// true if rigged to explode
 	var/broken_chance = 2
 
-	var/brightness_range = 5 //how much light it gives off
-	var/brightness_power = 4
-	var/brightness_color = null//"#FFFFFF"
+	var/brightness_range = 2 //how much light it gives off
+	var/brightness_power = 1
+	var/brightness_color = "#FFFFFF"
 	var/list/lighting_modes = list()
 
 /obj/item/weapon/light/tube
@@ -611,18 +602,18 @@ obj/machinery/light/proc/burn_out()
 	item_state = "c_tube"
 	matter = list("glass" = 100)
 
-	brightness_range = 8//8//5	// luminosity when on, also used in power calculation
-	brightness_power = 7//3//7
-	brightness_color = COLOUR_LTEMP_FLURO//"#FFFFFF"
+	brightness_range = 6	// luminosity when on, also used in power calculation
+	brightness_power = 3
+	brightness_color = "#FFFFFF"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 5, l_power = 1, l_color = "#da0205"),
+		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
 		)
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEM_SIZE_SMALL
 	name = "large light tube"
-	brightness_range = 12//12//8
-	brightness_power = 5//4//5
+	brightness_range = 8
+	brightness_power = 3
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -633,11 +624,11 @@ obj/machinery/light/proc/burn_out()
 	broken_chance = 5
 	matter = list("glass" = 100)
 
-	brightness_range = 4
-	brightness_power = 5//2
-	brightness_color = COLOUR_LTEMP_100W_TUNGSTEN //"#a0a080"
+	brightness_range = 3
+	brightness_power = 2
+	brightness_color = "#a0a080"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
+		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#da0205"),
 		)
 
 /obj/item/weapon/light/bulb/red
@@ -655,7 +646,7 @@ obj/machinery/light/proc/burn_out()
 	base_state = "fbulb"
 	item_state = "egg4"
 	matter = list("glass" = 100)
-	brightness_range = 5
+	brightness_range = 4
 	brightness_power = 2
 
 // update the icon state and description of the light

@@ -1,5 +1,3 @@
-var/list/turf_edge_cache = list()
-
 /turf
 	icon = 'icons/turf/floors.dmi'
 	level = 1
@@ -27,9 +25,6 @@ var/list/turf_edge_cache = list()
 	var/icon_old = null
 	var/pathweight = 1          // How much does it cost to pathfind over this turf?
 	var/blessed = 0             // Has the turf been blessed?
-	//var/dynamic_lighting = 1    // Does the turf use dynamic lighting?
-	var/blend_with_neighbors = 0
-	var/outside
 
 	var/list/decals
 
@@ -41,38 +36,16 @@ var/list/turf_edge_cache = list()
 			return
 	turfs |= src
 
-	//if(dynamic_lighting)
-	//	luminosity = 0
-	//else
-	luminosity = 1
+	if(dynamic_lighting)
+		luminosity = 0
+	else
+		luminosity = 1
 
 /turf/proc/initialize()
 	return
 
-///turf/proc/update_icon()
-//	return
-
-/turf/proc/update_icon(var/update_neighbors = 0, var/list/previously_added = list())
-	var/list/overlays_to_add = previously_added
-	if(blend_with_neighbors)
-		for(var/checkdir in cardinal)
-			var/turf/T = get_step(src, checkdir)
-			if(istype(T) && T.blend_with_neighbors && blend_with_neighbors < T.blend_with_neighbors && icon_state != T.icon_state)
-				var/cache_key = "[T.icon_state]-[checkdir]"
-				if(!turf_edge_cache[cache_key])
-					turf_edge_cache[cache_key] = image(icon = 'icons/turf/blending_overlays.dmi', icon_state = "[T.icon_state]-edge", dir = checkdir)
-				overlays_to_add += turf_edge_cache[cache_key]
-
-	if(outside)
-		overlays_to_add += get_exterior_light_overlay()
-
-	overlays = overlays_to_add
-	if(update_neighbors)
-		for(var/check_dir in alldirs)
-			var/turf/T = get_step(src, check_dir)
-			if(istype(T))
-				T.update_icon()
-
+/turf/proc/update_icon()
+	return
 
 /turf/Destroy()
 	turfs -= src
