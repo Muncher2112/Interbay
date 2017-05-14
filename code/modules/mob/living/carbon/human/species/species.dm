@@ -27,8 +27,6 @@
 	var/tail_animation                                   // If set, the icon to obtain tail animation states from.
 	var/tail_hair
 
-	var/teeth_type = /obj/item/stack/teeth/generic 		 //What sort of teeth do the species have
-
 	var/default_h_style = "Bald"
 	var/default_f_style = "Shaved"
 
@@ -79,7 +77,7 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 	var/knockout_message = "has been knocked unconscious!"
-	var/halloss_message = "gives into the pain!"
+	var/halloss_message = "slumps to the ground, too weak to continue fighting."
 	var/halloss_message_self = "You're in too much pain to keep going..."
 
 	var/spawns_with_stack = 0
@@ -367,17 +365,16 @@
 		if(H.eyecheck() > FLASH_PROTECTION_NONE)
 			light = 0
 		else
-			//var/turf_brightness = 1
+			var/turf_brightness = 1
 			var/turf/T = get_turf(H)
-			//if(T && T.lighting_overlay)
-			//	turf_brightness = min(1, (T.lighting_overlay.lum_b + T.lighting_overlay.lum_g + T.lighting_overlay.lum_r) / 3)
-			//if(turf_brightness < 0.33)
-			//	light = 0
-			light =  T.get_lumcount()
-			//else
-			//	light = round(light * turf_brightness)
-			//	if(H.equipment_light_protection)
-			//		light -= H.equipment_light_protection
+			if(T && T.lighting_overlay)
+				turf_brightness = min(1, T.get_lumcount())
+			if(turf_brightness < 0.33)
+				light = 0
+			else
+				light = round(light * turf_brightness)
+				if(H.equipment_light_protection)
+					light -= H.equipment_light_protection
 	return Clamp(max(prescriptions, light), 0, 7)
 
 /datum/species/proc/set_default_hair(var/mob/living/carbon/human/H)
