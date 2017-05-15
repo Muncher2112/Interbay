@@ -13,7 +13,7 @@ var/image/exterior_light_overlay
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
-	//dynamic_lighting = 0
+	dynamic_lighting = 0
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -23,9 +23,9 @@ var/image/exterior_light_overlay
 /turf/space/New()
 	if((icon_state == "0") && (!keep_sprite))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
-	//update_starlight()
-	if(config.starlight)
-		overlays += get_exterior_light_overlay()
+	update_starlight()
+	//if(config.starlight)
+	//	overlays += get_exterior_light_overlay()
 	..()
 
 /turf/space/initialize()
