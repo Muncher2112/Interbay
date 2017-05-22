@@ -157,11 +157,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_icon()
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		//set_light(0.75, 0.25, "#E38F46")
+		set_light(0.75, 0.25, "#E38F46")
 		processing_objects.Add(src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
-	//set_light(0)
+	set_light(0)
 	lit = 0
 	processing_objects.Remove(src)
 	update_icon()
