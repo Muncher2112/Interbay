@@ -662,6 +662,7 @@
 
 	glass_name = "cup of tea"
 	glass_desc = "Tasty black tea, it has antioxidants, it's good for you!"
+	glass_special = list(DRINK_VAPOR)
 
 /datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -694,8 +695,9 @@
 	adj_temp = 25
 	overdose = 45
 
-	glass_name = "cup of coffee"
+	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
+	glass_special = list(DRINK_VAPOR)
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -778,6 +780,7 @@
 
 	glass_name = "hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
+	glass_special = list(DRINK_VAPOR)
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"

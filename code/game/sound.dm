@@ -87,7 +87,6 @@ var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/mac
  				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, frequency, falloff, is_global)
 
 var/const/FALLOFF_SOUNDS = 0.5
-var/const/Z_MAX = 5
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
 	if(!src.client || ear_deaf > 0)	return
