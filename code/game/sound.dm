@@ -62,6 +62,9 @@ var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/mac
 							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 
 
+/proc/absolute(x as num)
+	return abs(x)
+
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/frequency)
 
 	soundin = get_sfx(soundin) // same sound for everyone
@@ -83,8 +86,8 @@ var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/mac
 			if(T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 			var/z_dist = abs(T.z - turf_source.z)
- 			if(T && z_dist <= 1)
- 				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, frequency, falloff, is_global)
+			if(T && z_dist <= 1)
+				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, frequency, falloff, is_global)
 
 var/const/FALLOFF_SOUNDS = 0.5
 
