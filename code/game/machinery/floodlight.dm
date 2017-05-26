@@ -54,8 +54,7 @@
 
 /obj/machinery/floodlight/proc/turn_off(var/loud = 0)
 	on = 0
-	set_light(0)
-	//set_light(0, 0)
+	set_light(0, 0)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")
