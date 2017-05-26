@@ -544,7 +544,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				playsound(src.loc, 'sound/items/zippo_open.ogg', 100, 1, -4)
 				lit = 1
-				set_light(1, 1, "#E38F46")
+				set_light(2, 1, "#E38F46")
 				processing_objects.Add(src)
 				icon_state = "[base_state]on"
 				item_state = "[base_state]on"
@@ -555,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					return
 				else
 					lit = 1
-					set_light(1, 1, "#E38F46")
+					set_light(2, 1, "#E38F46")
 					processing_objects.Add(src)
 					icon_state = "[base_state]on"
 					item_state = "[base_state]on"
