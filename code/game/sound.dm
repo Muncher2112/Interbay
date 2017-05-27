@@ -55,12 +55,13 @@ var/list/waterfootsteps = list('sound/effects/footsteps/water/slosh1.wav','sound
 var/list/sandfootsteps = list('sound/effects/footsteps/sand/sand_step1.ogg','sound/effects/footsteps/sand/sand_step2.ogg','sound/effects/footsteps/sand/sand_step3.ogg','sound/effects/footsteps/sand/sand_step4.ogg','sound/effects/footsteps/sand/sand_step5.ogg','sound/effects/footsteps/sand/sand_step6.ogg','sound/effects/footsteps/sand/sand_step7.ogg','sound/effects/footsteps/sand/sand_step8.ogg')
 var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','sound/effects/footsteps/wood/wood_step2.ogg','sound/effects/footsteps/wood/wood_step3.ogg','sound/effects/footsteps/wood/wood_step4.ogg','sound/effects/footsteps/wood/wood_step5.ogg','sound/effects/footsteps/wood/wood_step6.ogg','sound/effects/footsteps/wood/wood_step7.ogg','sound/effects/footsteps/wood/wood_step8.ogg')
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
+var/list/snowsteps = list('sound/effects/footsteps/snow/snowstep1.ogg', 'sound/effects/footsteps/snow/snowstep2.ogg', 'sound/effects/footsteps/snow/snowstep3.ogg', 'sound/effects/footsteps/snow/snowstep4.ogg')
 var/list/casing_sound = list ('sound/weapons/guns/misc/casingfall1.ogg','sound/weapons/guns/misc/casingfall2.ogg','sound/weapons/guns/misc/casingfall3.ogg')
 var/list/keyboard_sound = list ('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
 var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg',
 							  'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg',
 							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
-
+var/list/gun_sound = list('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg', 'sound/weapons/gunshot3.ogg', 'sound/weapons/gunshot4.ogg')
 
 /proc/absolute(x as num)
 	return abs(x)
@@ -203,8 +204,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("sandfootsteps") soundin = pick(sandfootsteps)
 			if ("woodfootsteps") soundin = pick(woodfootsteps)
 			if ("carpetfootsteps") soundin = pick(carpetfootsteps)
+			if ("snowsteps") soundin = pick(snowsteps)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("keyboard") soundin = pick(keyboard_sound)
 			if ("terminal_type")	soundin = pick(terminal_type)
-			//if ("gunshot") soundin = pick(gun_sound)
+			if ("gunshot") soundin = pick(gun_sound)
 	return soundin

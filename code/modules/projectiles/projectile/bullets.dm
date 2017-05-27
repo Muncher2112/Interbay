@@ -126,7 +126,7 @@
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
 /obj/item/projectile/bullet/pistol
-	fire_sound = 'sound/weapons/gunshot/gunshot_pistol.ogg'
+	fire_sound = "gunshot"
 	damage = 20
 
 /obj/item/projectile/bullet/pistol/medium
