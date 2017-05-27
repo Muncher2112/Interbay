@@ -291,6 +291,9 @@
 				var/start_T_descriptor = "<font color='#6b5d00'>[start_T] \[[start_T.x],[start_T.y],[start_T.z]\] ([start_T.loc])</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>[start_T] \[[end_T.x],[end_T.y],[end_T.z]\] ([end_T.loc])</font>"
 				admin_attack_log(usr, M, "Threw the victim from [start_T_descriptor] to [end_T_descriptor].", "Was from [start_T_descriptor] to [end_T_descriptor].", "threw, from [start_T_descriptor] to [end_T_descriptor], ")
+				if(ishuman(usr))//People are heavy. Throwing them is exaughsting.
+					var/mob/living/carbon/human/H = usr
+					H.adjustStaminaLoss(rand(10,30))
 
 	src.drop_from_inventory(item)
 	if(!item || !isturf(item.loc))
