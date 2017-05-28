@@ -373,9 +373,9 @@ its easier to just keep the beam vertical.
 			var/obj/item/organ/affecting = user.get_organ(limbcheck)
 			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
 				return 0
-			else
-				user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
-				return 1 //We do have legs now though, so we can kick.
+		
+		user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
+		return 1 //We do have legs now though, so we can kick.
 
 //Jumping
 /atom/proc/jump_act(atom/target, mob/living/carbon/human/user)
@@ -388,10 +388,11 @@ its easier to just keep the beam vertical.
 			return
 	
 	//Nice, we can jump, let's do that then.
+	playsound(user, "sound/effects/jump_[user.gender == MALE ? "male" : "female"].ogg", 25)
+	user.visible_message("[user] jumps.")
 	user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
 	user.throw_at(target, 5, 0.5, user)
 	user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
-	user.visible_message("[user] jumps.")
 
 //all things climbable
 
