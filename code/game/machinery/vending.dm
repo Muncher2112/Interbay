@@ -65,6 +65,7 @@
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
+	var/vending_sound = "machines/vending_drop.ogg"
 
 /obj/machinery/vending/New()
 	..()
@@ -468,9 +469,11 @@
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
 		R.get_product(get_turf(src))
+		playsound(src.loc, "sound/[vending_sound]", 100, 1)
 		if(prob(1))
 			sleep(3)
 			if(R.get_product(get_turf(src)))
+				playsound(src.loc, "sound/[vending_sound]", 100, 1)
 				src.visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
 
 		src.status_message = ""
@@ -631,6 +634,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	vending_sound = "machines/vendingcans.ogg"
 	req_access = list(access_bar)
 
 /obj/machinery/vending/assist
@@ -659,6 +663,7 @@
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,/obj/item/weapon/reagent_containers/food/drinks/tea = 25,/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
+	vending_sound = "machines/vendingcoffee.ogg"
 
 
 
@@ -695,6 +700,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vending_sound = "machines/vendingcans.ogg"
 
 /obj/machinery/vending/fitness
 	name = "SweatMAX"
@@ -753,7 +759,8 @@
 		Carcinoma Angels - go fuck yerself!;\
 		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
 		We understand the depressed, alcoholic cowboy in you. That's why we also smoke Jericho.;\
-		Professionals. Better cigarettes for better people. Yes, better people."
+		Professionals. Better cigarettes for better people. Yes, better people.;\
+		Buy our cigarettes. They'll make your feet small and give you abs!"
 	vend_delay = 34
 	icon_state = "cigs"
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 5,
@@ -774,7 +781,7 @@
 					/obj/item/weapon/reagent_containers/ecig_cartridge/watermelon = 10,
 					/obj/item/weapon/reagent_containers/ecig_cartridge/grape = 10)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
-	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5)
+	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5, /obj/item/clothing/mask/smokable/ecig/deluxe = 2)
 	prices = list(/obj/item/weapon/storage/fancy/cigarettes = 15,
 					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 17,
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
@@ -950,6 +957,7 @@
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up = 30) // TODO Russian soda can
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/cola = 20) // TODO Russian cola can
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vending_sound = "machines/vendingcans.ogg"
 
 /obj/machinery/vending/tool
 	name = "YouTool"

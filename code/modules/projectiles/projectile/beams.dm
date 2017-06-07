@@ -3,6 +3,7 @@
 	icon_state = "laser"
 	fire_sound='sound/weapons/Laser.ogg'
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
+	wall_hitsound = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 40
 	damage_type = BURN

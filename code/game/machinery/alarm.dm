@@ -863,6 +863,7 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 	var/seclevel
+	var/sound_state = 0
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
@@ -986,6 +987,11 @@ FIRE ALARM
 			src.timing = 0
 			processing_objects.Remove(src)
 		src.updateDialog()
+	
+	if(sound_state && sound_state <= world.time)
+		playsound(src.loc, 'sound/machines/fire_alarm.ogg', 20, 0)
+		sound_state = world.time+30 //roughly 3 seconds
+
 	last_process = world.timeofday
 
 	if(locate(/obj/fire) in loc)
@@ -1070,10 +1076,12 @@ FIRE ALARM
 
 /obj/machinery/firealarm/proc/reset()
 	if (!( src.working ))
+		sound_state = 0
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.clearAlarm(loc, FA)
+		FA.sound_state = 0
 	update_icon()
 	return
 

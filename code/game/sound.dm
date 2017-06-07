@@ -62,6 +62,7 @@ var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/mac
 							  'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg',
 							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 var/list/gun_sound = list('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg', 'sound/weapons/gunshot3.ogg', 'sound/weapons/gunshot4.ogg')
+var/list/bullet_hit_wall = list('sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg')
 
 /proc/absolute(x as num)
 	return abs(x)
@@ -209,4 +210,5 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("keyboard") soundin = pick(keyboard_sound)
 			if ("terminal_type")	soundin = pick(terminal_type)
 			if ("gunshot") soundin = pick(gun_sound)
+			if ("hitwall") soundin = pick(bullet_hit_wall)
 	return soundin

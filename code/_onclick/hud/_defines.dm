@@ -81,7 +81,7 @@
 
 //Middle right (status indicators)
 #define ui_nutrition "EAST-1:28,CENTER-2:11"
-#define ui_temp  "EAST-1:28,CENTER-5:19" //"EAST-1:28,CENTER-1:13"
+#define ui_temp  "EAST-1:28,CENTER-2:-15"//"EAST-1:28,CENTER-5:19" //"EAST-1:28,CENTER-1:13"//I'll get this right one day.
 #define ui_stamina "EAST-1:28,CENTER-1:9"
 #define ui_health "EAST-1:28,CENTER:15"
 #define ui_internal "EAST-1:28,CENTER+1:17"

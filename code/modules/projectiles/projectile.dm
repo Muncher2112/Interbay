@@ -8,6 +8,7 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit2.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
+	var/wall_hitsound = "hitwall"
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
@@ -239,6 +240,7 @@
 		else
 			passthrough = 1 //so ghosts don't stop bullets
 	else
+		playsound(loc, wall_hitsound, 50)
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
 			for(var/obj/O in A)
