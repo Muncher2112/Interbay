@@ -208,11 +208,13 @@ proc/ageAndGender2Desc(age, gender)//Used for the radio
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT, var/same_direction = 0)
 	if(!user)
 		return 0
 	var/atom/target_loc = null
 	var/target_type = null
+
+	var/original_dir = user.dir
 
 	if(target)
 		target_loc = target.loc
@@ -234,7 +236,7 @@ proc/ageAndGender2Desc(age, gender)//Used for the radio
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
+		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc || (same_direction && user.dir != original_dir))
 			. = 0
 			break
 
