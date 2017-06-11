@@ -1132,7 +1132,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(owner)
 		if(type == "brute")
-			owner.visible_message("<span class='danger'>You hear a sickening cracking sound coming from \the [owner]'s [name].</span>",	\
+			owner.visible_message("<span class='danger'>\the [owner]'s [name] becomes a mangled mess!</span>",	\
 			"<span class='danger'>Your [name] becomes a mangled mess!</span>",	\
 			"<span class='danger'>You hear a sickening crack.</span>")
 		else
