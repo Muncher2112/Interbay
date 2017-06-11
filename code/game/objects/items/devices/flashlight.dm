@@ -37,7 +37,7 @@
 
 		return 0
 	on = !on
-	if(on && activation_sound)
+	if(activation_sound)
 		playsound(src.loc, activation_sound, 75, 1)
 	update_icon()
 	user.update_action_buttons()
@@ -230,6 +230,7 @@
 	force = on_damage
 	damtype = "fire"
 	processing_objects += src
+	playsound(src.loc, activation_sound, 75, 1)//This shouldn't need to be called here but flare's a fucking special snowflake.
 	update_icon()
 	return 1
 
