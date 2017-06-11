@@ -157,9 +157,9 @@
 		return 1
 
 	if(istype(landing, /turf/simulated/open))
-		visible_message("\The [src] falls from the deck above through \the [landing]!", "You hear a whoosh of displaced air.")
+		visible_message("\The [src] falls from the area above through \the [landing]!", "You hear a whoosh of displaced air.")
 	else
-		visible_message("\The [src] falls from the deck above and slams into \the [landing]!", "You hear something slam into the deck.")
+		visible_message("\The [src] falls from the area above and slams into \the [landing]!", "You hear something slam into the floor.")
 
 /mob/living/carbon/human/handle_fall(var/turf/landing)
 	if(..())
