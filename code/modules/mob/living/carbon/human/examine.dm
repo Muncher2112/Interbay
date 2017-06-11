@@ -242,15 +242,16 @@
 		else if(!client)
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
 
+	var/mhealth = (getBruteLoss() + getFireLoss())//How injured they look. Not not nescessarily how hurt they actually are.
 	
-	if(health <= 75 && health > 50)//Is the person a little hurt?
-		msg += "<span class='warning'><b>[T.He] looks somewhat wounded.\n</b></span>"
+	if(mhealth >= 25 && mhealth < 50)//Is the person a little hurt?
+		msg += "<span class='warning'><b>[T.He] looks somewhat injured.\n</b></span>"
 
-	if(health <= 50 && health > 25)//Hurt.
-		msg += "<span class='warning'><b>[T.He] looks wounded.</b></span>\n"
+	if(mhealth >= 50 && mhealth < 75)//Hurt.
+		msg += "<span class='warning'><b>[T.He] looks injured.</b></span>\n"
 
-	if(health <= 25)//Or incredibly hurt.
-		msg += "<span class='warning'><b>[T.He] looks incredibly wounded.</b>\n</span>"
+	if(mhealth >= 75)//Or incredibly hurt.
+		msg += "<span class='warning'><b>[T.He] looks incredibly injured.</b>\n</span>"
 
 	var/list/wound_flavor_text = list()
 	var/applying_pressure = ""
