@@ -435,3 +435,9 @@
 
 /mob/living/carbon/proc/get_adjusted_metabolism(metabolism)
 	return metabolism
+
+/mob/living/carbon/getTrail()
+	if(getBruteLoss() < 200)
+		return "ltrails"
+	else
+		return "trails"

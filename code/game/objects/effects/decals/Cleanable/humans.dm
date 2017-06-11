@@ -244,3 +244,15 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
 		dry=1
+
+/obj/effect/decal/cleanable/trail_holder //not a child of blood on purpose
+	name = "blood"
+	icon_state = "blank"
+	desc = "Your instincts say you shouldn't be following these."
+	gender = PLURAL
+	density = 0
+	anchored = 1
+	layer = 2
+	random_icon_states = null
+	var/list/existing_dirs = list()
+	blood_DNA = list()
