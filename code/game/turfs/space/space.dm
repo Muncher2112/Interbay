@@ -24,8 +24,6 @@ var/image/exterior_light_overlay
 	if((icon_state == "0") && (!keep_sprite))
 		icon_state = "[((x + y) ^ ~(x * y)) % 25]"
 	update_starlight()
-	//if(config.starlight)
-	//	overlays += get_exterior_light_overlay()
 	..()
 
 /turf/space/initialize()

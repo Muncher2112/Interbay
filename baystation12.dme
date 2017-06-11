@@ -1557,6 +1557,7 @@
 #include "code\modules\mob\living\carbon\human\appearance.dm"
 #include "code\modules\mob\living\carbon\human\audible_emotes.dm"
 #include "code\modules\mob\living\carbon\human\death.dm"
+#include "code\modules\mob\living\carbon\human\emotions.dm"
 #include "code\modules\mob\living\carbon\human\examine.dm"
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_attackhand.dm"
