@@ -332,14 +332,21 @@ datum/controller/vote
 						question = "End the shift? Requires at least 2/3 of total votes count to succeed."
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 				if("add_antagonist")
-					if(!config.allow_extra_antags || ticker.current_state >= 2)
+					if(!is_addantag_allowed(automatic))
+						if(!automatic)
+							to_chat(usr, "The add antagonist vote is unavailable at this time. The game may not have started yet, the game mode may disallow adding antagonists, or you don't have required permissions.")
 						return 0
- 					var/list/all_antag_types = all_antag_types()
+
+					if(!config.allow_extra_antags)
+						return 0
+					var/list/all_antag_types = all_antag_types()
 					for(var/antag_type in all_antag_types)
 						var/datum/antagonist/antag = all_antag_types[antag_type]
 						if(!(antag.id in additional_antag_types) && antag.is_votable())
 							choices.Add(antag.role_text)
-					choices.Add("None")
+					choices.Add("Random")
+					if(!auto_add_antag)
+						choices.Add("None")
 				if("custom")
 					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if(!question)	return 0
