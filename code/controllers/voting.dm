@@ -304,7 +304,6 @@ datum/controller/vote
 					return 0
 
 			reset()
-			dead_allow_forced = automatic && !(admins && admins.len)
 			switch(vote_type)
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
@@ -335,6 +334,7 @@ datum/controller/vote
 				if("add_antagonist")
 					if(!config.allow_extra_antags || ticker.current_state >= 2)
 						return 0
+ 					var/list/all_antag_types = all_antag_types()
 					for(var/antag_type in all_antag_types)
 						var/datum/antagonist/antag = all_antag_types[antag_type]
 						if(!(antag.id in additional_antag_types) && antag.is_votable())
@@ -365,8 +365,8 @@ datum/controller/vote
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 				if("custom")
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
-			if(mode == "gamemode" && going)
-				going = 0
+			if(mode == "gamemode" && round_progressing)
+				round_progressing = 0
 				world << "<font color='red'><b>Round start has been delayed.</b></font>"
 
 			time_remaining = round(config.vote_period/10)
