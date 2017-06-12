@@ -1,4 +1,4 @@
-//HTML ENCODE/DECODE + RUS TO CP1251 TODO: OVERRIDE html_encode after fix
+//HTML ENCODE/DECODE + RUS TO CP1251 TODO: OVERRIDE rhtml_encode after fix
 /proc/rhtml_encode(var/msg)
 	msg = replacetext(msg, "<", "&lt;")
 	msg = replacetext(msg, ">", "&gt;")
@@ -65,6 +65,27 @@
 /proc/post_edit_utf8(msg)
 	return replacetext(msg, "\\ß", "&#1103;")
 
+/proc/input_cp1251(var/mob/user = usr, var/message, var/title, var/default, var/type = "message")
+	var/msg = ""
+	switch(type)
+		if("message")
+			msg = input(user, message, title, edit_cp1251(default)) as message
+		if("text")
+			msg = input(user, message, title, default) as text
+	msg = russian_to_cp1251(msg)
+	return post_edit_cp1251(msg)
+
+/proc/input_utf8(var/mob/user = usr, var/message, var/title, var/default, var/type = "message")
+	var/msg = ""
+	switch(type)
+		if("message")
+			msg = input(user, message, title, edit_utf8(default)) as message
+		if("text")
+			msg = input(user, message, title, default) as text
+	msg = russian_to_utf8(msg)
+	return post_edit_utf8(msg)
+
+
 var/global/list/rkeys = list(
 	"à" = "f", "â" = "d", "ã" = "u", "ä" = "l",
 	"å" = "t", "ç" = "p", "è" = "b", "é" = "q",
@@ -89,7 +110,6 @@ var/global/list/rkeys = list(
 	else if (copytext(t,1,2) == ":")
 		s += 2
 	return ruppertext(copytext(t, 1, s)) + copytext(t, s)
-
 /proc/intonation(text)
 	if (copytext(text,-1) == "!")
 		text = "<b>[text]</b>"

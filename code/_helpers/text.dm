@@ -34,7 +34,7 @@
 		input = replace_characters(input, list("\n"=" ","\t"=" "))
 
 	if(encode)
-		//In addition to processing html, html_encode removes byond formatting codes like "\red", "\i" and other.
+		//In addition to processing html, rhtml_encode removes byond formatting codes like "\red", "\i" and other.
 		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
 		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
 		input = rhtml_encode(input)
@@ -50,7 +50,7 @@
 	return input
 
 
-//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
+//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after rhtml_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
@@ -137,7 +137,7 @@
 
 //Old variant. Haven't dared to replace in some places.
 /proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
-	return html_encode(replace_characters(t,repl_chars))
+	return rhtml_encode(replace_characters(t,repl_chars))
 
 /*
  * Text searches
