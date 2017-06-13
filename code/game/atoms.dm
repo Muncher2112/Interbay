@@ -382,6 +382,9 @@ its easier to just keep the beam vertical.
 	if(user.lying)//No jumping on the ground dummy.
 		return
 
+	if(isspace(user.loc))//Nothing to jump off of in space.
+		return
+
 	for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
 		var/obj/item/organ/affecting = user.get_organ(limbcheck)
 		if(!affecting)//Oh shit, we don't have have any legs, we can't jump.
