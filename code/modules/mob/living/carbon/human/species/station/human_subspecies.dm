@@ -74,7 +74,7 @@
 	icobase = 'icons/mob/human_races/subspecies/r_upliftedchimp.dmi'
 */
 
-
+/*//Because kids like to appear in lists they have no business being in, commenting them out till they're fixed.
 /datum/species/human/child //Oh lord here we go.
 	name = "Child"
 	name_plural = "Children"
@@ -97,7 +97,7 @@
 		H.f_style = "Shaved"
 	to_chat(H, "<span class='info'><big>You're [H.age] years old! Hooray!</big></span>")
 	return ..()
-
+*/
 /mob/living/carbon/human/proc/isChild()//Used to tell if someone is a child.
 	if(species && species.name == "Child")
 		return 1
@@ -116,6 +116,5 @@
 	name = "black children's shoes"
 	desc = "Fitted just for kids."
 	icon_state = "black"
-	worn_state = "black"
 	species_restricted = list("Child")
 	sprite_sheets = list("Child" = 'icons/mob/species/child/feet.dmi')
