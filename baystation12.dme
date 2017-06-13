@@ -10,7 +10,6 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
-#include "russian.dm"
 #include "code\_macros.dm"
 #include "code\client_macros.dm"
 #include "code\global.dm"
@@ -70,6 +69,7 @@
 #include "code\_helpers\matrices.dm"
 #include "code\_helpers\mobs.dm"
 #include "code\_helpers\names.dm"
+#include "code\_helpers\russian.dm"
 #include "code\_helpers\sanitize_values.dm"
 #include "code\_helpers\spawn_sync.dm"
 #include "code\_helpers\storage.dm"

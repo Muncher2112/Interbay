@@ -67,7 +67,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a home system.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
-				pref.home_system = raw_choice
+				pref.home_system = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.home_system = choice
 		return TOPIC_REFRESH
@@ -79,7 +79,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter your current citizenship.", "Character Preference") as text|null, MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
-				pref.citizenship = raw_choice
+				pref.citizenship = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.citizenship = choice
 		return TOPIC_REFRESH
@@ -91,7 +91,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a faction.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice)
-				pref.faction = raw_choice
+				pref.faction = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.faction = choice
 		return TOPIC_REFRESH
@@ -103,7 +103,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a religon.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice)
-				pref.religion = sanitize(raw_choice)
+				pref.religion = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.religion = choice
 		return TOPIC_REFRESH

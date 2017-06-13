@@ -116,6 +116,6 @@
 	name = "black children's shoes"
 	desc = "Fitted just for kids."
 	icon_state = "black"
-	worn_state = "black"
+//	worn_state = "black"
 	species_restricted = list("Child")
 	sprite_sheets = list("Child" = 'icons/mob/species/child/feet.dmi')
