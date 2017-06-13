@@ -6,6 +6,8 @@
 	#include "example-1.dmm"
 	#include "example-2.dmm"
 
+	#include "jobs.dm"
+
 	#include "../../code/modules/lobby_music/absconditus.dm"
 
 	#define USING_MAP_DATUM /datum/map/example
