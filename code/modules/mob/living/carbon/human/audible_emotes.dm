@@ -2,12 +2,18 @@ proc/agony_scream(var/mob/M)
 	var/screamsound = null
 	if(M.stat)//No dead or unconcious people screaming pls.
 		return
+	
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.isChild())
+			screamsound = "sound/voice/child_pain[rand(1,2)].ogg"
 
-	if(M.gender == MALE)
-		screamsound = "sound/voice/man_pain[rand(1,3)].ogg"
+		else if(M.gender == MALE)
+			screamsound = "sound/voice/man_pain[rand(1,3)].ogg"
 
-	if(M.gender == FEMALE)
-		screamsound = "sound/voice/woman_agony[rand(1,3)].ogg"
+		else
+			screamsound = "sound/voice/woman_agony[rand(1,3)].ogg"
+
 
 	if(screamsound)
 		playsound(M, screamsound, 25, 0, 1)

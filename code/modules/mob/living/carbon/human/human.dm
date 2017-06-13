@@ -1175,6 +1175,8 @@
 		if(istype(C) && !C.mob_can_equip(src, slot, 1))
 			unEquip(C)
 
+	add_teeth()
+
 	return 1
 
 /mob/living/carbon/human/proc/bloody_doodle()
