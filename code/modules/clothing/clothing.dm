@@ -11,6 +11,8 @@
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
 	var/blood_overlay_type = "uniformblood"
+	var/can_be_worn_by_child = 0 //Snowflake shit for kids.
+	var/child_exclusive = 0
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -52,26 +54,34 @@
 	if (!..())
 		return 0
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
-		var/exclusive = null
-		var/wearable = null
+	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
+		if((child_exclusive || can_be_worn_by_child) && H.isChild())//Kids can wear kids clothes.
+			return 1
+		if(child_exclusive && !H.isChild())//Adults can't wear kids clothes.
+			return 0
+		if(H.isChild() && (!can_be_worn_by_child || !child_exclusive))//Kids can't wear adult clothes.
+			return 0
 
-		if("exclude" in species_restricted)
-			exclusive = 1
+		if(species_restricted)
+			var/exclusive = null
+			var/wearable = null
 
-		if(H.species)
-			if(exclusive)
-				if(!(H.species.get_bodytype(H) in species_restricted))
-					wearable = 1
-			else
-				if(H.species.get_bodytype(H) in species_restricted)
-					wearable = 1
+			if("exclude" in species_restricted)
+				exclusive = 1
 
-			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
-				if(!disable_warning)
-					to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
-				return 0
+			if(H.species)
+				if(exclusive)
+					if(!(H.species.get_bodytype(H) in species_restricted))
+						wearable = 1
+				else
+					if(H.species.get_bodytype(H) in species_restricted)
+						wearable = 1
+
+				if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
+					if(!disable_warning)
+						to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
+					return 0
 	return 1
 
 /obj/item/clothing/proc/refit_for_species(var/target_species)
@@ -284,6 +294,7 @@ BLIND     // can't see anything
 		SPECIES_RESOMI = 'icons/mob/species/resomi/head.dmi'
 		)
 	blood_overlay_type = "helmetblood"
+	can_be_worn_by_child = 1
 
 /obj/item/clothing/head/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
@@ -404,6 +415,7 @@ BLIND     // can't see anything
 	var/pull_mask = 0
 	var/hanging = 0
 	blood_overlay_type = "maskblood"
+	can_be_worn_by_child = 1
 
 /obj/item/clothing/mask/New()
 	if(pull_mask)
