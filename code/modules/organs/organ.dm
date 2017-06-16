@@ -342,12 +342,13 @@ var/list/organ_cache = list()
 
 	if(robotic >= ORGAN_ROBOT || !istype(target) || !istype(user) || (user != target && user.a_intent == I_HELP))
 		return ..()
-	
+	/* 
 	if(alert("Do you really want to use this organ as food? It will be useless for anything else afterwards.",,"Ew, no.","Bon appetit!") == "Ew, no.")
 		to_chat(user, "<span class='notice'>You successfully repress your cannibalistic tendencies.</span>")
 		return
-	
-	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new
+	*/
+	user.drop_from_inventory(src)
+ 	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.appearance = src
 	reagents.trans_to(O, reagents.total_volume)
@@ -357,8 +358,8 @@ var/list/organ_cache = list()
 		O.fingerprintshidden = fingerprintshidden.Copy()
 	if(fingerprintslast)
 		O.fingerprintslast = fingerprintslast
-	qdel(src)
 	user.put_in_active_hand(O)
+	qdel(src)
 	target.attackby(O, user)
 
 /obj/item/organ/proc/can_feel_pain()
