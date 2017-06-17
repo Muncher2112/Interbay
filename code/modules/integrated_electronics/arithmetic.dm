@@ -12,6 +12,7 @@
 	name = "wide addition circuit"
 	desc = "This circuit can add up to eight numbers together."
 	outputs = list("sum")
+	icon_state = "addition"
 
 /obj/item/integrated_circuit/arithmetic/addition/do_work()
 	var/result = 0
