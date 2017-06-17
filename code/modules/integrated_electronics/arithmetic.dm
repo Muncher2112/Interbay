@@ -30,9 +30,11 @@
 	outputs = list("A+B")
 
 /obj/item/integrated_circuit/arithmetic/binary/do_work()
-	var/A = get_pin_data(IC_INPUT, 1, /num)
-	var/B = get_pin_data(IC_INPUT, 2, /num)
-	var/result = .func(A,B)
+	var/A = get_pin_data(IC_INPUT, 1)
+	A=isnum(A) ? A : null
+	var/B = get_pin_data(IC_INPUT, 2)
+	B=isnum(B) ? B : null
+	var/result = src.func(A,B)
 	set_pin_data(IC_OUTPUT, 1, result)
 
 /obj/item/integrated_circuit/arithmetic/binary/proc/func(var/A,var/B)
@@ -48,7 +50,7 @@
 	icon_state = "subtraction"
 	outputs = list("A-B")
 
-/obj/item/integrated_circuit/arithmetic/subtraction/func(var/A,var/B)
+/obj/item/integrated_circuit/arithmetic/binary/subtraction/func(var/A,var/B)
 	if(isnull(A)||isnull(B))
 		return
 	return A - B
@@ -86,7 +88,7 @@
 /obj/item/integrated_circuit/arithmetic/binary/random/func(var/A,var/B)
 	if(isnull(A)||isnull(B))
 		return
-	rand(A,B)
+	return rand(A,B)
 
 // Absolute //
 
