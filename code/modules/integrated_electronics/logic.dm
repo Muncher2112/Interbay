@@ -1,5 +1,5 @@
 /obj/item/integrated_circuit/logic
-	name = "logic gate"
+	name = "abstract logic gate"
 	desc = "This tiny chip will decide for you!"
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
 	complexity = 3
@@ -17,6 +17,7 @@
 		activate_pin(2)
 
 /obj/item/integrated_circuit/logic/binary
+	name = "binary logic gate"
 	inputs = list("A","B")
 	category = /obj/item/integrated_circuit/logic/binary
 
@@ -30,6 +31,7 @@
 	return FALSE
 
 /obj/item/integrated_circuit/logic/unary
+	name = "unary logic gate"
 	inputs = list("A")
 	category = /obj/item/integrated_circuit/logic/unary
 
@@ -39,7 +41,7 @@
 	..()
 
 /obj/item/integrated_circuit/logic/unary/proc/do_check(var/datum/integrated_io/A)
-	return FALSE
+	return A.get_data()
 
 /obj/item/integrated_circuit/logic/binary/equals
 	name = "equal gate"
