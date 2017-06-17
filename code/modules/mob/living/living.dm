@@ -533,7 +533,7 @@ default behaviour is:
 						var/atom/movable/t = M.pulling
 						M.stop_pulling()
 
-	
+
 						if(!istype(M.loc, /turf/space))
 							var/area/A = get_area(M)
 							if(A.has_gravity)
@@ -559,6 +559,11 @@ default behaviour is:
 											if((!(newdir in H.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && H.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
 												H.existing_dirs += newdir
 												H.overlays.Add(image('icons/effects/blood.dmi',trail_type,dir = newdir))
+										if(ishuman(M))
+											var/mob/living/carbon/human/H = M
+											var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+											if(blood_volume > 50)
+												H.vessel.remove_reagent("blood", 1)
 								/*
 								//pull damage with injured people
 									if(prob(25))
