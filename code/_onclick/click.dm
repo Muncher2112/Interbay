@@ -50,7 +50,7 @@
 		return 1
 	if(modifiers["middle"] && modifiers["shift"])
 		ShiftMiddleClickOn(A)
-		return
+		return 1
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return 0
@@ -462,7 +462,7 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 
 /mob/proc/scramble(var/atom/A)
 	var/direction
-	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained()) //|| (weakened > 5)) //You should be able to crawl when injured.
+	if(stat || buckled || paralysis || stunned || sleeping || (status_flags & FAKEDEATH) || restrained() || pulledby) //|| (weakened > 5)) //You should be able to crawl when injured.
 		return
 	if(!istype(src.loc, /turf/))
 		return
