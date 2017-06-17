@@ -9,19 +9,16 @@
 	total_positions = -1
 	spawn_positions = -1
 	supervisors = "Everyone. Especially your parents if you have any"
-	create_record = 0             //no one gives a fuck about kids lol
-	account_allowed = 0			  //kids don't have bank accounts.
+	create_record = 0             //No one gives a fuck about kids lol.
+	account_allowed = 0			  //Kids don't have bank accounts.
 	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cadet
 
 	equip(var/mob/living/carbon/human/H)
-		H.set_species("Child")
+		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
 		..()
 
 
-
-
-///Because kids like to appear in lists they have no business being in, commenting them out till they're fixed.
 /datum/species/human/child //Oh lord here we go.
 	name = "Child"
 	name_plural = "Children"
@@ -38,12 +35,12 @@
 
 
 /datum/species/human/child/handle_post_spawn(var/mob/living/carbon/human/H)
-	H.mutations.Add(CLUMSY)
+	H.mutations.Add(CLUMSY)//So kids don't go around being commandos.
 	H.pixel_y = -4
 	H.age = rand(min_age,max_age)//Random age for kiddos.
 	if(H.f_style)//Children don't get beards.
 		H.f_style = "Shaved"
-	to_chat(H, "<span class='info'><big>You're [H.age] years old! Hooray!</big></span>")
+	to_chat(H, "<span class='info'><big>You're [H.age] years old! Act like it!</big></span>")
 	return ..()
 
 /decl/hierarchy/outfit/job/cadet
@@ -51,7 +48,7 @@
 	uniform = /obj/item/clothing/under/child_jumpsuit
 	shoes = /obj/item/clothing/shoes/child_shoes
 
-
+//Snowflake clothing just for kids <3
 /obj/item/clothing/under/child_jumpsuit
 	name = "grey children's jumpsuit"
 	desc = "Fitted just for kids."
