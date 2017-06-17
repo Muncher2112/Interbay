@@ -3,6 +3,7 @@
 	name = "Example"
 	full_name = "The Example"
 	path = "example"
+	station_name = null
 
 	lobby_icon = 'maps/example/example_lobby.dmi'
 
