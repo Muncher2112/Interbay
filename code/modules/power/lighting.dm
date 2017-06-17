@@ -626,7 +626,7 @@ obj/machinery/light/proc/burn_out()
 
 	brightness_range = 4
 	brightness_power = 2
-	brightness_color = "#a0a080"
+	brightness_color = "#FAE1AF"//"#a0a080"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#da0205"),
 		)
