@@ -8,9 +8,10 @@
 	department_flag = CIV
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "i dunno ur like a kid man"
+	supervisors = "Everyone. Especially your parents if you have any."
 	create_record = 0             //no one gives a fuck about kids lol
 	account_allowed = 0			  //kids don't have bank accounts.
+	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cadet
 
 	equip(var/mob/living/carbon/human/H)
