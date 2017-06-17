@@ -39,7 +39,7 @@
 	..()
 
 /obj/item/integrated_circuit/logic/unary/proc/do_check(var/datum/integrated_io/A)
-	return FALSE
+	return A.get_data()
 
 /obj/item/integrated_circuit/logic/binary/equals
 	name = "equal gate"
