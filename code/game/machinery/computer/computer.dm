@@ -112,13 +112,8 @@
 	else
 		..()
 
-/obj/proc/keyboardsound(mob/user as mob)
-	if(!issilicon(user))
-		playsound(src, "keyboard", 100, 1, 0)
 
 /obj/machinery/computer/Topic(href, href_list)
-	if(..())
-		return 1
-	if (!issilicon(usr))
-		keyboardsound(usr)
-		return 0
+	. = ..()
+	if(. && istype(usr, /mob/living/carbon))
+		playsound(src, 'sound/machines/keypress.ogg', 50)
