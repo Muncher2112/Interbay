@@ -49,7 +49,6 @@
 /obj/item/modular_computer/Topic(href, href_list)
 	if(..())
 		return 1
-	keyboardsound(usr)
 	if( href_list["PC_exit"] )
 		kill_program()
 		return 1
