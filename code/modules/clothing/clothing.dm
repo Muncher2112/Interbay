@@ -11,6 +11,7 @@
 	var/list/restricted_accessory_slots
 	var/list/starting_accessories
 	var/blood_overlay_type = "uniformblood"
+	var/visible_name = "Unknown"
 	var/can_be_worn_by_child = 0 //Snowflake shit for kids.
 	var/child_exclusive = 0
 
@@ -26,7 +27,7 @@
 
 	if(ishuman(user_mob))
 		var/mob/living/carbon/human/user_human = user_mob
-		if(blood_DNA)
+		if(blood_DNA && user_human.species.blood_mask)
 			var/image/bloodsies	= overlay_image(user_human.species.blood_mask, blood_overlay_type, blood_color, RESET_COLOR)
 			ret.overlays	+= bloodsies
 
@@ -54,34 +55,26 @@
 	if (!..())
 		return 0
 
-	if(istype(M,/mob/living/carbon/human))
+	if(species_restricted && istype(M,/mob/living/carbon/human))
+		var/exclusive = null
+		var/wearable = null
 		var/mob/living/carbon/human/H = M
-		if((child_exclusive || can_be_worn_by_child) && H.isChild())//Kids can wear kids clothes.
-			return 1
-		if(child_exclusive && !H.isChild())//Adults can't wear kids clothes.
-			return 0
-		if(H.isChild() && (!can_be_worn_by_child || !child_exclusive))//Kids can't wear adult clothes.
-			return 0
 
-		if(species_restricted)
-			var/exclusive = null
-			var/wearable = null
+		if("exclude" in species_restricted)
+			exclusive = 1
 
-			if("exclude" in species_restricted)
-				exclusive = 1
+		if(H.species)
+			if(exclusive)
+				if(!(H.species.get_bodytype(H) in species_restricted))
+					wearable = 1
+			else
+				if(H.species.get_bodytype(H) in species_restricted)
+					wearable = 1
 
-			if(H.species)
-				if(exclusive)
-					if(!(H.species.get_bodytype(H) in species_restricted))
-						wearable = 1
-				else
-					if(H.species.get_bodytype(H) in species_restricted)
-						wearable = 1
-
-				if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
-					if(!disable_warning)
-						to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
-					return 0
+			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
+				if(!disable_warning)
+					to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
+				return 0
 	return 1
 
 /obj/item/clothing/proc/refit_for_species(var/target_species)
@@ -125,7 +118,6 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list(SPECIES_RESOMI = 'icons/mob/species/resomi/ears.dmi')
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -190,7 +182,6 @@ BLIND     // can't see anything
 	var/light_protection = 0
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/eyes.dmi',
 		)
 
 /obj/item/clothing/glasses/get_mob_overlay(mob/user_mob, slot)
@@ -223,7 +214,6 @@ BLIND     // can't see anything
 	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA, SPECIES_VOX)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/gloves.dmi',
 		)
 	blood_overlay_type = "bloodyhands"
 
@@ -291,10 +281,8 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/head.dmi'
 		)
 	blood_overlay_type = "helmetblood"
-	can_be_worn_by_child = 1
 
 /obj/item/clothing/head/get_mob_overlay(mob/user_mob, slot)
 	var/image/ret = ..()
@@ -402,7 +390,6 @@ BLIND     // can't see anything
 	body_parts_covered = FACE|EYES
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/masks.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/masks.dmi',
 		)
 
 	var/voicechange = 0
@@ -415,7 +402,6 @@ BLIND     // can't see anything
 	var/pull_mask = 0
 	var/hanging = 0
 	blood_overlay_type = "maskblood"
-	can_be_worn_by_child = 1
 
 /obj/item/clothing/mask/New()
 	if(pull_mask)
@@ -493,7 +479,6 @@ BLIND     // can't see anything
 	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA,SPECIES_VOX)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/shoes.dmi',
 		)
 	blood_overlay_type = "shoeblood"
 
@@ -575,7 +560,6 @@ BLIND     // can't see anything
 
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/suit.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -624,7 +608,6 @@ BLIND     // can't see anything
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
-		SPECIES_RESOMI = 'icons/mob/species/resomi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.

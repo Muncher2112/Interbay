@@ -58,6 +58,14 @@
 	name = "Ex"
 	desc = "You used to be romantically involved, but not anymore."
 
+/datum/relation/so
+	name = "Significant Other"
+	desc = "You and this person are romantically involved."
+	incompatible = list("Ex")
+
+/datum/relation/so/get_desc_string()
+	return "[holder] and [other.holder] are very likely romantically involved."
+
 /datum/relation/ex/get_desc_string()
 	return "[holder] and [other.holder] used to be an item, but not anymore."
 
