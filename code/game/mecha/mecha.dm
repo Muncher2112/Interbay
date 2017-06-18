@@ -717,7 +717,7 @@
 			else
 				to_chat(user, "You were unable to attach [W] to [src]")
 		return
-	
+
 	var/obj/item/weapon/card/id/id_card = W.GetIdCard()
 	if(id_card)
 		if(add_req_access || maint_access)
@@ -1059,6 +1059,7 @@
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
+		H.hide_cone()
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
 			to_chat(src.occupant, sound('sound/mecha/nominal.ogg',volume=50))
@@ -1103,6 +1104,7 @@
 	var/atom/movable/mob_container
 	if(ishuman(occupant))
 		mob_container = src.occupant
+		occupant.show_cone()
 	else if(istype(occupant, /mob/living/carbon/brain))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container

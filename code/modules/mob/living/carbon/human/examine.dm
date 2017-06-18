@@ -1,5 +1,8 @@
 /mob/living/carbon/human/examine(mob/user)
 	user.visible_message("<small>[user] looks at [src].</small>")
+	if(get_dist(user,src) > 5)//Don't get descriptions of things far away.
+		to_chat(user, "<span class='info'>It's too far away to see clearly.</span>")
+		return
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -243,7 +246,7 @@
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>\n"
 
 	var/mhealth = (getBruteLoss() + getFireLoss())//How injured they look. Not not nescessarily how hurt they actually are.
-	
+
 	if(mhealth >= 25 && mhealth < 50)//Is the person a little hurt?
 		msg += "<span class='warning'><b>[T.He] looks somewhat injured.\n</b></span>"
 
@@ -407,7 +410,7 @@
 	set category = "IC"
 
 	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)
-
+/*
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
@@ -449,3 +452,4 @@
 	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	src << browse(jointext(HTML,null), "window=flavor_changes;size=430x300")
+*/
