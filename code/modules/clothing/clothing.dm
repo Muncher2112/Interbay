@@ -12,6 +12,8 @@
 	var/list/starting_accessories
 	var/blood_overlay_type = "uniformblood"
 	var/visible_name = "Unknown"
+	var/can_be_worn_by_child = 0 //Snowflake shit for kids.
+	var/child_exclusive = 0
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
