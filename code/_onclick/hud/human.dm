@@ -257,14 +257,14 @@
 	mymob.pain.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mymob.pain.mouse_opacity = 0
 	hud_elements |= mymob.pain
-/* LIFEWEB SEPIA REMOVED
+
 	mymob.noise1 = new /obj/screen()
 	mymob.noise1.icon = 'icons/mob/noise.dmi'
 	mymob.noise1.icon_state = pick("1", "2", "3")
 	mymob.noise1.name = " "
 	mymob.noise1.screen_loc = "1,1 to 15,15"
 	mymob.noise1.mouse_opacity = 0
-	hud_elements |= mymob.noise1
+	hud_elements |= mymob.noise1 
 
 	mymob.noise2 = new /obj/screen()
 	mymob.noise2.icon = 'icons/mob/noise.dmi'
@@ -272,7 +272,7 @@
 	mymob.noise2.name = " "
 	mymob.noise2.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mymob.noise2.mouse_opacity = 0
-	hud_elements |= mymob.noise2
+	//hud_elements |= mymob.noise2 //Too much noise is bad.
 
 	mymob.noise3 = new /obj/screen()
 	mymob.noise3.icon = 'icons/mob/noise.dmi'
@@ -280,8 +280,7 @@
 	mymob.noise3.name = " "
 	mymob.noise3.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mymob.noise3.mouse_opacity = 0
-	hud_elements |= mymob.noise3
-*/
+	//hud_elements |= mymob.noise3
 
 	mymob.zone_sel = new /obj/screen/zone_sel( null )
 	mymob.zone_sel.icon = ui_style

@@ -308,7 +308,7 @@ datum/controller/vote
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
 				if("gamemode")
-					if(ticker.current_state >= 2)
+					if(ticker.current_state >= GAME_STATE_SETTING_UP)
 						return 0
 					choices.Add(config.votable_modes)
 					for (var/F in choices)
@@ -320,17 +320,21 @@ datum/controller/vote
 					gamemode_names["secret"] = "Secret"
 				if("crew_transfer")
 					if(check_rights(R_ADMIN|R_MOD, 0))
-						question = "End the shift? Requires at least 2/3 of total votes count to succeed."
+						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
+						if (config.allow_extra_antags && !antag_add_finished)
+							choices.Add("Add Antagonist")
 					else
 						if (get_security_level() == "red" || get_security_level() == "delta")
-							initiator_key << "The current alert status is too high to call for a crew transfer!"
+							to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 							return 0
-						if(ticker.current_state <= 2)
+						if(ticker.current_state <= GAME_STATE_SETTING_UP)
 							return 0
-							initiator_key << "The crew transfer button has been disabled!"
-						question = "End the shift? Requires at least 2/3 of total votes count to succeed."
+							to_chat(initiator_key, "The crew transfer button has been disabled!")
+						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
+						if (config.allow_extra_antags && is_addantag_allowed(1))
+							choices.Add("Add Antagonist")
 				if("add_antagonist")
 					if(!is_addantag_allowed(automatic))
 						if(!automatic)
@@ -347,11 +351,16 @@ datum/controller/vote
 					choices.Add("Random")
 					if(!auto_add_antag)
 						choices.Add("None")
+				if("map")
+					if(!config.allow_map_switching)
+						return 0
+					for(var/name in all_maps)
+						choices.Add(name)
 				if("custom")
-					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
+					question = sanitizeSafe(input(usr,"What is the vote for?") as text|null)
 					if(!question)	return 0
 					for(var/i=1,i<=10,i++)
-						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
+						var/option = capitalize(sanitize(input(usr,"Please enter an option or hit cancel to finish") as text|null))
 						if(!option || mode || !usr.client)	break
 						choices.Add(option)
 				else
@@ -361,20 +370,17 @@ datum/controller/vote
 			started_time = world.time
 			var/text = "[capitalize(mode)] vote started by [initiator]."
 			if(mode == "custom")
-				text += "\n[utf8_to_cp1251(question)]"
+				text += "\n[question]"
 
 			log_vote(text)
-			world << "<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
-			switch(vote_type)
-				if("crew_transfer")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
-				if("gamemode")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
-				if("custom")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+			to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>")
+
+			to_world(sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3))
+
 			if(mode == "gamemode" && round_progressing)
 				round_progressing = 0
-				world << "<font color='red'><b>Round start has been delayed.</b></font>"
+				to_world("<font color='red'><b>Round start has been delayed.</b></font>")
+
 
 			time_remaining = round(config.vote_period/10)
 			return 1

@@ -77,4 +77,5 @@
 /mob/living/carbon/human/proc/isChild()//Used to tell if someone is a child.
 	if(species && species.name == "Child")
 		return 1
-	return 0
+	else
+		return 0
