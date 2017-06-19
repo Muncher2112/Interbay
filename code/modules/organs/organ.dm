@@ -342,11 +342,11 @@ var/list/organ_cache = list()
 
 	if(robotic >= ORGAN_ROBOT || !istype(target) || !istype(user) || (user != target && user.a_intent == I_HELP))
 		return ..()
-
+	/*
 	if(alert("Do you really want to use this organ as food? It will be useless for anything else afterwards.",,"Ew, no.","Bon appetit!") == "Ew, no.")
 		to_chat(user, "<span class='notice'>You successfully repress your cannibalistic tendencies.</span>")
 		return
-
+	*/
 	user.drop_from_inventory(src)
 	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name

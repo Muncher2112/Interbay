@@ -1,4 +1,4 @@
-// At minimum every mob has a hear_say proc.
+	// At minimum every mob has a hear_say proc.
 
 /mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
@@ -186,13 +186,13 @@
 		else
 			jobname = "Unknown"
 
-		if(changed_voice)
+		if(changed_voice) // Fix for AI tracking camera.
 			if(impersonating)
-				track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
+				track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker.voice_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
 			else
 				track = "[speaker_name] ([jobname])"
 		else
-			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker.real_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 
 	if(isghost(src))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.

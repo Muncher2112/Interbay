@@ -58,8 +58,6 @@ Hotkey-Mode: (hotkey-mode must be on)
 \ts = down
 \td = right
 \tw = up
-\t, = move-upwards
-\t. = move-down
 \tq = drop
 \te = equip
 \tr = throw
@@ -76,6 +74,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t4 = harm-intent
 \tCtrl = drag
 \tShift = examine
+\tPGUP = Move upwards
+\tPGDOWN = Move downwards
 </font>"}
 
 	var/other = {"<font color='purple'>

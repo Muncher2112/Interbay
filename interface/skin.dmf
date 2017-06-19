@@ -33,7 +33,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "WEST+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "ALT+NORTH"
@@ -45,7 +45,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "NORTH+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -57,7 +57,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "EAST+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "ALT+SOUTH"
@@ -69,7 +69,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "SOUTH+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -117,19 +117,19 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "CTRL+A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "CTRL+D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "F"
@@ -173,11 +173,11 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem "s_key"
 		name = "S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "CTRL+S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "T"
@@ -185,11 +185,11 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "CTRL+W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "X"
@@ -263,34 +263,6 @@ macro "borghotkeymode"
 		name = "F12"
 		command = "F12"
 		is-disabled = false
-	elem 
-		name = "NUMPAD8"
-		command = "body-toggle-head"
-		is-disabled = false
-	elem 
-		name = "NUMPAD5"
-		command = "body-chest"
-		is-disabled = false
-	elem 
-		name = "NUMPAD4"
-		command = "body-r-arm"
-		is-disabled = false
-	elem 
-		name = "NUMPAD6"
-		command = "body-l-arm"
-		is-disabled = false
-	elem 
-		name = "NUMPAD2"
-		command = "body-groin"
-		is-disabled = false
-	elem 
-		name = "NUMPAD1"
-		command = "body-r-leg"
-		is-disabled = false
-	elem 
-		name = "NUMPAD3"
-		command = "body-l-leg"
-		is-disabled = false
 
 macro "macro"
 	elem 
@@ -327,7 +299,7 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "WEST+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "ALT+NORTH"
@@ -339,7 +311,7 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "NORTH+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -351,7 +323,7 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "EAST+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "ALT+SOUTH"
@@ -363,7 +335,7 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "SOUTH+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -391,11 +363,11 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "CTRL+A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "CTRL+D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "CTRL+E"
@@ -423,11 +395,11 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "CTRL+S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "CTRL+W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -440,34 +412,6 @@ macro "macro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD1"
-		command = "body-r-leg"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD2"
-		command = "body-groin"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD3"
-		command = "body-l-leg"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD4"
-		command = "body-r-arm"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD5"
-		command = "body-chest"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD6"
-		command = "body-l-arm"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD8"
-		command = "body-toggle-head"
 		is-disabled = false
 	elem 
 		name = "F1"
@@ -553,7 +497,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "WEST+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "ALT+NORTH"
@@ -565,7 +509,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "NORTH+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -577,7 +521,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "EAST+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "ALT+SOUTH"
@@ -589,7 +533,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "SOUTH+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -637,19 +581,19 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "CTRL+A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "CTRL+D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "E"
@@ -709,11 +653,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem "s_key"
 		name = "S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "CTRL+S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "T"
@@ -721,11 +665,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "CTRL+W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "X"
@@ -750,34 +694,6 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
-		is-disabled = false
-	elem 
-		name = "NUMPAD1"
-		command = "body-r-leg"
-		is-disabled = false
-	elem 
-		name = "NUMPAD2"
-		command = "body-groin"
-		is-disabled = false
-	elem 
-		name = "NUMPAD3"
-		command = "body-l-leg"
-		is-disabled = false
-	elem 
-		name = "NUMPAD4"
-		command = "body-r-arm"
-		is-disabled = false
-	elem 
-		name = "NUMPAD5"
-		command = "body-chest"
-		is-disabled = false
-	elem 
-		name = "NUMPAD6"
-		command = "body-l-arm"
-		is-disabled = false
-	elem 
-		name = "NUMPAD8"
-		command = "body-toggle-head"
 		is-disabled = false
 	elem 
 		name = "F1"
@@ -828,12 +744,12 @@ macro "hotkeymode"
 		command = "F12"
 		is-disabled = false
 	elem 
-		name = ","
-		command = "move-upwards"
+		name = "NORTHEAST"
+		command = "Move-Upwards"
 		is-disabled = false
 	elem 
-		name = "."
-		command = "move-down"
+		name = "SOUTHEAST"
+		command = "Move-Down"
 		is-disabled = false
 
 macro "borgmacro"
@@ -871,7 +787,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "WEST+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "ALT+NORTH"
@@ -883,7 +799,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "NORTH+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "ALT+EAST"
@@ -895,7 +811,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "EAST+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "ALT+SOUTH"
@@ -907,7 +823,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "SOUTH+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "INSERT"
@@ -935,11 +851,11 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "CTRL+A+REP"
-		command = ".moveleft"
+		command = ".west"
 		is-disabled = false
 	elem 
 		name = "CTRL+D+REP"
-		command = ".moveright"
+		command = ".east"
 		is-disabled = false
 	elem 
 		name = "CTRL+F"
@@ -959,11 +875,11 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "CTRL+S+REP"
-		command = ".movedown"
+		command = ".south"
 		is-disabled = false
 	elem 
 		name = "CTRL+W+REP"
-		command = ".moveup"
+		command = ".north"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -976,34 +892,6 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD1"
-		command = "body-r-leg"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD2"
-		command = "body-groin"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD3"
-		command = "body-l-leg"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD4"
-		command = "body-r-arm"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD5"
-		command = "body-chest"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD6"
-		command = "body-l-arm"
-		is-disabled = false
-	elem 
-		name = "CTRL+NUMPAD8"
-		command = "body-toggle-head"
 		is-disabled = false
 	elem 
 		name = "F1"
@@ -1124,24 +1012,6 @@ menu "menu"
 		command = ".winset \"mapwindow.map.icon-size=0\""
 		category = "&Icons"
 		is-checked = true
-		can-check = true
-		group = "size"
-		is-disabled = false
-		saved-params = "is-checked"
-	elem "icon128"
-		name = "&128x128"
-		command = ".winset \"mapwindow.map.icon-size=128\""
-		category = "&Icons"
-		is-checked = false
-		can-check = true
-		group = "size"
-		is-disabled = false
-		saved-params = "is-checked"
-	elem "icon96"
-		name = "&96x96"
-		command = ".winset \"mapwindow.map.icon-size=96\""
-		category = "&Icons"
-		is-checked = false
 		can-check = true
 		group = "size"
 		is-disabled = false
@@ -1832,6 +1702,7 @@ window "mainwindow"
 		right-click = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		on-size = ""
+		title = "Space Station 13"
 		titlebar = true
 		statusbar = true
 		can-close = true
@@ -1850,32 +1721,6 @@ window "mainwindow"
 		macro = "macro"
 		menu = "menu"
 		on-close = ""
-	elem "asset_cache_browser"
-		type = BROWSER
-		pos = 424,208
-		size = 1x1
-		anchor1 = none
-		anchor2 = none
-		font-family = ""
-		font-size = 0
-		font-style = ""
-		text-color = #000000
-		background-color = none
-		is-visible = false
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = ""
-		on-size = ""
-		show-history = false
-		show-url = false
-		auto-format = true
-		use-title = false
-		on-show = ""
-		on-hide = ""
 	elem "hotkey_toggle"
 		type = BUTTON
 		pos = 560,420
@@ -2235,34 +2080,6 @@ window "rpane"
 		text = "Changelog"
 		image = ""
 		command = "Changelog"
-		is-flat = false
-		stretch = false
-		is-checked = false
-		group = "rpanemode"
-		button-type = pushbutton
-	elem "Lore"
-		type = BUTTON
-		pos = 413,0
-		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		font-family = ""
-		font-size = 0
-		font-style = ""
-		text-color = #000000
-		background-color = none
-		is-visible = true
-		is-disabled = false
-		is-transparent = false
-		is-default = false
-		border = none
-		drop-zone = false
-		right-click = false
-		saved-params = "is-checked"
-		on-size = ""
-		text = "Lore"
-		image = ""
-		command = "Lore"
 		is-flat = false
 		stretch = false
 		is-checked = false
@@ -2698,4 +2515,3 @@ window "text_editor"
 		multi-line = true
 		is-password = false
 		no-command = false
-

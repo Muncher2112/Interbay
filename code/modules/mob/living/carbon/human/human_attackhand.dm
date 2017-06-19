@@ -188,7 +188,7 @@
 					miss_type = 1
 
 			var/hitcheck = rand(0, 9)
-			if(istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == BP_MOUTH ? 5 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
+			if(!istype(src, /mob/living/carbon/human/machine) && istype(affecting, /obj/item/organ/external/head) && prob(hitcheck * (hit_zone == BP_MOUTH ? 5 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
 				var/obj/item/organ/external/head/U = affecting
 				if(U.knock_out_teeth(get_dir(H, src), round(rand(28, 38) * ((hitcheck*2)/100))))
 					src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
