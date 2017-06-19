@@ -45,13 +45,13 @@
 		. += "<span class='danger'>You are banned from using character records.</span><br>"
 	else
 		. += "Medical Records:<br>"
-		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br><br>"
+		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record)]</a><br><br>"
 		. += "Employment Records:<br>"
-		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br><br>"
+		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record)]</a><br><br>"
 		. += "Security Records:<br>"
-		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
+		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record)]</a><br>"
 		. += "Memory:<br>"
-		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
+		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory)]</a><br>"
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["nt_relation"])
@@ -67,7 +67,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a home system.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
-				pref.home_system = raw_choice
+				pref.home_system = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.home_system = choice
 		return TOPIC_REFRESH
@@ -79,7 +79,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter your current citizenship.", "Character Preference") as text|null, MAX_NAME_LEN)
 			if(raw_choice && CanUseTopic(user))
-				pref.citizenship = raw_choice
+				pref.citizenship = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.citizenship = choice
 		return TOPIC_REFRESH
@@ -91,7 +91,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a faction.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice)
-				pref.faction = raw_choice
+				pref.faction = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.faction = choice
 		return TOPIC_REFRESH
@@ -103,7 +103,7 @@
 		if(choice == "Other")
 			var/raw_choice = sanitize(input(user, "Please enter a religon.", "Character Preference")  as text|null, MAX_NAME_LEN)
 			if(raw_choice)
-				pref.religion = sanitize(raw_choice)
+				pref.religion = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.religion = choice
 		return TOPIC_REFRESH
@@ -111,25 +111,25 @@
 	else if(href_list["set_medical_records"])
 		var/new_medical = sanitize(input(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(new_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
-			pref.med_record = new_medical
+			pref.med_record = cp1251_to_utf8(post_edit_utf8(new_medical))
 		return TOPIC_REFRESH
 
 	else if(href_list["set_general_records"])
 		var/new_general = sanitize(input(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(new_general) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
-			pref.gen_record = new_general
+			pref.gen_record = cp1251_to_utf8(post_edit_utf8(new_general))
 		return TOPIC_REFRESH
 
 	else if(href_list["set_security_records"])
 		var/sec_medical = sanitize(input(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(sec_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
-			pref.sec_record = sec_medical
+			pref.sec_record = cp1251_to_utf8(post_edit_utf8(sec_medical))
 		return TOPIC_REFRESH
 
 	else if(href_list["set_memory"])
 		var/memes = sanitize(input(user,"Enter memorized information here.","Character Preference", html_decode(pref.memory)) as message|null, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!isnull(memes) && CanUseTopic(user))
-			pref.memory = memes
+			pref.memory = cp1251_to_utf8(post_edit_utf8(memes))
 		return TOPIC_REFRESH
 
 	return ..()

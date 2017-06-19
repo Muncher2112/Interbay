@@ -170,7 +170,7 @@
 				notenoughpoints = 1
 
 			var/timeout = world.time + 1 MINUTE
-			var/reason = sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text,,0)
+			var/reason = cp1251_to_utf8(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text,MAX_MESSAGE_LEN,1))
 			if(world.time > timeout)	return TRUE
 			if(!reason)	return TRUE
 

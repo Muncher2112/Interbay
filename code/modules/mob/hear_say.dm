@@ -188,11 +188,11 @@
 
 		if(changed_voice) // Fix for AI tracking camera.
 			if(impersonating)
-				track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker.voice_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
+				track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker.voice_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
 			else
 				track = "[speaker_name] ([jobname])"
 		else
-			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker.real_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+			track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker.real_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 
 	if(isghost(src))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.

@@ -42,7 +42,7 @@
 /obj/item/weapon/paper/proc/set_content(text,title)
 	if(title)
 		name = title
-	info = html_encode(text)
+	info = rhtml_encode(text)
 	info = parsepencode(text)
 	update_icon()
 	update_space(info)
@@ -196,6 +196,8 @@
 /obj/item/weapon/paper/proc/parsepencode(t, obj/item/weapon/pen/P, mob/user, iscrayon)
 	if(length(t) == 0)
 		return ""
+		
+	t = cp1251_to_utf8(t)
 
 	if(findtext(t, "\[sign\]"))
 		t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[get_signature(P, user)]</i></font>")
