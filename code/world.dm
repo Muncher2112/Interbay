@@ -77,7 +77,10 @@
 	fps = 20
 
 #define RECOMMENDED_VERSION 511
-/world/New()	
+/world/New()
+	if (config && config.server_name)
+		server_name = "[config.server_name]"	
+	
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
