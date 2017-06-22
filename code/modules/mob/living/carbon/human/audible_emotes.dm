@@ -2,9 +2,12 @@ proc/agony_scream(var/mob/M)
 	var/screamsound = null
 	if(M.stat)//No dead or unconcious people screaming pls.
 		return
-	
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		if(H.isMonkey())//We need a species painscream var and some painscreams for species.
+			return
+
 		if(H.isChild())
 			screamsound = "sound/voice/child_pain[rand(1,2)].ogg"
 

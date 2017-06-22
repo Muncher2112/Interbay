@@ -102,7 +102,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in src
 	zone.fire_tiles |= src
 	if(fuel) zone.fuel_objs += fuel
-	playsound(src.loc, 'sound/effects/fire.ogg', 15, 0)
+	playsound(loc, 'sound/effects/fire.ogg', 15, 0)
 
 	return 0
 
@@ -181,10 +181,6 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
 	set_light(l_color = color)
-
-	if(prob(33))//Play dat burning noise fam.
-		playsound(src.loc, 'sound/effects/fire.ogg', 15, 0)
-
 /obj/fire/New(newLoc,fl)
 	..()
 

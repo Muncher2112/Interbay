@@ -9,10 +9,10 @@
  */
 /obj/item/weapon/melee/classic_baton
 	name = "police baton"
-	desc = "A wooden truncheon for beating criminal scum."
+	desc = "A plastic truncheon for beating criminal scum."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "baton"
-	item_state = "classic_baton"
+	item_state = "nullrod"//item_state = "classic_baton"
 	slot_flags = SLOT_BELT
 	force = 10
 
@@ -48,10 +48,10 @@
 		"<span class='warning'>You extend the baton.</span>",\
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
-		item_state = "telebaton_1"
+		item_state = "nullrod" //item_state = "telebaton_1"
 		w_class = ITEM_SIZE_NORMAL
 		force = 15//quite robust
-		attack_verb = list("smacked", "struck", "slapped")
+		attack_verb = list("smacked", "struck")
 	else
 		user.visible_message("<span class='notice'>\The [user] collapses their telescopic baton.</span>",\
 		"<span class='notice'>You collapse the baton.</span>",\
@@ -91,7 +91,6 @@
 				user.take_organ_damage(2*force)
 			return
 		if(..())
-			//playsound(src.loc, "swing_hit", 50, 1, -1)
 			return
 	else
 		return ..()

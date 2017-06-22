@@ -188,6 +188,7 @@ meteor_act
 
 	if(!hit_zone)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
@@ -381,6 +382,7 @@ meteor_act
 
 		if(!zone)
 			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 			return
 
 		O.throwing = 0		//it hit, so stop moving
