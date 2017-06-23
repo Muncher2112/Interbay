@@ -499,6 +499,9 @@ var/global/datum/controller/occupations/job_master
 
 		to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
+		if(job.explanation_text)
+			to_chat(H, "[job.explanation_text]")
+
 		if(job.supervisors)
 			to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 
@@ -509,7 +512,7 @@ var/global/datum/controller/occupations/job_master
 
 
 		// EMAIL GENERATION
-		if(job.has_email)	
+		if(job.has_email)
 			var/domain
 			if(H.char_branch && H.char_branch.email_domain)
 				domain = H.char_branch.email_domain

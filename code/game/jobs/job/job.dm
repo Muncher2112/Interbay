@@ -21,7 +21,7 @@
 	var/ideal_character_age = 30
 	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
 	var/has_email = 1					  // Do they have an email address? Certain roles like kid roles don't get one.
-
+	var/explanation_text = null			  // A brief one line description of what the hell you're supposed to be doing.
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
