@@ -274,7 +274,7 @@ var/list/mob/living/forced_ambiance_list = new
 	var/hum = 0
 	if(!L.ear_deaf)
 		for(var/obj/machinery/atmospherics/unary/vent_pump/vent in src)
-			if(vent.can_pump())
+			if(vent.can_pump() && has_hum)
 				hum = 1
 				break
 

@@ -8,6 +8,8 @@
 
 	#include "gulag_jobs.dm"
 
+	#include "gulag_turfs.dm"
+
 	#include "../../code/modules/lobby_music/absconditus.dm"
 
 	#define USING_MAP_DATUM /datum/map/example

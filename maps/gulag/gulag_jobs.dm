@@ -1,5 +1,5 @@
 /datum/map/example
-	allowed_jobs = list(/datum/job/child, /datum/job/prisoner, /datum/job/gulag_warden, /datum/job/gulag_gaurd)
+	allowed_jobs = list(/datum/job/child, /datum/job/prisoner, /datum/job/gulag_warden, /datum/job/gulag_gaurd, /datum/job/chaplain, /datum/job/doctor)
 
 
 //The Warden
@@ -100,10 +100,10 @@
 
 //Some helpers for random names
 /datum/job/proc/get_random_prisoner_name()
-	return "[pick("Spook", "Big", "The Big Boy", "The Big Girl", "Cheese", "Artist", "Greasy", "Dick", "Weasel", "Small", "Dixon", "Dixy", "Rat", "Knot", "Suffering", "Slick", "Scars", "Old Guy", "Heel", "Nine Lives", "Two Fingers", "Poet", "Dash", "Angel", "Bug", "Beast", "Enema", "Animal", "Oz", "Cinnamon", "Heavy", "Echo", "Cannon", "Under", "Smokes")]"
+	return "[pick("Spook", "Big", "The Big Boy", "The Big Girl", "Cheese", "Artist", "Greasy", "Dick", "Weasel", "Small", "Dixon", "Dixy", "Rat", "Knot", "Suffering", "Slick", "Scars", "Old Guy", "Heel", "Nine Lives", "Two Fingers", "Poet", "Dash", "Angel", "Bug", "Beast", "Enema", "Animal", "Oz", "Cinnamon", "Heavy", "Echo", "Cannon", "Under", "Smokes", "Joe")]"
 
 /decl/hierarchy/outfit/job/inmate/proc/get_random_crime()
-	return "[pick("Muderer", "Rapist", "Tax Evader", "Innoncent", "Revolutionary", "Spy", "Arsonist", "Enemy of the State", "Bad Boy", "Drug Dealer", "Drug Offender", "Preacher", "Poet", "Malpracticer")]"
+	return "[pick("Muderer", "Rapist", "Tax Evader", "Innoncent", "Revolutionary", "Spy", "Arsonist", "Enemy of the State", "Bad Boy", "Drug Dealer", "Drug Offender", "Poet", "Malpracticer")]"
 
 //Their outfit
 /decl/hierarchy/outfit/job/inmate
