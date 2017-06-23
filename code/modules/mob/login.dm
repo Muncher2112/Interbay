@@ -1,6 +1,6 @@
 //handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 /mob/proc/update_Login_details()
-	var/serbname = "[server_name] - [station_name()]"
+	var/serbname = "[server_name]: [station_name()]"
 	winset(src, null, "mainwindow.title='[serbname]'")
 	//Multikey checks and logging
 	lastKnownIP	= client.address
