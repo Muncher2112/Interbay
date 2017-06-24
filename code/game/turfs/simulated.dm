@@ -138,6 +138,8 @@
 				footstepsound = "carpetfootsteps"
 			else 	if(istype(src, /turf/simulated/floor/beach/sand))
 				footstepsound = "dirtfootsteps"
+			else	if(istype(src,/turf/simulated/floor/plating))
+				footstepsound = "platingfootsteps"
 			else	if(istype(src,/turf/simulated/floor/snow))
 				footstepsound = "snowsteps"
 

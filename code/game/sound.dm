@@ -66,7 +66,7 @@ var/list/sandfootsteps = list('sound/effects/footsteps/sand/sand_step1.ogg','sou
 var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','sound/effects/footsteps/wood/wood_step2.ogg','sound/effects/footsteps/wood/wood_step3.ogg')
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
 var/list/snowsteps = list('sound/effects/footsteps/snow/snowstep1.ogg', 'sound/effects/footsteps/snow/snowstep2.ogg', 'sound/effects/footsteps/snow/snowstep3.ogg', 'sound/effects/footsteps/snow/snowstep4.ogg')
-
+var/list/platingfootsteps = list('sound/effects/footsteps/plating1.ogg','sound/effects/footsteps/plating2.ogg', 'sound/effects/footsteps/plating3.ogg', 'sound/effects/footsteps/plating4.ogg')
 
 /proc/absolute(x as num)
 	return abs(x)
@@ -209,6 +209,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("sandfootsteps") soundin = pick(sandfootsteps)
 			if ("woodfootsteps") soundin = pick(woodfootsteps)
 			if ("carpetfootsteps") soundin = pick(carpetfootsteps)
+			if ("platingfootsteps") soundin = pick(platingfootsteps)
 			if ("snowsteps") soundin = pick(snowsteps)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("keyboard") soundin = pick(keyboard_sound)
