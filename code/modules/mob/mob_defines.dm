@@ -40,8 +40,10 @@
 	var/obj/screen/kick_icon = null
 	var/obj/screen/jump_icon = null
 	var/obj/screen/noise1 = null
-	var/obj/screen/noise2 = null
-	var/obj/screen/noise3 = null
+	var/obj/screen/fixeye = null
+
+	var/obj/screen/noise2 = null//unused
+	var/obj/screen/noise3 = null//unused
 
 	var/obj/screen/movable/ability_master/ability_master = null
 

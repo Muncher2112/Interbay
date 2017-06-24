@@ -365,6 +365,14 @@
 				usr.jump_icon.icon_state = "jump_on"
 				usr.kick_icon.icon_state = "kick"
 
+		if("fixeye")
+			usr.face_direction()
+			if(usr.facing_dir)
+				usr.fixeye.icon_state = "fixeye_on"
+			else
+				usr.fixeye.icon_state = "fixeye"
+
+
 		if("module")
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
