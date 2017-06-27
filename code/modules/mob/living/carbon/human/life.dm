@@ -990,6 +990,7 @@
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
 					nutrition += 10
+	handle_excrement()
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
