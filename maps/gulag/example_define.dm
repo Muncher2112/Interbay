@@ -1,5 +1,5 @@
 
-/datum/map/example
+/datum/map/gulag
 	name = "Example"
 	full_name = "The Example"
 	path = "example"
@@ -22,6 +22,6 @@
 	emergency_shuttle_called_message = "An emergency escape shuttle has been sent."
 	emergency_shuttle_recall_message = "The emergency shuttle has been recalled"
 
-/datum/map/example/New()
+/datum/map/gulag/New()
 	..()
 	station_name = "Gulag [rand(1,500)]"
