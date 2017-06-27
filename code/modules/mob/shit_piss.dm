@@ -171,6 +171,7 @@
 	icon = 'icons/obj/poop.dmi'
 	icon_state = "poop2"
 	item_state = "poop"
+	
 	New()
 		..()
 		icon_state = pick("poop1", "poop2", "poop3", "poop4", "poop5", "poop6", "poop7")
@@ -178,14 +179,14 @@
 		bitesize = 3
 
 	throw_impact(atom/hit_atom)
-		..()
-		if(reagents.total_volume)
-			src.reagents.handle_reactions()
+		//if(src.reagents.total_volume)
+		//	src.reagents.handle_reactions()
 		playsound(src.loc, "sound/effects/squishy.ogg", 40, 1)
 		var/turf/T = src.loc
 		if(!istype(T, /turf/space))
 			new /obj/effect/decal/cleanable/poo(T)
 		qdel(src)
+		..()
 
 //#####BOTTLES#####
 
