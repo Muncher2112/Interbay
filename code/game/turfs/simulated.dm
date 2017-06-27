@@ -105,29 +105,9 @@
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
-			if(H.shoes)
-				var/obj/item/clothing/shoes/S = H.shoes
-				if(istype(S))
-					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
-					if(S.track_blood && S.blood_DNA)
-						bloodDNA = S.blood_DNA
-						bloodcolor=S.blood_color
-						S.track_blood--
-			else
-				if(H.track_blood && H.feet_blood_DNA)
-					bloodDNA = H.feet_blood_DNA
-					bloodcolor = H.feet_blood_color
-					H.track_blood--
+			var/is_wearing_armor = 0
 
-			if (bloodDNA)
-				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
-				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
-				if(istype(from) && from)
-					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
-
-				bloodDNA = null
-
-			//Shoe sounds
+			//Getting footstep sounds.
 			if 		(istype(src, /turf/simulated/floor/grass))
 				footstepsound = "grassfootsteps"
 			else 	if(istype(src, /turf/simulated/floor/beach/water))
@@ -146,19 +126,49 @@
 			else
 				footstepsound = "erikafootsteps"
 
-			if(istype(H.shoes, /obj/item/clothing/shoes) && !H.throwing)//This is probably the worst possible way to handle walking sfx.
-				if(H.m_intent == "run")
-					if(H.footstep >= 1)//Every two steps.
-						H.footstep = 0
-						playsound(src, footstepsound, 100, 1)
-					else
-						H.footstep++
-				else
-					if(H.footstep >= 6)
-						H.footstep = 0
-						playsound(src, footstepsound, 100, 1)
-					else
-						H.footstep++
+			if(H.wear_suit)//If they're wearing armor make an armor sound.
+				var/obj/item/clothing/suit/armor/C = H.wear_suit
+				if(istype(C))
+					is_wearing_armor = 1
+
+			if(H.shoes)//If they're wearing shoes play some shoe sounds.
+				var/obj/item/clothing/shoes/S = H.shoes
+				if(istype(S))
+					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
+					if(!H.throwing)
+						if(H.m_intent == "run")
+							if(H.footstep >= 1)//Every two steps.
+								H.footstep = 0
+								playsound(src, footstepsound, 100, 1)
+								if(is_wearing_armor)
+									playsound(src, "sound/effects/footsteps/armor/gear[rand(1,4)].ogg", 15, 1)
+							else
+								H.footstep++
+						else
+							if(H.footstep >= 6)
+								H.footstep = 0
+								playsound(src, footstepsound, 100, 1)
+								if(is_wearing_armor)
+									playsound(src, "sound/effects/footsteps/armor/gear[rand(1,4)].ogg", 15, 1)
+							else
+								H.footstep++
+					if(S.track_blood && S.blood_DNA)
+						bloodDNA = S.blood_DNA
+						bloodcolor=S.blood_color
+						S.track_blood--
+			else
+				if(H.track_blood && H.feet_blood_DNA)
+					bloodDNA = H.feet_blood_DNA
+					bloodcolor = H.feet_blood_color
+					H.track_blood--
+
+			if (bloodDNA)
+				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
+				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
+				if(istype(from) && from)
+					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
+
+				bloodDNA = null
 
 		if(src.wet)
 
