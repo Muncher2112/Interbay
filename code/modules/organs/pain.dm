@@ -21,6 +21,16 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 	if(power)
 		if(affecting)
 			affecting.add_pain(ceil(power/2))
+
+			switch(power)
+				if(1 to 10)
+					flash_weakest_pain()
+				if(11 to 90)
+					flash_weak_pain()
+					stuttering += 5
+				if(91 to INFINITY)
+					flash_pain()
+					stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
 
