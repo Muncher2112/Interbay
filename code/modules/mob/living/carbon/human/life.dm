@@ -1022,6 +1022,7 @@
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with 0 power in these cases!
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 0)
+		flash_weak_pain()
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) visible_message("<b>[src]</b> is having trouble keeping \his eyes open.")
@@ -1031,24 +1032,28 @@
 	if(shock_stage == 40)
 		var/message = "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 		to_chat(src, message)
+		agony_moan(src)
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
 			var/message = "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			to_chat(src, message)
 			Weaken(20)
+			flash_weak_pain()
 
 	if(shock_stage >= 80)
 		if (prob(5))
 			var/message = "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			to_chat(src, message)
 			Weaken(20)
+			flash_weak_pain()
 
 	if(shock_stage >= 120)
 		if (prob(2))
 			var/message = "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
 			to_chat(src, message)
 			Paralyse(5)
+			flash_pain()
 
 	if(shock_stage == 150)
 		visible_message("<b>[src]</b> can no longer stand, collapsing!")

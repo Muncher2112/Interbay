@@ -34,3 +34,26 @@ proc/gasp_sound(var/mob/M)
 
 	if(gaspsound)
 		playsound(M, gaspsound, 25, 0, 1)
+
+proc/agony_moan(var/mob/M)
+	var/moansound = null
+	if(M.stat)//No dead or unconcious people screaming pls.
+		return
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.isMonkey())
+			return
+
+		if(H.isChild())
+			moansound = 'sound/voice/child_moan1.ogg'
+
+		else if(M.gender == MALE)
+			moansound = "sound/voice/male_moan[rand(1,3)].ogg"
+
+		else
+			moansound = "sound/voice/female_moan[rand(1,3)].ogg"
+
+
+	if(moansound)
+		playsound(M, moansound, 25, 0, 1)
