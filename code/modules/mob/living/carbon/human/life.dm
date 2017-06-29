@@ -972,7 +972,7 @@
 		var/turf/T = loc
 		if(T.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
-	
+
 	var/area/A = get_area(src)
 	if(client && world.time >= client.played + 600)
 		A.play_ambience(src)
@@ -1037,7 +1037,7 @@
 		var/message = "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 		to_chat(src, message)
 		agony_moan(src)
-		owner.emote("moan")
+		emote("moan")
 	if (shock_stage >= 60)
 		if(shock_stage == 60) visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
