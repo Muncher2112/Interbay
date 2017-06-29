@@ -12,7 +12,7 @@
 
 	#include "../../code/modules/lobby_music/absconditus.dm"
 
-	#define USING_MAP_DATUM /datum/map/example
+	#define USING_MAP_DATUM /datum/map/gulag
 
 #elif !defined(MAP_OVERRIDE)
 
