@@ -262,7 +262,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/datum/wound/cut/W = affected.get_incision()
 	user.visible_message("[user] is beginning to cauterize[W ? " \a [W.desc] on" : ""]\the [target]'s [affected.name] with \the [tool]." , \
-	"You are beginning to cauterize[W ? " \a [W.desc] on" : ""]\the [target]'s [affected.name] with \the [tool].")
+	"You are beginning to cauterize[W ? " \a [W.desc] on " : ""]\the [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("Your [affected.name] is being burned!",40,affecting = affected)
 	..()
 
@@ -270,7 +270,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/datum/wound/cut/W = affected.get_incision()
 	user.visible_message("<span class='notice'>[user] cauterizes[W ? " \a [W.desc] on" : ""]\the [target]'s [affected.name] with \the [tool].</span>", \
-	"<span class='notice'>You cauterize[W ? " \a [W.desc] on" : ""]\the [target]'s [affected.name] with \the [tool].</span>")
+	"<span class='notice'>You cauterize[W ? " \a [W.desc] on " : ""]\the [target]'s [affected.name] with \the [tool].</span>")
 	if(W)
 		W.close()
 	if(affected.is_stump())

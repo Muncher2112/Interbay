@@ -84,7 +84,8 @@
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
 
-	playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//They won't always be able to read the message, but the sound will play regardless.
+	if(!isobserver(src))
+		playsound(loc, 'sound/effects/radio_chatter.ogg', 25, 0, -1)//So ghosts don't have to hear radio chatter spam.
 
 	if(!client)
 		return
