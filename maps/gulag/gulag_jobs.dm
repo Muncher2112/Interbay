@@ -25,7 +25,7 @@
 /decl/hierarchy/outfit/job/security/gulag_warden
 	name = "Gulag Warden"
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/rank/warden
+	uniform = /obj/item/clothing/under/rank/head_of_security/corp 
 	id_type = /obj/item/weapon/card/id/security/warden
 	pda_type = /obj/item/device/pda/warden
 
