@@ -65,7 +65,7 @@
 		return
 
 	if(lying && istype(A, /turf/) && !istype(A, /turf/space/))
-		if(A.Adjacent(src) && !get_active_hand())
+		if(!get_active_hand())//Should make getting up stairs easier.
 			scramble(A)
 
 	if(stat || paralysis || stunned || weakened)
@@ -278,7 +278,7 @@
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
-    
+
 /mob/observer/ghost/TurfAdjacent(var/turf/T)
 	if(!isturf(loc) || !client)
 		return FALSE
@@ -483,11 +483,13 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 		else		direction = WEST
 	if(direction)
 		scrambling = 1
-		spawn(10)
+		if(do_after(src, 10))//spawn(10)
 			Move(get_step(src,direction))
 			scrambling = 0
 			dir = 2
 			src.visible_message("\red <b>[src]</b> crawls!")
+		else
+			scrambling = 0
 
 /atom/proc/middle_click_intent_check(var/mob/M)
 	if(M.middle_click_intent == "kick")
