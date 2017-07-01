@@ -9,12 +9,14 @@
 	var/hud_updateflag = 0
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS // what a joke
-	var/bruteloss = 0 //Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/oxyloss = 0   //Oxygen depravation damage (no air in lungs)
-	var/toxloss = 0   //Toxic damage caused by being poisoned or radiated
-	var/fireloss = 0  //Burn damage caused by being way too hot, too cold or burnt.
-	var/staminaloss = 0	//Stamina damage, or exhaustion. You recover it slowly naturally, and are stunned if it gets too high.
+	//var/bruteloss = 0 //Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	//var/oxyloss = 0   //Oxygen depravation damage (no air in lungs)
+	//var/toxloss = 0   //Toxic damage caused by being poisoned or radiated
+	//var/fireloss = 0  //Burn damage caused by being way too hot, too cold or burnt.
 	//var/halloss = 0   //Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+
+	var/lisp = 0
+	var/staminaloss = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
@@ -48,8 +50,9 @@
 	var/ear_damage = null	//Carbon
 	var/stuttering = null	//Carbon
 	var/slurring = null		//Carbon
-	var/lisp = null			//Carbon
 
 	var/job = null//Living
 
 	var/doing_something = 0	//Like pulling teeth?
+
+	var/obj/screen/cells = null

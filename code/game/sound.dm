@@ -49,13 +49,15 @@ var/list/fracture_sound = list('sound/effects/bonebreak1.ogg','sound/effects/bon
 var/list/lighter_sound = list('sound/items/lighter1.ogg','sound/items/lighter2.ogg','sound/items/lighter3.ogg')
 var/list/trauma_sound = list('sound/effects/gore/trauma1.ogg', 'sound/effects/gore/trauma2.ogg', 'sound/effects/gore/trauma3.ogg')
 var/list/casing_sound = list ('sound/weapons/guns/misc/casingfall1.ogg','sound/weapons/guns/misc/casingfall2.ogg','sound/weapons/guns/misc/casingfall3.ogg')
-var/list/keyboard_sound = list ('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
-var/list/terminal_type = list('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg',
+var/list/terminal_type = list('sound/machines/keypress1.ogg', 'sound/machines/keypress2.ogg', 'sound/machines/keypress3.ogg', 'sound/machines/keypress4.ogg')
+
+var/list/keyboard_sound = list('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg',
 							  'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg',
 							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 var/list/gun_sound = list('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg', 'sound/weapons/gunshot3.ogg', 'sound/weapons/gunshot4.ogg')
 var/list/bullet_hit_wall = list('sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg')
-
+var/list/switch_sound = list('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
+var/list/button_sound = list('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
 
 //Foostep sounds:
 var/list/erikafootsteps = list('sound/effects/footsteps/tile1.wav','sound/effects/footsteps/tile2.wav','sound/effects/footsteps/tile3.wav','sound/effects/footsteps/tile4.wav')
@@ -67,9 +69,6 @@ var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','so
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
 var/list/snowsteps = list('sound/effects/footsteps/snow/snowstep1.ogg', 'sound/effects/footsteps/snow/snowstep2.ogg', 'sound/effects/footsteps/snow/snowstep3.ogg', 'sound/effects/footsteps/snow/snowstep4.ogg')
 var/list/platingfootsteps = list('sound/effects/footsteps/plating1.ogg','sound/effects/footsteps/plating2.ogg', 'sound/effects/footsteps/plating3.ogg', 'sound/effects/footsteps/plating4.ogg')
-
-/proc/absolute(x as num)
-	return abs(x)
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/frequency)
 
@@ -216,4 +215,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("terminal_type")	soundin = pick(terminal_type)
 			if ("gunshot") soundin = pick(gun_sound)
 			if ("hitwall") soundin = pick(bullet_hit_wall)
+			if ("keyboard") soundin = pick(keyboard_sound)
+			if ("switch") soundin = pick(switch_sound)
+			if ("button") soundin = pick(button_sound)
 	return soundin
