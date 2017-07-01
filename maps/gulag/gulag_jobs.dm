@@ -1,4 +1,4 @@
-/datum/map/example
+/datum/map/gulag
 	allowed_jobs = list(/datum/job/child, /datum/job/prisoner, /datum/job/gulag_warden, /datum/job/gulag_gaurd, /datum/job/chaplain, /datum/job/doctor)
 
 
@@ -25,7 +25,7 @@
 /decl/hierarchy/outfit/job/security/gulag_warden
 	name = "Gulag Warden"
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/rank/head_of_security/corp 
+	uniform = /obj/item/clothing/under/rank/head_of_security/corp
 	id_type = /obj/item/weapon/card/id/security/warden
 	pda_type = /obj/item/device/pda/warden
 
@@ -95,7 +95,7 @@
 		H.real_name = "[get_random_prisoner_name()]"//Give them a random prisoner nick name.
 		H.name = H.real_name
 		..()
-		
+
 
 
 //Some helpers for random names
