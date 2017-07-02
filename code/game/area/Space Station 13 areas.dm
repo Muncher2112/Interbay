@@ -153,9 +153,6 @@ area/space/atmosalert()
 /area/shuttle/specops/centcom
 	icon_state = "shuttlered"
 
-/area/shuttle/specops/station
-	icon_state = "shuttlered2"
-
 /area/shuttle/syndicate_elite/mothership
 	icon_state = "shuttlered"
 
@@ -166,7 +163,7 @@ area/space/atmosalert()
 	name = "\improper Skipjack"
 	icon_state = "yellow"
 
-/area/supply/station
+/area/supply
 	name = "Supply Shuttle"
 	icon_state = "shuttle3"
 
@@ -177,8 +174,7 @@ area/space/atmosalert()
 ////////////
 //SHUTTLES//
 ////////////
-//shuttle areas must contain at least two areas in a subgroup if you want to move a shuttle from one
-//place to another. Look at escape shuttle for example.
+//shuttles only need starting area, movement is handled by landmarks
 //All shuttles should now be under shuttle since we have smooth-wall code.
 
 /area/shuttle

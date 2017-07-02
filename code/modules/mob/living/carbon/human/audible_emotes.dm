@@ -8,7 +8,7 @@ proc/agony_scream(var/mob/M)
 		if(H.isMonkey())
 			screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 
-		if(H.isChild())
+		else if(H.isChild())
 			screamsound = "sound/voice/child_pain[rand(1,2)].ogg"
 
 		else if(M.gender == MALE)
