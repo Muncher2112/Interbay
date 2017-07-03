@@ -42,11 +42,11 @@ mob/dead/InCone(mob/center = usr, dir = NORTH)
 mob/living/InCone(mob/center = usr, dir = NORTH)
 	. = ..()
 	for(var/obj/item/weapon/grab/G in center)//TG doesn't have the grab item. But if you're porting it and you do then uncomment this.
-		if(src == G.affecting) 
+		if(src == G.affecting)
 			return 0
-		else 
+		else
 			return .
-	
+
 
 proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
     for(var/atom/O in list) if(!O.InCone(center, dir)) list -= O
@@ -57,11 +57,11 @@ mob/proc/update_vision_cone()
 
 mob/living/update_vision_cone()
 	var/delay = 10
-	if(src.client)
+	if(src.client && src.fov)
 		var/image/I = null
 		for(I in src.client.hidden_atoms)
 			I.override = 0
-			spawn(delay) 
+			spawn(delay)
 				qdel(I)
 			delay += 10
 		rest_cone_act()

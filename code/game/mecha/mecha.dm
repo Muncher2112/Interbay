@@ -385,12 +385,16 @@
 
 /obj/mecha/proc/mechturn(direction)
 	set_dir(direction)
+	for(var/mob/M in src)
+		M.set_dir(direction)
 	playsound(src,'sound/mecha/mechturn.ogg',40,1)
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
+		for(var/mob/M in src)
+			M.set_dir(dir)
 		playsound(src,'sound/mecha/mechstep.ogg',40,1)
 	return result
 
@@ -398,6 +402,8 @@
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
+		for(var/mob/M in src)
+			M.set_dir(dir)
 		playsound(src,'sound/mecha/mechstep.ogg',40,1)
 	return result
 

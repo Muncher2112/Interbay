@@ -89,8 +89,10 @@
 			continue
 
 		if(M.see_invisible >= invisibility)
-			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
-			continue
+			if(M.client)
+				if(!(src in M.client.hidden_mobs))
+					M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+					continue
 
 		if(blind_message)
 			M.show_message(blind_message, AUDIBLE_MESSAGE)
@@ -698,7 +700,7 @@
 		set_density(0)
 	//	if(l_hand) unEquip(l_hand)
 	//	if(r_hand) unEquip(r_hand)
-	
+
 	else
 		set_density(initial(density))
 	reset_layer()
