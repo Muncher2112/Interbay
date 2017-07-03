@@ -60,7 +60,7 @@ var/list/switch_sound = list('sound/machines/switch1.ogg','sound/machines/switch
 var/list/button_sound = list('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
 
 //Foostep sounds:
-var/list/erikafootsteps = list('sound/effects/footsteps/tile1.wav','sound/effects/footsteps/tile2.wav','sound/effects/footsteps/tile3.wav','sound/effects/footsteps/tile4.wav')
+var/list/erikafootsteps = list('sound/effects/footsteps/tile1.ogg','sound/effects/footsteps/tile2.ogg','sound/effects/footsteps/tile3.ogg','sound/effects/footsteps/tile4.ogg')
 var/list/grassfootsteps = list('sound/effects/footsteps/grass/grass1.wav','sound/effects/footsteps/grass/grass2.wav','sound/effects/footsteps/grass/grass3.wav','sound/effects/footsteps/grass/grass4.wav')
 var/list/dirtfootsteps = list('sound/effects/footsteps/dirt/dirt1.wav','sound/effects/footsteps/dirt/dirt2.wav','sound/effects/footsteps/dirt/dirt3.wav','sound/effects/footsteps/dirt/dirt4.wav')
 var/list/waterfootsteps = list('sound/effects/footsteps/water/slosh1.wav','sound/effects/footsteps/water/slosh2.wav','sound/effects/footsteps/water/slosh3.wav','sound/effects/footsteps/water/slosh4.wav')
