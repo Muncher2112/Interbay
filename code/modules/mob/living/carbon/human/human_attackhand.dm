@@ -240,7 +240,7 @@
 
 		if(I_DISARM)
 			admin_attack_log(M, src, "Disarmed their victim.", "Was disarmed.", "disarmed")
-			H.adjustStaminaLoss(rand(2,3))//No more spamming disarm without consequences.
+			M.adjustStaminaLoss(rand(2,3))//No more spamming disarm without consequences.
 			M.do_attack_animation(src)
 
 			if(w_uniform)
