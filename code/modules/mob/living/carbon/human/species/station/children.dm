@@ -2,7 +2,7 @@
 	name = "Child"
 	name_plural = "Children"
 	blurb = "But a child."
-	total_health = 80 //Kids are weaker than adults.
+	total_health = 150 //Kids are weaker than adults.
 	min_age = 10
 	max_age = 14
 	icobase = 'icons/mob/human_races/child/r_child.dmi'
