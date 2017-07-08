@@ -303,6 +303,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(H, "<span class='warning'>\The [blocked] is in the way!</span>")
 			return 1
 		to_chat(H, "<span class='notice'>You take a drag on your [name].</span>")
+		playsound(H, 'sound/effects/inhale.ogg', 50, 0, -1)
 		smoke(5)
 		return 1
 	return ..()

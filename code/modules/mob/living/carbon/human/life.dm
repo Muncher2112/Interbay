@@ -999,8 +999,8 @@
 
 	if(shock_stage == 40)
 		custom_pain("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!", 0)
-		agony_moan(src)
-		emote("moan")
+		src.agony_moan()
+		//emote("moan")
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) 

@@ -30,6 +30,8 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 					stuttering += 5
 				if(91 to INFINITY)
 					flash_pain()
+					if(prob(50))
+						agony_scream()
 					stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
@@ -65,23 +67,27 @@ mob/living/carbon/human/proc/handle_pain()
 			paralysis = max(0, paralysis - round(maxdam/10))
 		if(maxdam > 50 && prob(maxdam / 5))
 			drop_item()
-		//var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
+		var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
 		var/msg
 		switch(maxdam)
 			if(1 to 10)
-				//msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
+				msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
 				if(prob(15))
 					flash_weakest_pain()
 			if(11 to 90)
 				if(prob(15))
 					flash_weak_pain()
 					stuttering += 5
-				//msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
+					if(prob(15))
+						agony_moan()
+				msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
 			if(91 to 10000)
 				if(prob(20))
 					flash_pain()
+					if(prob(50))
+						agony_scream()
 					stuttering += 10
-				//msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
+				msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ)
 
 	// Damage to internal organs hurts a lot.
