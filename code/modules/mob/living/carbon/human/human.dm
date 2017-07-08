@@ -928,6 +928,14 @@
 
 	..()
 
+	if(!client || !key) //Don't boot out anyone already in the mob.
+		for (var/obj/item/organ/internal/brain/H in world)
+			if(H.brainmob)
+				if(H.brainmob.real_name == src.real_name)
+					if(H.brainmob.mind)
+						H.brainmob.mind.transfer_to(src)
+						qdel(H)
+
 /mob/living/carbon/human/proc/add_teeth()
 	var/obj/item/organ/external/head/U = locate() in organs
 	if(istype(U))
@@ -936,14 +944,6 @@
 		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
 		T.amount = T.max_amount
 		U.teeth_list += T
-
-	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/internal/brain/H in world)
-			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
-					if(H.brainmob.mind)
-						H.brainmob.mind.transfer_to(src)
-						qdel(H)
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
