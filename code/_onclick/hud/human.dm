@@ -270,6 +270,7 @@
 	mymob.pain.icon_state = "blank"
 	mymob.pain.name = "pain"
 	mymob.pain.screen_loc = "WEST,SOUTH to EAST,NORTH"
+	mymob.pain.layer = 17
 	mymob.pain.mouse_opacity = 0
 	hud_elements |= mymob.pain
 

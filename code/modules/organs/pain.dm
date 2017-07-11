@@ -30,8 +30,8 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 					stuttering += 5
 				if(91 to INFINITY)
 					flash_pain()
-					if(prob(50))
-						agony_scream()
+				//	if(prob(50))
+				//		agony_scream()
 					stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
@@ -69,24 +69,27 @@ mob/living/carbon/human/proc/handle_pain()
 			drop_item()
 		var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
 		var/msg
-		switch(maxdam)
+		switch(maxdam)//It's important to know that pain counts every single life tick so if you flash pain without a prob here it will flash it every single tick. This causes severe eyestrain.
 			if(1 to 10)
 				msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
-				if(prob(15))
-					flash_weakest_pain()
+				flash_weakest_pain()
+			
 			if(11 to 90)
-				if(prob(15))
+				if(prob(35))
 					flash_weak_pain()
 					stuttering += 5
-					if(prob(15))
-						agony_moan()
+				
+				if(prob(15))
+					agony_moan()
 				msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
-			if(91 to 10000)
-				if(prob(20))
+			
+			if(91 to 10000)	
+				if(prob(35))
 					flash_pain()
-					if(prob(50))
-						agony_scream()
 					stuttering += 10
+
+				if(prob(10))
+					agony_scream()
 				msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ)
 

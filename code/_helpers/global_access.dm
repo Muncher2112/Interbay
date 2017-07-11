@@ -309,6 +309,8 @@
 			return global.breach_brute_descriptors;
 		if("breach_burn_descriptors")
 			return global.breach_burn_descriptors;
+		if("button_sound")
+			return global.button_sound;
 		if("cable_list")
 			return global.cable_list;
 		if("cached_icons")
@@ -631,6 +633,8 @@
 			return global.ghost_darkness_images;
 		if("ghost_master")
 			return global.ghost_master;
+		if("ghost_mob_list_")
+			return global.ghost_mob_list_;
 		if("ghost_sightless_images")
 			return global.ghost_sightless_images;
 		if("ghost_traps")
@@ -1303,6 +1307,8 @@
 			return global.swapmaps_mode;
 		if("swing_hit_sound")
 			return global.swing_hit_sound;
+		if("switch_sound")
+			return global.switch_sound;
 		if("syndicate_access")
 			return global.syndicate_access;
 		if("syndicate_code_phrase")
@@ -1790,6 +1796,8 @@
 			global.breach_brute_descriptors=newval;
 		if("breach_burn_descriptors")
 			global.breach_burn_descriptors=newval;
+		if("button_sound")
+			global.button_sound=newval;
 		if("cable_list")
 			global.cable_list=newval;
 		if("cached_icons")
@@ -2112,6 +2120,8 @@
 			global.ghost_darkness_images=newval;
 		if("ghost_master")
 			global.ghost_master=newval;
+		if("ghost_mob_list_")
+			global.ghost_mob_list_=newval;
 		if("ghost_sightless_images")
 			global.ghost_sightless_images=newval;
 		if("ghost_traps")
@@ -2784,6 +2794,8 @@
 			global.swapmaps_mode=newval;
 		if("swing_hit_sound")
 			global.swing_hit_sound=newval;
+		if("switch_sound")
+			global.switch_sound=newval;
 		if("syndicate_access")
 			global.syndicate_access=newval;
 		if("syndicate_code_phrase")
@@ -3116,6 +3128,7 @@
 	"borers",
 	"breach_brute_descriptors",
 	"breach_burn_descriptors",
+	"button_sound",
 	"cable_list",
 	"cached_icons",
 	"cached_space",
@@ -3277,6 +3290,7 @@
 	"gender_datums",
 	"ghost_darkness_images",
 	"ghost_master",
+	"ghost_mob_list_",
 	"ghost_sightless_images",
 	"ghost_traps",
 	"global_announcer",
@@ -3577,12 +3591,6 @@
 	"spark_sound",
 	"sparring_attack_cache",
 	"spawntypes",
-	"specops_shuttle_at_station",
-	"specops_shuttle_can_send",
-	"specops_shuttle_moving_to_centcom",
-	"specops_shuttle_moving_to_station",
-	"specops_shuttle_time",
-	"specops_shuttle_timeleft",
 	"spells",
 	"splatter_cache",
 	"sqladdress",
@@ -3619,15 +3627,10 @@
 	"swapmaps_loaded",
 	"swapmaps_mode",
 	"swing_hit_sound",
+	"switch_sound",
 	"syndicate_access",
 	"syndicate_code_phrase",
 	"syndicate_code_response",
-	"syndicate_elite_shuttle_at_station",
-	"syndicate_elite_shuttle_can_send",
-	"syndicate_elite_shuttle_moving_to_mothership",
-	"syndicate_elite_shuttle_moving_to_station",
-	"syndicate_elite_shuttle_time",
-	"syndicate_elite_shuttle_timeleft",
 	"syndicate_name",
 	"tagger_locations",
 	"tail_icon_cache",

@@ -23,7 +23,7 @@
 	if(laser)
 		damage_amt += burn
 		cur_damage += burn_dam
-	if(internal_organs && (cur_damage + damage_amt >= max_damage || (((sharp && damage_amt >= 5) || damage_amt >= 10) && prob(5))))
+	if(internal_organs && internal_organs.len && (cur_damage + damage_amt >= max_damage || (((sharp && damage_amt >= 5) || damage_amt >= 10) && prob(5))))
 		// Damage an internal organ
 		var/list/victims = list()
 		for(var/obj/item/organ/internal/I in internal_organs)
@@ -215,9 +215,9 @@
 		return
 	var/last_pain = pain
 	pain = max(0,min(max_damage,pain+amount))
-//	if(owner && ((amount > 15 && prob(20)) || (amount > 30 && prob(60))))
+	if(owner && ((amount > 15 && prob(20)) || (amount > 30 && prob(60))))
 //		owner.emote("scream")
-//		owner.agony_scream()
+		owner.agony_scream()
 	return pain-last_pain
 
 /obj/item/organ/external/proc/stun_act(var/stun_amount, var/agony_amount)
