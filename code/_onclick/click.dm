@@ -68,7 +68,7 @@
 		if(!get_active_hand())//Should make getting up stairs easier.
 			scramble(A)
 
-	if(stat || paralysis || stunned || weakened)
+	if(stat || paralysis || stunned) //|| weakened)
 		return
 
 	face_atom(A) // change direction to face what you clicked on

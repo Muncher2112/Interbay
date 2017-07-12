@@ -22,6 +22,9 @@
 		if(prob(50))
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H),slot_wear_mask)
 		
+		if(prob(50))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/pistol(H),slot_belt)
+		
 
 
 /decl/hierarchy/outfit/soldier
@@ -30,7 +33,7 @@
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/jackboots
 	l_ear = /obj/item/device/radio/headset/syndicate
-	belt = /obj/item/weapon/gun/projectile/pistol
+	//belt = /obj/item/weapon/gun/projectile/pistol
 	suit = /obj/item/clothing/suit/storage/vest/opvest
 	//mask = /obj/item/clothing/mask/gas
 	gloves = /obj/item/clothing/gloves/thick/swat

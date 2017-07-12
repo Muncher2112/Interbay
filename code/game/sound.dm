@@ -55,6 +55,7 @@ var/list/keyboard_sound = list('sound/machines/terminal_button01.ogg', 'sound/ma
 							  'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg',
 							  'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 var/list/gun_sound = list('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.ogg', 'sound/weapons/gunshot3.ogg', 'sound/weapons/gunshot4.ogg')
+var/list/brifle = list('sound/weapons/newrifle.ogg', 'sound/weapons/newrifle2.ogg', 'sound/weapons/newrifle3.ogg')
 var/list/bullet_hit_wall = list('sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg')
 var/list/switch_sound = list('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
 var/list/button_sound = list('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
@@ -221,4 +222,5 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("keyboard") soundin = pick(keyboard_sound)
 			if ("switch") soundin = pick(switch_sound)
 			if ("button") soundin = pick(button_sound)
+			if ("brifle") soundin = pick(brifle)
 	return soundin

@@ -6,6 +6,10 @@
 	item_state = "mosin2"
 	wielded_item_state = "mosin2-wielded"
 	jam_chance = 15
+	//pumpsound = 'sound/weapons/newrifle_reload.ogg'
+	fire_sound = "brifle"
+	caliber = "763"
+	ammo_type = /obj/item/ammo_casing/brifle
 
 /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
 	name = "\improper Mark I Stormrider"
@@ -27,6 +31,18 @@
 		return
 	..()
 	M.visible_message("[M] pushes the bolt of \the [src.name]")
+
+//AMMO
+/obj/item/ammo_casing/brifle
+	desc = "An old worn out looking bullet casing."
+	caliber = "763"
+	projectile_type = /obj/item/projectile/bullet/rifle/a762/brifle
+	icon_state = "rifle-casing"
+	spent_icon = "rifle-casing-spent"
+
+/obj/item/projectile/bullet/rifle/a762/brifle
+	fire_sound = "brifle"
+	
 
 /*
 /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/special_check(var/mob/user)

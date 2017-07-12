@@ -377,6 +377,16 @@
 
 	return launched
 
+/obj/item/weapon/gun/proc/unjam(var/mob/M)
+	if(is_jammed)
+		M.visible_message("\The [M] begins to unjam [src].", "You begin to clear the jam of [src]")
+		if(!do_after(M, 40, src))
+			return
+		is_jammed = 0
+		playsound(src.loc, 'sound/effects/unjam.ogg', 50, 1)
+		return
+
+
 /obj/item/weapon/gun/proc/play_fire_sound(var/mob/user, var/obj/item/projectile/P)
 	var/shot_sound = (istype(P) && P.fire_sound)? P.fire_sound : fire_sound
 	if(silenced)

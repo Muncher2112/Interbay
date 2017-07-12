@@ -616,10 +616,14 @@ default behaviour is:
 /mob/living/proc/CheckStamina()
 	if(staminaloss <= 0)
 		setStaminaLoss(0)
+	
 	if(staminaloss)//If we're not doing anything and we've lost stamina we can wait to gain it back.
-		adjustStaminaLoss(-1)
+		if(lying)
+			adjustStaminaLoss(-5)
+		else
+			adjustStaminaLoss(-1)
 
-	if(staminaloss >= 120 && !stat)//Oh shit we've lost too much stamina and now we're tired!
+	if(staminaloss >= STAMINA_EXHAUST && !stat)//Oh shit we've lost too much stamina and now we're tired!
 		Exhaust()
 		return
 

@@ -235,6 +235,7 @@
 	one_hand_penalty = 6
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
+	wielded_item_state = "lmg-wielded"
 
 	//LMG, better sustained fire accuracy than assault rifles (comparable to SMG), higer move delay and one-handing penalty
 	//No single-shot or 3-round-burst modes since using this weapon should come at a cost to flexibility.
