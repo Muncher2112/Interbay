@@ -1,4 +1,6 @@
 /mob/proc/agony_scream()
+	if(stat)
+		return
 	var/screamsound = null
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
 	var/message = null
@@ -50,6 +52,8 @@
 
 
 /mob/proc/agony_moan()
+	if(stat)
+		return
 	var/moansound = null
 	var/message = null
 	if(stat)
