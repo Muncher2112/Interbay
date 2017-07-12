@@ -248,14 +248,14 @@
 	mymob.kick_icon.icon = ui_style
 	mymob.kick_icon.icon_state = "kick"
 	mymob.kick_icon.name = "kick"
-	mymob.kick_icon.screen_loc = ui_kick
+	mymob.kick_icon.screen_loc = ui_kick_jump
 	hud_elements |= mymob.kick_icon
 
 	mymob.jump_icon = new /obj/screen()
 	mymob.jump_icon.icon = ui_style
 	mymob.jump_icon.icon_state = "jump"
 	mymob.jump_icon.name = "jump"
-	mymob.jump_icon.screen_loc = ui_kick
+	mymob.jump_icon.screen_loc = ui_kick_jump
 	hud_elements |= mymob.jump_icon
 
 	mymob.fixeye = new /obj/screen()
@@ -270,7 +270,7 @@
 	mymob.pain.icon_state = "blank"
 	mymob.pain.name = "pain"
 	mymob.pain.screen_loc = "WEST,SOUTH to EAST,NORTH"
-	mymob.pain.layer = 17
+	mymob.pain.layer = UNDER_HUD_LAYER
 	mymob.pain.mouse_opacity = 0
 	hud_elements |= mymob.pain
 
@@ -281,6 +281,7 @@
 	mymob.noise1.screen_loc = "1,1 to 15,15"
 	mymob.noise1.mouse_opacity = 0
 	hud_elements |= mymob.noise1 
+
 
 	mymob.zone_sel = new /obj/screen/zone_sel( null )
 	mymob.zone_sel.icon = ui_style
@@ -312,7 +313,13 @@
 	mymob.radio_use_icon.color = ui_color
 	mymob.radio_use_icon.alpha = ui_alpha
 
-	mymob.fov = new /obj/screen/fov()
+	mymob.fov = new /obj/screen()
+	mymob.fov.icon = 'icons/mob/hide.dmi'
+	mymob.fov.icon_state = "combat"
+	mymob.fov.name = " "
+	mymob.fov.screen_loc = "1,1"
+	mymob.fov.mouse_opacity = 0
+	mymob.fov.layer = UNDER_HUD_LAYER
 	hud_elements |= mymob.fov
 
 	mymob.client.screen = list()

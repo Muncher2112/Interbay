@@ -79,6 +79,10 @@
 	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
 	var/tmp/lock_time = -100
+	var/is_jammed = 0           //Whether this gun is jammed
+	var/jam_chance = 0          //Chance it jams on fire
+
+
 
 	var/safety = 0
 
@@ -143,6 +147,17 @@
 		to_chat(user, "<span class='danger'>The gun's safety is on!</span>")
 		handle_click_empty(user)
 		return 0
+	
+	if(!is_jammed && prob(jam_chance))
+		playsound(src.loc, 'sound/effects/jam.ogg', 50, 1)
+		src.visible_message("<span class='danger'>[user]\'s [src] jams!</span>")
+		is_jammed = 1
+		return 0
+	
+	if(is_jammed)
+		handle_click_empty(user)
+		return 0
+
 	return 1
 
 /obj/item/weapon/gun/emp_act(severity)

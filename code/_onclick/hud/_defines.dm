@@ -30,8 +30,6 @@
 #define ui_swaphand2 "CENTER:16,SOUTH+1:5"
 #define ui_storage1 "CENTER+1:16,SOUTH:5"
 #define ui_storage2 "CENTER+2:16,SOUTH:5"
-#define ui_kick	"CENTER+3:16,SOUTH:5"
-#define ui_fixeye "EAST-3:30,SOUTH+1:7"
 
 #define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
 #define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
@@ -52,12 +50,14 @@
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,SOUTH:5"
-#define ui_drop_throw "EAST-1:28,SOUTH+1:7"
-#define ui_pull_resist "EAST-2:26,SOUTH+1:7"
+#define ui_drop_throw "EAST-2:30,SOUTH+1:7"//"EAST-1:28,SOUTH+1:7"
+#define ui_pull_resist "EAST-3:30,SOUTH+1:7"//"EAST-2:26,SOUTH+1:7"
 #define ui_acti "EAST-2:26,SOUTH:5"
 #define ui_movi "EAST-3:24,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,SOUTH:5" //alternative intent switcher for when the interface is hidden (F12)
+#define ui_kick_jump	"CENTER+3:16,SOUTH:5"
+#define ui_fixeye "EAST-1:28,SOUTH+1:7"//"EAST-3:30,SOUTH+1:7"
 
 #define ui_borg_pull "EAST-3:24,SOUTH+1:7"
 #define ui_borg_module "EAST-2:26,SOUTH+1:7"

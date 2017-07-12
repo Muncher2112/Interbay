@@ -58,6 +58,8 @@ var/list/gun_sound = list('sound/weapons/gunshot.ogg', 'sound/weapons/gunshot2.o
 var/list/bullet_hit_wall = list('sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg')
 var/list/switch_sound = list('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
 var/list/button_sound = list('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
+var/list/stab_sound = list('sound/weapons/stab1.ogg', 'sound/weapons/stab2.ogg', 'sound/weapons/stab3.ogg')
+
 
 //Foostep sounds:
 var/list/erikafootsteps = list('sound/effects/footsteps/tile1.ogg','sound/effects/footsteps/tile2.ogg','sound/effects/footsteps/tile3.ogg','sound/effects/footsteps/tile4.ogg')
@@ -201,6 +203,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("fracture") soundin = pick(fracture_sound)
 			if ("light_bic") soundin = pick(lighter_sound)
 			if ("trauma") soundin = pick(trauma_sound)
+			if ("stab_sound") soundin = pick(stab_sound)
 			if ("erikafootsteps") soundin = pick(erikafootsteps)
 			if ("grassfootsteps") soundin = pick(grassfootsteps)
 			if ("dirtfootsteps") soundin = pick(dirtfootsteps)

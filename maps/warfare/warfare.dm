@@ -7,6 +7,7 @@
 	#include "warfare-2.dmm"
 
 	#include "warfare_jobs.dm"
+	#include "warfare_objs.dm"
 
 	#include "../../code/modules/lobby_music/absconditus.dm"
 
