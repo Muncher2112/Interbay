@@ -36,6 +36,14 @@
 		recentpump = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+	if(is_jammed)
+		M.visible_message("\The [M] begins to unjam [src].", "You begin to clear the jam of [src]")
+		if(!do_after(M, 40, src))
+			return
+		is_jammed = 0
+		playsound(src.loc, 'sound/effects/unjam.ogg', 50, 1)
+		return
+
 	playsound(M, pumpsound, 60, 1)
 
 	if(chambered)//We have a shell in the chamber
