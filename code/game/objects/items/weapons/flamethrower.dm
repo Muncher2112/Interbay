@@ -63,6 +63,7 @@
 		if(target_turf)
 			var/turflist = getline(user, target_turf)
 			flame_turf(turflist)
+			playsound(loc, pick('sound/effects/fire01.ogg','sound/effects/fire02.ogg','sound/effects/fire03.ogg'), 50, 1, -1)
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
