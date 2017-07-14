@@ -102,7 +102,6 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in src
 	zone.fire_tiles |= src
 	if(fuel) zone.fuel_objs += fuel
-	playsound(loc, 'sound/effects/fire.ogg', 15, 0)
 
 	return 0
 
@@ -181,6 +180,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
 	set_light(l_color = color)
+	playsound(src, 'sound/effects/fire.ogg', 15, 0)
 /obj/fire/New(newLoc,fl)
 	..()
 
@@ -196,6 +196,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	firelevel = fl
 	air_master.active_hotspots.Add(src)
+	playsound(src, 'sound/effects/fire.ogg', 15, 0)
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
