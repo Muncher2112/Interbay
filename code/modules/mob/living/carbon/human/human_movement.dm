@@ -56,6 +56,9 @@
 
 	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
 
+	if(staminaloss >= 75)
+		tally += 2
+
 	if(mRun in mutations)
 		tally = 0
 
