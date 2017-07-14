@@ -74,6 +74,8 @@
 
 			else
 				moansound = "sound/voice/female_moan[rand(1,3)].ogg"
+
+			message = "moans."
 		else
 			message = "makes a loud noise!"
 			moansound = "sound/voice/gagscream[rand(1,3)].wav"
