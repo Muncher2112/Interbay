@@ -79,18 +79,19 @@ mob/living/carbon/human/proc/handle_pain()
 				if(prob(35))
 					flash_weak_pain()
 					stuttering += 5
+					if(prob(35))
+						agony_moan()
 
-				if(prob(15))
-					agony_moan()
+				
 				//msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
 
 			if(91 to 10000)
 				if(prob(35))
 					flash_pain()
 					stuttering += 10
+					if(prob(35))
+						agony_scream()
 
-				if(prob(10))
-					agony_scream()
 				//msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ)
 

@@ -7,6 +7,7 @@
 	parent_organ = BP_HEAD
 	surface_accessible = TRUE
 	relative_size = 10
+	max_damage = 45
 	var/list/eye_colour = list(0,0,0)
 	var/innate_flash_protection = FLASH_PROTECTION_NONE
 

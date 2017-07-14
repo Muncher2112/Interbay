@@ -6,6 +6,7 @@
 	parent_organ = BP_CHEST
 	min_bruised_damage = 25
 	min_broken_damage = 45
+	max_damage = 70
 	relative_size = 60
 
 	var/breath_type
@@ -108,8 +109,9 @@
 	if(breath_pressure < species.hazard_low_pressure || breath_pressure > species.hazard_high_pressure)
 		var/datum/gas_mixture/environment = loc.return_air_for_internal_lifeform()
 		var/env_pressure = environment.return_pressure()
+		var/lung_rupture_prob = robotic >= ORGAN_ROBOT ? prob(2.5) : prob(5) //Robotic lungs are less likely to rupture.
 		if(env_pressure < species.hazard_low_pressure || env_pressure > species.hazard_high_pressure)
-			if(!is_bruised() && prob(5)) //only rupture if NOT already ruptured
+			if(!is_bruised() && lung_rupture_prob) //only rupture if NOT already ruptured
 				rupture()
 	if(breath.total_moles == 0)
 		return 1
@@ -182,6 +184,8 @@
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
+		if(robotic >= ORGAN_ROBOT)
+			ratio /= 2 //Robolungs filter out some of the inhaled toxic air.
 		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		owner.phoron_alert = 1
