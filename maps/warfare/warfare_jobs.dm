@@ -30,12 +30,12 @@
 /decl/hierarchy/outfit/soldier
 	name = "Soldier"
 	head = /obj/item/clothing/head/helmet/siege
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/syndicate/soldier
 	shoes = /obj/item/clothing/shoes/jackboots
 	l_ear = /obj/item/device/radio/headset/syndicate
 	//belt = /obj/item/weapon/gun/projectile/pistol
 	suit = /obj/item/clothing/suit/storage/vest/opvest
 	//mask = /obj/item/clothing/mask/gas
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/thick/swat/combat
 	back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
 	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
