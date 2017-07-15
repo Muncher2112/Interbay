@@ -1,8 +1,12 @@
 /mob/living/carbon/human/say(var/message, var/datum/language/language = null)
 	var/alt_name = ""
 	if(name != GetVoice())
-		if(get_id_name("Unknown") != GetVoice())
+		if(get_id_name("Unknown") != GetVoice() && get_id_name("Unknown") != "Unknown")
 			alt_name = "(as [get_id_name("Unknown")])"
+		
+		else if(get_id_name("Unknown") == "Unknown")
+			name = get_id_name("Unknown")
+		
 		else
 			name = get_id_name("Unknown")
 		
