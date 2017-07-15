@@ -749,7 +749,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " in shower of gore"]"
 			var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
 			owner.visible_message(
-				"<span class='danger'></big>\The [owner]'s [src.name] explodes[gore]!</big></span>",\
+				"<span class='danger'><big>\The [owner]'s [src.name] explodes[gore]!</big></span>",\
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
 			playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , 0)//Splat.
