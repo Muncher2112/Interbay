@@ -120,10 +120,14 @@
 /obj/machinery/atmospherics/unary/freezer/process()
 	..()
 
+	
 	if(stat & (NOPOWER|BROKEN) || !use_power)
 		cooling = 0
 		update_icon()
 		return
+
+	if(use_power)
+		playsound(src, 'sound/effects/Custom_freezer.ogg', 25, 0, 10)
 
 	if(network && air_contents.temperature > set_temperature)
 		cooling = 1

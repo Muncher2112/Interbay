@@ -22,7 +22,7 @@
 	var/recentpump = 0 // to prevent spammage
 	var/pumpsound = 'sound/weapons/shotgunpump.ogg' //Support for other kinds of pump weapons.
 	var/casingsound = 'sound/weapons/guns/misc/shotgun_fall.ogg' //Same here.
-	wielded_item_state = "rifle-wielded"
+	wielded_item_state = "wshotgun"
 
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
@@ -151,3 +151,4 @@
 	casingsound = 'sound/weapons/guns/misc/casingfall1.ogg'
 	pumpsound = 'sound/weapons/boltpump.ogg'
 	ammo_type = /obj/item/ammo_casing/a762
+	wielded_item_state = "rifle-wielded"

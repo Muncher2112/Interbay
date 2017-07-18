@@ -161,6 +161,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		processing_objects.Add(src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
+	playsound(src, 'sound/items/cig_snuff.ogg', 25, 1)
 	set_light(0)
 	lit = 0
 	processing_objects.Remove(src)

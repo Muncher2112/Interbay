@@ -117,3 +117,8 @@
 
 		src.updateUsrDialog()
 		return
+
+/obj/machinery/gravity_generator/process()
+	..()
+	if(use_power)
+		playsound(src.loc, 'sound/effects/Custom_grav.ogg', 50, 0, 10)

@@ -183,11 +183,13 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			if(2)
 				to_chat(src, "<span class='notice'>We extend a proboscis.</span>")
 				src.visible_message("<span class='warning'>[src] extends a proboscis!</span>")
+				playsound(src, 'sound/effects/lingextends.ogg', 50, 1)
 			if(3)
 				to_chat(src, "<span class='notice'>We stab [T] with the proboscis.</span>")
 				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
 				to_chat(T, "<span class='danger'>You feel a sharp stabbing pain!</span>")
 				affecting.take_damage(39, 0, DAM_SHARP, "large organic needle")
+				playsound(T, 'sound/effects/lingstabs.ogg', 50, 1)
 
 		feedback_add_details("changeling_powers","A[stage]")
 		if(!do_mob(src, T, 150))
@@ -198,6 +200,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	to_chat(src, "<span class='notice'>We have absorbed [T]!</span>")
 	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
 	to_chat(T, "<span class='danger'>You have been absorbed by the changeling!</span>")
+	playsound(src, 'sound/effects/lingabsorbs.ogg', 50, 1)
 	changeling.chem_charges += 10
 	changeling.geneticpoints += 2
 

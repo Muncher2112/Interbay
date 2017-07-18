@@ -31,6 +31,7 @@ REAGENT SCANNER
 	return 1
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+	playsound(M, 'sound/effects/healthanal.ogg', 50, 1)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	scan_mob(M, user)
 

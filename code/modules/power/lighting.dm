@@ -150,6 +150,7 @@ var/global/list/light_type_cache = list()
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 
+	var/needsound				// For light flickering sfx
 	var/on = 0					// 1 if on, 0 if off
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
@@ -238,6 +239,11 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/proc/update(var/trigger = 1)
 	update_icon()
 	if(on)
+		
+		if(needsound)
+			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
+			needsound = 0
+		
 		use_power = 2
 
 		var/changed = 0
@@ -249,6 +255,7 @@ var/global/list/light_type_cache = list()
 		if(trigger && changed)
 			switch_check()
 	else
+		needsound = 1
 		use_power = 0
 		set_light(0)
 
