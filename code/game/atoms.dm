@@ -381,12 +381,18 @@ its easier to just keep the beam vertical.
 			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
 				return 0
 
+		if(user.handcuffed && prob(75))//User can fail to kick smbd if cuffed
+			user.visible_message("<span class='danger'>[user.name] loses \his balance while trying to kick \the [src].</span>", \
+						"<span class='warning'>You lose your balance attempting to kick \the [src].</span>")
+			user.Weaken(5)
+			return 0
+
 		user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
 		return 1 //We do have legs now though, so we can kick.
 
 //Jumping
 /atom/proc/jump_act(atom/target, mob/living/carbon/human/user)
-	if(user.lying || isspace(user.loc))//No jumping on the ground dummy && No jumping in space
+	if(user.lying || user.isinspace())//No jumping on the ground dummy && No jumping in space
 		return
 
 	for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
