@@ -531,7 +531,7 @@ meteor_act
 		return
 	if(user == src)//Can't kick yourself dummy.
 		return
-	
+
 	var/hit_zone = user.zone_sel.selecting
 	var/too_high_message = "You can't reach that high."
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
@@ -570,10 +570,13 @@ meteor_act
 				to_chat(user, too_high_message)
 				return
 
-	playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
+	var/kickdam = rand(0,15)
 	user.adjustStaminaLoss(rand(10,15))//Kicking someone is a big deal.
-	apply_damage(rand(0,15), BRUTE, hit_zone, armour)
-	user.visible_message("<span class=danger>[user] kicks [src] in the [affecting.name]!<span>")
-	admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")
-	
-	
+	if(kickdam)
+		playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
+		apply_damage(kickdam, BRUTE, hit_zone, armour)
+		user.visible_message("<span class=danger>[user] kicks [src] in the [affecting.name]!<span>")
+		admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")
+	else
+		user.visible_message("<span class=danger>[user] tried to kick [src] in the [affecting.name], but missed!<span>")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
