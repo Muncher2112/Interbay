@@ -36,8 +36,8 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 						stuttering += 5
 				if(91 to INFINITY)
 					flash_pain()
-					if(prob(50))
-						agony_scream()
+					//if(prob(50))
+					//	agony_scream()
 					stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
