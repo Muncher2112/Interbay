@@ -373,26 +373,31 @@ its easier to just keep the beam vertical.
 
 //Kicking
 /atom/proc/kick_act(mob/living/carbon/human/user)
-	if(!Adjacent(user))//They're not adjcent to us so we can't kick them.
+	//They're not adjcent to us so we can't kick them. Can't kick in straightjacket or while being incapacitated (except lying), can't kick while legcuffed or while being locked in closet
+	if(!Adjacent(user) || user.incapacitated(INCAPACITATION_STUNNED|INCAPACITATION_KNOCKOUT|INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY) \
+		|| istype(user.wear_suit, /obj/item/clothing/suit/straight_jacket) || user.legcuffed() || istype(user.loc, /obj/structure/closet))
 		return
+
+	if(user.handcuffed && prob(45) && !user.incapacitated(INCAPACITATION_FORCELYING))//User can fail to kick smbd if cuffed
+		user.visible_message("<span class='danger'>[user.name] loses \his balance while trying to kick \the [src].</span>", \
+					"<span class='warning'> You lost your balance.</span>")
+		user.Weaken(5)
+		return
+
 	if(user.middle_click_intent == "kick")//We're in kick mode, we can kick.
 		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
 			var/obj/item/organ/affecting = user.get_organ(limbcheck)
 			if(!affecting)//Oh shit, we don't have have any legs, we can't kick.
 				return 0
 
-		if(user.handcuffed && prob(75))//User can fail to kick smbd if cuffed
-			user.visible_message("<span class='danger'>[user.name] loses \his balance while trying to kick \the [src].</span>", \
-						"<span class='warning'>You lose your balance attempting to kick \the [src].</span>")
-			user.Weaken(5)
-			return 0
-
 		user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
 		return 1 //We do have legs now though, so we can kick.
 
 //Jumping
 /atom/proc/jump_act(atom/target, mob/living/carbon/human/user)
-	if(user.lying || user.isinspace())//No jumping on the ground dummy && No jumping in space
+	//No jumping on the ground dummy && No jumping in space && No jumping in straightjacket or while being incapacitated (except handcuffs) && No jumping vhile being legcuffed or locked in closet
+	if(user.incapacitated(INCAPACITATION_STUNNED|INCAPACITATION_KNOCKOUT|INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_FORCELYING) || user.isinspace() \
+		|| istype(user.wear_suit, /obj/item/clothing/suit/straight_jacket) || user.legcuffed() || istype(user.loc, /obj/structure/closet))
 		return
 
 	for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))//But we need to see if we have legs.
@@ -402,6 +407,7 @@ its easier to just keep the beam vertical.
 
 	//Nice, we can jump, let's do that then.
 	playsound(user, "sound/effects/jump_[user.gender == MALE ? "male" : "female"].ogg", 25)
+	playsound(user, user.gender == MALE ? 'sound/effects/jump_male.ogg' : 'sound/effects/jump_female.ogg', 25)
 	user.visible_message("[user] jumps.")
 	user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
 	user.throw_at(target, 5, 0.5, user)
