@@ -77,7 +77,7 @@
 	fps = 20
 
 #define RECOMMENDED_VERSION 511
-/world/New()	
+/world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -491,10 +491,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
-	/*spawn(0)
-		sound_to(world, sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')))// random end sounds!! - LastyBatsy
+	spawn(0)
+		sound_to(world, sound(pick('sound/misc/endsound4.ogg')))// random end sounds!! - LastyBatsy
 
-		*/
+
 
 	processScheduler.stop()
 

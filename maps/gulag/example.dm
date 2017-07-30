@@ -10,7 +10,7 @@
 
 	#include "gulag_turfs.dm"
 
-	#include "../../code/modules/lobby_music/absconditus.dm"
+	#include "../../code/modules/lobby_music/generic_songs.dm"
 
 	#define USING_MAP_DATUM /datum/map/gulag
 
