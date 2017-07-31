@@ -75,30 +75,14 @@ mob/living/carbon/human/proc/handle_pain()
 			drop_item()
 		var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam
 		var/msg
-		switch(maxdam)//It's important to know that pain counts every single life tick so if you flash pain without a prob here it will flash it every single tick. This causes severe eyestrain.
+		switch(maxdam)
 			if(1 to 10)
-				//if(prob(35))
 				msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
-				//	flash_weakest_pain()
 
 			if(11 to 90)
-				/*
-				if(prob(35))
-					flash_weak_pain()
-					stuttering += 5
-					if(prob(35))
-						agony_moan()
-				*/
-
 				msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
 
 			if(91 to 10000)
-				//if(prob(35))
-				//	flash_pain()
-				//	stuttering += 10
-				//	if(prob(35))
-				//		agony_scream()
-
 				msg = "<font size=3>OH GOD! Your [damaged_organ.name] is [burning ? "on fire" : "hurting terribly"]!</font>"
 		custom_pain(msg, 0, prob(10), affecting = damaged_organ, flash_pain = maxdam)
 

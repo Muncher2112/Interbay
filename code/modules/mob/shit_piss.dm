@@ -86,26 +86,50 @@
 	icon = 'icons/effects/pooeffect.dmi'
 	icon_state = "pee1"
 	random_icon_states = list("pee1", "pee2", "pee3")
-	var/dried
+	var/dried = 0
 
 /obj/effect/decal/cleanable/urine/Crossed(AM as mob|obj)
 	if (istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M =	AM
-		if ((istype(M, /mob/living/carbon/human) && istype(M:shoes, /obj/item/clothing/shoes/galoshes)) || M.m_intent == "walk")
+		if ((ishuman(M) && istype(M:shoes, /obj/item/clothing/shoes/galoshes)) || M.m_intent == "walk")
 			return
 
 		if((!dried) && prob(5))
 			M.slip("urine")
 
 /obj/effect/decal/cleanable/urine/New()
+	..()
 	icon_state = pick(random_icon_states)
-	spawn(10) src.reagents.add_reagent("urine",5)
+	//spawn(10) src.reagents.add_reagent("urine",5)
+	for(var/obj/effect/decal/cleanable/urine/piss in src.loc)
+		if(piss != src)
+			qdel(piss)
 	
 	spawn(800)
 		dried = 1
 		name = "dried urine stain"
 		desc = "That's a dried crusty urine stain. Fucking janitors."
+
+
+
+/obj/effect/decal/cleanable/cum
+	name = "cum"
+	desc = "It's pie cream from a cream pie. Or not..."
+	density = 0
+	layer = 2
+	icon = 'honk/icons/effects/cum.dmi'
+	blood_DNA = list()
+	anchored = 1
+	random_icon_states = list("cum1", "cum3", "cum4", "cum5", "cum6", "cum7", "cum8", "cum9", "cum10", "cum11", "cum12")
+
+
+/obj/effect/decal/cleanable/cum/New()
 	..()
+	icon_state = pick(random_icon_states)
+	for(var/obj/effect/decal/cleanable/cum/jizz in src.loc)
+		if(jizz != src)
+			qdel(jizz)
+
 
 //#####REAGENTS#####
 
@@ -315,3 +339,5 @@
 		message = "<B>[src]</B> pisses on the [TT.name]."
 		src.bladder -= 50
 	visible_message("[message]")
+
+
