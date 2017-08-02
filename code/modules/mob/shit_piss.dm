@@ -104,7 +104,7 @@
 	for(var/obj/effect/decal/cleanable/urine/piss in src.loc)
 		if(piss != src)
 			qdel(piss)
-	
+
 	spawn(800)
 		dried = 1
 		name = "dried urine stain"
@@ -195,7 +195,7 @@
 	icon = 'icons/obj/poop.dmi'
 	icon_state = "poop2"
 	item_state = "poop"
-	
+
 	New()
 		..()
 		icon_state = pick("poop1", "poop2", "poop3", "poop4", "poop5", "poop6", "poop7")
@@ -239,7 +239,7 @@
 		switch(bowels)
 			if(250 to 400)
 				if(prob(5))
-					to_chat(src, "<b>You need to use the bathroom.</b>") 
+					to_chat(src, "<b>You need to use the bathroom.</b>")
 			if(400 to 450)
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You really need to use the restroom!</span>")
@@ -285,6 +285,9 @@
 		if(T && T.open)
 			message = "<B>[src]</B> defecates into the [T]."
 
+		else if(w_uniform)
+			message = "<B>[src]</B> shits their pants."
+			src.reagents.add_reagent("poo", 10)
 
 		//Poo on the face.
 		else if(M != src && M.lying)//Can only shit on them if they're lying down.
@@ -295,10 +298,6 @@
 		else
 			message = "<B>[src]</B> [pick("shits", "craps", "poops")]."
 			var/turf/location = src.loc
-			//var/obj/effect/decal/cleanable/poo/D = new/obj/effect/decal/cleanable/poo(location)
-			//if(src.reagents)//No need to spawn the snack poo and the decal.
-			//	src.reagents.trans_to(D, rand(1,5))
-
 
 			var/obj/item/weapon/reagent_containers/food/snacks/poo/V = new/obj/item/weapon/reagent_containers/food/snacks/poo(location)
 			if(src.reagents)
