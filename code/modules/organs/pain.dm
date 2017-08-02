@@ -18,7 +18,7 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 		return 0
 
 	// Excessive halloss is horrible, just give them enough to make it visible.
-	if(!nohalloss && (power || flash_pain))
+	if(!nohalloss && (power || flash_pain))//Flash pain is so that handle_pain actually makes use of this proc to flash pain.
 		var/actual_flash
 		if(affecting)
 			affecting.add_pain(ceil(power/2))
@@ -32,12 +32,9 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 					flash_weakest_pain()
 				if(11 to 90)
 					flash_weak_pain()
-					if(prob(50))
-						stuttering += 5
+					stuttering += 5
 				if(91 to INFINITY)
 					flash_pain()
-					//if(prob(50))
-					//	agony_scream()
 					stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
