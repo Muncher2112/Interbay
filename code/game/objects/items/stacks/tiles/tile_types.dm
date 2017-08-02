@@ -131,3 +131,21 @@
 
 /obj/item/stack/tile/linoleum/fifty
 	amount = 50
+
+/obj/item/stack/tile/floor_hydro
+	name = "hydro floor tile"
+	singular_name = "hydro floor tile"
+	icon_state = "tile_hydro"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/floor_hydro/fifty
+	amount = 50
+
+/obj/item/stack/tile/floor_showroom
+	name = "showroom floor tile"
+	singular_name = "showroom floor tile"
+	icon_state = "tile_showroom"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/floor_showroom/fifty
+	amount = 50
