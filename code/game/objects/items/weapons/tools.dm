@@ -141,7 +141,6 @@
 				var/obj/item/stack/teeth/E = pick(O.teeth_list)
 				if(!E || E.zero_amount()) return
 				var/obj/item/stack/teeth/T = new E.type(H.loc, 1)
-//				T.copy_evidences(E)
 				E.use(1)
 				T.add_blood(H)
 				E.zero_amount() //Try to delete the teeth
@@ -161,6 +160,39 @@
 		else
 			to_chat(user, "<span class='notice'>You are already trying to pull out a tooth!</span>")
 		return
+
+	//Cutting off dick.
+	if(ishuman(C) && user.zone_sel.selecting == "groin")
+		var/mob/living/carbon/human/H = C
+		var/haspenis = (H.gender == MALE && H.potenzia > -1 && H.species.genitals && !H.mutilated_genitals)
+		if(H.is_nude())//Gotta be naked.
+			if(haspenis)//And have a dick.
+				if(!user.doing_something)//Are they doing something?
+					user.doing_something = 1//Good their not run all this shit.
+					H.visible_message("<span class='danger'>[user] tries to cut off [H]'s penis with [src]!</span>",
+										"<span class='danger'>[user] tries to cut off your penis with [src]!</span>")
+					if(do_after(user, 50))
+
+						H.visible_message("<span class='danger'>[user] cuts off [H]'s penis with [src]!</span>",
+										"<span class='danger'>[user] cuts off your penis with [src]!</span>")
+						H.custom_pain("[pick("OH GOD YOUR DICK!", "OH GOD WHY!", "OH GOD IT HURTS!")]", 100, BP_GROIN)//Pain.
+						H.apply_damage(rand(30,45), BRUTE, BP_GROIN)
+						playsound(H, 'sound/effects/gore/severed.ogg', 50, 1, -1)
+						H.mutilate_genitals()
+						new /obj/item/organ/internal/penis(H.loc)
+
+						user.doing_something = 0
+
+					else
+						to_chat(user, "<span class='notice'>You fail to cut off their penis...</span>")
+						user.doing_something = 0
+						return
+				else
+					to_chat(user, "<span class='notice'>You are already trying to cut off their penis!</span>")
+			else
+				to_chat(user, "They have no penis.")
+		else
+			to_chat(user, "They must be naked to perform the act.")
 
 
 	else

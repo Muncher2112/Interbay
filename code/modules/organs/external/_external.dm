@@ -724,14 +724,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
-			var/severed_sound = pick('sound/effects/gore/severed.ogg', 'sound/effects/gore/chop2.ogg', 'sound/effects/gore/chop3.ogg', 'sound/effects/gore/chop4.ogg')
+			var/severed_sound = pick('sound/effects/gore/chop2.ogg', 'sound/effects/gore/chop3.ogg', 'sound/effects/gore/chop4.ogg')
 			if(!clean)
 				var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
 					"<span class='danger'><big>\The [owner]'s [src.name] flies off in a bloody arc!</big></span>",\
-					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
+					"<span class='moderate'><big><b>Your [src.name] goes flying off!</b></big></span>",\
 					"<span class='danger'>You hear a terrible sound of [gore_sound].</span>")
-			playsound(owner, severed_sound, 100, 0)
+				playsound(owner, severed_sound, 100, 0)
+			
+			else
+				playsound(owner, 'sound/effects/gore/severed.ogg', 100, 0)
 
 			if(owner.can_feel_pain() && prob(50))
 				owner.agony_scream()
@@ -740,7 +743,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " of burning flesh"]"
 			owner.visible_message(
 				"<span class='danger'><big>\The [owner]'s [src.name] flashes away into ashes!</big></span>",\
-				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
+				"<span class='moderate'><big><b>Your [src.name] flashes away into ashes!</b><</big></span>",\
 				"<span class='danger'>You hear a crackling sound[gore].</span>")
 			if(owner.can_feel_pain() && prob(50))
 				owner.agony_scream()
@@ -750,7 +753,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
 			owner.visible_message(
 				"<span class='danger'><big>\The [owner]'s [src.name] explodes[gore]!</big></span>",\
-				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
+				"<span class='moderate'><big><b>Your [src.name] explodes[gore]!</b></big></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
 			playsound(owner, 'sound/effects/gore/chop6.ogg', 100 , 0)//Splat.
 
