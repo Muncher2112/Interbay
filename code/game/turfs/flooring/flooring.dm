@@ -118,6 +118,22 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_freezer
 
+/decl/flooring/tiling/bunker/hydro
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "hydro"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_hydro
+
+/decl/flooring/tiling/bunker/showroom
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "hydro"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_showroom
+
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."

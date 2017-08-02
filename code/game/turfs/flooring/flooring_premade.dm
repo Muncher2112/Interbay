@@ -43,6 +43,18 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
+/turf/simulated/floor/bunker/hydro
+	name = "hydro floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "hydrofloor"
+	initial_flooring = /decl/flooring/tiling/bunker/hydro
+
+/turf/simulated/floor/bunker/showroom
+	name = "showroom floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "showroomfloor"
+	initial_flooring = /decl/flooring/tiling/bunker/showroom
+
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon = 'icons/turf/flooring/grass.dmi'
