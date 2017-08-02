@@ -69,3 +69,10 @@
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
+
+
+/obj/item/organ/internal/penis
+	name = "penis"
+	icon_state = "penis"
+	gender = PLURAL
+

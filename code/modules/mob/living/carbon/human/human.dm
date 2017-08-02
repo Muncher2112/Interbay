@@ -80,7 +80,7 @@
 		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
 		if(P)
 			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
-		
+
 		var/obj/item/organ/internal/cell/potato = internal_organs_by_name[BP_CELL]
 		if(potato && potato.cell)
 			stat("Battery charge:", "[potato.get_charge()]/[potato.cell.maxcharge]")
@@ -664,8 +664,8 @@
 			hashands = (temp && temp.is_usable())
 		var/mouthfree = !(H.wear_mask)//((H.head && (H.head.flags & HEADCOVERSMOUTH)) || (H.wear_mask && (H.wear_mask.flags & MASKCOVERSMOUTH)))
 		var/mouthfree_p = !(P.wear_mask)// ((P.head && (P.head.flags & HEADCOVERSMOUTH)) || (P.wear_mask && (P.wear_mask.flags & MASKCOVERSMOUTH)))
-		var/haspenis = ((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
-		var/haspenis_p = ((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
+		var/haspenis = H.has_penis()//((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
+		var/haspenis_p = P.has_penis()//((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
 		var/hasvagina = (H.gender == FEMALE && H.species.genitals && H.species.name != "Unathi" && H.species.name != "Stok")
 		var/hasvagina_p = (P.gender == FEMALE && P.species.genitals && P.species.name != "Unathi" && P.species.name != "Stok")
 		var/hasanus_p = P.species.anus
@@ -692,7 +692,7 @@
 					H.give(P)
 
 		else if (href_list["interaction"] == "kiss")
-			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p  && (H.species.flags & HAS_LIPS) && (P.species.flags & HAS_LIPS))
+			if((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc) && mouthfree && mouthfree_p)
 				if (H.lust == 0)
 					H.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
 					if (istype(P.loc, /obj/structure/closet))
@@ -742,12 +742,12 @@
 		else if (href_list["interaction"] == "handshake")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands && hashands_p)
 				H.visible_message("<B>[H]</B> shakes <B>[P]</B>'s hand.")
-				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<B>[H]</B> shakes <B>[P]</B>'s hand.")
+				//if (istype(P.loc, /obj/structure/closet))
+				//	P.visible_message("<B>[H]</B> shakes <B>[P]</B>'s hand.")
 			else
 				H.visible_message("<B>[H]</B> extends [H.gender == MALE ? "his" : "her"] hand to <B>[P]</B>.")
-				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<B>[H]</B> extends [H.gender == MALE ? "his" : "her"] hand to <B>[P]</B>.")
+				//if (istype(P.loc, /obj/structure/closet))
+				//	P.visible_message("<B>[H]</B> extends [H.gender == MALE ? "his" : "her"] hand to <B>[P]</B>.")
 
 		else if (href_list["interaction"] == "wave")
 			if (!(Adjacent(P)) && hashands)
@@ -1854,3 +1854,14 @@
 //Point at which you dun breathe no more. Separate from asystole crit, which is heart-related.
 /mob/living/carbon/human/proc/nervous_system_failure()
 	return getBrainLoss() >= maxHealth * 0.75
+
+/mob/living/carbon/human/proc/has_penis()
+	if(gender == MALE && potenzia > -1 && species.genitals && !mutilated_genitals)
+		return 1
+	else return 0
+
+/mob/living/carbon/human/proc/mutilate_genitals()
+	if(!mutilated_genitals)
+		potenzia = -1
+		mutilated_genitals = 1
+		return 1

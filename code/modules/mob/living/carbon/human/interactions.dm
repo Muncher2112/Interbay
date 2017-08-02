@@ -47,8 +47,8 @@
 		hashands = (temp && temp.is_usable())
 	var/mouthfree = !(H.wear_mask)//((H.head && (H.head.flags & HEADCOVERSMOUTH)) || (H.wear_mask && (H.wear_mask.flags & MASKCOVERSMOUTH)))
 	var/mouthfree_p = !(P.wear_mask)// ((P.head && (P.head.flags & HEADCOVERSMOUTH)) || (P.wear_mask && (P.wear_mask.flags & MASKCOVERSMOUTH)))
-	var/haspenis = ((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
-	var/haspenis_p = ((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
+	var/haspenis = H.has_penis()//((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
+	var/haspenis_p = P.has_penis()//((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
 	var/hasvagina = (H.gender == FEMALE && H.species.genitals)// && H.species.name != "Unathi" && H.species.name != "Stok")
 	var/hasvagina_p = (P.gender == FEMALE && P.species.genitals)// && P.species.name != "Unathi" && P.species.name != "Stok")
 	var/hasanus_p = P.species.anus
@@ -79,7 +79,7 @@
 			if (isnude_p)
 				//if (hasanus_p)
 				//	dat += {"• <A href='?src=\ref[usr];interaction=assslap'>Slap some ass!</A><BR>"}
-				if (hasvagina_p)
+				if (hasvagina_p && (!P.mutilated_genitals))
 					dat += {"<A href='?src=\ref[usr];interaction=fingering'>Put fingers in places...</A><BR>"}
 			//if (P.species.name == "Tajaran")
 			//	dat +=  {"• <A href='?src=\ref[usr];interaction=pull'><font color=red>Pull big fluffy tail!</font></A><BR>"}
@@ -96,7 +96,7 @@
 			//if (mouthfree_p)
 			//	if (H.species.name == "Tajaran")
 			//		dat += {"• <A href='?src=\ref[usr];interaction=lick'>Ëèçíóòü â ùåêó.</A><BR>"}
-			if (isnude_p)
+			if (isnude_p && (!P.mutilated_genitals))
 				if (haspenis_p)
 					dat += {"<A href='?src=\ref[usr];interaction=blowjob'><font color=purple>Give head.</font></A><BR>"}
 				if (hasvagina_p)
@@ -110,16 +110,16 @@
 		if (haspenis && hashands)
 			dat += {"<font size=3><B>ERP:</B></font><BR>"}
 			if (isnude_p)
-				if (hasvagina_p)
+				if (hasvagina_p && (!P.mutilated_genitals))
 					dat += {"<A href='?src=\ref[usr];interaction=vaginal'><font color=purple>Fuck vagina.</font></A><BR>"}
 				if (hasanus_p)
 					dat += {"<A href='?src=\ref[usr];interaction=anal'><font color=purple>Fuck ass.</font></A><BR>"}
 				if (mouthfree_p)
 					dat += {"<A href='?src=\ref[usr];interaction=oral'><font color=purple>Fuck mouth.</font></A><BR>"}
 	if (isnude && usr.loc == H.partner.loc && hashands)
-		if (hasvagina && haspenis_p)
+		if (hasvagina && haspenis_p && (!H.mutilated_genitals))
 			dat += {"<font size=3><B>Vagina:</B></font><BR>"}
-			dat += {"• <A href='?src=\ref[usr];interaction=mount'><font color=purple>Mount!</font></A><BR><HR>"}
+			dat += {"<A href='?src=\ref[usr];interaction=mount'><font color=purple>Mount!</font></A><BR><HR>"}
 
 	var/datum/browser/popup = new(usr, "interactions", "Interactions", 340, 480)
 	popup.set_content(dat)
@@ -136,6 +136,7 @@
 	var/erpcooldown = 0
 	var/multiorgasms = 0
 	var/lastmoan
+	var/mutilated_genitals = 0 //Whether or not they can do the fug.
 
 mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/message = ""//"êîí÷àåò íà ïîë!"
