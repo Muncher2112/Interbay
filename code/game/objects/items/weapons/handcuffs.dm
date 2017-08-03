@@ -57,7 +57,7 @@
 	return 0
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(loc, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -86,6 +86,7 @@
 	user.do_attack_animation(H)
 
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
+	playsound(loc, 'sound/weapons/handcuffs_finish.ogg', 30, 1, -2)
 
 	// Apply cuffs.
 	var/obj/item/weapon/handcuffs/cuffs = src
