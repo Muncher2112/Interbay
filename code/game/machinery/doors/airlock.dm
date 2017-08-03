@@ -35,11 +35,11 @@
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
 
-	var/open_sound_powered = 'sound/machines/airlock.ogg'
+	var/open_sound_powered = 'sound/machines/lairlock_open.ogg'//'sound/machines/airlock_open.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
-	var/open_failure_access_denied = 'sound/machines/buzz-two.ogg'
+	var/open_failure_access_denied = 'sound/machines/airlock_deny.ogg'
 
-	var/close_sound_powered = 'sound/machines/AirlockClose.ogg'
+	var/close_sound_powered = 'sound/machines/lairlock_close.ogg'//'sound/machines/airlock_close.ogg'
 	var/close_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
 	var/close_failure_blocked = 'sound/machines/triple_beep.ogg'
 
@@ -642,8 +642,8 @@ About the new airlock wires panel:
 		if("deny")
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
-				if(secured_wires)
-					playsound(src.loc, open_failure_access_denied, 50, 0)
+				//if(secured_wires)
+				playsound(src.loc, open_failure_access_denied, 50, 0)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)

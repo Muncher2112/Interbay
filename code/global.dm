@@ -163,7 +163,7 @@ var/static/list/scarySounds = list(
 	'sound/effects/Glassbr3.ogg',
 	'sound/items/Welder.ogg',
 	'sound/items/Welder2.ogg',
-	'sound/machines/airlock.ogg',
+	'sound/machines/airlock_open.ogg',
 	'sound/effects/clownstep1.ogg',
 	'sound/effects/clownstep2.ogg'
 )
