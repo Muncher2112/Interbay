@@ -172,6 +172,6 @@
 	apply_damage(rand(0, damage), BRUTE, BP_R_LEG)
 	apply_damage(rand(0, damage), BRUTE, BP_L_ARM)
 	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
-	Stun(rand(1,5))
-	Weaken(rand(1,5))
+	Stun(1)
+	Weaken(5)
 	updatehealth()
