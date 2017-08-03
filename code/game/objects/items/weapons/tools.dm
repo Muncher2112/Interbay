@@ -162,7 +162,7 @@
 		return
 
 	//Cutting off dick.
-	if(ishuman(C) && user.zone_sel.selecting == "groin")
+	if(ishuman(C) && user.zone_sel.selecting == "groin")//Todo, make this it's own proc.
 		var/mob/living/carbon/human/H = C
 		var/haspenis = (H.gender == MALE && H.potenzia > -1 && H.species.genitals && !H.mutilated_genitals)
 		if(H.is_nude())//Gotta be naked.

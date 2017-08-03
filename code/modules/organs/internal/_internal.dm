@@ -74,5 +74,4 @@
 /obj/item/organ/internal/penis
 	name = "penis"
 	icon_state = "penis"
-	gender = PLURAL
-
+	desc = "Ah, the ol one eyed snake."

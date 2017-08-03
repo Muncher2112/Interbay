@@ -45,6 +45,8 @@
 
 	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//Interactions
 	resistenza = (prob(80) ? rand(150, 300) : pick(rand(10, 100), rand(350,600)))
+	bladder = rand(0,100)
+	bowels = rand(0, 100)
 
 	if(dna)
 		dna.ready_dna(src)
