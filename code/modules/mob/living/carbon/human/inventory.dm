@@ -259,6 +259,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.belt = W
 			W.equipped(src, slot)
 			update_inv_belt(redraw_mob)
+			if(W.equipsound)//So like a sword being sheathed.
+				playsound(src, W.equipsound, 50, 1)
 		if(slot_wear_id)
 			src.wear_id = W
 			W.equipped(src, slot)
