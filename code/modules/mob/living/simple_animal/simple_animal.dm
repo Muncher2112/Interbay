@@ -260,18 +260,18 @@
 		else
 			O.attack(src, user, user.zone_sel.selecting)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
+	visible_message("<span class='danger'>[user] [I.attack_verb.len? pick(I.attack_verb) : "attacked"] \the [src] in [hit_zone] with \the [I].</span>")
 
-	if(O.force <= resistance)
+	if(I.force <= resistance)
 		to_chat(user, "<span class='danger'>This weapon is ineffective, it does no damage.</span>")
 		return 2
 
-	var/damage = O.force
-	if (O.damtype == PAIN)
+	var/damage = I.force
+	if (I.damtype == PAIN)
 		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
+	if(supernatural && istype(I,/obj/item/weapon/nullrod))
 		damage *= 2
 		purge = 3
 	adjustBruteLoss(damage)

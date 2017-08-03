@@ -296,13 +296,16 @@
 
 	if(!damage || !istype(user))
 		return
-	admin_attack_log(user, src, "Attacked their victim", "Was attacked", "has [attack_message]")
-	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
-	user.do_attack_animation(src)
 
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, "melee")
+
+	admin_attack_log(user, src, "Attacked their victim", "Was attacked", "has [attack_message]")
+	src.visible_message("<span class='danger'>[user] has [attack_message] [src] in the [affecting.name]!</span>")
+	user.do_attack_animation(src)
+
+
 	apply_damage(damage, BRUTE, affecting, armor_block)
 	updatehealth()
 	return 1
