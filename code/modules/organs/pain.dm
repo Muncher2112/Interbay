@@ -32,10 +32,12 @@ mob/living/carbon/proc/custom_pain(var/message, var/power, var/force, var/obj/it
 					flash_weakest_pain()
 				if(11 to 90)
 					flash_weak_pain()
-					stuttering += 5
+					if(stuttering < 10)
+						stuttering += 5
 				if(91 to INFINITY)
 					flash_pain()
-					stuttering += 10
+					if(stuttering < 10)
+						stuttering += 10
 		else
 			adjustHalLoss(ceil(power/2))
 
@@ -74,7 +76,7 @@ mob/living/carbon/human/proc/handle_pain()
 		var/msg
 		switch(maxdam)
 			if(1 to 10)
-				msg =  "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
+				msg = "Your [damaged_organ.name] [burning ? "burns" : "hurts"]."
 
 			if(11 to 90)
 				msg = "<font size=2>Your [damaged_organ.name] [burning ? "burns" : "hurts"] badly!</font>"
