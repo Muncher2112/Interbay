@@ -20,3 +20,9 @@
 
 /area/gulag/snow
 	forced_ambience = list('sound/ambience/ambisnow.ogg')
+	icon_state = "space"
+
+/area/supply/dock
+    name = "Supply Shuttle"
+    icon_state = "shuttle3"
+    requires_power = 0

@@ -5,10 +5,13 @@
 
 	#include "example-1.dmm"
 	#include "example-2.dmm"
+	#include "example-3.dmm"
 
 	#include "gulag_jobs.dm"
 
 	#include "gulag_turfs.dm"
+
+	#include "example_shuttles.dm"
 
 	#include "../../code/modules/lobby_music/generic_songs.dm"
 
