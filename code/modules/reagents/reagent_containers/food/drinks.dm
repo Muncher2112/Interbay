@@ -12,6 +12,7 @@
 	var/filling_states   // List of percentages full that have icons
 	var/base_name = null // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon = null // Base icon name for fill states
+	var/open_sound = 'sound/effects/canopen.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
 	update_icon()
@@ -22,7 +23,7 @@
 		open(user)
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
-	playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
+	playsound(loc,open_sound, rand(10,50), 1)
 	to_chat(user, "<span class='notice'>You open \the [src] with an audible pop!</span>")
 	flags |= OPENCONTAINER
 

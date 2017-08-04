@@ -428,9 +428,12 @@
 	desc = "Contains only water, malt and hops."
 	icon_state = "beer"
 	center_of_mass = "x=16;y=12"
+	flags = 0 //starts closed
+	open_sound = 'sound/effects/beer_open.ogg'
 	New()
 		..()
 		reagents.add_reagent("beer", 30)
+
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
