@@ -5,11 +5,11 @@
 
 /obj/item/weapon/material/sword
 	name = "claymore"
-	desc = "What are you standing around staring at this for? Get to killing!"
+	desc = "You use the sharp part on your foes. And the flat part on your lesser foes."
 	icon_state = "claymore"
 	item_state = "claymore"
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_HUGE
 	force_divisor = 0.5 // 30 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.5 // 10 when thrown with weight 20 (steel)
 	sharp = 1
@@ -75,3 +75,9 @@
 	sharp = 0
 	force_divisor = 0.2
 	thrown_force_divisor = 0.2
+
+/obj/item/weapon/material/sword/sabre
+	name = "sabre"
+	desc = "Like a claymore but for an officer."
+	icon_state = "sabre"
+	item_state = "sabre"
