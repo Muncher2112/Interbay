@@ -22,6 +22,12 @@
 	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
 
+	if(!user.combat_mode)//If you're not in combat mode you won't parry.
+		return 0
+
+	if(user.defense_intent != I_PARRY)//If you're not on parry intent, you won't parry.
+		return 0
+
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(!check_shield_arc(user, bad_arc, damage_source, attacker))

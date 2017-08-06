@@ -184,6 +184,9 @@ meteor_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
+	if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
+		return null
+
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
 
 	if(!hit_zone)

@@ -733,6 +733,7 @@
 			gloves.germ_level += 1
 
 		CheckStamina()
+		handle_combat_mode()
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()

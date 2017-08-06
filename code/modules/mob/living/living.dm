@@ -617,7 +617,7 @@ default behaviour is:
 	if(staminaloss <= 0)
 		setStaminaLoss(0)
 	
-	if(staminaloss)//If we're not doing anything and we've lost stamina we can wait to gain it back.
+	if(staminaloss && !combat_mode)//If we're not doing anything, we're not in combat mode, and we've lost stamina we can wait to gain it back.
 		if(lying)
 			adjustStaminaLoss(-5)
 		else

@@ -137,7 +137,10 @@
 			if(!affecting || affecting.is_stump())
 				to_chat(M, "<span class='danger'>They are missing that limb!</span>")
 				return 1
-
+			
+			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
+				return 1
+			
 			switch(src.a_intent)
 				if(I_HELP)
 					// We didn't see this coming, so we get the full blow
