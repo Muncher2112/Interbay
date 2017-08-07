@@ -1050,6 +1050,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.visible_message("<span class='danger'>[supplied_message]</span>")
 		else
 			owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
+		playsound(owner, "stab_sound", 100, 0)
 
 	if(!supplied_wound)
 		for(var/datum/wound/wound in wounds)
