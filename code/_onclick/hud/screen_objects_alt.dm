@@ -102,7 +102,7 @@
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = BP_CHEST
-
+/*
 /obj/screen/zone_sel/Click(location, control,params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
@@ -163,6 +163,110 @@
 	if(old_selecting != selecting)
 		update_icon()
 	return 1
+*/
+
+/obj/screen/zone_sel/Click(location, control,params)
+	var/list/PL = params2list(params)
+	var/icon_x = text2num(PL["icon-x"])
+	var/icon_y = text2num(PL["icon-y"])
+	var/old_selecting = selecting //We're only going to update_icon() if there's been a change
+	//var/old_src_aim = src_aim
+
+	if(PL["middle"])
+		switch(icon_y)
+			if(4 to 9) //Feet
+				switch(icon_x)
+					if(7 to 15)
+						selecting = BP_R_FOOT
+					if(18 to 26)
+						selecting = BP_L_FOOT
+					else
+						return 1
+			if(10 to 21) //Legs
+				switch(icon_x)
+					if(10 to 16)
+						selecting = BP_R_LEG
+					if(18 to 23)
+						selecting = BP_L_LEG
+					else
+						return 1
+			if(22 to 30) //Hands and groin
+				switch(icon_x)
+					if(3 to 8)
+						selecting = BP_R_HAND
+					if(25 to 29)
+						selecting = BP_L_HAND
+					else
+						return 1
+			if(31 to 48) //Chest and arms to shoulders
+				switch(icon_x)
+					if(3 to 9)
+						selecting = BP_R_HAND
+					if(24 to 30)
+						selecting = BP_L_HAND
+					else
+						return 1
+			if(49 to 61) //Head, but we need to check for eye or mouth
+				if(icon_x in 10 to 23)
+					selecting = BP_HEAD
+					switch(icon_y)
+						if(49 to 51)
+							if(icon_x in 15 to 18)
+								selecting = BP_MOUTH
+	else
+		switch(icon_y)
+			if(4 to 9) //Feet
+				switch(icon_x)
+					if(7 to 15)
+						selecting = BP_R_FOOT
+					if(18 to 26)
+						selecting = BP_L_FOOT
+					else
+						return 1
+			if(10 to 21) //Legs
+				switch(icon_x)
+					if(10 to 16)
+						selecting = BP_R_LEG
+					if(18 to 23)
+						selecting = BP_L_LEG
+					else
+						return 1
+			if(22 to 30) //Hands and groin
+				switch(icon_x)
+					if(3 to 8)
+						selecting = BP_R_HAND
+					if(10 to 23)
+						selecting = BP_GROIN
+					if(25 to 29)
+						selecting = BP_L_HAND
+					else
+						return 1
+			if(31 to 48) //Chest and arms to shoulders
+				switch(icon_x)
+					if(3 to 9)
+						selecting = BP_R_ARM
+					if(10 to 23)
+						selecting = BP_CHEST
+					if(24 to 30)
+						selecting = BP_L_ARM
+					else
+						return 1
+			if(49 to 61) //Head, but we need to check for eye or mouth
+				if(icon_x in 10 to 23)
+					selecting = BP_HEAD
+					switch(icon_y)
+						if(49 to 51)
+							if(icon_x in 15 to 18)
+								selecting = BP_MOUTH
+						if(54 to 56)
+							if(icon_x in 13 to 15)
+								selecting = BP_EYES
+							if(icon_x in 18 to 20)
+								selecting = BP_EYES
+
+	if(old_selecting != selecting)
+		update_icon()
+	return 1
 
 /obj/screen/zone_sel/proc/set_selected_zone(bodypart)
 	var/old_selecting = selecting
@@ -172,13 +276,18 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+	overlays += image('icons/mob/zone_sel_new.dmi', "[selecting]")
 
+/*
+/obj/screen/zone_sel/update_icon()
+	overlays.Cut()
+	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+*/
 /obj/screen/intent
 	name = "intent"
-	icon = 'icons/mob/screen1_White.dmi'
+	icon = 'icons/mob/screen/dark.dmi'
 	icon_state = "intent_help"
-	screen_loc = ui_acti
+	screen_loc = ui_drop_throw//ui_acti
 	var/intent = I_HELP
 
 /obj/screen/intent/Click(var/location, var/control, var/params)
@@ -235,11 +344,16 @@
 
 		if("Reset Machine")
 			usr.unset_machine()
-
+		
 		if("health")
 			if(ishuman(usr))
 				var/mob/living/carbon/human/X = usr
 				X.exam_self()
+
+		if("surrender")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/S = usr
+				S.surrender()
 
 		if("internal")
 			if(iscarbon(usr))
@@ -348,6 +462,18 @@
 
 		if("pull")
 			usr.stop_pulling()
+
+		if("rest")
+			if(usr.resting)
+				usr.visible_message("<span class='notice'>[usr] is trying to get up.</span>")
+				if(do_after(usr, 20))
+					usr.resting = 0
+					usr.rest.icon_state = "rest0"
+				return
+			else
+				usr.resting = 1
+				usr.rest.icon_state = "rest1"
+
 		if("throw")
 			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
 				usr:toggle_throw_mode()
@@ -370,6 +496,26 @@
 				usr.middle_click_intent = "jump"
 				usr.jump_icon.icon_state = "jump_on"
 				usr.kick_icon.icon_state = "kick"
+		if("combat mode")
+			if(!ishuman(usr))	return
+			usr << 'sound/effects/ui_toggle.ogg'
+			var/mob/living/carbon/human/C = usr
+			if(C.combat_mode)
+				C.combat_mode = 0
+				C.combat_icon.icon_state = "combat0"
+			else
+				C.combat_mode = 1
+				C.combat_icon.icon_state = "combat1"
+
+		if("combat intent")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/E = usr
+				if(E.defense_intent == I_PARRY)
+					E.defense_intent = I_DODGE
+					E.combat_intent_icon.icon_state = "dodge"
+				else
+					E.defense_intent = I_PARRY
+					E.combat_intent_icon.icon_state = "parry"
 
 		if("fixeye")
 			usr.face_direction()
@@ -449,6 +595,7 @@
 			usr:swap_hand()
 		if("hand")
 			usr:swap_hand()
+
 		else
 			if(usr.attack_ui(slot_id))
 				usr.update_inv_l_hand(0)

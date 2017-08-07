@@ -56,7 +56,7 @@
 #define ui_movi "EAST-3:24,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,SOUTH:5" //alternative intent switcher for when the interface is hidden (F12)
-#define ui_kick_jump	"CENTER+3:16,SOUTH:5"
+#define ui_kick_jump "CENTER+3:16,SOUTH:5"
 #define ui_fixeye "EAST-1:28,SOUTH+1:7"//"EAST-3:30,SOUTH+1:7"
 
 #define ui_borg_pull "EAST-3:24,SOUTH+1:7"

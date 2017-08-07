@@ -796,12 +796,24 @@
 
 		if(healths)
 			if (chem_effects[CE_PAINKILLER] > 100)
-				healths.icon_state = "health_numb"
+				healths.icon_state = "health0"//"health_numb"
 			else
 				switch(hal_screwyhud)
 					if(1)	healths.icon_state = "health6"
 					if(2)	healths.icon_state = "health7"
+
 					else
+						var/mhealth = (getBruteLoss() + getFireLoss())
+						switch(mhealth)
+							if(100 to INFINITY)		healths.icon_state = "health6"
+							if(80 to 100)			healths.icon_state = "health5"
+							if(60 to 80)			healths.icon_state = "health4"
+							if(40 to 60)			healths.icon_state = "health3"
+							if(20 to 40)			healths.icon_state = "health2"
+							if(0 to 20)				healths.icon_state = "health1"
+							else					healths.icon_state = "health0"
+
+						/*
 						// Generate a by-limb health display.
 						healths.icon_state = "blank"
 						healths.overlays = null
@@ -834,6 +846,7 @@
 							health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
 
 						healths.overlays += health_images
+					*/
 
 		if(nutrition_icon)
 			switch(nutrition)
@@ -992,7 +1005,7 @@
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10,nohalloss = 0)
 
 	if(shock_stage >= 30)
-		if(shock_stage == 30) 
+		if(shock_stage == 30)
 			visible_message("<b>[src]</b> is having trouble keeping \his eyes open.")
 		if(prob(30))
 			eye_blurry = max(2, eye_blurry)
@@ -1004,7 +1017,7 @@
 		//emote("moan")
 
 	if (shock_stage >= 60)
-		if(shock_stage == 60) 
+		if(shock_stage == 60)
 			visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain")]!", shock_stage, nohalloss = 0)

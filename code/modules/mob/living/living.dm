@@ -706,7 +706,7 @@ default behaviour is:
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
 
-/mob/living/verb/lay_down()
+/mob/living/proc/lay_down()
 	set name = "Rest"
 	set category = "IC"
 

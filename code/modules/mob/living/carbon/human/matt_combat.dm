@@ -44,3 +44,11 @@
 	step(src,lol)//move them
 	visible_message("<b><big>[src.name] dodges out of the way!!</big></b>")//send a message
 	//be on our way
+
+
+/mob/proc/surrender()//Surrending. I need to put this in a different file.
+	if(!incapacitated())
+		Stun(5)
+		Weaken(5)
+		visible_message("<b>[src] surrenders!</b>")
+		playsound(src, 'sound/effects/surrender.ogg', 50, 1)

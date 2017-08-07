@@ -41,6 +41,10 @@
 	var/obj/screen/jump_icon = null
 	var/obj/screen/noise1 = null
 	var/obj/screen/fixeye = null
+	var/obj/screen/rest = null
+	var/obj/screen/combat_icon = null
+	var/obj/screen/combat_intent_icon = null
+	var/obj/screen/surrender = null
 
 	var/obj/screen/noise2 = null//unused
 	var/obj/screen/noise3 = null//unused
