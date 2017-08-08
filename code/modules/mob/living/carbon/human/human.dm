@@ -1764,10 +1764,10 @@
 	if(!stat)
 		visible_message( \
 			"<span class='notice'>[src] examines [gender==MALE ? "himself" : "herself"].</span>", \
-			"<span class='notice'>You check yourself for injuries.</span>" \
+			"<span class='notice'>Let's see how am I doing.</span>" \
 			)
 	else//We don't want to spam the chat that we're checking ourselves for injuries when we're out fucking cold.
-		to_chat(src, "<span class='notice'>You check yourself for injuries.</span>")
+		to_chat(src, "<span class='notice'>Let's see how am I doing.</span>")
 
 	for(var/obj/item/organ/external/org in organs)
 		var/list/status = list()
