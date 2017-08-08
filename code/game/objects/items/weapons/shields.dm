@@ -17,7 +17,7 @@
 		return 1
 	return 0
 
-/proc/default_parry_check(mob/user, mob/attacker, atom/damage_source)
+/proc/default_parry_check(mob/living/user, mob/attacker, atom/damage_source)
 	//parry only melee attacks
 	if(istype(damage_source, /obj/item/projectile) || (attacker && get_dist(user, attacker) > 1) || user.incapacitated())
 		return 0
@@ -39,7 +39,7 @@
 	name = "shield"
 	var/base_block_chance = 50
 
-/obj/item/weapon/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/weapon/shield/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -71,7 +71,7 @@
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/handle_shield(mob/user)
+/obj/item/weapon/shield/riot/handle_shield(mob/living/user)
 	. = ..()
 	if(.) playsound(user.loc, 'sound/effects/shieldhit.ogg', 50, 1)
 
@@ -108,7 +108,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1000, "Wood" = 1000)
 	attack_verb = list("shoved", "bashed")
 
-/obj/item/weapon/shield/buckler/handle_shield(mob/user)
+/obj/item/weapon/shield/buckler/handle_shield(mob/living/user)
 	. = ..()
 	if(.) playsound(user.loc, 'sound/items/buckler_block.ogg', 50, 1)
 
@@ -136,7 +136,7 @@
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
 
-/obj/item/weapon/shield/energy/handle_shield(mob/user)
+/obj/item/weapon/shield/energy/handle_shield(mob/living/user)
 	if(!active)
 		return 0 //turn it on first!
 	. = ..()
