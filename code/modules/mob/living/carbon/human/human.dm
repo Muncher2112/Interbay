@@ -1761,10 +1761,13 @@
 			play_xylophone()
 
 /mob/living/carbon/human/proc/exam_self()
-	visible_message( \
-		"<span class='notice'>[src] examines [gender==MALE ? "himself" : "herself"].</span>", \
-		"<span class='notice'>You check yourself for injuries.</span>" \
-		)
+	if(!stat)
+		visible_message( \
+			"<span class='notice'>[src] examines [gender==MALE ? "himself" : "herself"].</span>", \
+			"<span class='notice'>You check yourself for injuries.</span>" \
+			)
+	else//We don't want to spam the chat that we're checking ourselves for injuries when we're out fucking cold.
+		to_chat(src, "<span class='notice'>You check yourself for injuries.</span>")
 
 	for(var/obj/item/organ/external/org in organs)
 		var/list/status = list()
@@ -1802,9 +1805,9 @@
 		if(!org.is_usable() || org.is_dislocated())
 			status += "dangling uselessly"
 		if(status.len)
-			src.show_message("My [org.name] is <span class='warning'>[english_list(status)].</span>",1)
+			to_chat(src, "My [org.name] is <span class='warning'>[english_list(status)].</span>")
 		else
-			src.show_message("My [org.name] is <span class='notice'>OK.</span>",1)
+			to_chat(src, "My [org.name] is <span class='notice'>OK.</span>")
 
 /mob/living/carbon/human/throw_impact(atom/hit_atom)
 	if(iswall(hit_atom))
