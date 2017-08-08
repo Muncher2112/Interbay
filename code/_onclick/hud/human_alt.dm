@@ -16,6 +16,7 @@
 	src.adding = list()
 	src.other = list()
 	src.hotkeybuttons = list() //These can be disabled for hotkey usersx
+	mymob.using_alt_hud = 1
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
