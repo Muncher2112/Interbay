@@ -36,7 +36,7 @@
 		. += "Lung ruptured"
 
 /obj/item/organ/external/groin
-	name = "lower body"
+	name = "groin"//"lower body"
 	organ_tag = BP_GROIN
 	icon_name = "groin"
 	max_damage = 100
