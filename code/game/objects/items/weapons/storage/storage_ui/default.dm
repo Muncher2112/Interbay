@@ -178,11 +178,11 @@
 //This proc draws out the inventory and places the items on it. It uses the standard position.
 /datum/storage_ui/default/proc/arrange_item_slots(var/rows, var/cols)
 	var/cx = 4
-	var/cy = 2+rows
-	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
+	var/cy = 2+rows //"4:16, 2:16" is the original.
+	boxes.screen_loc = "4:16,2:32 to [4+cols]:16,[2+rows]:32"//"4:16,2:16 to [4+cols]:16,[2+rows]:16"
 
 	for(var/obj/O in storage.contents)
-		O.screen_loc = "[cx]:16,[cy]:16"
+		O.screen_loc = "[cx]:16,[cy]:32"
 		O.maptext = ""
 		O.hud_layerise()
 		cx++
@@ -190,7 +190,7 @@
 			cx = 4
 			cy--
 
-	closer.screen_loc = "[4+cols+1]:16,2:16"
+	closer.screen_loc = "[4+cols+1]:16,2:32"
 
 /datum/storage_ui/default/proc/space_orient_objs()
 
@@ -205,9 +205,9 @@
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 	storage_continue.transform = M
 
-	storage_start.screen_loc = "4:16,2:16"
-	storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
-	storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
+	storage_start.screen_loc = "4:16,2:32"
+	storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:32"
+	storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:32"
 
 	var/startpoint = 0
 	var/endpoint = 1
@@ -230,11 +230,11 @@
 		storage_start.overlays += stored_continue
 		storage_start.overlays += stored_end
 
-		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:32"
 		O.maptext = ""
 		O.hud_layerise()
 
-	closer.screen_loc = "4:[storage_width+19],2:16"
+	closer.screen_loc = "4:[storage_width+19],2:32"
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
