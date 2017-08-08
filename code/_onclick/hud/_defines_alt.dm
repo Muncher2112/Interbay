@@ -36,8 +36,8 @@
 #define ui_storage1 "SOUTH-1,4"
 #define ui_storage2 "SOUTH-1,5"
 
-#define ui_alien_head "4:12,1:5"	//aliens
-#define ui_alien_oclothing "5:14,1:5"	//aliens
+#define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
+#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
 /*
 #define ui_inv1 "6:16,1:5"			//borgs
 #define ui_inv2 "7:16,1:5"			//borgs
@@ -69,6 +69,7 @@
 #define ui_gun3 "EAST-2:26,SOUTH+3:7"
 #define ui_gun_select "EAST-1:28,SOUTH+2:7"
 #define ui_gun4 "EAST-3:24,SOUTH+2:7"
+
 #define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
 #define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
 
@@ -86,9 +87,9 @@
 #define ui_construct_fire "EAST-1:16,CENTER+1:13" //above health, slightly to the left
 #define ui_construct_pull "EAST-1:28,SOUTH+1:10" //above the zone_sel icon
 
-#define ui_borg_pull "EAST,SOUTH-1"
-#define ui_borg_module "13:26,2:7"
-#define ui_borg_panel "14:28,2:7"
+#define ui_borg_pull "EAST-3:24,SOUTH+1:7"
+#define ui_borg_module "EAST-2:26,SOUTH+1:7"
+#define ui_borg_panel "EAST-1:28,SOUTH+1:7"
 
 #define ui_kick_jump "CENTER+3:16,SOUTH:5"
 
@@ -103,8 +104,8 @@
 #define ui_fire "EAST+1, NORTH-7"//8
 #define ui_oxygen "EAST+1, NORTH-3"//NORTH-3"
 #define ui_pressure "EAST+1, NORTH-6"//7
-#define ui_surrender "EAST+1, NORTH-9"
-#define ui_fixeye "EAST+1, NORTH-8"
+#define ui_surrender "EAST+1, NORTH-8"
+#define ui_fixeye "EAST+1, NORTH-9"
 
 #define ui_alien_toxin "14:28,13:25"
 #define ui_alien_fire "14:28,12:25"
@@ -117,8 +118,8 @@
 #define ui_nutrition "EAST+1, NORTH-13"
 #define ui_internal "EAST+1, NORTH-2"
 									//borgs
-#define ui_borg_health "EAST+1, NORTH-11" //borgs have the health display where humans have the pressure damage indicator.
-#define ui_alien_health "EAST+1, NORTH-11" //aliens have the health display where humans have the pressure damage indicator.
+#define ui_borg_health "EAST-1:28,CENTER-1:13" //borgs have the health display where humans have the pressure damage indicator.
+#define ui_alien_health "EAST-1:28,CENTER-1:13" //aliens have the health display where humans have the pressure damage indicator.
 
 //Pop-up inventory
 #define ui_shoes "SOUTH,4"
