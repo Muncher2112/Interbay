@@ -13,12 +13,12 @@
 	explanation_text = "<big>You are the <b>Warden</b>. Run this shithole. Try to keep your prisoners alive if possible, they're more vauable like that.</big>"
 	selection_color = "#601c1c"
 	economic_modifier = 5
-	access = list()
-	minimal_access = list()
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/gulag_warden
 
-/datum/job/wardenn/get_access()
+/datum/job/gulag_warden/get_access()
 	return get_all_station_access()
 
 
@@ -26,7 +26,7 @@
 	name = "Gulag Warden"
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/head_of_security/corp
-	id_type = /obj/item/weapon/card/id/security/warden
+	id_type = /obj/item/weapon/card/id/gulag/crew/security/warden
 	pda_type = /obj/item/device/pda/warden
 
 
@@ -73,7 +73,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/security
 	r_pocket = /obj/item/weapon/handcuffs
-	id_type = /obj/item/weapon/card/id/security
+	id_type = /obj/item/weapon/card/id/gulag/crew/security
 	pda_type = /obj/item/device/pda/security
 
 
