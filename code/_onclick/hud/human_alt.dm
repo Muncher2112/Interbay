@@ -62,8 +62,9 @@
 			inv_box.set_dir(slot_data["dir"])
 
 		if(slot_data["toggle"])
-			src.other += inv_box
-			has_hidden_gear = 1
+			//src.other += inv_box
+			has_hidden_gear = 0
+			src.adding += inv_box
 		else
 			src.adding += inv_box
 
