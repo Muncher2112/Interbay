@@ -8,6 +8,7 @@
 	#include "example-3.dmm"
 
 	#include "gulag_jobs.dm"
+	#include "card_ids.dm"
 
 	#include "gulag_turfs.dm"
 
