@@ -17,13 +17,15 @@
 	attack_verb = list("slashed", "sliced")
 	hitsound = "slash_sound"
 	var/atk_mode = SLASH
+	var/block_chance = 25
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
 
+
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
-	if(default_parry_check(user, attacker, damage_source) && prob(25))//Nerf'd from 50
+	if(default_parry_check(user, attacker, damage_source) && prob(block_chance))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, pick('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg'), 50, 1)
 		user.adjustStaminaLoss(10)
@@ -83,3 +85,6 @@
 	desc = "Like a claymore but for an officer."
 	icon_state = "sabre"
 	item_state = "sabre"
+	force_divisor = 0.4
+	thrown_force_divisor = 0.4
+	block_chance = 50
