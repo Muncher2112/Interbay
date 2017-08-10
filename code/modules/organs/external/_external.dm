@@ -925,19 +925,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(owner)
-		//owner.visible_message(\
-		//	"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
-		//	"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
-		//	"<span class='danger'>You hear a sickening crack.</span>")
+		owner.visible_message(\
+			"<span class='danger'><big>[owner]'s [name] shatters!</big></span>",\
+			"<span class='danger'><big>Something feels like it shattered in your [name]!</big></span>",\
+			"<span class='danger'>You hear a sickening crack.</span>")
 		jostle_bone()
 		if(can_feel_pain())
 			if(prob(50))
 				owner.agony_scream()
-			//owner.emote("scream")
 
 		playsound(owner, "trauma", 75, 0)
 	status |= ORGAN_BROKEN
-	broken_description = pick("broken")//,"fracture","hairline fracture")
+	broken_description = pick("shattered")//,"fracture","hairline fracture")
 
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
