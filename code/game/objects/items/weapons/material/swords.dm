@@ -106,4 +106,5 @@
 	attack_verb = list("slashed")
 	force_divisor = 0.3
 	block_chance = 15
+	w_class = ITEM_SIZE_SMALL
 	drawsound = 'sound/items/unholster_knife.ogg'
