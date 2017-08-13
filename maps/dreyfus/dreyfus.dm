@@ -5,7 +5,7 @@
 	#include "dreyfus_announcements.dm"
 	#include "dreyfus_areas.dm"
 	#include "dreyfus_elevator.dm"
-	#include "dreyfus_ranks.dm"
+	//#include "dreyfus_ranks.dm"
 	#include "dreyfus_presets.dm"
 	#include "dreyfus_shuttles.dm"
 	#include "dreyfus_effects.dm"
