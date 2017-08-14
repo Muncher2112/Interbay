@@ -176,7 +176,7 @@
 #define BP_GBLADDER "gas bladder"
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
-#define BP_NECK 	"neck"
+#define BP_THROAT 	"throat"
 
 // Limbs.
 #define BP_L_FOOT "l_foot"

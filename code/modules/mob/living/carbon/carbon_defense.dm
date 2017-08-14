@@ -49,7 +49,7 @@
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
 
-	if(check_zone(user.zone_sel.selecting) != BP_HEAD)
+	if(check_zone(user.zone_sel.selecting) != BP_THROAT)//BP_HEAD was the old one.
 		return 0 // Not targetting correct slot.
 
 	if(!W.edge || !W.force || W.damtype != BRUTE)

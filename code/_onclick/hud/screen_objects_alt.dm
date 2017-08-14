@@ -241,7 +241,7 @@
 						selecting = BP_L_HAND
 					else
 						return 1
-			if(31 to 48) //Chest and arms to shoulders
+			if(31 to 45) //Chest and arms to shoulders
 				switch(icon_x)
 					if(3 to 9)
 						selecting = BP_R_ARM
@@ -251,6 +251,12 @@
 						selecting = BP_L_ARM
 					else
 						return 1
+			
+			if(46 to 48)//Neck
+				switch(icon_x)
+					if(12 to 20)
+						selecting = BP_THROAT
+
 			if(49 to 61) //Head, but we need to check for eye or mouth
 				if(icon_x in 10 to 23)
 					selecting = BP_HEAD
