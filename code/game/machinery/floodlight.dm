@@ -49,7 +49,8 @@
 	set_light(brightness_on, brightness_on / 2)
 	update_icon()
 	if(loud)
-		visible_message("\The [src] turns on.")
+		visible_message("The [src] turns on.")
+		
 	return 1
 
 /obj/machinery/floodlight/proc/turn_off(var/loud = 0)
@@ -57,7 +58,7 @@
 	set_light(0, 0)
 	update_icon()
 	if(loud)
-		visible_message("\The [src] shuts down.")
+		visible_message("The [src] shuts down.")
 
 /obj/machinery/floodlight/attack_ai(mob/user as mob)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))
