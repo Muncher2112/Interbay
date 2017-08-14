@@ -3,7 +3,6 @@
 						/datum/job/assistant,
 						/datum/job/captain,
 						/datum/job/hop,
-						/datum/job/employe,
 						/datum/job/rd,
 						/datum/job/scientist,
 						/datum/job/doctor,
@@ -34,8 +33,8 @@
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/directeur
 
 /datum/job/hop
-	title = "Overseer"
-	supervisors = "Commandant"
+	title = "the Overseer"
+	supervisors = "the Commandant"
 	minimal_player_age = 31
 	economic_modifier = 12
 	ideal_character_age = 45
@@ -45,7 +44,7 @@
 
 /datum/job/employe
 	title = "Employe Administratif"
-	supervisors = "les Directeurs"
+	supervisors = "the Overseer"
 	minimal_player_age = 21
 	economic_modifier = 8
 	ideal_character_age = 30
@@ -61,8 +60,8 @@
 	minimal_access = list(access_lawyer, access_heads)
 
 /datum/job/rd
-	title = "Superviseur"
-	supervisors = "le Directeur General"
+	title = "Technomancer"
+	supervisors = "the Commandant"
 	minimal_player_age = 21
 	economic_modifier = 9
 	ideal_character_age = 40
@@ -83,8 +82,8 @@
 			access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network, access_rd, access_research, access_medical, access_morgue, access_medical_equip)
 
 /datum/job/scientist
-	title = "Technomancer"
-	supervisors = "le Superviseur"
+	title = "Tenchotrainee"
+	supervisors = "Technomancer"
 	minimal_player_age = 19
 	economic_modifier = 8
 	ideal_character_age = 30
@@ -95,8 +94,8 @@
 
 /datum/job/doctor
 	selection_color = "#633d63"
-	title = "Medecin"
-	supervisors = "le Superviseur"
+	title = "Apothecary"
+	supervisors = "the Overseer"
 	minimal_player_age = 19
 	economic_modifier = 8
 	ideal_character_age = 30
@@ -106,7 +105,7 @@
 
 /datum/job/hos
 	title = "Head Peacekeepr"
-	supervisors = "votre Compagnie"
+	supervisors = "the Commandant"
 	minimal_player_age = 19
 	economic_modifier = 10
 	ideal_character_age = 30
@@ -117,7 +116,7 @@
 /datum/job/qm
 	selection_color = "#3d3315"
 	title = "Quartermaster"
-	supervisors = "le Directeur General"
+	supervisors = "the Overseer"
 	minimal_player_age = 21
 	economic_modifier = 7
 	ideal_character_age = 30
@@ -125,8 +124,8 @@
 	spawn_positions = 2
 
 /datum/job/engineer
-	title = "Ingenieur"
-	supervisors = "le Contremaitre"
+	title = "Upkeeper"
+	supervisors = "the Overseer"
 	minimal_player_age = 16
 	economic_modifier = 5
 	ideal_character_age = 21
@@ -138,8 +137,8 @@
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
-	title = "Mineur"
-	supervisors = "le Contremaitre"
+	title = "Miner"
+	supervisors = "the Quartermaster"
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -150,8 +149,8 @@
 
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
-	title = "Manutentionnaire"
-	supervisors = "le Contremaitre"
+	title = "Crate Pusher"
+	supervisors = "the Quartermaster"
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -162,8 +161,8 @@
 
 /datum/job/ouvrier
 	selection_color = "#7c6a2e"
-	title = "Ouvrier de Production"
-	supervisors = "le Contremaitre"
+	title = "Cargo Kid"
+	supervisors = "the Quartermaster"
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21
@@ -172,13 +171,12 @@
 	faction = "Station"
 	department_flag = SUP
 	department = "Supply"
-	announced = 1
 	access = list(access_cargo, access_maint_tunnels)
 	minimal_access = list(access_cargo, access_maint_tunnels)
 
 /datum/job/chef
-	title = "Cuisinier"
-	supervisors = "les Directeurs"
+	title = "Cook"
+	supervisors = "the Overseer"
 	minimal_player_age = 16
 	economic_modifier = 4
 	ideal_character_age = 21
@@ -186,8 +184,8 @@
 	spawn_positions = 1
 
 /datum/job/chaplain
-	title = "Aumonier"
-	supervisors = "les Directeurs"
+	title = "Chaplain"
+	supervisors = "the Overseer and God"
 	minimal_player_age = 21
 	economic_modifier = 6
 	ideal_character_age = 30
@@ -195,8 +193,8 @@
 	spawn_positions = 1
 
 /datum/job/janitor
-	title = "Concierge"
-	supervisors = "le Contremaitre"
+	title = "Janitor"
+	supervisors = "the Overseer"
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21

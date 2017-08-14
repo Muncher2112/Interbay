@@ -6,7 +6,7 @@
 	shoes = /obj/item/clothing/shoes/dress
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	l_hand = /obj/item/weapon/storage/briefcase
-	id_type = /obj/item/weapon/card/id/gold
+	id_type = /obj/item/weapon/card/id/dreyfus/gold
 	pda_type = /obj/item/device/pda/captain
 	gloves = /obj/item/clothing/gloves/white
 
@@ -17,7 +17,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	shoes = /obj/item/clothing/shoes/dress
 	l_hand = /obj/item/weapon/storage/briefcase
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/weapon/card/id/dreyfus/hop
 	pda_type = /obj/item/device/pda/heads/hop
 
 /decl/hierarchy/outfit/job/dreyfus/employe
@@ -26,7 +26,7 @@
 	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
 	shoes = /obj/item/clothing/shoes/black
 	l_hand = /obj/item/weapon/storage/briefcase
-	id_type = /obj/item/weapon/card/id/civilian/employe
+	id_type = /obj/item/weapon/card/id/dreyfus/civilian/employe
 	pda_type = /obj/item/device/pda/lawyer
 
 /decl/hierarchy/outfit/job/dreyfus/inge
@@ -37,6 +37,7 @@
 	backpack = /obj/item/weapon/storage/backpack/industrial
 	satchel_one = /obj/item/weapon/storage/backpack/satchel_eng
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/engi
+	id_type = /obj/item/weapon/card/id/dreyfus/engineer
 	pda_slot = slot_l_store
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
@@ -51,7 +52,7 @@
 /decl/hierarchy/outfit/job/dreyfus/ouvrier
 	name = OUTFIT_JOB_NAME("Ouvrier")
 	uniform = /obj/item/clothing/under/overalls
-	id_type = /obj/item/weapon/card/id/cargo/ouvrier
+	id_type = /obj/item/weapon/card/id/dreyfus/cargo/ouvrier
 	pda_type = /obj/item/device/pda/cargo
 	l_ear = /obj/item/device/radio/headset/headset_cargo
 
