@@ -3,7 +3,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	sharp = 1
-	edge = 1
+//	edge = 1
 
 /datum/unarmed_attack/diona
 	attack_verb = list("lashed", "bludgeoned")

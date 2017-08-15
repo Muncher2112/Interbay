@@ -106,7 +106,7 @@
 	center_of_mass = "x=18;y=10"
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
-	edge = 1
+//	edge = 1
 
 /obj/item/weapon/wirecutters/New()
 	if(prob(50))

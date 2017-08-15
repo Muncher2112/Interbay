@@ -239,11 +239,15 @@ meteor_act
 		forcesay(hit_appends)	//forcesay checks stat already
 	
 	//Slicing a throat. Calls for sharpness instead of force because we don't want things that aren't sharp to be able to cut off heads.
-	if(I.edge && hit_zone == BP_THROAT)
+	if(I.sharp && hit_zone == BP_THROAT)
 		if(prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
 			affecting.sever_artery()
 			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
 
+		if(I.edge && prob(I.sharpness))
+			affecting.droplimb(0, DROPLIMB_EDGE)
+	
+	if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
 		if(prob(I.sharpness))
 			affecting.droplimb(0, DROPLIMB_EDGE)
 	

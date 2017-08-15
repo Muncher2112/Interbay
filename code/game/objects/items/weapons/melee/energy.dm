@@ -2,6 +2,7 @@
 	var/active = 0
 	var/active_force
 	var/active_throwforce
+	var/active_sharpness
 	sharp = 0
 	edge = 0
 	armor_penetration = 50
@@ -15,6 +16,7 @@
 	active = 1
 	force = active_force
 	throwforce = active_throwforce
+	sharpness = active_sharpness
 	sharp = 1
 	edge = 1
 	slot_flags |= SLOT_DENYPOCKET
@@ -30,6 +32,7 @@
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)
 	edge = initial(edge)
+	sharpness = initial(sharpness)
 	slot_flags = initial(slot_flags)
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
@@ -98,6 +101,7 @@
 	icon_state = "sword0"
 	active_force = 30
 	active_throwforce = 20
+	active_sharpness = 30
 	force = 3
 	throwforce = 5
 	throw_speed = 1

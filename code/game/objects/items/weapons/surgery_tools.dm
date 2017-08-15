@@ -76,7 +76,8 @@
 	flags = CONDUCT
 	force = 10.0
 	sharp = 1
-	edge = 1
+	sharpness = 25
+	//edge = 1 //WHY THE FUCK DOES THIS HAVE EDGE YOU'RE NOT GOING TO CUT SOMEONE'S HEAD OFF WITH A SCALPEL
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
@@ -126,16 +127,17 @@
 	icon_state = "saw3"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = ITEM_SIZE_NORMAL
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
+	sharpness = 25
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
 	attack_verb = list("slashed")
 	sharp = 1
-	edge = 1
+	//edge = 1
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/bonegel
