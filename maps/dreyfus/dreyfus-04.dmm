@@ -84,7 +84,7 @@
 "bF" = (/obj/structure/sign/warning/vacuum,/turf/simulated/wall/r_wall,/area/dreyfus/residentiel/maintenance/avant)
 "bG" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/floor/tiled/steel,/area/dreyfus/residentiel/quartiers/chambre2)
 "bH" = (/obj/machinery/computer/arcade,/turf/simulated/floor/tiled/steel,/area/dreyfus/residentiel/quartiers/chambre2)
-"bI" = (/obj/machinery/door/airlock/maintenance{name = "Maintenance Quartiers"; req_access = list(12)},/turf/simulated/floor/tiled/steel_grid,/area/dreyfus/residentiel/maintenance/avant)
+"bI" = (/obj/machinery/door/airlock/maintenance{name = "Maintenance Quartiers"; req_access = list(12)},/turf/simulated/floor/plating,/area/dreyfus/residentiel/maintenance/avant)
 "bJ" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/plating,/area/dreyfus/residentiel/maintenance/avant)
 "bK" = (/obj/structure/table/shelf,/turf/simulated/floor/tiled/techfloor/grid,/area/dreyfus/residentiel/maintenance/avant)
 "bL" = (/obj/structure/shuttle/engine/propulsion{tag = "icon-propulsion (NORTH)"; icon_state = "propulsion"; dir = 1},/turf/space,/area/shuttle/arrival/station)
