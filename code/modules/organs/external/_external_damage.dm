@@ -229,6 +229,8 @@
 /obj/item/organ/external/proc/sever_artery()
 	if(robotic < ORGAN_ROBOT && !(status & ORGAN_ARTERY_CUT) && species && species.has_organ[BP_HEART])
 		status |= ORGAN_ARTERY_CUT
+		if(artery_name == "cartoid artery")
+			playsound(owner.loc, 'sound/voice/throat.ogg', 50, 1, -1)
 		return TRUE
 	return FALSE
 

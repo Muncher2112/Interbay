@@ -242,7 +242,6 @@ meteor_act
 	if(I.edge && hit_zone == BP_THROAT)
 		if(prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
 			affecting.sever_artery()
-			playsound(loc, 'sound/voice/throat.ogg', 50, 1, -1)
 			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
 
 		if(prob(I.sharpness))
