@@ -4,22 +4,24 @@
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
+	edge = 0
 	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	applies_material_colour = FALSE
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
-		edge = 1
 		sharp = 1
 		..() //Updates force.
 		throwforce = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
-		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		sharpness = 25
+		attack_verb = list("slashed", "stabbed")
 	else
 		force = 3
 		edge = 0
@@ -42,6 +44,7 @@
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
 		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	update_force()
 	add_fingerprint(user)
 
@@ -55,7 +58,8 @@
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = CONDUCT
 	sharp = 1
-	edge = 1
+	//edge = 1
+	sharpness = 25
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
 	origin_tech = list(TECH_MATERIAL = 1)
