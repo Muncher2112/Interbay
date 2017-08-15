@@ -82,9 +82,10 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashed", "stabbed")
 
 /*
  * Researchable Scalpels
@@ -123,7 +124,7 @@
 	desc = "For heavy duty cutting."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw3"
-	hitsound = 'sound/weapons/circsawhit.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags = CONDUCT
 	force = 15.0
 	w_class = ITEM_SIZE_NORMAL
@@ -132,7 +133,7 @@
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
-	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	attack_verb = list("slashed")
 	sharp = 1
 	edge = 1
 
