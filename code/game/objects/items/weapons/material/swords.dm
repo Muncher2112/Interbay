@@ -21,6 +21,7 @@
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
+	sharpness = 35
 
 
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -96,6 +97,7 @@
 	force_divisor = 0.4
 	thrown_force_divisor = 0.4
 	block_chance = 50
+	sharpness = 25
 
 
 /obj/item/weapon/material/sword/combat_knife
@@ -108,3 +110,4 @@
 	block_chance = 15
 	w_class = ITEM_SIZE_SMALL
 	drawsound = 'sound/items/unholster_knife.ogg'
+	sharpness = 15

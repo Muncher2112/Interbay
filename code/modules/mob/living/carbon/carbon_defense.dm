@@ -42,12 +42,12 @@
 	if(user.a_intent == I_HURT)
 		for(var/obj/item/weapon/grab/G in src.grabbed_by)
 			if(G.assailant == user && G.state >= GRAB_NECK)
-				if(attack_throat(W, G, user))
+				if(slit_throat(W, G, user))
 					return 1
 	return 0
 
 // Knifing
-/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
+/mob/living/carbon/proc/slit_throat(obj/item/W, obj/item/weapon/grab/G, mob/user)
 
 	if(check_zone(user.zone_sel.selecting) != BP_THROAT)//BP_HEAD was the old one.
 		return 0 // Not targetting correct slot.

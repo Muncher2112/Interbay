@@ -132,7 +132,7 @@ meteor_act
 	return 0
 
 
-/mob/living/carbon/human/attack_throat(var/obj/item/W, var/obj/item/weapon/grab/G, var/mob/user)
+/mob/living/carbon/human/slit_throat(var/obj/item/W, var/obj/item/weapon/grab/G, var/mob/user)
 	. = ..()
 	if(.)
 		var/obj/item/organ/external/head = get_organ(BP_HEAD)
@@ -218,6 +218,7 @@ meteor_act
 	return blocked
 
 /mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/hit_zone)
+	hit_zone = user.zone_sel.selecting
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return 0
@@ -236,7 +237,25 @@ meteor_act
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-	if((I.damtype == BRUTE || I.damtype == PAIN) && prob(25 + (effective_force * 2)))
+	
+	//Slicing a throat. Calls for sharpness instead of force because we don't want things that aren't sharp to be able to cut off heads.
+	if(I.edge && hit_zone == BP_THROAT)
+		if(prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
+			affecting.sever_artery()
+			playsound(loc, 'sound/voice/throat.ogg', 50, 1, -1)
+			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
+
+		if(prob(I.sharpness))
+			affecting.droplimb(0, DROPLIMB_EDGE)
+	
+	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
+	
+	if(I.damtype == BRUTE && !I.edge && prob(I.force * (hit_zone == BP_MOUTH ? 6 : 0)) && O)//Knocking out teeth.
+		if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
+			src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
+								"<span class='userdanger'>[src]'s teeth sail off in an arc!</span>")
+
+	else if((I.damtype == BRUTE || I.damtype == PAIN) && prob(25 + (effective_force * 2)))//Knocking them out.
 		if(!stat)
 			if(headcheck(hit_zone))
 				//Harder to score a stun but if you do it lasts a bit longer
@@ -249,14 +268,7 @@ meteor_act
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood
-		attack_bloody(I, user, effective_force, hit_zone)
-
-	if(I.damtype == BRUTE)
-		var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
-		if(prob(I.force * (hit_zone == BP_MOUTH ? 10 : 0)) && O) //Will the teeth fly out?
-			if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
-				src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
-									"<span class='userdanger'>[src]'s teeth sail off in an arc!</span>")
+		attack_bloody(I, user, effective_force, hit_zone)	
 
 	return 1
 
