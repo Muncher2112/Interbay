@@ -34,7 +34,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/directeur
 
 /datum/job/hop
-	title = "the Overseer"
+	title = "Overseer"
 	supervisors = "the Commandant"
 	minimal_player_age = 31
 	economic_modifier = 12
