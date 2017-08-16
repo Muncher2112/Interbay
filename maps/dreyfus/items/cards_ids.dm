@@ -46,3 +46,6 @@
 /obj/item/weapon/card/id/dreyfus/rd
 	icon_state = "id_rd"
 	job_access_type = /datum/job/rd
+
+/obj/item/weapon/card/id/dreyfus/cargo
+	job_access_type = /datum/job/cargo_tech

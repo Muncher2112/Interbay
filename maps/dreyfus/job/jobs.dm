@@ -197,12 +197,11 @@
 	faction = "Station"
 	department_flag = SUP
 	department = "Supply"
-	access = list(access_cargo, access_maint_tunnels)
-	minimal_access = list(access_cargo, access_maint_tunnels)
+	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	create_record = 0             //No one gives a fuck about kids lol.
-	account_allowed = 0			  //Kids don't have bank accounts.
 	has_email = 0				  //Nor do kids get email accounts.
-	outfit_type = /decl/hierarchy/outfit/job/cadet
+	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
