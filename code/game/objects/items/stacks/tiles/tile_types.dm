@@ -149,3 +149,12 @@
 
 /obj/item/stack/tile/floor_showroom/fifty
 	amount = 50
+
+/obj/item/stack/tile/floor_cafe
+	name = "cafe floor tile"
+	singular_name = "cafe floor tile"
+	icon_state = "tile_cafe"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/floor_cafe/fifty
+	amount = 50

@@ -55,6 +55,42 @@
 	icon_state = "showroomfloor"
 	initial_flooring = /decl/flooring/tiling/bunker/showroom
 
+/turf/simulated/floor/bunker/cafe
+	name = "cafe floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "cafe"
+	initial_flooring = /decl/flooring/tiling/bunker/cafe
+
+/turf/simulated/floor/bunker/floor
+	name = "floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "old_tile"
+	initial_flooring = /decl/flooring/tiling/bunker/floor
+
+/turf/simulated/floor/bunker/floor/yellow
+	name = "floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "old_tile_cargo"
+	initial_flooring = /decl/flooring/tiling/bunker/floor/yellow
+
+/turf/simulated/floor/bunker/floor/black
+	name = "floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "old_tile_black"
+	initial_flooring = /decl/flooring/tiling/bunker/floor/black
+
+/turf/simulated/floor/bunker/floor/red
+	name = "floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "old_tile_red"
+	initial_flooring = /decl/flooring/tiling/bunker/floor/red
+
+/turf/simulated/floor/bunker/floor/polar
+	name = "floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "polar"
+	initial_flooring = /decl/flooring/tiling/bunker/floor/polar
+
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon = 'icons/turf/flooring/grass.dmi'
