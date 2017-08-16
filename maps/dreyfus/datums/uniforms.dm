@@ -65,3 +65,21 @@
 	l_hand = /obj/item/weapon/clipboard
 	id_type = /obj/item/weapon/card/id/science/head
 	pda_type = /obj/item/device/pda/heads/rd
+
+/decl/hierarchy/outfit/job/security/peacekeeper
+	name = OUTFIT_JOB_NAME("Peacekeeper")
+	glasses = /obj/item/clothing/glasses/sunglasses
+	uniform = /obj/item/clothing/under/syndicate/soldier
+	shoes = /obj/item/clothing/shoes/jackboots
+	suit = /obj/item/clothing/suit/storage/vest/opvest
+	r_pocket = /obj/item/weapon/handcuffs
+	id_type = /obj/item/weapon/card/id/dreyfus/sec
+	pda_type = /obj/item/device/pda/security
+
+/decl/hierarchy/outfit/job/security/head_peacekeeper
+	name = OUTFIT_JOB_NAME("Head Peacekeeper")
+	glasses = /obj/item/clothing/glasses/sunglasses
+	uniform = /obj/item/clothing/under/rank/head_of_security/corp
+	shoes = /obj/item/clothing/shoes/jackboots
+	id_type = /obj/item/weapon/card/id/dreyfus/hos
+	pda_type = /obj/item/device/pda/heads/hos

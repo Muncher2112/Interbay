@@ -7,6 +7,7 @@
 						/datum/job/scientist,
 						/datum/job/doctor,
 						/datum/job/hos,
+						/datum/job/officer,
 						/datum/job/qm,
 						/datum/job/engineer,
 						/datum/job/cargo_tech,
@@ -104,13 +105,38 @@
 	
 
 /datum/job/hos
-	title = "Head Peacekeepr"
+	title = "Head Peacekeeper"
 	supervisors = "the Commandant"
-	minimal_player_age = 19
-	economic_modifier = 10
-	ideal_character_age = 30
+	department_flag = SEC
+	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = "#601c1c"
+	economic_modifier = 5
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
+			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
+			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
+			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
+			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
+			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
+			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	minimal_player_age = 7
+	outfit_type = /decl/hierarchy/outfit/job/security/head_peacekeeper
+
+
+/datum/job/officer
+	title = "Peacekeeper"
+	department = "Security"
+	department_flag = SEC
+	faction = "Station"
+	total_positions = 4
+	spawn_positions = 4	
+	economic_modifier = 4
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	minimal_player_age = 0
+	outfit_type = /decl/hierarchy/outfit/job/security/peacekeeper
 
 
 /datum/job/qm
@@ -166,13 +192,21 @@
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
+	spawn_positions = 2
 	faction = "Station"
 	department_flag = SUP
 	department = "Supply"
 	access = list(access_cargo, access_maint_tunnels)
 	minimal_access = list(access_cargo, access_maint_tunnels)
+	create_record = 0             //No one gives a fuck about kids lol.
+	account_allowed = 0			  //Kids don't have bank accounts.
+	has_email = 0				  //Nor do kids get email accounts.
+	outfit_type = /decl/hierarchy/outfit/job/cadet
+
+	equip(var/mob/living/carbon/human/H)
+		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
+		..()
 
 /datum/job/chef
 	title = "Cook"
