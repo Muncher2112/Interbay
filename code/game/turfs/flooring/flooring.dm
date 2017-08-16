@@ -134,6 +134,46 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_showroom
 
+/decl/flooring/tiling/bunker/cafe
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "cafe"
+	has_damage_range = null
+	flags = TURF_REMOVE_CROWBAR
+	build_type = /obj/item/stack/tile/floor_cafe
+
+/decl/flooring/tiling/bunker/floor
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "old_tile"
+	has_damage_range = null
+	flags = null
+	build_type = null
+
+/decl/flooring/tiling/bunker/floor/yellow
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "old_tile_cargo"
+	has_damage_range = null
+
+/decl/flooring/tiling/bunker/floor/black
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "old_tile_black"
+	has_damage_range = null
+
+/decl/flooring/tiling/bunker/floor/red
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "old_tile_red"
+	has_damage_range = null
+
+/decl/flooring/tiling/bunker/floor/polar
+	name = "floor"
+	desc = "Don't slip."
+	icon_base = "polar"
+	has_damage_range = null
+
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."

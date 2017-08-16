@@ -110,6 +110,7 @@
 	recipes += new/datum/stack_recipe("freezer floor tile", /obj/item/stack/tile/floor_freezer, 1, 4, 20)
 	recipes += new/datum/stack_recipe("hydro floor tile", /obj/item/stack/tile/floor_hydro, 1, 4, 20)
 	recipes += new/datum/stack_recipe("showroom floor tile", /obj/item/stack/tile/floor_showroom, 1, 4, 20)
+	recipes += new/datum/stack_recipe("cafe floor tile", /obj/item/stack/tile/floor_cafe, 1, 4, 20)
 
 /material/wood/generate_recipes()
 	..()
