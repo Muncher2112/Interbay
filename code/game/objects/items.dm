@@ -76,6 +76,9 @@
 	// Species-specific sprite sheets for inventory sprites
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
+	//This is a special snowflake var that lets us cut peoples' heads off.
+	var/sharpness = 0
+
 
 /obj/item/New()
 	..()

@@ -124,6 +124,8 @@ var/list/global/organ_rel_size = list(
 			zone = BP_HEAD
 		if(BP_MOUTH)
 			zone = BP_HEAD
+		if(BP_THROAT)
+			zone = BP_HEAD
 	return zone
 
 // Returns zone with a certain probability. If the probability fails, or no zone is specified, then a random body part is chosen.

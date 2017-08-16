@@ -76,15 +76,17 @@
 	flags = CONDUCT
 	force = 10.0
 	sharp = 1
-	edge = 1
+	sharpness = 25
+	//edge = 1 //WHY THE FUCK DOES THIS HAVE EDGE YOU'RE NOT GOING TO CUT SOMEONE'S HEAD OFF WITH A SCALPEL
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashed", "stabbed")
 
 /*
  * Researchable Scalpels
@@ -119,22 +121,23 @@
  * Circular Saw
  */
 /obj/item/weapon/circular_saw
-	name = "circular saw"
+	name = "bone saw"
 	desc = "For heavy duty cutting."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw3"
-	hitsound = 'sound/weapons/circsawhit.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = ITEM_SIZE_NORMAL
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
+	sharpness = 25
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
-	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	attack_verb = list("slashed")
 	sharp = 1
-	edge = 1
+	//edge = 1
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/bonegel
@@ -154,6 +157,11 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	w_class = ITEM_SIZE_SMALL
 	var/usage_amount = 10
+
+/obj/item/weapon/FixOVein/suture
+	name = "suture"
+	icon_state = "suture"
+
 
 /obj/item/weapon/bonesetter
 	name = "bone setter"

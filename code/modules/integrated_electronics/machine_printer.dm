@@ -44,9 +44,10 @@ var/list/integrated_circuit_blacklist = list(/obj/item/integrated_circuit, /obj/
 					updateUsrDialog()
 					return 1
 	if(default_deconstruction_screwdriver(user, O))
-		new /obj/item/stack/material/steel(get_turf(loc), metal)
-		metal = 0
-		return
+		if(metal)
+			new /obj/item/stack/material/steel(get_turf(loc), metal)
+			metal = 0
+			return
 	if(default_deconstruction_crowbar(user, O))
 		return
 	if(istype(O,/obj/item/integrated_circuit))

@@ -142,7 +142,7 @@
 		/obj/item/weapon/scalpel,
 		/obj/item/weapon/surgicaldrill,
 		/obj/item/weapon/bonegel,
-		/obj/item/weapon/FixOVein,
+		/obj/item/weapon/FixOVein/suture,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		)
 

@@ -156,7 +156,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
-	edge = 1
+//	edge = 1
 
 /obj/item/weapon/shovel/spade
 	name = "spade"

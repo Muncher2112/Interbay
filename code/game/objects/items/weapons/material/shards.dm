@@ -7,9 +7,11 @@
 	icon_state = "large"
 	randpixel = 8
 	sharp = 1
-	edge = 1
+	sharpness = 25
+	force = 15
+	//edge = 1
 	w_class = ITEM_SIZE_SMALL
-	force_divisor = 0.2 // 6 with hardness 30 (glass)
+	//force_divisor = 0.2 // 6 with hardness 30 (glass)
 	thrown_force_divisor = 0.4 // 4 with weight 15 (glass)
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
@@ -92,6 +94,7 @@
 // Preset types - left here for the code that uses them
 /obj/item/weapon/material/shard/shrapnel/New(loc)
 	..(loc, "steel")
+	force = 10
 
 /obj/item/weapon/material/shard/phoron/New(loc)
 	..(loc, "phglass")

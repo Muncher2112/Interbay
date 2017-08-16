@@ -11,6 +11,7 @@
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 8		//can't remember what the maxed out value is
+	clicksound = "button"
 
 /obj/machinery/floodlight/New()
 	cell = new/obj/item/weapon/cell/crap(src)
@@ -49,7 +50,9 @@
 	set_light(brightness_on, brightness_on / 2)
 	update_icon()
 	if(loud)
-		visible_message("\The [src] turns on.")
+		playsound(src, clicksound, clickvol)
+		visible_message("The [src] turns on.")
+		
 	return 1
 
 /obj/machinery/floodlight/proc/turn_off(var/loud = 0)
@@ -57,7 +60,8 @@
 	set_light(0, 0)
 	update_icon()
 	if(loud)
-		visible_message("\The [src] shuts down.")
+		playsound(src, clicksound, clickvol)
+		visible_message("The [src] shuts down.")
 
 /obj/machinery/floodlight/attack_ai(mob/user as mob)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user))

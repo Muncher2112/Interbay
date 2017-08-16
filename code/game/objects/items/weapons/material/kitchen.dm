@@ -81,7 +81,8 @@
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	scoop_food = 0
 	sharp = 1
-	edge = 1
+	sharpness = 25
+//	edge = 1
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.

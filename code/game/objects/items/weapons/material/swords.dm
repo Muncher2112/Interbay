@@ -17,17 +17,25 @@
 	attack_verb = list("slashed", "sliced")
 	hitsound = "slash_sound"
 	var/atk_mode = SLASH
+	var/block_chance = 25
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
+	sharpness = 35
+
 
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 
-	if(default_parry_check(user, attacker, damage_source) && prob(25))//Nerf'd from 50
+	if(default_parry_check(user, attacker, damage_source) && prob(block_chance) && (user.get_active_hand() == src))//You gotta be holding onto that sheesh bro.
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 		playsound(user.loc, pick('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg'), 50, 1)
 		user.adjustStaminaLoss(10)
 		health -= 0.5
+		if(prob(15))
+			user.visible_message("<span class='danger'>\The [src] flies out of \the [user]'s hand!</span>")
+			user.drop_from_inventory(src)
+			throw_at(get_edge_target_turf(src, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
+
 		return 1
 	return 0
 
@@ -59,6 +67,9 @@
 		hitsound = "slash_sound"
 		return
 
+
+
+
 /obj/item/weapon/material/sword/replica
 	edge = 0
 	sharp = 0
@@ -83,3 +94,20 @@
 	desc = "Like a claymore but for an officer."
 	icon_state = "sabre"
 	item_state = "sabre"
+	force_divisor = 0.4
+	thrown_force_divisor = 0.4
+	block_chance = 50
+	sharpness = 25
+
+
+/obj/item/weapon/material/sword/combat_knife
+	name = "combat knife"
+	desc = "For self defense, and self offense."
+	icon_state = "combatknife"
+	item_state = "knife"
+	attack_verb = list("slashed")
+	force_divisor = 0.3
+	block_chance = 15
+	w_class = ITEM_SIZE_SMALL
+	drawsound = 'sound/items/unholster_knife.ogg'
+	sharpness = 15

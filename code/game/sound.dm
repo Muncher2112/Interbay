@@ -60,6 +60,7 @@ var/list/bullet_hit_wall = list('sound/weapons/guns/misc/ric1.ogg', 'sound/weapo
 var/list/switch_sound = list('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
 var/list/button_sound = list('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
 var/list/stab_sound = list('sound/weapons/stab1.ogg', 'sound/weapons/stab2.ogg', 'sound/weapons/stab3.ogg')
+var/list/slash_sound = list('sound/weapons/slash1.ogg','sound/weapons/slash2.ogg','sound/weapons/slash3.ogg')
 
 
 //Foostep sounds:
@@ -72,7 +73,7 @@ var/list/woodfootsteps = list ('sound/effects/footsteps/wood/wood_step1.ogg','so
 var/list/carpetfootsteps = list ('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
 var/list/snowsteps = list('sound/effects/footsteps/snow/snowstep1.ogg', 'sound/effects/footsteps/snow/snowstep2.ogg', 'sound/effects/footsteps/snow/snowstep3.ogg', 'sound/effects/footsteps/snow/snowstep4.ogg')
 var/list/platingfootsteps = list('sound/effects/footsteps/plating1.ogg','sound/effects/footsteps/plating2.ogg', 'sound/effects/footsteps/plating3.ogg', 'sound/effects/footsteps/plating4.ogg')
-var/list/slash_sound = list('sound/weapons/slash1.ogg','sound/weapons/slash2.ogg','sound/weapons/slash3.ogg')
+
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/frequency)
 
@@ -219,10 +220,10 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("keyboard") soundin = pick(keyboard_sound)
 			if ("terminal_type")	soundin = pick(terminal_type)
 			if ("gunshot") soundin = pick(gun_sound)
+			if ("brifle") soundin = pick(brifle)
 			if ("hitwall") soundin = pick(bullet_hit_wall)
 			if ("keyboard") soundin = pick(keyboard_sound)
 			if ("switch") soundin = pick(switch_sound)
 			if ("button") soundin = pick(button_sound)
-			if ("brifle") soundin = pick(brifle)
 			if ("slash_sound") soundin = pick(slash_sound)
 	return soundin
