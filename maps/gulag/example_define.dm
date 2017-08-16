@@ -10,6 +10,7 @@
 	station_levels = list(1,2)
 	contact_levels = list(1,2)
 	player_levels = list(1,2)
+	base_turf_by_z = list("1" = /turf/simulated/floor/snow/gulag,"2" = /turf/simulated/open)
 
 	allowed_spawns = list("Arrivals Shuttle")
 
