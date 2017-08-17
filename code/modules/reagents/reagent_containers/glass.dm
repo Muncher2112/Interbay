@@ -66,10 +66,10 @@
 			flags |= OPENCONTAINER
 		update_icon()
 
-	do_surgery(mob/living/carbon/M, mob/living/user)
+	do_surgery(mob/living/carbon/human/H, mob/living/user)
 		if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 			return ..()
-		afterattack(M, user, 1)
+		afterattack(H, user, 1)
 		return 1
 
 	afterattack(var/obj/target, var/mob/user, var/proximity)
