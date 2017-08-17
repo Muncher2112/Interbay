@@ -108,51 +108,37 @@
 
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
-/obj/item/proc/do_surgery(mob/living/carbon/human/H, mob/living/user, fuckup_prob)
-	if(!istype(H))
+/obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user, fuckup_prob)
+	if(!istype(M))
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
 		return 0
 	var/zone = user.zone_sel.selecting
-
-	if(zone == (BP_CHEST || BP_L_ARM || BP_R_ARM || BP_R_LEG || BP_L_LEG) && (H.w_uniform || H.wear_suit))
-		to_chat(user, "<span class='warning'>That area is covered.</span>")
-		return 1
-	if(zone == (BP_R_HAND || BP_L_HAND) && H.gloves)
-		to_chat(user, "<span class='warning'>That area is covered.</span>")
-		return 1
-	if(zone == (BP_R_FOOT || BP_L_FOOT) && H.shoes)
-		to_chat(user, "<span class='warning'>That area is covered.</span>")
-		return 1
-	if(zone == (BP_HEAD || BP_THROAT || BP_MOUTH) && (H.head || H.wear_mask))
-		to_chat(user, "<span class='warning'>That area is covered.</span>")
-		return 1
-
-	if(zone in H.op_stage.in_progress) //Can't operate on someone repeatedly.
+	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(src))
-			var/step_is_valid = S.can_use(user, H, zone, src)
-			if(step_is_valid && S.is_valid_target())
+			var/step_is_valid = S.can_use(user, M, zone, src)
+			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return 1
-				H.op_stage.in_progress += zone
-				S.begin_step(user, H, zone, src)		//start on it
+				M.op_stage.in_progress += zone
+				S.begin_step(user, M, zone, src)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 				if(skillcheck(user.medical_skill, 75, 0, user) || statscheck(user.int, 14 ,0))
-					if(prob(S.success_chance(user, H, src)) && do_mob(user, H, rand(S.min_duration, S.max_duration)))
-						S.end_step(user, H, zone, src)		//finish successfully
-				else if ((src in user.contents) && user.Adjacent(H))			//or
-					S.fail_step(user, H, zone, src)		//malpractice~
+					if(prob(S.success_chance(user, M, src)) && do_mob(user, M, rand(S.min_duration, S.max_duration)))
+						S.end_step(user, M, zone, src)		//finish successfully
+				else if ((src in user.contents) && user.Adjacent(M))			//or
+					S.fail_step(user, M, zone, src)		//malpractice~
 				else // This failing silently was a pain.
 					to_chat(user, "<span class='warning'>You must remain close to your patient to conduct surgery.</span>")
-				if (H)
-					H.op_stage.in_progress -= zone 									// Clear the in-progress flag.
-				//if (ishuman(M))
-				//	var/mob/living/carbon/human/H = M
-				H.update_surgery()
+				if (M)
+					M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
+				if (ishuman(M))
+					var/mob/living/carbon/human/H = M
+					H.update_surgery()
 				return	1	  												//don't want to do weapony things after surgery
 	return 0
 
