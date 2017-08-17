@@ -86,11 +86,11 @@ proc/strToDamageModifier(var/strength)
 	if(inti)
 		int = inti
 
-/mob/living/carbon/human/proc/add_skills(var/melee, var/ranged_attack, var/medical, var/engineering)//To make adding stats quicker.
+/mob/living/carbon/human/proc/add_skills(var/melee, var/ranged, var/medical, var/engineering)//To make adding skills quicker.
 	if(melee)
 		melee_skill = melee
-	if(ranged_attack)
-		ranged_skill = ranged_attack
+	if(ranged)
+		ranged_skill = ranged
 	if(medical)
 		medical_skill = medical
 	if(engineering)
