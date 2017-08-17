@@ -19,9 +19,11 @@
 	set name = "Change UI"
 	set category = "OOC"
 	set desc = "Configure your user interface"
-
+	
 	if(!ishuman(usr))
 		to_chat(usr, "<span class='warning'>You must be human to use this verb.</span>")
+		return
+	if(usr.using_alt_hud)
 		return
 
 	var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
