@@ -145,7 +145,12 @@
 	if(prob(blocked)) //armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		damage_flags &= ~(DAM_SHARP|DAM_EDGE)
 
+	if(user.str)//If they have strength then add it.
+		I.force *= strToDamageModifier(user.str)
+	
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, damage_flags, used_weapon=I)
+
+	I.force = (I.force / strToDamageModifier(user.str))//Sets it back to it's initial force.
 
 	return 1
 
