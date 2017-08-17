@@ -622,8 +622,8 @@
 
 	if(statpanel("Status"))
 		if(ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("Local Time", stationtime2text())
-			stat("Local Date", stationdate2text())
+			//stat("Local Time", stationtime2text())
+			//stat("Local Date", stationdate2text())
 			stat("Round Duration", roundduration2text())
 		if(client.holder || isghost(client.mob))
 			stat("Location:", "([x], [y], [z]) [loc]")

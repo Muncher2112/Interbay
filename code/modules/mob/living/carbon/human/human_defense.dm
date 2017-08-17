@@ -194,7 +194,7 @@ meteor_act
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
-	if(!user.combat_mode && !skillcheck(user.melee, 60, 0))
+	if(!user.combat_mode && !skillcheck(user.melee_skill, 60, 0, user))
 		visible_message("<span class='danger'>[user] botches the attack on [src]!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
@@ -205,6 +205,7 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
 	return hit_zone

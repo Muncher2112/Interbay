@@ -28,6 +28,9 @@
 	if(user.defense_intent != I_PARRY)//If you're not on parry intent, you won't parry.
 		return 0
 
+	if(skillcheck(user.melee_skill, 60, 0, user))//Need at least 60 skill to be able to parry effectively.
+		return 0
+
 	//block as long as they are not directly behind us
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(!check_shield_arc(user, bad_arc, damage_source, attacker))

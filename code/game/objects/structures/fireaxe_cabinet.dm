@@ -5,7 +5,7 @@
 	anchored = 1
 	density = 0
 
-	var/damage_threshold = 15
+	var/damage_threshold = 10
 	var/open
 	var/unlocked
 	var/shattered

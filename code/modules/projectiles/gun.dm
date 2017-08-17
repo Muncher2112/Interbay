@@ -348,8 +348,8 @@
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
-	if(!skillcheck(user.ranged_attack, 55, 0))
-		P.accuracy -= 1
+	if(!skillcheck(user.ranged_skill, 55, 0, user))//Being unskilled at guns decreased accuracy.
+		P.accuracy -= 2
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)

@@ -1,4 +1,4 @@
-//DEBUGGING SHIT TILL I GET AN ACTUAL HUD ICON - Matt
+//Commented out debugging shit.
 /*
 /mob/living/carbon/human/verb/toggle_combat_mode()
 	set name = "Toggle Combat Mode"
@@ -31,7 +31,7 @@
 
 /mob/living/proc/attempt_dodge()//Handle parry is an object proc and it's, its own thing.
 	if(combat_mode && (defense_intent == I_DODGE) && !lying)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
-		if(staminaloss < 50 && statcheck(dex, 20))//If stats and skill get added put whatever number you want here to determine if it dodges.
+		if(staminaloss < 50 && statscheck(dex, 20))//You gotta be the master of dexterity to dodge every time. 
 			do_dodge()
 			return	1
 		else if(staminaloss >= 50 && prob(10))
