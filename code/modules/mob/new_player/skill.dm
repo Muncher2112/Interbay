@@ -65,9 +65,7 @@ proc/show_skill_window(var/mob/user, var/mob/living/carbon/human/M)
 	return
 
 mob/living/carbon/human/verb/show_skills()
-	set category = "IC"
-	set name = "Show Own Skills"
-
+	return
 	show_skill_window(src, src)
 
 

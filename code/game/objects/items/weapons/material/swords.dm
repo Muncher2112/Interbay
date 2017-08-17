@@ -10,8 +10,8 @@
 	item_state = "claymore"
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_HUGE
-	force_divisor = 0.5 // 30 when wielded with hardness 60 (steel)
-	thrown_force_divisor = 0.5 // 10 when thrown with weight 20 (steel)
+	force_divisor = 0.2 // 30 when wielded with hardness 60 (steel)
+	thrown_force_divisor = 0.2 // 10 when thrown with weight 20 (steel)
 	sharp = 1
 	edge = 1
 	attack_verb = list("slashed", "sliced")
@@ -21,7 +21,7 @@
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
-	sharpness = 20
+	sharpness = 25
 
 
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")

@@ -137,7 +137,6 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
 	attack_verb = list("slashed")
 	sharp = 1
-	//edge = 1
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/bonegel

@@ -49,3 +49,4 @@
 
 /obj/item/weapon/card/id/dreyfus/cargo
 	job_access_type = /datum/job/cargo_tech
+

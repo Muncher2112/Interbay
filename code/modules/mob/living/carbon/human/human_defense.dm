@@ -194,6 +194,11 @@ meteor_act
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
+	if(!user.combat_mode && !skillcheck(user.melee, 60, 0))
+		visible_message("<span class='danger'>[user] botches the attack on [src]!</span>")
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return null
+
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
 
@@ -223,6 +228,9 @@ meteor_act
 	if(!affecting)
 		return 0
 
+	if(user.str)
+		I.force *= strToDamageModifier(user.str)
+
 	// Handle striking to cripple.
 	if(user.a_intent == I_DISARM)
 		effective_force *= 0.66 //reduced effective force...
@@ -239,14 +247,17 @@ meteor_act
 		forcesay(hit_appends)	//forcesay checks stat already
 	
 	//Slicing a throat. Calls for sharpness instead of force because we don't want things that aren't sharp to be able to cut off heads.
-	if(I.sharp && hit_zone == BP_THROAT)
-		if(prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
-			affecting.sever_artery()
-			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
-
-		if(I.edge && prob(I.sharpness))
-			affecting.droplimb(0, DROPLIMB_EDGE)
+	//if(I.sharp && hit_zone == BP_THROAT)
+		
+	//		src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
 	
+	if(I.sharp && prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
+		affecting.sever_artery()
+		if(affecting.artery_name == "cartoid artery")
+			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
+		else
+			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
+
 	if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
 		if(prob(I.sharpness))
 			affecting.droplimb(0, DROPLIMB_EDGE)
@@ -271,8 +282,7 @@ meteor_act
 					visible_message("<span class='danger'>[src] has been knocked down!</span>")
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood
-		attack_bloody(I, user, effective_force, hit_zone)	
-
+		attack_bloody(I, user, effective_force, hit_zone)
 	return 1
 
 /mob/living/carbon/human/proc/attack_bloody(obj/item/W, mob/living/attacker, var/effective_force, var/hit_zone)

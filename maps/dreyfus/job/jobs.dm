@@ -25,6 +25,11 @@
 	economic_modifier = 3
 	ideal_character_age = 21
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,11), rand(9,11), rand(7,10))
+
+
 /datum/job/captain
 	title = "Commandant"
 	supervisors = "KNC and you're good will."
@@ -32,6 +37,12 @@
 	economic_modifier = 15
 	ideal_character_age = 65
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/directeur
+	
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(6,9), rand(9,11), rand(10,12))
+
+
 
 /datum/job/hop
 	title = "Overseer"
@@ -42,6 +53,10 @@
 	total_positions = 2
 	spawn_positions = 2
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/adjoint
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(6,9), rand(9,11), rand(10,12))
 
 /datum/job/employe
 	title = "Employe Administratif"
@@ -82,6 +97,10 @@
 			access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network, access_rd, access_research, access_medical, access_morgue, access_medical_equip)
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(5,7), rand(5,8), rand(12,15))
+
 /datum/job/scientist
 	title = "Tenchotrainee"
 	supervisors = "Technomancer"
@@ -93,6 +112,10 @@
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_robotics)
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+
 /datum/job/doctor
 	selection_color = "#633d63"
 	title = "Doctor"
@@ -102,6 +125,10 @@
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 	
 
 /datum/job/hos
@@ -124,6 +151,11 @@
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/head_peacekeeper
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(11,16), rand(10,14), rand(8,12))
+		H.add_skills(rand(60, 75), rand(60,75))
+
 
 /datum/job/officer
 	title = "Peacekeeper"
@@ -138,6 +170,11 @@
 	minimal_player_age = 0
 	outfit_type = /decl/hierarchy/outfit/job/security/peacekeeper
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(10,15), rand(10,14), rand(7,10))
+		H.add_skills(rand(60, 75), rand(60,75))
+
 
 /datum/job/qm
 	selection_color = "#3d3315"
@@ -148,6 +185,10 @@
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 2
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,12), rand(9,12), rand(7,10))
 
 /datum/job/engineer
 	title = "Upkeeper"
@@ -161,6 +202,10 @@
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,12), rand(7,10), rand(11,14))
+
 /datum/job/mining
 	selection_color = "#7c6a2e"
 	title = "Miner"
@@ -173,6 +218,10 @@
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
 	title = "Crate Pusher"
@@ -184,6 +233,10 @@
 	spawn_positions = 2
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
 
 /datum/job/ouvrier
 	selection_color = "#7c6a2e"
@@ -199,12 +252,14 @@
 	department = "Supply"
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	account_allowed = 0			  //This breaks things.
 	create_record = 0             //No one gives a fuck about kids lol.
 	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
+		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
 		..()
 
 /datum/job/chef
@@ -215,6 +270,10 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
+	
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(7,12), rand(7,12), rand(10,15))
 
 /datum/job/chaplain
 	title = "Chaplain"
@@ -224,6 +283,10 @@
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 1
+	
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(5,10), rand(9,12), rand(10,14))
 
 /datum/job/janitor
 	title = "Janitor"
@@ -233,6 +296,10 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
+	
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(9,12), rand(9,12), rand(5,9))
 
 /datum/job/cyborg
 	title = "Cyborg"

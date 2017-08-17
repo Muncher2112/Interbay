@@ -208,6 +208,9 @@
 			to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 			return
 
+		if(!skillcheck(user.engineering, 75, 1, "I have failed to fix the door."))//Skill cehck.
+			return
+
 		//figure out how much metal we need
 		var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
 		amount_needed = ceil(amount_needed)
@@ -233,6 +236,8 @@
 		if(!density)
 			to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 			return
+		if(!skillcheck(user.engineering, 75, 1))//Skill cehck.
+			return
 
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
@@ -247,6 +252,8 @@
 		return
 
 	if(repairing && istype(I, /obj/item/weapon/crowbar))
+		if(!skillcheck(user.engineering, 75, 1))//Skill cehck.
+			return
 		to_chat(user, "<span class='notice'>You remove \the [repairing].</span>")
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		repairing.loc = user.loc
