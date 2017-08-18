@@ -296,8 +296,8 @@
 	minimal_player_age = 16
 	economic_modifier = 2
 	ideal_character_age = 21
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	
 	equip(var/mob/living/carbon/human/H)
 		..()
