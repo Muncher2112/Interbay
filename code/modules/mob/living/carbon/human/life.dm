@@ -936,6 +936,11 @@
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
+	if(resting)
+		rest.icon_state = "rest1"
+	else 
+		rest.icon_state = "rest0"
+
 	return 1
 
 /mob/living/carbon/human/handle_random_events()
