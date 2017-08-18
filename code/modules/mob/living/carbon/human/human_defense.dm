@@ -189,6 +189,7 @@ meteor_act
 
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
 
+
 	if(!hit_zone)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
@@ -202,11 +203,18 @@ meteor_act
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
 
+
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
+
+
+	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
+		if(user.lying)
+			to_chat(user, "<span class='notice'><b>I can't reach their [affecting.name]!</span></b>")
+			return null
 
 	return hit_zone
 
@@ -243,7 +251,7 @@ meteor_act
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
-	
+
 	if(I.sharp && prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
 		affecting.sever_artery()
 		if(affecting.artery_name == "cartoid artery")
@@ -254,9 +262,9 @@ meteor_act
 	if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
 		if(prob(I.sharpness))
 			affecting.droplimb(0, DROPLIMB_EDGE)
-	
+
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
-	
+
 	if(I.damtype == BRUTE && !I.edge && prob(I.force * (hit_zone == BP_MOUTH ? 6 : 0)) && O)//Knocking out teeth.
 		if(O.knock_out_teeth(get_dir(user, src), round(rand(28, 38) * ((I.force*1.5)/100))))
 			src.visible_message("<span class='danger'>[src]'s teeth sail off in an arc!</span>", \
