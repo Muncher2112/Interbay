@@ -278,23 +278,26 @@ var/list/mob/living/forced_ambiance_list = new
 			if(vent.can_pump() && has_hum)
 				hum = 1
 				break
+	
+	if(forced_ambience)
+		if(forced_ambience.len)
+			forced_ambiance_list |= L
+			L.playsound_local(T,sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = 2))
+		else
+			sound_to(L, sound(null, channel = 2))
 
-	if(hum)
+	else if(hum)
 		if(!L.client.ambience_playing)
 			L.client.ambience_playing = 1
 			L.playsound_local(T,sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 25, channel = 2))
+
 	else
 		if(L.client.ambience_playing)
 			L.client.ambience_playing = 0
 			sound_to(L, sound(null, channel = 2))
 
-	if(forced_ambience)
-		if(forced_ambience.len)
-			forced_ambiance_list |= L
-			L.playsound_local(T,sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = 1))
-		else
-			sound_to(L, sound(null, channel = 1))
-	else if(src.ambience.len && prob(35))
+	
+	if(src.ambience.len && prob(35))
 		if((world.time >= L.client.played + 600))
 			var/sound = pick(ambience)
 			L.playsound_local(T, sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1))

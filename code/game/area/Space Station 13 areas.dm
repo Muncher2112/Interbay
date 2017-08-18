@@ -72,6 +72,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	power_environ = 0
 	has_gravity = 0
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	forced_ambience = list('sound/ambience/space_loop.ogg')
 
 /area/space/updateicon()
 	return
