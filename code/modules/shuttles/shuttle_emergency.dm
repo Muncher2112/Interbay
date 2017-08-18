@@ -31,9 +31,14 @@
 	if(next_location != waypoint_station)
 		emergency_controller.shuttle_leaving() // This is a hell of a line. v
 		priority_announcement.Announce(replacetext(replacetext((emergency_controller.emergency_evacuation ? using_map.emergency_shuttle_leaving_dock : using_map.shuttle_leaving_dock), "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[round(emergency_controller.get_eta()/60,1)] minute\s"))
-	else if(next_location == waypoint_offsite && emergency_controller.has_evacuated())
-		emergency_controller.shuttle_evacuated()
+	//else if(next_location == waypoint_offsite && emergency_controller.has_evacuated())
+	//	emergency_controller.shuttle_evacuated()
 	..()
+	if(next_location == waypoint_offsite && emergency_controller.has_evacuated())
+		// If we've arrived at the offsite then we are evacuated
+		if(current_location == waypoint_offsite)
+			emergency_controller.shuttle_evacuated()
+		// Else, do something, but there's nothing to do as of now
 
 /datum/shuttle/autodock/ferry/emergency/can_launch(var/user)
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))
