@@ -769,6 +769,7 @@
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
+		resting = 1
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
@@ -786,6 +787,7 @@
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
 		update_canmove()	//updates lying, canmove and icons
+		resting = 1
 	return
 
 /mob/proc/SetWeakened(amount)
@@ -806,6 +808,7 @@
 		paralysis = max(max(paralysis,amount),0)
 		if(l_hand) unEquip(l_hand)
 		if(r_hand) unEquip(r_hand)
+		resting = 1
 	return
 
 /mob/proc/SetParalysis(amount)
@@ -823,6 +826,7 @@
 	sleeping = max(max(sleeping,amount),0)
 	if(l_hand) unEquip(l_hand)
 	if(r_hand) unEquip(r_hand)
+	resting =1
 	return
 
 /mob/proc/SetSleeping(amount)
