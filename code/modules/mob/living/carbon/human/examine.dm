@@ -187,6 +187,15 @@
 		else*/
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
+	if(src.str > user.str && src.str < (user.str + 5))
+		msg += "* [T.He] looks stronger than you.\n"
+	
+	if(src.str > (user.str + 5))
+		msg += "<b>* [T.He] looks a lot stronger than you.</b>\n"
+
+	if(src.str < user.str)
+		msg += "* [T.He] looks weaker than you.\n"
+
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
