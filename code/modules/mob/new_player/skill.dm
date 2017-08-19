@@ -63,11 +63,11 @@ proc/show_skill_window(var/mob/user, var/mob/living/carbon/human/M)
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=show_skills;size=600x800")
 	return
-
-mob/living/carbon/human/verb/show_skills()
+/*
+/mob/living/carbon/human/verb/show_skills()
 	return
 	show_skill_window(src, src)
-
+*/
 
 /datum/skill
     var/ID = "none"					// ID of this skill.
