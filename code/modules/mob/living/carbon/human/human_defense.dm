@@ -212,7 +212,7 @@ meteor_act
 
 
 	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
-		if(user.lying)
+		if(user.lying && !src.lying)
 			to_chat(user, "<span class='notice'><b>I can't reach their [affecting.name]!</span></b>")
 			return null
 
