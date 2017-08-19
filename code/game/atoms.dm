@@ -381,7 +381,7 @@ its easier to just keep the beam vertical.
 	if(user.handcuffed && prob(45) && !user.incapacitated(INCAPACITATION_FORCELYING))//User can fail to kick smbd if cuffed
 		user.visible_message("<span class='danger'>[user.name] loses \his balance while trying to kick \the [src].</span>", \
 					"<span class='warning'> You lost your balance.</span>")
-		user.Weaken(5)
+		user.Weaken(1)
 		return
 
 	if(user.middle_click_intent == "kick")//We're in kick mode, we can kick.
