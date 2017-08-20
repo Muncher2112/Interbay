@@ -23,12 +23,12 @@
 	if(!istype(start))
 		to_chat(src, "<span class='notice'>You are unable to move from here.</span>")
 		return 0
-		
+
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(!destination)
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return 0
-	
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
@@ -158,16 +158,20 @@
 
 	if(istype(landing, /turf/simulated/open))
 		visible_message("\The [src] falls from the area above through \the [landing]!", "You hear a whoosh of displaced air.")
+
 	else
 		visible_message("\The [src] falls from the area above and slams into \the [landing]!", "You hear something slam into the floor.")
+
 
 /mob/living/carbon/human/handle_fall(var/turf/landing)
 	if(..())
 		return
-	if(statscheck(dex, 20, 0, src))
-		to_chat(src, "You land softly")
-		return	
-	
+
+	if(!istype(landing, /turf/simulated/open))
+		if(statscheck(dex, 20, 0, src))
+			to_chat(src, "You land softly")
+			return
+
 	playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)//Splat
 	var/damage = 10
 	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
