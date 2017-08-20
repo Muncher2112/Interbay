@@ -53,7 +53,7 @@
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/list/drill_sound = list('sound/items/pickaxe1.ogg','sound/items/pickaxe2.ogg','sound/items/pickaxe3.ogg','sound/items/pickaxe4.ogg')
 	var/drill_verb = "drilling"
 	sharp = 1
 
@@ -109,7 +109,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	drill_verb = "cutting"
-	drill_sound = 'sound/items/Welder.ogg'
+	drill_sound = list('sound/items/Welder.ogg')
 	sharp = 1
 	edge = 1
 

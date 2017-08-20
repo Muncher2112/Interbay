@@ -182,13 +182,16 @@ var/list/mining_floors = list()
 		//	return
 		//last_act = world.time
 
-		playsound(user, P.drill_sound, 20, 1)
+		playsound(user, pick(P.drill_sound), 20, 1)
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.adjustStaminaLoss(rand(5,10))
+			H.adjustStaminaLoss(rand(1,10))
+			H.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 		health -= rand(1,5)
+
+
 
 
 		var/newDepth = excavation_level + P.excavation_amount // Used commonly below
