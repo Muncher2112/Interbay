@@ -73,7 +73,7 @@ var/list/name_to_material
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/is_fusion_fuel
-
+	var/apply_icon_colour_to_walls = TRUE
 	// Shards/tables/structures
 	var/shard_type = SHARD_SHRAPNEL       // Path of debris object.
 	var/shard_icon                        // Related to above.
@@ -131,7 +131,7 @@ var/list/name_to_material
 	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
 		to_chat(user, "<span class='warning'>You need one rod and one sheet of [display_name] to make anything useful.</span>")
 		return
-	
+
 	if(!skillcheck(user.engineering_skill, 60, 1, user, message = "I have botched bulding what I'm building."))
 		return
 
@@ -361,6 +361,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/smash.ogg'
+	apply_icon_colour_to_walls = FALSE
 
 /material/diona
 	name = "biomass"
@@ -400,6 +401,7 @@ var/list/name_to_material
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
+	apply_icon_colour_to_walls = FALSE
 
 /material/plasteel/titanium
 	name = "titanium"
@@ -458,7 +460,7 @@ var/list/name_to_material
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>This task is too complex for your clumsy hands.</span>")
 		return 1
-	
+
 	if(!skillcheck(user.engineering_skill, 60, 1, user, message = "I have failed to build a window."))
 		return 1
 
