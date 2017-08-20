@@ -34,6 +34,7 @@ var/list/mining_floors = list()
 	var/obj/item/weapon/last_find
 	var/datum/artifact_find/artifact_find
 	var/image/ore_overlay
+	var/health = 10
 
 	has_resources = 1
 
@@ -150,9 +151,9 @@ var/list/mining_floors = list()
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
+	//if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")//LMAO WHAT THE FUCK THIS SHIT IS FUCKING ANCIENT HOLY FUCK
+	//	to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
+	//	return
 
 	if (istype(W, /obj/item/device/core_sampler))
 		geologic_data.UpdateNearbyArtifactInfo(src)
@@ -177,11 +178,18 @@ var/list/mining_floors = list()
 			return
 
 		var/obj/item/weapon/pickaxe/P = W
-		if(last_act + P.digspeed > world.time)//prevents message spam
-			return
-		last_act = world.time
+		//if(last_act + P.digspeed > world.time)//prevents message spam
+		//	return
+		//last_act = world.time
 
 		playsound(user, P.drill_sound, 20, 1)
+
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.adjustStaminaLoss(rand(5,10))
+
+		health -= rand(1,5)
+
 
 		var/newDepth = excavation_level + P.excavation_amount // Used commonly below
 		//handle any archaeological finds we might uncover
@@ -191,7 +199,7 @@ var/list/mining_floors = list()
 			if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 				fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 
-		to_chat(user, "<span class='notice'>You start [P.drill_verb][fail_message].</span>")
+		to_chat(user, "<span class='notice'>You hit the [src.name] with your [P.name].</span>")//[P.drill_verb][fail_message].</span>")
 
 		if(fail_message && prob(90))
 			if(prob(25))
@@ -201,7 +209,8 @@ var/list/mining_floors = list()
 				if(prob(50))
 					artifact_debris()
 
-		if(do_after(user,P.digspeed, src))
+		//if(do_after(user,P.digspeed, src))
+		if(health <= 0)
 			if(finds && finds.len)
 				var/datum/find/F = finds[1]
 				if(newDepth == F.excavation_required) // When the pick hits that edge just right, you extract your find perfectly, it's never confined in a rock
@@ -209,7 +218,7 @@ var/list/mining_floors = list()
 				else if(newDepth > F.excavation_required - F.clearance_range) // Not quite right but you still extract your find, the closer to the bottom the better, but not above 80%
 					excavate_find(prob(80 * (F.excavation_required - newDepth) / F.clearance_range), F)
 
-			to_chat(user, "<span class='notice'>You finish [P.drill_verb] \the [src].</span>")
+			//to_chat(user, "<span class='notice'>You finish [P.drill_verb] \the [src].</span>")
 
 			if(newDepth >= 200) // This means the rock is mined out fully
 				var/obj/structure/boulder/B

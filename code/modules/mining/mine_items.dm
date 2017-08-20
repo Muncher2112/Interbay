@@ -39,15 +39,15 @@
 /*****************************Pickaxe********************************/
 
 /obj/item/weapon/pickaxe
-	name = "mining drill"
-	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+	name = "pickaxe"
+	desc = "It's a pickaxe. You hit rocks with it. And people with it too if you feel like."
 	icon = 'icons/obj/items.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
 	icon_state = "pickaxe"
-	item_state = "jackhammer"
+	item_state = "spickaxe"
 	w_class = ITEM_SIZE_HUGE
 	matter = list(DEFAULT_WALL_MATERIAL = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
