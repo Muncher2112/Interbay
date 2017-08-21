@@ -40,7 +40,6 @@
 	var/obj/screen/kick_icon = null
 	var/obj/screen/jump_icon = null
 	var/obj/screen/noise = null
-	var/obj/screen/noisej = null
 	var/obj/screen/fixeye = null
 	var/obj/screen/rest = null
 	var/obj/screen/combat_icon = null

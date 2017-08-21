@@ -332,14 +332,6 @@
 	mymob.noise.mouse_opacity = 0
 	hud_elements |= mymob.noise
 
-	mymob.noisej = new /obj/screen()
-	mymob.noisej.icon = 'icons/mob/noise.dmi'
-	mymob.noisej.icon_state = "[rand(1,9)]j"
-	mymob.noisej.name = " "
-	mymob.noisej.screen_loc = "1,1 to 15,15"
-	mymob.noisej.mouse_opacity = 0
-	hud_elements |= mymob.noisej
-
 	mymob.combat_icon = new /obj/screen()//combat mode
 	mymob.combat_icon.name = "combat mode"
 	mymob.combat_icon.icon = 'icons/mob/screen/dark.dmi'
