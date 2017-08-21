@@ -338,7 +338,7 @@
 	mymob.noisej.name = " "
 	mymob.noisej.screen_loc = "1,1 to 15,15"
 	mymob.noisej.mouse_opacity = 0
-	hud_elements |= mymob.noise
+	hud_elements |= mymob.noisej
 
 	mymob.combat_icon = new /obj/screen()//combat mode
 	mymob.combat_icon.name = "combat mode"
