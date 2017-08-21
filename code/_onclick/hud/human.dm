@@ -274,13 +274,13 @@
 	mymob.pain.mouse_opacity = 0
 	hud_elements |= mymob.pain
 
-	mymob.noise1 = new /obj/screen()
-	mymob.noise1.icon = 'icons/mob/noise.dmi'
-	mymob.noise1.icon_state = pick("1", "2", "3")
-	mymob.noise1.name = " "
-	mymob.noise1.screen_loc = "1,1 to 15,15"
-	mymob.noise1.mouse_opacity = 0
-	hud_elements |= mymob.noise1 
+	mymob.noise = new /obj/screen()
+	mymob.noise.icon = 'icons/mob/noise.dmi'
+	mymob.noise.icon_state = pick("1", "2", "3")
+	mymob.noise.name = " "
+	mymob.noise.screen_loc = "1,1 to 15,15"
+	mymob.noise.mouse_opacity = 0
+	hud_elements |= mymob.noise 
 
 
 	mymob.zone_sel = new /obj/screen/zone_sel( null )

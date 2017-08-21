@@ -10,7 +10,7 @@
 
 	if(hud_data.icon)
 		ui_style = 'icons/mob/screen/dark.dmi'//hud_data.icon
-	else 
+	else
 		ui_style = 'icons/mob/screen/dark.dmi'
 
 	src.adding = list()
@@ -155,7 +155,7 @@
 		using.color = ui_color
 		using.alpha = ui_alpha
 		src.adding += using
-		
+
 		using = new /obj/screen/inventory()
 		using.name = "hand"
 		using.icon = ui_style
@@ -324,13 +324,21 @@
 	mymob.pain.mouse_opacity = 0
 	hud_elements |= mymob.pain
 
-	mymob.noise1 = new /obj/screen()
-	mymob.noise1.icon = 'icons/mob/noise.dmi'
-	mymob.noise1.icon_state = pick("1", "2", "3")
-	mymob.noise1.name = " "
-	mymob.noise1.screen_loc = "1,1 to 15,15"
-	mymob.noise1.mouse_opacity = 0
-	hud_elements |= mymob.noise1
+	mymob.noise = new /obj/screen()
+	mymob.noise.icon = 'icons/mob/noise.dmi'
+	mymob.noise.icon_state = "[rand(1,9)]"
+	mymob.noise.name = " "
+	mymob.noise.screen_loc = "1,1 to 15,15"
+	mymob.noise.mouse_opacity = 0
+	hud_elements |= mymob.noise
+
+	mymob.noisej = new /obj/screen()
+	mymob.noisej.icon = 'icons/mob/noise.dmi'
+	mymob.noisej.icon_state = "[rand(1,9)]j"
+	mymob.noisej.name = " "
+	mymob.noisej.screen_loc = "1,1 to 15,15"
+	mymob.noisej.mouse_opacity = 0
+	hud_elements |= mymob.noise
 
 	mymob.combat_icon = new /obj/screen()//combat mode
 	mymob.combat_icon.name = "combat mode"
