@@ -189,7 +189,6 @@ meteor_act
 
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
 
-
 	if(!hit_zone)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
@@ -203,13 +202,18 @@ meteor_act
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
 
-
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
+	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
+
+
+	if(blocked == 100)
+		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
+		return null
 
 	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
 		if(user.lying && !src.lying)
@@ -219,14 +223,31 @@ meteor_act
 	return hit_zone
 
 /mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
 
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
-	receive_damage()
+	var/aim_zone = user.zone_sel.selecting
+
+
+	var/obj/item/organ/external/aimed = get_organ(aim_zone)
+
 
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
+
+
+	if(hit_zone != aim_zone && (aim_zone != BP_MOUTH) &&  (aim_zone != BP_THROAT) && (aim_zone != BP_EYES))
+		visible_message("<span class='danger'>[user] aimed for the [aimed.name], but hit the [affecting.name] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
+
+	else if(blocked < 20 && blocked > 1)
+		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]! It only did a little damage!</span>")
+
+	else
+		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+
+	receive_damage()
+
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
 
 	return blocked
