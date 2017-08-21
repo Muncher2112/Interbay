@@ -237,10 +237,10 @@ meteor_act
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
 
 
-	if(hit_zone != aim_zone && (aim_zone != BP_MOUTH) &&  (aim_zone != BP_THROAT) && (aim_zone != BP_EYES))
+	if(hit_zone != aim_zone && (aim_zone != BP_MOUTH) &&  (aim_zone != BP_THROAT) && (aim_zone != BP_EYES))//This is ugly but it works.
 		visible_message("<span class='danger'>[user] aimed for the [aimed.name], but hit the [affecting.name] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
 
-	else if(blocked < 20 && blocked > 1)
+	else if(blocked < 20 && blocked > 1)//This is ugly and it doesn't work.
 		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]! It only did a little damage!</span>")
 
 	else
