@@ -56,6 +56,10 @@
 
 	return
 
+////////////////////////////////////////////////////////////////////////////////
+/// AUTOINJECTORS
+////////////////////////////////////////////////////////////////////////////////
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
@@ -84,6 +88,80 @@
 		icon_state = "[initial(icon_state)]0"
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
+	. = ..(user)
+	if(reagents && reagents.reagent_list.len)
+		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+	else
+		to_chat(user, "<span class='notice'>It is spent.</span>")
+	return
+
+//Kelatone
+
+obj/item/weapon/reagent_containers/hypospray/kelotane
+	name = "kelotane autoinjector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one is filled with Kelatone to treat burn damage"
+	icon_state = "autoinjector"
+	item_state = "autoinjector"
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+/obj/item/weapon/reagent_containers/hypospray/kelotane/New()
+	..()
+	reagents.add_reagent("kelotane", 5)
+	update_icon()
+	return
+
+/obj/item/weapon/reagent_containers/hypospray/kelotane/attack(mob/M as mob, mob/user as mob)
+	..()
+	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
+		flags &= ~OPENCONTAINER
+	update_icon()
+	return
+
+/obj/item/weapon/reagent_containers/hypospray/kelotane/update_icon()
+	if(reagents.total_volume > 0)
+		icon_state = "[initial(icon_state)]1"
+	else
+		icon_state = "[initial(icon_state)]0"
+
+/obj/item/weapon/reagent_containers/hypospray/kelotane/examine(mob/user)
+	. = ..(user)
+	if(reagents && reagents.reagent_list.len)
+		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+	else
+		to_chat(user, "<span class='notice'>It is spent.</span>")
+	return
+
+//Bicaridine
+
+obj/item/weapon/reagent_containers/hypospray/bicaridine
+	name = "kelotane autoinjector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one is filled with Bicaridine to treat physical wounds"
+	icon_state = "autoinjector"
+	item_state = "autoinjector"
+	amount_per_transfer_from_this = 5
+	volume = 5
+
+/obj/item/weapon/reagent_containers/hypospray/bicaridine/New()
+	..()
+	reagents.add_reagent("bicaridine", 5)
+	update_icon()
+	return
+
+/obj/item/weapon/reagent_containers/hypospray/bicaridine/attack(mob/M as mob, mob/user as mob)
+	..()
+	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
+		flags &= ~OPENCONTAINER
+	update_icon()
+	return
+
+/obj/item/weapon/reagent_containers/hypospray/bicaridine/update_icon()
+	if(reagents.total_volume > 0)
+		icon_state = "[initial(icon_state)]1"
+	else
+		icon_state = "[initial(icon_state)]0"
+
+/obj/item/weapon/reagent_containers/hypospray/bicaridine/examine(mob/user)
 	. = ..(user)
 	if(reagents && reagents.reagent_list.len)
 		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
