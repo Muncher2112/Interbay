@@ -280,7 +280,7 @@ meteor_act
 		else
 			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
 
-	if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
+	else if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
 		if(prob(I.sharpness))
 			affecting.droplimb(0, DROPLIMB_EDGE)
 
