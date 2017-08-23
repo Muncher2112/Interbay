@@ -17,20 +17,28 @@
 	attack_verb = list("slashed", "sliced")
 	hitsound = "slash_sound"
 	var/atk_mode = SLASH
-	var/block_chance = 25
+	block_chance = 25
 	applies_material_colour = FALSE
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
 	sharpness = 25
+	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
 
 
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_sword_parry(user, damage, damage_source, attacker, def_zone, attack_text))
+		return 1
+
+	return 0
+
+/obj/item/proc/default_sword_parry(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	//Ok this if looks like a bit of a mess, and it is. Basically you need to have the sword in your active hand, and pass the default parry check
 	//and also pass the prob which is your melee skill devided by two + the swords block chance. Complicated, I know, but hopefully it'll balance out.
 
 	if(default_parry_check(user, attacker, damage_source) && prob((block_chance + (user.melee_skill / 2))) && (user.get_active_hand() == src))//You gotta be holding onto that sheesh bro.
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, pick('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg'), 50, 1)
+		if(parry_sounds)
+			playsound(user.loc, pick(parry_sounds), 50, 1)
 		user.adjustStaminaLoss(10)
 		health -= 0.5
 		if(prob(15))
@@ -39,7 +47,7 @@
 			throw_at(get_edge_target_turf(src, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
 
 		return 1
-	return 0
+
 
 /obj/item/weapon/material/sword/attack_self(mob/user)
 	..()

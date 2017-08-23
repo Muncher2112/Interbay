@@ -78,6 +78,8 @@
 	var/list/sprite_sheets_obj = list()
 	//This is a special snowflake var that lets us cut peoples' heads off.
 	var/sharpness = 0
+	var/block_chance = 0
+	var/list/parry_sounds = list()
 
 
 /obj/item/New()

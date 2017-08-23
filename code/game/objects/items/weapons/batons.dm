@@ -15,11 +15,13 @@
 	item_state = "nullrod"//item_state = "classic_baton"
 	slot_flags = SLOT_BELT
 	force = 10
+	block_chance = 15
+	parry_sounds = list('sound/weapons/blunt_parry1.ogg', 'sound/weapons/blunt_parry2.ogg', 'sound/weapons/blunt_parry3.ogg')
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
-		user.Weaken(3 * force)
+		user.Weaken(2 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, BP_HEAD)
@@ -27,6 +29,13 @@
 			user.take_organ_damage(2*force)
 		return
 	return ..()
+
+
+/obj/item/weapon/melee/classic_baton/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_sword_parry(user, damage, damage_source, attacker, def_zone, attack_text))
+		return 1
+	return 0
+
 
 //Telescopic baton
 /obj/item/weapon/melee/telebaton
@@ -38,7 +47,9 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	force = 3
+	block_chance = 15
 	var/on = 0
+	parry_sounds = list('sound/weapons/blunt_parry1.ogg', 'sound/weapons/blunt_parry2.ogg', 'sound/weapons/blunt_parry3.ogg')
 
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
@@ -94,3 +105,9 @@
 			return
 	else
 		return ..()
+
+
+/obj/item/weapon/melee/telebaton/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(on && default_sword_parry(user, damage, damage_source, attacker, def_zone, attack_text))
+		return 1
+	return 0
