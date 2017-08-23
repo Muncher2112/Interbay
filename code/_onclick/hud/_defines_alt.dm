@@ -54,12 +54,12 @@
 #define ui_pull "SOUTH-1,11"//12"
 #define ui_atk "SOUTH-1, 12"//atk_intents
 #define ui_resist "EAST+1,SOUTH-1"
-#define ui_acti "SOUTH-1,12"//"SOUTH-1,12"
+#define ui_acti "SOUTH-1,8"//"SOUTH-1,8"
 #define ui_combat "SOUTH-1,	14"//COMBAT MODE!
 #define ui_combat_intent "SOUTH-1, 13"
 #define ui_movi "EAST,SOUTH-1"
 #define ui_zonesel "EAST+1, NORTH-1"
-#define ui_acti_alt "14:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
+#define ui_acti_alt "SOUTH-1,8" //alternative intent switcher for when the interface is hidden (F12)
 
 
 
