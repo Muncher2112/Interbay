@@ -12,22 +12,22 @@
 	)
 
 /datum/mil_branch/ouvrier
-	name = "Ouvriers"
+	name = "Workers"
 	name_short = "OUV"
 	email_domain = "extraposte.free.nt"
 
 	assistant_job = "Assistant"
 
 /datum/mil_branch/contractuel
-	name = "Contractuels"
+	name = "Hired worker"
 	name_short = "CTRAT"
 	email_domain = "gocourriel.uni.nt"
 
-	assistant_job = "Stagiaire"
+	assistant_job = "Trainee"
 
 /datum/mil_branch/administration
 	name = "Administration"
 	name_short = "ADMIN"
 	email_domain = "intranet.nano"
 
-	assistant_job = "Secrétaire"
+	assistant_job = "Secretary"

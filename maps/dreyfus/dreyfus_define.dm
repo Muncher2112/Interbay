@@ -30,14 +30,14 @@
 
 	map_admin_faxes = list("Nanotrasen Industries Direction Centrale")
 
-	shuttle_docked_message = "La navette de roulement arrivée du %Dock_name% s'est amarée à la station. Départ dans %ETD%"
-	shuttle_leaving_dock = "La navette de roulement d'équipage s'est désamarée. Arrivé estimée dans %ETA%."
-	shuttle_called_message = "Un roulement d'équipage vers %Dock_name% viens d'être planifié. Une navette de transfert a été appelée. Elle arrivera dans approximativement %ETA%"
-	shuttle_recall_message = "Le roulement de l'équipage a été annulé."
-	emergency_shuttle_docked_message = "La navette d'évacuation s'est amarrée à la station. Vous êtes prié d'évacuer d'ici %ETD%."
-	emergency_shuttle_leaving_dock = "La navette d'évacuation s'est désamarée. Arrivé estimée dans %ETA%."
-	emergency_shuttle_called_message = "La navette d'évacuation a été appelée. Elle arrivera dans approximativement %ETA%"
-	emergency_shuttle_recall_message = "La navette d'évacuation a été rappelée. Le coût de cette manoevre sera déduit directement de vos salaires."
+	shuttle_docked_message = "The shuttle has docked."
+	shuttle_leaving_dock = "The shuttle has departed from home dock."
+	shuttle_called_message = "A scheduled transfer shuttle has been sent."
+	shuttle_recall_message = "The shuttle has been recalled"
+	emergency_shuttle_docked_message = "The emergency escape shuttle has docked."
+	emergency_shuttle_leaving_dock = "The emergency escape shuttle has departed from %dock_name%."
+	emergency_shuttle_called_message = "An emergency escape shuttle has been sent."
+	emergency_shuttle_recall_message = "The emergency shuttle has been recalled"
 
 	evac_controller_type = /datum/evacuation_controller/shuttle
 

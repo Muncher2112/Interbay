@@ -443,34 +443,34 @@
 
 // Elevator areas.
 /area/turbolift/coupole
-	name = "ascenseur (coupole)"
-	lift_floor_label = "Secteur A"
+	name = "Coupole"
+	lift_floor_label = "Sector A"
 	lift_floor_name = "Coupole"
-	lift_announce_str = "Arrivé à Secteur A, Coupole : Salle de Conference, Chapelle, Jardin."
+	lift_announce_str = "Arrive à Sector A, Coupole: Conference room, Chapel, Garden."
 
 /area/turbolift/bureaux
-	name = "ascenseur (bureaux)"
-	lift_floor_label = "Secteur B"
+	name = "Administration"
+	lift_floor_label = "Sector B"
 	lift_floor_name = "Administration"
-	lift_announce_str = "Arrivé à Secteur B, Administration : Bureaux des Employes, du Directeur, du Marshall et Evacuation."
+	lift_announce_str = "Arrive à Sector B, Administration: Employee Offices, Director, Brig and Evacuation."
 
 /area/turbolift/civil
-	name = "ascenseur (residentiel)"
-	lift_floor_label = "Secteur C"
-	lift_floor_name = "Zone Residentielle"
-	lift_announce_str = "Arrivé à Secteur C, Zone Residentielle : Cafetariat, Gymnase, Vestiaires, Clinique et Quartiers."
+	name = "Residential Zone"
+	lift_floor_label = "Sector C"
+	lift_floor_name = "Residential Zone"
+	lift_announce_str = "Arrive à Sector C, Residential Zone: Cafeteria, Gym, Dormitories, Medbay."
 
 /area/turbolift/cargo
-	name = "ascenseur (usine)"
-	lift_floor_label = "Secteur D"
-	lift_floor_name = "Zone Industrielle"
-	lift_announce_str = "Arrivé à Secteur D, Zone Industrielle : Usine, Entrepots, Raffinerie et Recherche & Developpement."
+	name = "Industrial Zone"
+	lift_floor_label = "Sector D"
+	lift_floor_name = "Industrial Zone"
+	lift_announce_str = "Arrie à Sector D, Industrial Zone: Factory, Warehouse, Refinery and Research & Development."
 
 /area/turbolift/engi
-	name = "ascenseur (ingenierie)"
-	lift_floor_label = "Secteur E"
-	lift_floor_name = "Ingenierie"
-	lift_announce_str = "Arrivé à Secteur E, Ingenierie : Generateur, Systemes de Survie, Telecommunications."
+	name = "Engineering"
+	lift_floor_label = "Sector E"
+	lift_floor_name = "Engineering"
+	lift_announce_str = "Arrive à Sector E, Engineering: Generator, Survival Systems, Telecommunications."
 	base_turf = /turf/simulated/floor
 
 // Dircen

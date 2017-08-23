@@ -1,6 +1,6 @@
 /obj/item/weapon/paper/objectifs_dreyfus
-	name = "Objectifs de productions"
-	info = "Objectifs du service envoyés par les actionnaires :<br><br>"
+	name = "Objectives of production"
+	info = "Your goals:<br><br>"
 	icon_state = "paper_words"
 
 /obj/item/weapon/paper/objectifs_dreyfus/New()
@@ -44,7 +44,7 @@
 	for(var/i = 1; i <= amount_objectives_high, i++)
 		if(products.len < 1) break
 		var/S = pick(products)
-		info += "Il y'a une forte demande de [S]<br>"
+		info += "There is a strong demand for [S]<br>"
 		products.Remove(S)
 
 	info+="<br>"
@@ -52,8 +52,8 @@
 	for(var/i = 1; i <= amount_objectives_low, i++)
 		if(products.len < 1) break
 		var/S = pick(products)
-		info += "Il y'a une faible demande de [S]<br>"
+		info += "There is a low demand for [S]<br>"
 		products.Remove(S)
 
 
-	info+="<br>Il est impératif que les objectifs de productions soit respectés.<br><br>-Direction Centrale"
+	info+="<br>It is imperative that the production objectives are respected. <br> <br> -Direction Centrale"
