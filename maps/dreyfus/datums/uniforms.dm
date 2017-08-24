@@ -76,6 +76,7 @@
 	r_pocket = /obj/item/weapon/handcuffs
 	id_type = /obj/item/weapon/card/id/dreyfus/sec
 	pda_type = /obj/item/device/pda/security
+	pda_slot = slot_l_store //So they don't lose their PDA.
 
 /decl/hierarchy/outfit/job/security/head_peacekeeper
 	name = OUTFIT_JOB_NAME("Head Peacekeeper")
