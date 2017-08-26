@@ -695,7 +695,7 @@
 					if(!paralysis)
 						emote("snore")
 					else
-						emote("groan")
+						agony_moan()//emote("groan")
 			if(prob(2) && is_asystole() && isSynthetic())
 				visible_message(src, "<b>[src]</b> [pick("emits low pitched whirr","beeps urgently")]")
 		//CONSCIOUS
@@ -1007,7 +1007,7 @@
 		// Please be very careful when calling custom_pain() from within code that relies on pain/trauma values. There's the
 		// possibility of a feedback loop from custom_pain() being called with a positive power, incrementing pain on a limb,
 		// which triggers this proc, which calls custom_pain(), etc. Make sure you call it with 0 power in these cases!
-		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10,nohalloss = 0)
+		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 10, nohalloss = 0)
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30)
@@ -1022,8 +1022,8 @@
 		//emote("moan")
 
 	if (shock_stage >= 60)
-		if(shock_stage == 60)
-			visible_message("<b>[src]</b>'s body becomes limp.")
+		//if(shock_stage == 60)
+		//	visible_message("<b>[src]</b>'s body becomes limp.")
 		if (prob(2))
 			custom_pain("[pick("The pain is excruciating", "Please, just end the pain")]!", shock_stage, nohalloss = 0)
 			adjustStaminaLoss(20)
@@ -1048,8 +1048,8 @@
 		//visible_message("<b>[src]</b> can no longer stand, collapsing!")
 		adjustStaminaLoss(20)//Weaken(20)
 
-	if(shock_stage >= 150)
-		Weaken(20)
+	//if(shock_stage >= 150)
+	//	Weaken(20)
 
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
