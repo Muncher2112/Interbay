@@ -155,7 +155,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(12,16), rand(10,14), rand(8,12))
+		H.add_stats(rand(12,18), rand(10,16), rand(8,12))
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -174,7 +174,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(10,15), rand(10,14), rand(7,10))
+		H.add_stats(rand(11,15), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -190,7 +190,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,12), rand(9,12), rand(7,10))
+		H.add_stats(rand(8,12), rand(9,12), rand(7,10))
 
 /datum/job/engineer
 	title = "Upkeeper"
@@ -222,7 +222,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+		H.add_stats(rand(9,16), rand(9,12), rand(6,9))
 
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
@@ -255,7 +255,7 @@
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	account_allowed = 0			  //This breaks things.
-	create_record = 0             //No one gives a fuck about kids lol.
+	create_record = 1             //No one gives a fuck about kids lol.
 	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
