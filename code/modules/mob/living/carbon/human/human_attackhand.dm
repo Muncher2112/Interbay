@@ -143,9 +143,10 @@
 			
 			switch(src.a_intent)
 				if(I_HELP)
-					// We didn't see this coming, so we get the full blow
-					rand_damage = 5
-					accurate = 1
+					if(!src.combat_mode)
+						// We didn't see this coming, so we get the full blow
+						rand_damage = 5
+						accurate = 1
 				if(I_HURT, I_GRAB)
 					// We're in a fighting stance, there's a chance we block
 					if(src.canmove && src!=H && prob(20))
