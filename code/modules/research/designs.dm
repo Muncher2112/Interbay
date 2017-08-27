@@ -329,7 +329,7 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/mining/plasmacutter
 	id = "plasmacutter"
 	req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 500, "gold" = 500, "phoron" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 500, "gold" = 500, "phoron" = 1500)
 	build_path = /obj/item/weapon/pickaxe/plasmacutter
 	sort_string = "KAAAC"
 
@@ -415,7 +415,7 @@ other types of metals and chemistry for reagents).
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
 	id = "bluespacebeaker"
 	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "phoron" = 3000, "diamond" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "phoron" = 5000, "diamond" = 500)
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	sort_string = "MADAB"
 
@@ -505,14 +505,14 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/stunrevolver
 	id = "stunrevolver"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000)
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
 	sort_string = "TAAAA"
 
 /datum/design/item/weapon/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "uranium" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 3000, "uranium" = 1500)
 	build_path = /obj/item/weapon/gun/energy/gun/nuclear
 	sort_string = "TAAAB"
 
@@ -520,28 +520,28 @@ other types of metals and chemistry for reagents).
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
 	id = "lasercannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1000, "diamond" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 20000, "glass" = 3000, "diamond" = 4000)
 	build_path = /obj/item/weapon/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
 /datum/design/item/weapon/phoronpistol
 	id = "ppistol"
 	req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "phoron" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 2000, "phoron" = 5000)
 	build_path = /obj/item/weapon/gun/energy/toxgun
 	sort_string = "TAAAD"
 
 /datum/design/item/weapon/decloner
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
-	materials = list("gold" = 5000,"uranium" = 10000, "mutagen" = 40)
+	materials = list("gold" = 7000,"uranium" = 13000, "mutagen" = 50)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
 
 /datum/design/item/weapon/smg
 	id = "smg"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, "silver" = 2000, "diamond" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "silver" = 4000, "diamond" = 2500)
 	build_path = /obj/item/weapon/gun/projectile/automatic
 	sort_string = "TAABA"
 
@@ -611,7 +611,7 @@ other types of metals and chemistry for reagents).
 	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
 	id = "temp_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 500, "silver" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1500, "silver" = 5500)
 	build_path = /obj/item/weapon/gun/energy/temperature
 	sort_string = "TABAC"
 
@@ -625,7 +625,7 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "uranium" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 1500, "uranium" = 1500)
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
 
@@ -718,7 +718,7 @@ other types of metals and chemistry for reagents).
 	id = "posibrain"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 6, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	build_type = PROTOLATHE | MECHFAB
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 500, "diamond" = 100)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 2100, "diamond" = 100)
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Misc"
 	sort_string = "VACAB"
@@ -1861,7 +1861,7 @@ CIRCUITS BELOW
 	desc = "A rock cutter that uses bursts of hot plasma, mountable on a RIG."
 	id = "rig_plasmacutter"
 	req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "plastic" = 1000, "gold" = 700, "phoron" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "plastic" = 1000, "gold" = 700, "phoron" = 1600)
 	build_path = /obj/item/rig_module/device/plasmacutter
 	sort_string = "VCAAH"
 
@@ -1943,7 +1943,7 @@ CIRCUITS BELOW
 	desc = "An energy gun, mountable on a RIG."
 	id = "rig_egun"
 	req_tech = list(TECH_POWER = 6, TECH_COMBAT = 6, TECH_ENGINEERING = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000, "plastic" = 2500, "gold" = 2000, "silver" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 4000, "plastic" = 3000, "gold" = 2500, "silver" = 2000)
 	build_path = /obj/item/rig_module/mounted/egun
 	sort_string = "VCAAO"
 
