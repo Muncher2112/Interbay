@@ -8,7 +8,7 @@
 
 //This contains a lot of copypasta but I'm told it's better then a lot of New()s appending the var.
 /obj/item/weapon/gun
-	description_info = "This is a gun.  To fire the weapon, ensure your intent is *not* set to 'help', have your gun mode set to 'fire', \
+	description_info = "This is a gun.  To fire the weapon, ensure that the safety is off, have your gun mode set to 'fire', \
 	then click where you want to fire."
 
 /obj/item/weapon/gun/energy
