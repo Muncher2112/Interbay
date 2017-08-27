@@ -50,20 +50,6 @@ proc/statscheck(var/stat, var/requirement, var/show_message, var/mob/user, var/m
 		return 1
 
 
-/mob/proc/skillnumtodesc(var/skill)
-	switch(skill)
-		if(0 to 25)
-			return "<small><i>pathetic</i></small>"
-		if(25 to 45)
-			return "unskilled"
-		if(45 to 60)
-			return pick("alright", "ok", "not bad")
-		if(60 to 80)
-			return "skilled"
-		if(80 to INFINITY)
-			return "<b>GOD LIKE</b>"
-
-
 proc/strToDamageModifier(var/strength)
 	switch(strength)
 		if(1 to 5)
@@ -78,6 +64,7 @@ proc/strToDamageModifier(var/strength)
 		if(16 to INFINITY)
 			return  1.75
 
+//Stats helpers.
 /mob/living/carbon/human/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.
 	if(stre)
 		str = stre
@@ -85,6 +72,32 @@ proc/strToDamageModifier(var/strength)
 		dex = dexe
 	if(inti)
 		int = inti
+
+
+/mob/proc/adjustStrength(var/num)
+	str += num
+
+/mob/proc/adjustDexterity(var/num)
+	dex += num
+
+/mob/proc/adjustInteligence(var/num)
+	int += num
+
+
+
+//Skill helpers.
+/mob/proc/skillnumtodesc(var/skill)
+	switch(skill)
+		if(0 to 25)
+			return "<small><i>pathetic</i></small>"
+		if(25 to 45)
+			return "unskilled"
+		if(45 to 60)
+			return pick("alright", "ok", "not bad")
+		if(60 to 80)
+			return "skilled"
+		if(80 to INFINITY)
+			return "<b>GOD LIKE</b>"
 
 /mob/living/carbon/human/proc/add_skills(var/melee, var/ranged, var/medical, var/engineering)//To make adding skills quicker.
 	if(melee)
