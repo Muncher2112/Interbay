@@ -76,10 +76,13 @@
 	// Species-specific sprite sheets for inventory sprites
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
-	//This is a special snowflake var that lets us cut peoples' heads off.
-	var/sharpness = 0
-	var/block_chance = 0
-	var/list/parry_sounds = list()
+	
+	var/sharpness = 0 //This is a special snowflake var that lets us cut peoples' heads off.
+	var/block_chance = 0 //This is the chance in percent that we will be able to block an attack with this weapon.
+	var/list/parry_sounds = list() //List of parry sounds to play when we block.
+	
+	var/next_attack_time = 0
+	var/weapon_speed_delay = 15 
 
 
 /obj/item/New()

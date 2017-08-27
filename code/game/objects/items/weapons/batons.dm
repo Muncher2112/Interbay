@@ -12,9 +12,9 @@
 	desc = "A plastic truncheon for beating criminal scum."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "baton"
-	item_state = "nullrod"//item_state = "classic_baton"
+	item_state = "nullrod"//item_state = "classic_baton" <-- This looks like shit.
 	slot_flags = SLOT_BELT
-	force = 10
+	force = 17
 	block_chance = 15
 	parry_sounds = list('sound/weapons/blunt_parry1.ogg', 'sound/weapons/blunt_parry2.ogg', 'sound/weapons/blunt_parry3.ogg')
 
@@ -46,7 +46,7 @@
 	item_state = "telebaton_0"
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
-	force = 3
+	force = 0
 	block_chance = 15
 	var/on = 0
 	parry_sounds = list('sound/weapons/blunt_parry1.ogg', 'sound/weapons/blunt_parry2.ogg', 'sound/weapons/blunt_parry3.ogg')
@@ -59,7 +59,7 @@
 		"<span class='warning'>You extend the baton.</span>",\
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
-		item_state = "nullrod" //item_state = "telebaton_1"
+		item_state = "nullrod" //item_state = "telebaton_1" <-- This doesn't even exist.
 		w_class = ITEM_SIZE_NORMAL
 		force = 15//quite robust
 		attack_verb = list("smacked", "struck")
@@ -70,7 +70,7 @@
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
 		w_class = ITEM_SIZE_SMALL
-		force = 3//not so robust now
+		force = 0//not so robust now
 		attack_verb = list("hit", "punched")
 
 	update_held_icon()

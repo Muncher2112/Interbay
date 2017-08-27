@@ -69,6 +69,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(user.staminaloss >= STAMINA_EXHAUST)//Can't attack people if you're out of stamina.
 		return 0
 
+	if(world.time <= next_attack_time)
+		if(world.time % 3) //to prevent spam
+			to_chat(user, "<span class='warning'>The [src] is not ready to attack again!</span>")
+		return 0
+	
 	/////////////////////////
 
 	if(!no_attack_log)
@@ -85,6 +90,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone)
+
+	next_attack_time = world.time + (weapon_speed_delay)//by default, that's 25 - 10. Which is 15. Which should be what the average attack is. People who are weaker will swing heavy objects slower.
 
 	return 1
 

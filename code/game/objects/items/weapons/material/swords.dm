@@ -22,6 +22,7 @@
 	drawsound = 'sound/items/unholster_sword02.ogg'
 	equipsound = 'sound/items/holster_sword1.ogg'
 	sharpness = 25
+	weapon_speed_delay = 20
 	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
 
 
@@ -120,3 +121,4 @@
 	w_class = ITEM_SIZE_SMALL
 	drawsound = 'sound/items/unholster_knife.ogg'
 	sharpness = 15
+	weapon_speed_delay = 10

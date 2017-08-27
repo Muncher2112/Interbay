@@ -5,7 +5,7 @@
 	icon_state = "red"
 	item_state = "toolbox_red"
 	flags = CONDUCT
-	force = 5
+	force = 15
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 7
