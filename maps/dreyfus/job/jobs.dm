@@ -36,7 +36,7 @@
 	minimal_player_age = 41
 	economic_modifier = 15
 	ideal_character_age = 65
-	outfit_type = /decl/hierarchy/outfit/job/dreyfus/directeur
+	outfit_type = /decl/hierarchy/outfit/job/dreyfus/commandant
 	
 	equip(var/mob/living/carbon/human/H)
 		..()

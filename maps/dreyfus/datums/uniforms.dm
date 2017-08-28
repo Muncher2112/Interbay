@@ -1,8 +1,8 @@
-/decl/hierarchy/outfit/job/dreyfus/directeur
-	name = OUTFIT_JOB_NAME("Directeur Executif")
+/decl/hierarchy/outfit/job/dreyfus/commandant
+	name = OUTFIT_JOB_NAME("Commandant")
 	l_ear = /obj/item/device/radio/headset/heads/captain
 	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
-	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
+	suit = /obj/item/clothing/suit/leathercoat
 	shoes = /obj/item/clothing/shoes/dress
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	l_hand = /obj/item/weapon/storage/briefcase
