@@ -500,7 +500,7 @@
 "jF" = (/obj/effect/wingrille_spawn/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/dreyfus/residentiel/clinique/reception)
 "jG" = (/obj/structure/table/shelf,/obj/item/weapon/storage/firstaid/regular,/obj/random/medical,/obj/random/medical,/obj/random/medical,/turf/simulated/floor/tiled/steel,/area/dreyfus/residentiel/clinique/urgences)
 "jH" = (/obj/item/weapon/storage/firstaid/toxin{pixel_x = -7; pixel_y = -7},/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/clinique/urgences)
-"jI" = (/obj/structure/closet/medical_wall/filled{pixel_x = 28},/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/clinique/urgences)
+"jI" = (/obj/structure/closet/medical_wall/filled{pixel_x = 28},/obj/structure/bed/chair/wheelchair,/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/clinique/urgences)
 "jJ" = (/obj/machinery/computer/arcade,/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/clinique/repos)
 "jK" = (/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/clinique/repos)
 "jL" = (/obj/structure/bed/chair/white{tag = "icon-chair_preview (EAST)"; icon_state = "chair_preview"; dir = 4},/obj/structure/disposalpipe/segment,/turf/simulated/floor/carpet/blucarpet,/area/dreyfus/residentiel/clinique/repos)
@@ -1054,3 +1054,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+
