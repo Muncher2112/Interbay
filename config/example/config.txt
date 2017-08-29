@@ -329,7 +329,7 @@ EVENT_CUSTOM_START_MAJOR 80;100
 #ALIENS_ALLOWED
 
 ## Uncomment to allow alien xenomorph queens to lay eggs.
-#ALIEN_EGGS_ALLOWED
+ALIEN_EGGS_ALLOWED
 
 ## Uncomment to allow xenos to spawn.
 #NINJAS_ALLOWED
