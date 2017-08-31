@@ -281,7 +281,7 @@ meteor_act
 			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
 
 	else if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
-		if(prob(I.sharpness))
+		if(prob(I.sharpness * strToDamageModifier(user.str)))
 			affecting.droplimb(0, DROPLIMB_EDGE)
 
 	var/obj/item/organ/external/head/O = locate(/obj/item/organ/external/head) in src.organs
