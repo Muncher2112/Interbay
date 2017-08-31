@@ -105,14 +105,19 @@
 				if(G.assailant == M)
 					to_chat(M, "<span class='notice'>You already grabbed [src].</span>")
 					return
+			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
+				return 
+			
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
 				to_chat(M, "<span class='notice'>You cannot grab [src], \he is buckled in!</span>")
+
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
+
 			M.put_in_active_hand(G)
 			G.synch()
 			LAssailant = M
@@ -246,6 +251,9 @@
 			admin_attack_log(M, src, "Disarmed their victim.", "Was disarmed.", "disarmed")
 			M.adjustStaminaLoss(rand(2,3))//No more spamming disarm without consequences.
 			M.do_attack_animation(src)
+
+			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
+				return 
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
