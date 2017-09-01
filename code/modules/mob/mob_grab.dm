@@ -161,7 +161,8 @@
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
 			C.apply_effect(STUTTER, 5) //It will hamper your voice, being choked and all.
-			C.Weaken(5)	//Should keep you down unless you get help.
+			if(C.lying)
+				C.Weaken(5)	//Should keep you down unless you get help.
 			C.losebreath = max(C.losebreath + 2, 3)
 
 	adjust_position()
