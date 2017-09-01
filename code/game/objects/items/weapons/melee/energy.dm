@@ -7,6 +7,7 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+
 	hitsound = 'sound/weapons/blade1.ogg'
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
@@ -68,6 +69,7 @@
 	//active_force = 150 //holy...
 	active_force = 60
 	active_throwforce = 35
+	active_sharpness = 60
 	//force = 40
 	//throwforce = 25
 	force = 20
@@ -101,7 +103,7 @@
 	icon_state = "sword0"
 	active_force = 30
 	active_throwforce = 20
-	active_sharpness = 30
+	active_sharpness = 50
 	force = 3
 	throwforce = 5
 	throw_speed = 1
