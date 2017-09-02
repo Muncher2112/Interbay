@@ -212,7 +212,7 @@ meteor_act
 
 
 	if(blocked == 100)
-		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
+		visible_message("<span class='danger'>[user] hits [src]'s [affecting.name] with the [I], but it does no damage!")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
 		return null
 
 	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
