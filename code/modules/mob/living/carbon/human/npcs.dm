@@ -1,74 +1,7 @@
 #define cycle_pause 15 //min 1
 #define viewrange 9 //min 2
 
-/mob/living/carbon/human/monkey/punpun/New()
-	..()
-	name = "Pun Pun"
-	real_name = name
-	var/obj/item/clothing/C
-	if(prob(50))
-		C = new /obj/item/clothing/under/punpun(src)
-		equip_to_appropriate_slot(C)
-	else
-		C = new /obj/item/clothing/under/punpants(src)
-		C.attach_accessory(null, new/obj/item/clothing/accessory/toggleable/hawaii/random(src))
-		equip_to_appropriate_slot(C)
-		if(prob(10))
-			C = new/obj/item/clothing/head/collectable/petehat(src)
-			equip_to_appropriate_slot(C)
-
-/obj/random_multi/single_item/punitelly
-	name = "Multi Point - Warrant Officer Punitelli"
-	id = "Punitelli"
-	item_path = /mob/living/carbon/human/monkey/punitelli
-
-/mob/living/carbon/human/monkey/punitelli/New()
-	..()
-	name = "Warrant Officer Punitelli"
-	real_name = name
-	var/obj/item/clothing/C
-	C = new /obj/item/clothing/under/utility/expeditionary/monkey(src)
-	equip_to_appropriate_slot(C)
-	if(prob(50))
-		C = new /obj/item/clothing/head/beret/sol/expedition(src)
-	else
-		C = new /obj/item/clothing/head/soft/sol/expedition
-	equip_to_appropriate_slot(C)
-	put_in_hands(new /obj/item/weapon/clipboard)
-	equip_to_appropriate_slot(new /obj/item/clothing/mask/smokable/cigarette/jerichos)
-
-/decl/hierarchy/outfit/blank_subject
-	name = "Test Subject"
-	uniform = /obj/item/clothing/under/color/white
-	shoes = /obj/item/clothing/shoes/white
-	head = /obj/item/clothing/head/helmet/facecover
-	//mask = /obj/item/clothing/mask/muzzle
-	//suit = /obj/item/clothing/suit/straight_jacket
-
-/decl/hierarchy/outfit/blank_subject/post_equip(mob/living/carbon/human/H)
-	var/obj/item/clothing/under/color/white/C = locate() in H
-	if(C)
-		C.has_sensor  = SUIT_LOCKED_SENSORS
-		C.sensor_mode = SUIT_SENSOR_OFF
-
-/mob/living/carbon/human/blank/New(var/new_loc)
-	..(new_loc, "Vat-Grown Human")
-	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
-	fully_replace_character_name("Subject [number]")
-	zone_sel = new /obj/screen/zone_sel( null )
-	zone_sel.selecting = "chest"
-	a_intent = I_HURT
-	var/decl/hierarchy/outfit/outfit = outfit_by_type(/decl/hierarchy/outfit/blank_subject)
-	outfit.equip(src)
-	is_npc = 1
-	hand = 0
-	var/obj/item/clothing/head/helmet/facecover/F = locate() in src
-	if(F)
-		F.name = "[F.name] ([number])"
-	put_in_active_hand(/obj/item/weapon/material/sword)
-	combat_mode = 1
-
-
+//HOSTILE NPC DEFINES
 /mob/living/carbon/human
 	var/list/path = new/list()
 	var/frustration = 0
@@ -79,11 +12,15 @@
 	var/list/path_target = new/list()
 	var/list/path_idle = new/list()
 	var/list/objects
+	var/list/npc_attack_sound = list("yells!", "makes a scary noise!")
 
 
 	// this is called when the target is within one tile
-	// of distance from the zombie
+	// of distance from the hostile npc
 	proc/attack_target()
+		var/obj/item/I = get_active_hand()
+		var/obj/item/II = get_inactive_hand()
+
 		if(target.stat != CONSCIOUS && prob(70) || target.is_npc)
 			return
 		var/direct = get_dir(src, target)
@@ -116,9 +53,9 @@
 				check_2 = Adjacent(get_turf(src), Step_2, target) && Adjacent(Step_2, get_turf(target), target)
 
 				if(check_1 || check_2)
-					target.attack_hand(src)
+					get_attack_type(I, II, target)
 					if(prob(30))
-						custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+						custom_emote(2, pick(npc_attack_sound))
 						return
 					return
 				else
@@ -127,23 +64,23 @@
 					if(W)
 						W.attack_hand(src)
 						if(prob(30))
-							custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+							custom_emote(2, pick(npc_attack_sound))
 							return
 						return 1
 					else if(WW)
 						WW.attack_hand(src)
 						if(prob(30))
-							custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+							custom_emote(2, pick(npc_attack_sound))
 							return
 						return 1
 		else if(Adjacent(src.loc , target.loc,target))
-			target.attack_hand(src)
+			get_attack_type(I, II, target)//target.attack_hand(src)
 			if(prob(30))
-				custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+				custom_emote(2, pick(npc_attack_sound))
 				return
 			// sometimes push the enemy
-			if(prob(30))
-				step(src,direct)
+			//if(prob(30))
+			//	step(src,direct)
 			return 1
 		else
 			var/obj/structure/window/W = locate() in target.loc
@@ -151,13 +88,13 @@
 			if(W)
 				W.attack_hand(src)
 				if(prob(30))
-					custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+					custom_emote(2, pick(npc_attack_sound))
 					return
 				return 1
 			else if(WW)
 				WW.attack_hand(src)
 				if(prob(30))
-					custom_emote(2, "makes a scary noise!")			//But he will say one of the prepared words, or do an emote from say.dm
+					custom_emote(2, pick(npc_attack_sound))
 					return
 				return 1
 
@@ -183,14 +120,14 @@
 			// no target, look for a new one
 
 			// look for a target, taking into consideration their health
-			// and distance from the zombie
+			// and distance from the npc
 			var/last_health = INFINITY
 			var/last_dist = INFINITY
 
 			for (var/mob/living/carbon/human/C in orange(viewrange-2,src.loc))
 				var/dist = get_dist(src, C)
 
-				// if the zombie can't directly see the human, they're
+				// if the npc can't directly see the human, they're
 				// probably blocked off by a wall, so act as if the
 				// human is further away
 				if(!(C in view(src, viewrange)))
@@ -304,5 +241,92 @@
 		..()
 		target = null
 
+	//This is the ugliest thing I have ever seen.
+	proc/get_attack_type(var/obj/item/I, var/obj/item/II, mob/living/carbon/human/target)
+		I = get_active_hand()
+		II = get_inactive_hand()
+		if(I)
+			target.attackby(I, src)
+		else if(II)
+			target.attackby(II, src)
+		else
+			target.attack_hand(src)
+
+
+//ACTUAL NPCs
+/mob/living/carbon/human/monkey/punpun/New()
+	..()
+	name = "Pun Pun"
+	real_name = name
+	var/obj/item/clothing/C
+	if(prob(50))
+		C = new /obj/item/clothing/under/punpun(src)
+		equip_to_appropriate_slot(C)
+	else
+		C = new /obj/item/clothing/under/punpants(src)
+		C.attach_accessory(null, new/obj/item/clothing/accessory/toggleable/hawaii/random(src))
+		equip_to_appropriate_slot(C)
+		if(prob(10))
+			C = new/obj/item/clothing/head/collectable/petehat(src)
+			equip_to_appropriate_slot(C)
+
+/obj/random_multi/single_item/punitelly
+	name = "Multi Point - Warrant Officer Punitelli"
+	id = "Punitelli"
+	item_path = /mob/living/carbon/human/monkey/punitelli
+
+/mob/living/carbon/human/monkey/punitelli/New()
+	..()
+	name = "Warrant Officer Punitelli"
+	real_name = name
+	var/obj/item/clothing/C
+	C = new /obj/item/clothing/under/utility/expeditionary/monkey(src)
+	equip_to_appropriate_slot(C)
+	if(prob(50))
+		C = new /obj/item/clothing/head/beret/sol/expedition(src)
+	else
+		C = new /obj/item/clothing/head/soft/sol/expedition
+	equip_to_appropriate_slot(C)
+	put_in_hands(new /obj/item/weapon/clipboard)
+	equip_to_appropriate_slot(new /obj/item/clothing/mask/smokable/cigarette/jerichos)
+
+
+
+//AN ACTUAL HOSTILE NPC
+/mob/living/carbon/human/blank/New(var/new_loc)
+	..(new_loc, "Vat-Grown Human")
+	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
+	fully_replace_character_name("Subject [number]")
+	zone_sel = new /obj/screen/zone_sel( null )
+	zone_sel.selecting = "chest"
+	a_intent = I_HURT
+	var/decl/hierarchy/outfit/outfit = outfit_by_type(/decl/hierarchy/outfit/blank_subject)
+	outfit.equip(src)
+	var/obj/item/clothing/head/helmet/facecover/F = locate() in src
+	if(F)
+		F.name = "[F.name] ([number])"
+
+	is_npc = 1//Make sure their an NPC so they don't attack each other.
+	hand = 0//Make sure one of their hands is active.
+	put_in_hands(new /obj/item/weapon/crowbar)//Give them a weapon.
+	combat_mode = 1//Put them in combat mode.
+	dex = 3
+
+
 /mob/living/carbon/human/blank/ssd_check()
 	return FALSE
+
+
+/decl/hierarchy/outfit/blank_subject
+	name = "Test Subject"
+	uniform = /obj/item/clothing/under/color/white
+	shoes = /obj/item/clothing/shoes/white
+	head = /obj/item/clothing/head/helmet/facecover
+	//mask = /obj/item/clothing/mask/muzzle
+	//suit = /obj/item/clothing/suit/straight_jacket
+
+/decl/hierarchy/outfit/blank_subject/post_equip(mob/living/carbon/human/H)
+	var/obj/item/clothing/under/color/white/C = locate() in H
+	if(C)
+		C.has_sensor  = SUIT_LOCKED_SENSORS
+		C.sensor_mode = SUIT_SENSOR_OFF
