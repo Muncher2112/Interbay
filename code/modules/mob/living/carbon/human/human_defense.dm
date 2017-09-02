@@ -235,20 +235,20 @@ meteor_act
 
 	var/organ_hit = affecting.name//This is spaghetti, but it's done so that it recognizes when you hit the throat, and when you hit something else instead.
 
-	if(hit_zone == BP_THROAT)
+	if(aim_zone == BP_THROAT)
 		organ_hit = "throat"
 
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
 
 
 	if(hit_zone != aim_zone && (aim_zone != BP_MOUTH) &&  (aim_zone != BP_THROAT) && (aim_zone != BP_EYES))//This is ugly but it works.
-		visible_message("<span class='danger'>[user] aimed for the [aimed.name], but hit the [organ_hit] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
+		visible_message("<span class='danger'>[user] aimed for [src]\'s [aimed.name], but hits \his [organ_hit] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
 
 	else if(blocked < 20 && blocked > 1)//This is ugly and it doesn't work.
-		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]! It only did a little damage!</span>")
+		visible_message("<span class='danger'>[user] hits [src]\'s [organ_hit] with the [I.name]! Slight damage was done.<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]! It only did a little damage!</span>")
 
 	else
-		visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]!</span>")
+		visible_message("<span class='danger'>[user] hits [src]\'s [organ_hit] with the [I.name]!<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]!</span>")
 
 	receive_damage()
 
