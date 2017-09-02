@@ -7,6 +7,14 @@ meteor_act
 
 */
 
+/obj/item/proc/get_attack_name()
+	if(sharp && edge)
+		return "slices"
+	else if(sharp && !edge)
+		return "stabs"
+	else
+		return "hits"
+
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
 	def_zone = check_zone(def_zone)
@@ -212,7 +220,7 @@ meteor_act
 
 
 	if(blocked == 100)
-		visible_message("<span class='danger'>[user] hits [src]'s [affecting.name] with the [I], but it does no damage!")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
+		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]'s [affecting.name] with the [I], but it does no damage!")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
 		return null
 
 	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
@@ -242,13 +250,13 @@ meteor_act
 
 
 	if(hit_zone != aim_zone && (aim_zone != BP_MOUTH) &&  (aim_zone != BP_THROAT) && (aim_zone != BP_EYES))//This is ugly but it works.
-		visible_message("<span class='danger'>[user] aimed for [src]\'s [aimed.name], but hits \his [organ_hit] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
+		visible_message("<span class='danger'>[user] aimed for [src]\'s [aimed.name], but [I.get_attack_name()] \his [organ_hit] instead. [(blocked < 20 && blocked > 1)  ? "Slight damage was done." : ""]</span>")
 
 	else if(blocked < 20 && blocked > 1)//This is ugly and it doesn't work.
-		visible_message("<span class='danger'>[user] hits [src]\'s [organ_hit] with the [I.name]! Slight damage was done.<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]! It only did a little damage!</span>")
+		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]\'s [organ_hit] with the [I.name]! Slight damage was done.<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]! It only did a little damage!</span>")
 
 	else
-		visible_message("<span class='danger'>[user] hits [src]\'s [organ_hit] with the [I.name]!<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]!</span>")
+		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]\'s [organ_hit] with the [I.name]!<span class='danger'>")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [organ_hit] with [I.name] by [user]!</span>")
 
 	receive_damage()
 
