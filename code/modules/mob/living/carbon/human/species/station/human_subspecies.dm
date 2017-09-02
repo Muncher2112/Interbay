@@ -48,6 +48,11 @@
 		BP_EYES =     /obj/item/organ/internal/eyes
 		)
 
+/datum/species/human/vatgrown/handle_npc(var/mob/living/carbon/human/H)
+	H.process()
+
+
+
 /datum/species/human/vatgrown/sanitize_name(name)
 	return sanitizeName(name, allow_numbers=TRUE)
 
