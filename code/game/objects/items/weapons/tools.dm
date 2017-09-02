@@ -78,7 +78,8 @@
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
 	..()
-
+/* 
+//Eye stabbing is lame.
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
@@ -87,7 +88,7 @@
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
 	return eyestab(M,user)
-
+*/
 /*
  * Wirecutters
  */
