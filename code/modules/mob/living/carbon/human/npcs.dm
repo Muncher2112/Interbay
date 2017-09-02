@@ -1,7 +1,7 @@
 #define cycle_pause 15 //min 1
 #define viewrange 9 //min 2
 
-//HOSTILE NPC DEFINES
+//HOSTILE NPC DEFINES CREDIT TO GUAP FOR THE FIRST ZOMBIE AI WRITEUP, AND TO GOON WHERE I'M SURE IT CAME FROM.
 /mob/living/carbon/human
 	var/list/path = new/list()
 	var/frustration = 0
