@@ -617,7 +617,7 @@ default behaviour is:
 /mob/living/proc/CheckStamina()
 	if(staminaloss <= 0)
 		setStaminaLoss(0)
-	
+
 	if(staminaloss && !combat_mode)//If we're not doing anything, we're not in combat mode, and we've lost stamina we can wait to gain it back.
 		if(lying)
 			adjustStaminaLoss(-5)
@@ -818,3 +818,27 @@ default behaviour is:
 
 /mob/living/proc/getTrail() //silicon and simple_animals don't get blood trails
     return null
+
+/mob/living/Move(NewLoc, direct)
+	for(var/client/C in in_vision_cones)
+		if(src in C.hidden_mobs)
+			var/turf/T = get_turf(src)
+			var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default", layer = 18)
+			C.images += I
+			spawn(4)
+				if(C)
+					C.images -= I
+		else
+			in_vision_cones.Remove(C)
+	. = ..()
+	spawn(1)
+		for(var/client/C in in_vision_cones)
+			if(src in C.hidden_mobs)
+				var/turf/T = get_turf(src)
+				var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default", layer = 18)
+				C.images += I
+				spawn(4)
+					if(C)
+						C.images -= I
+			else
+				in_vision_cones.Remove(C)

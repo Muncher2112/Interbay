@@ -56,3 +56,7 @@
 	var/doing_something = 0	//Like pulling teeth?
 
 	var/obj/screen/cells = null
+
+	var/list/in_vision_cones = list()
+
+	var/footstep = 0
