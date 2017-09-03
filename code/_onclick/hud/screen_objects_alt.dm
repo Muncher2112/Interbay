@@ -470,15 +470,7 @@
 			usr.stop_pulling()
 
 		if("rest")
-			if(usr.resting && !usr.stunned && !usr.weakened)//The incapacitated proc includes resting for whatever fucking stupid reason I hate SS13 code so fucking much.
-				usr.visible_message("<span class='notice'>[usr] is trying to get up.</span>")
-				if(do_after(usr, 20))
-					usr.resting = 0
-					usr.rest.icon_state = "rest0"
-				return
-			else
-				usr.resting = 1
-				usr.rest.icon_state = "rest1"
+			usr.mob_rest()
 
 		if("throw")
 			if(!usr.stat && isturf(usr.loc) && !usr.restrained())

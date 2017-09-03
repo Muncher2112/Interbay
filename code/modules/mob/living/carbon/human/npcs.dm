@@ -108,8 +108,9 @@
 		if(weakened || paralysis || handcuffed || !canmove)
 			return 1
 
-		//if(resting)
-			//rest()
+		if(resting)
+			mob_rest()
+			return 1
 
 		setStaminaLoss(0)//So they don't wear themselves out.
 
