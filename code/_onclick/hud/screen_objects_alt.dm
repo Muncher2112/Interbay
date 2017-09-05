@@ -291,7 +291,7 @@
 */
 /obj/screen/intent
 	name = "intent"
-	icon = 'icons/mob/screen/dark.dmi'
+	//icon = 'icons/mob/screen/dark.dmi'
 	icon_state = "intent_help"
 	screen_loc = ui_drop_throw//ui_acti
 	var/intent = I_HELP
