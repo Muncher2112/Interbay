@@ -9,9 +9,9 @@
 		hud_data = target.species.hud
 
 	if(hud_data.icon)
-		ui_style = 'icons/mob/screen/white_luna2.dmi'//hud_data.icon
+		ui_style = 'icons/mob/screen/dark.dmi'//hud_data.icon
 	else
-		ui_style = 'icons/mob/screen/white_luna2.dmi'
+		ui_style = 'icons/mob/screen/dark.dmi'
 
 	src.adding = list()
 	src.other = list()
@@ -286,7 +286,7 @@
 	mymob.rest.name = "rest"
 	mymob.rest.icon = ui_style
 	mymob.rest.icon_state = "rest[mymob.resting]"
-	mymob.rest.screen_loc = ui_rest//ui_resist
+	mymob.rest.screen_loc = ui_resist//ui_rest
 	hud_elements |= mymob.rest
 	if (mymob.resting)
 		mymob.rest.icon_state = "rest1"
