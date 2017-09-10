@@ -109,6 +109,7 @@
 	var/middle_click_intent = null //For doing different things with middle click.
 	var/combat_mode = 0//Living
 	var/using_alt_hud = 0 //For the lunahud.
+	var/silent = null 		//Living. Can't talk. Value goes down every life proc.
 	var/obj/buckled = null//Living
 	var/obj/item/l_hand = null//Living
 	var/obj/item/r_hand = null//Living
