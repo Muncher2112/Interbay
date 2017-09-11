@@ -181,6 +181,8 @@
 	var/memory = ""
 	var/flavor_text = ""
 
-	var/has_limbs = 1
+	var/has_limbs = 1//For crawling
 
-	var/scrambling = 0
+	var/scrambling = 0//For crawling.
+
+	var/emote_cd = 0//Emote cooldown.

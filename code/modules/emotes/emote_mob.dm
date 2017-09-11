@@ -1,3 +1,17 @@
+#define EMOTE_COOLDOWN 20		//Time in deciseconds that the cooldown lasts
+
+//Emote Cooldown System (it's so simple!)
+/mob/proc/handle_emote_CD()
+	if(emote_cd == 2) return 1			// Cooldown emotes were disabled by an admin, prevent use
+	if(src.emote_cd == 1) return 1		// Already on CD, prevent use
+
+	src.emote_cd = 1		// Starting cooldown
+	spawn(EMOTE_COOLDOWN)
+		if(emote_cd == 2) return 1		// Don't reset if cooldown emotes were disabled by an admin during the cooldown
+		src.emote_cd = 0				// Cooldown complete, ready for more!
+
+	return 0		// Proceed with emote
+
 /mob/proc/can_emote(var/emote_type)
 	return (stat == CONSCIOUS)
 
@@ -6,8 +20,13 @@
 
 /mob/proc/emote(var/act, var/m_type, var/message)
 	// s-s-snowflake
+	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
+
 	if(src.stat == DEAD && act != "deathgasp")
 		return
+	if(emote_cd == 1)		// Check if we need to suppress the emote attempt.
+		return
+
 	if(usr == src) //client-called emote
 		if (client && (client.prefs.muted & MUTE_IC))
 			to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
@@ -47,11 +66,12 @@
 		return
 
 	if(m_type != use_emote.message_type && use_emote.conscious && stat != CONSCIOUS)
-		to_chat(src, "<span class='warning'>You cannot currently [use_emote.message_type == AUDIBLE_MESSAGE ? "audibly" : "visually"] emote!</span>")
+	//	to_chat(src, "<span class='warning'>You cannot currently [use_emote.message_type == AUDIBLE_MESSAGE ? "audibly" : "visually"] emote!</span>")//This is a bugtesting thing. Shouldn't be in the base game.
 		return
 
-	if(m_type == AUDIBLE_MESSAGE && is_muzzled())
+	if(use_emote.message_type == AUDIBLE_MESSAGE && muzzled || use_emote.message_type == AUDIBLE_MESSAGE && silent >= 3)
 		audible_message("<b>\The [src]</b> makes a muffled sound.")
+		playsound(src, "sound/voice/muffled[rand(1,2)].ogg", 50, 0, 1)
 		return
 	else
 		use_emote.do_emote(src, message)

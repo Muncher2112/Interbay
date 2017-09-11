@@ -4,7 +4,8 @@
 	message_type = AUDIBLE_MESSAGE
 	var/emote_sound
 
-/decl/emote/audible/do_extra(var/atom/user)
+/decl/emote/audible/do_extra(var/mob/user)
+	user.handle_emote_CD()
 	if(emote_sound)
 		playsound(user.loc, emote_sound, 50, 0)
 
@@ -14,7 +15,23 @@
 
 /decl/emote/audible/whimper
 	key ="whimper"
-	emote_message_3p = "USER whimpers."
+
+/decl/emote/audible/whimper/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+
+	else if(user.gender == MALE)
+		emotesound = "sound/voice/emotes/whimper_male[rand(1,3)].ogg"
+
+	else
+		emotesound = "sound/voice/emotes/whimper_female[rand(1,3)].ogg"
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"whimpers.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/gasp
 	key ="gasp"
@@ -66,12 +83,10 @@
 
 /decl/emote/audible/sneeze
 	key = "sneeze"
-//	emote_message_3p = "USER sneezes."
 
 /decl/emote/audible/sneeze/do_emote(var/mob/living/carbon/human/user)
 	var/emotesound = null
 	if(user.isMonkey())
-		//screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 		return
 
 	else if(user.gender == MALE)
@@ -84,11 +99,13 @@
 		playsound(user, emotesound, 50, 0, 1)
 
 	user.custom_emote(2,"sneezes.")
+	user.handle_emote_CD()
 
 
 /decl/emote/audible/sniff
 	key = "sniff"
 	emote_message_3p = "USER sniffs."
+	emote_sound = 'sound/voice/emotes/sniff.ogg'
 
 /decl/emote/audible/snore
 	key = "snore"
@@ -101,7 +118,23 @@
 
 /decl/emote/audible/yawn
 	key = "yawn"
-	emote_message_3p = "USER yawns."
+
+/decl/emote/audible/yawn/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+
+	else if(user.gender == MALE)
+		emotesound = "sound/voice/emotes/male_yawn[rand(1,2)].ogg"
+
+	else
+		emotesound = "sound/voice/emotes/female_yawn[rand(1,3)].ogg"
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"yawns.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/clap
 	key = "clap"
@@ -113,8 +146,26 @@
 
 /decl/emote/audible/cough
 	key = "cough"
-	emote_message_3p = "USER coughs!"
 	conscious = 0
+
+/decl/emote/audible/cough/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+	else if(user.isChild())
+		emotesound = "sound/voice/emotes/female_cough[rand(1,6)].ogg"
+
+	else if(user.gender == MALE)
+		emotesound = "sound/voice/emotes/male_cough[rand(1,4)].ogg"
+
+	else
+		emotesound = "sound/voice/emotes/female_cough[rand(1,6)].ogg"
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"coughs.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/cry
 	key = "cry"
@@ -123,7 +174,6 @@
 /decl/emote/audible/cry/do_emote(var/mob/living/carbon/human/user)
 	var/emotesound = null
 	if(user.isMonkey())
-		//screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 		return
 
 	else if(user.isChild())
@@ -139,16 +189,15 @@
 		playsound(user, emotesound, 50, 0, 1)
 
 	user.custom_emote(2,"cries.")
+	user.handle_emote_CD()
 
 
 /decl/emote/audible/sigh
 	key = "sigh"
-//	emote_message_3p = "USER sighs."
 
 /decl/emote/audible/sigh/do_emote(var/mob/living/carbon/human/user)
 	var/emotesound = null
 	if(user.isMonkey())
-		//screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 		return
 
 	else if(user.gender == MALE)
@@ -161,19 +210,17 @@
 		playsound(user, emotesound, 50, 0, 1)
 
 	user.custom_emote(2,"sighs.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/laugh
 	key = "laugh"
-//	emote_message_3p = "USER laughs."
 
 /decl/emote/audible/laugh/do_emote(var/mob/living/carbon/human/user)
 	var/emotesound = null
 	if(user.isMonkey())
-		//screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 		return
 
 	else if(user.isChild())
-		//
 		if(user.gender == MALE)
 			emotesound = "sound/voice/emotes/boy_laugh[rand(1,2)].ogg"
 		else
@@ -189,6 +236,7 @@
 		playsound(user, emotesound, 50, 0, 1)
 
 	user.custom_emote(2,"laughs.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/mumble
 	key = "mumble"
@@ -212,36 +260,68 @@
 	key = "giggle"
 	emote_message_3p = "USER giggles."
 
+/decl/emote/audible/hem
+	key = "hem"
+
+/decl/emote/audible/hem/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+
+	else if(user.gender == MALE)
+		emotesound = 'sound/voice/emotes/hem_male.ogg'
+
+	else
+		emotesound = 'sound/voice/emotes/hem_female.ogg'
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"hems.")
+	user.handle_emote_CD()
+
 /decl/emote/audible/scream
 	key = "scream"
-	emote_message_3p = "USER screams!"
-/*
+
 /decl/emote/audible/scream/do_emote(var/mob/living/carbon/human/user)
-	if(user.stat)
+	var/emotesound = null
+	if(user.isMonkey())
 		return
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(!muzzled)
-			if(H.isMonkey())
-				screamsound = "sound/voice/monkey_pain[rand(1,3)].ogg"
 
-			else if(H.isChild())
-				screamsound = "sound/voice/child_pain[rand(1,2)].ogg"
+	else if(user.isChild())
+		emotesound = 'sound/voice/emotes/child_scream.ogg'
 
-			else if(src.gender == MALE)
-				screamsound = "sound/voice/man_pain[rand(1,3)].ogg"
+	else if(user.gender == MALE)
+		emotesound = "sound/voice/emotes/male_scream[rand(1,2)].ogg"
 
-			else
-				screamsound = "sound/voice/woman_agony[rand(1,3)].ogg"
-			message = "screams in agony!"
+	else
+		emotesound = "sound/voice/emotes/female_scream[rand(1,2)].ogg"
 
-		else
-			message = "makes a loud noise!"
-			screamsound = "sound/voice/gagscream[rand(1,3)].wav"
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
 
-	if(screamsound)
-		playsound(src, screamsound, 50, 0, 1)
+	user.custom_emote(2,"screams!")
+	user.handle_emote_CD()
 
-	if(message)
-		custom_emote(2,"[user] screams!")
-*/
+
+/decl/emote/audible/clearthroat
+	key = "clearthroat"
+
+/decl/emote/audible/clearthroat/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+	else if(user.isChild())
+		emotesound = null
+
+	else if(user.gender == MALE)
+		emotesound = 'sound/voice/emotes/throatclear_male.ogg'
+
+	else
+		emotesound = 'sound/voice/emotes/throatclear_female.ogg'
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"clears their throat.")
+	user.handle_emote_CD()
