@@ -240,11 +240,47 @@
 
 /decl/emote/audible/mumble
 	key = "mumble"
-	emote_message_3p = "USER mumbles!"
+
+/decl/emote/audible/mumble/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+	else if(user.isChild())
+		emotesound = 'sound/voice/emotes/mumble_female.ogg'
+
+	else if(user.gender == MALE)
+		emotesound = 'sound/voice/emotes/mumble_male.ogg'
+
+	else
+		emotesound = 'sound/voice/emotes/mumble_female.ogg'
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"mumbles.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/grumble
 	key = "grumble"
-	emote_message_3p = "USER grumbles!"
+
+/decl/emote/audible/grumble/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+	else if(user.isChild())
+		emotesound = 'sound/voice/emotes/mumble_female.ogg'
+
+	else if(user.gender == MALE)
+		emotesound = 'sound/voice/emotes/mumble_male.ogg'
+
+	else
+		emotesound = 'sound/voice/emotes/mumble_female.ogg'
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"grumbles.")
+	user.handle_emote_CD()
 
 /decl/emote/audible/groan
 	key = "groan"
@@ -258,7 +294,27 @@
 
 /decl/emote/audible/giggle
 	key = "giggle"
-	emote_message_3p = "USER giggles."
+
+/decl/emote/audible/giggle/do_emote(var/mob/living/carbon/human/user)
+	var/emotesound = null
+	if(user.isMonkey())
+		return
+
+	else if(user.isChild() && user.gender == FEMALE)
+		emotesound = "sound/voice/emotes/female_giggle[rand(1,2)].ogg"
+
+	else if(user.gender == FEMALE)
+		emotesound = "sound/voice/emotes/female_giggle[rand(1,2)].ogg"
+
+	else
+		emotesound = null
+
+	if(emotesound)
+		playsound(user, emotesound, 50, 0, 1)
+
+	user.custom_emote(2,"giggles.")
+	user.handle_emote_CD()
+
 
 /decl/emote/audible/hem
 	key = "hem"

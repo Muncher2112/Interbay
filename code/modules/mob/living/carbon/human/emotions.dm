@@ -45,13 +45,13 @@
 	set category = "Emotes"
 
 	emote("eyebrow",1)
-
+/*
 /mob/living/carbon/human/verb/chuckle()
 	set name = "Chuckle"
 	set category = "Emotes"
 
 	emote("chuckle",1)
-
+*/
 /mob/living/carbon/human/verb/cough()
 	set name = "Cough"
 	set category = "Emotes"
@@ -144,7 +144,7 @@
 
 
 /mob/living/carbon/human/verb/raise()
-	set name = "Raise"
+	set name = "Raise Hand"
 	set category = "Emotes"
 
 	emote("raise",1)
