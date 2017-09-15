@@ -1798,13 +1798,14 @@
 		var/list/status = list()
 		var/hurts = org.get_pain() + org.get_damage()
 
-		switch(hurts)
-			if(1 to 25)
-				status += "<small>pain</small>"
-			if(25 to 75)
-				status += "pain"
-			if(75 to INFINITY)
-				status += "<big>PAIN</big>"
+		if(!(chem_effects[CE_PAINKILLER] > 50))
+			switch(hurts)
+				if(1 to 25)
+					status += "<small>pain</small>"
+				if(25 to 75)
+					status += "pain"
+				if(75 to INFINITY)
+					status += "<big>PAIN</big>"
 
 		if(org.is_stump())
 			status += "MISSING"
