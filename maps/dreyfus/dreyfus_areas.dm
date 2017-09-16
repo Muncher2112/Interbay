@@ -432,6 +432,7 @@
 /area/dreyfus/fauxpont/iachambre
 	name = "Chambre IA"
 	icon_state = "ai_chamber"
+	forced_ambience = list('sound/ambience/ai_port_hum.ogg')
 
 /area/dreyfus/fauxpont/iasalon
 	name = "Acces IA"
