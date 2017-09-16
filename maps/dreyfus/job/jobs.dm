@@ -174,7 +174,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(11,15), rand(10,14), rand(7,10))
+		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -206,7 +206,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,12), rand(7,10), rand(11,14))
+		H.add_stats(rand(10,14), rand(7,10), rand(9,14))
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
