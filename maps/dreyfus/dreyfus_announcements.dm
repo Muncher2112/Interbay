@@ -11,6 +11,7 @@
 	grid_check_sound = 'sound/AI/november/warning.ogg'
 	grid_restored_sound = 'sound/AI/november/warning.ogg'
 	meteor_detected_sound = 'sound/AI/november/threat.ogg'
+	radiation_detected_message = "WARNING: High levels of radiation detected in proximity of the %STATION_NAME%. Please evacuate into one of the shielded maintenance tunnels."
 	radiation_detected_sound = 'sound/AI/november/threat.ogg'
 	space_time_anomaly_sound = 'sound/AI/november/subspace.ogg'
 	unidentified_lifesigns_sound = 'sound/AI/november/threat.ogg'
