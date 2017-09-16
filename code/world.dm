@@ -493,10 +493,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
-	//spawn(0)
-	sound_to(world, sound(pick('sound/misc/endsound4.ogg')))// random end sounds!! - LastyBatsy
-		//world << 'sound/misc/endsound4.ogg'
-
+	spawn(0)
+		sound_to(world, sound(pick('sound/misc/endsound4.ogg', 'sound/misc/endsound5.ogg')))// random end sounds!! - LastyBatsy
 
 	processScheduler.stop()
 
