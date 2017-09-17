@@ -54,7 +54,7 @@
 /obj/item/weapon/material/knife
 	name = "kitchen knife"
 	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "knife"
+	icon_state = "knife_kitchen"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = CONDUCT
 	sharp = 1
