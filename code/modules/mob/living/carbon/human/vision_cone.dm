@@ -76,6 +76,9 @@ mob/living/carbon/human/update_vision_cone()
 				if(src.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
 					I.override = 0
 
+				else if(M.footstep >= 1)
+					M.in_vision_cones[src.client] = 1
+
 			//Optional items can be made invisible too. Uncomment this part if you wish to items to be invisible.
 			//var/obj/item/O
 			//for(O in cone(src, OPPOSITE_DIR(src.dir), oview(src)))
