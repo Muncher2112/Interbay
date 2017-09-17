@@ -12,9 +12,6 @@
 //Defines.
 #define OPPOSITE_DIR(D) turn(D, 180)
 
-/mob
-	var/obj/screen/fov = null//The screen object because I can't figure out how the hell TG does their screen objects so I'm just using legacy code.
-
 client/
 	var/list/hidden_atoms = list()
 	var/list/hidden_mobs = list()
@@ -55,16 +52,16 @@ proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 mob/proc/update_vision_cone()
 	return
 
-mob/living/update_vision_cone()
+mob/living/carbon/human/update_vision_cone()
 	var/delay = 10
-	if(src.client && src.fov)
+	if(src.client)
 		var/image/I = null
 		for(I in src.client.hidden_atoms)
 			I.override = 0
 			spawn(delay)
 				qdel(I)
 			delay += 10
-		rest_cone_act()
+		check_fov()
 		src.client.hidden_atoms = list()
 		src.client.hidden_mobs = list()
 		src.fov.dir = src.dir
@@ -78,8 +75,6 @@ mob/living/update_vision_cone()
 				src.client.hidden_mobs += M
 				if(src.pulling == M)//If we're pulling them we don't want them to be invisible, too hard to play like that.
 					I.override = 0
-				else if(M.footstep >= 1)
-					M.in_vision_cones[src.client] = 1
 
 			//Optional items can be made invisible too. Uncomment this part if you wish to items to be invisible.
 			//var/obj/item/O
@@ -92,17 +87,31 @@ mob/living/update_vision_cone()
 	else
 		return
 
-mob/proc/rest_cone_act()//For showing and hiding the cone when you rest or lie down.
-	if(resting || lying)
+mob/living/carbon/human/proc/SetFov(var/n)
+	if(!n)
 		hide_cone()
 	else
 		show_cone()
 
+mob/living/carbon/human/proc/check_fov()
+
+	if(resting || lying || client.eye != client.mob)
+		src.fov.alpha = 0
+		return
+
+	else if(src.usefov)
+		show_cone()
+
+	else
+		hide_cone()
+
 //Making these generic procs so you can call them anywhere.
-mob/proc/show_cone()
+mob/living/carbon/human/proc/show_cone()
 	if(src.fov)
 		src.fov.alpha = 255
+		src.usefov = 1
 
-mob/proc/hide_cone()
+mob/living/carbon/human/proc/hide_cone()
 	if(src.fov)
 		src.fov.alpha = 0
+		src.usefov = 0

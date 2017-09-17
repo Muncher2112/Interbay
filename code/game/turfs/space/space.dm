@@ -53,6 +53,9 @@ var/image/exterior_light_overlay
 /turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
 
+/turf/space/is_space()
+	return 1
+
 /turf/space/proc/update_starlight()
 	if(!config.starlight)
 		return

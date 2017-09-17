@@ -393,14 +393,16 @@
 	mymob.radio_use_icon.color = ui_color
 	mymob.radio_use_icon.alpha = ui_alpha
 
-	mymob.fov = new /obj/screen()
-	mymob.fov.icon = 'icons/mob/hide.dmi'
-	mymob.fov.icon_state = "combat"
-	mymob.fov.name = " "
-	mymob.fov.screen_loc = "1,1"
-	mymob.fov.mouse_opacity = 0
-	mymob.fov.layer = UNDER_HUD_LAYER
-	hud_elements |= mymob.fov
+	if(ishuman(mymob))
+		var/mob/living/carbon/human/H = mymob
+		H.fov = new /obj/screen()
+		H.fov.icon = 'icons/mob/hide.dmi'
+		H.fov.icon_state = "combat"
+		H.fov.name = " "
+		H.fov.screen_loc = "1,1"
+		H.fov.mouse_opacity = 0
+		H.fov.layer = UNDER_HUD_LAYER
+		hud_elements |= H.fov
 
 	mymob.client.screen = list()
 
