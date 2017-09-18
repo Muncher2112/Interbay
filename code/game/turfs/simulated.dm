@@ -184,7 +184,7 @@
 			if(2 <= src.wet) // Lube
 				floor_type = "slippery"
 				slip_dist = 4
-				slip_stun = 10
+				slip_stun = 3
 
 			if(M.slip("the [floor_type] floor", slip_stun))
 				for(var/i = 1 to slip_dist)
