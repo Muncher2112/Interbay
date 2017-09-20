@@ -47,19 +47,19 @@
 	name = "hydro floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "hydrofloor"
-	initial_flooring = /decl/flooring/tiling/bunker/hydro
+	initial_flooring = /decl/flooring/tiling/bunker/floor/hydro
 
 /turf/simulated/floor/bunker/showroom
 	name = "showroom floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "showroomfloor"
-	initial_flooring = /decl/flooring/tiling/bunker/showroom
+	initial_flooring = /decl/flooring/tiling/bunker/floor/showroom
 
 /turf/simulated/floor/bunker/cafe
 	name = "cafe floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "cafe"
-	initial_flooring = /decl/flooring/tiling/bunker/cafe
+	initial_flooring = /decl/flooring/tiling/bunker/floor/cafe
 
 /turf/simulated/floor/bunker/floor
 	name = "floor"
@@ -112,6 +112,31 @@
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
+
+/turf/simulated/floor/tiled/misc
+	icon = 'icons/turf/flooring/misc.dmi'
+	initial_flooring = /decl/flooring/tiling/misc
+	icon_state = "steel"
+
+/turf/simulated/floor/tiled/misc/sec
+	icon_state = "sec_chess"
+	initial_flooring = /decl/flooring/tiling/misc/sec
+
+/turf/simulated/floor/tiled/misc/med
+	icon_state = "tealwh_chess"
+	initial_flooring = /decl/flooring/tiling/misc/med
+
+/turf/simulated/floor/tiled/misc/cargo
+	icon_state = "cargo_chess"
+	initial_flooring = /decl/flooring/tiling/misc/cargo
+
+/turf/simulated/floor/tiled/misc/blue
+	icon_state = "blue_chess"
+	initial_flooring = /decl/flooring/tiling/misc/blue
+
+/turf/simulated/floor/tiled/misc/purple
+	icon_state = "prwh_chess"
+	initial_flooring = /decl/flooring/tiling/misc/purple
 
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"
@@ -247,6 +272,8 @@
 /turf/simulated/floor/snow/New()
 	icon_state = "snow[rand(0,12)]"
 	..()
+
+/turf/simulated/floor/
 
 /turf/simulated/floor/light
 /turf/simulated/floor/beach/coastline
