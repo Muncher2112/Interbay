@@ -637,7 +637,7 @@
 "mm" = (/obj/structure/ladder,/turf/simulated/floor/tiled/techfloor/grid,/area/dreyfus/residentiel/maintenance/arriere)
 "mn" = (/obj/machinery/door/airlock/medical{name = "Medbay Locker Room"; req_access = list(5,66)},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/white,/area/dreyfus/residentiel/maintenance/arriere)
 "mo" = (/obj/structure/grille,/obj/machinery/door/firedoor/border_only,/obj/structure/curtain/medical,/turf/simulated/floor/tiled/misc/med,/area/dreyfus/residentiel/clinique/traitement)
-"mp" = (/obj/structure/sign{tag = "icon-examroom"; icon_state = "examroom"},/turf/simulated/floor/tiled/misc/med,/area/dreyfus/residentiel/clinique/traitement)
+"mp" = (/obj/structure/sign{tag = "icon-examroom"; icon_state = "examroom"},/turf/simulated/wall,/area/dreyfus/residentiel/clinique/traitement)
 "mq" = (/obj/structure/curtain/open/medical,/obj/structure/window/reinforced,/turf/simulated/floor/tiled/misc/med,/area/dreyfus/residentiel/clinique/traitement)
 "mr" = (/obj/structure/curtain/open/medical,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/door/window{dir = 2; icon_state = "left"; req_access = list(5); tag = "icon-left"},/turf/simulated/floor/tiled/misc/med,/area/dreyfus/residentiel/clinique/traitement)
 "ms" = (/obj/structure/closet/walllocker/emerglocker/west,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/plating,/area/dreyfus/residentiel/clinique/chirurgie)
