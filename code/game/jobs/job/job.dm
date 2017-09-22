@@ -32,6 +32,8 @@
 
 	var/announced						  //If their arrival is announced on radio
 
+	var/no_late_join = 0				  //Can this job join after the round has started?
+
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title, branch)
 	if(!outfit)

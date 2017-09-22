@@ -15,7 +15,9 @@
 						/datum/job/ouvrier,
 						/datum/job/chef,
 						/datum/job/chaplain,
-						/datum/job/janitor
+						/datum/job/janitor,
+						/datum/job/raider,
+						/datum/job/raider/leader
 						)
 
 /datum/job/assistant
@@ -24,6 +26,7 @@
 	minimal_player_age = 14
 	economic_modifier = 3
 	ideal_character_age = 21
+	alt_titles = null
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -37,7 +40,7 @@
 	economic_modifier = 15
 	ideal_character_age = 65
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/commandant
-	
+
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(6,9), rand(9,11), rand(10,12))
@@ -131,7 +134,7 @@
 		..()
 		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
 		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
-	
+
 
 /datum/job/hos
 	title = "Head Peacekeeper"
@@ -165,7 +168,7 @@
 	department_flag = SEC
 	faction = "Station"
 	total_positions = 4
-	spawn_positions = 4	
+	spawn_positions = 4
 	economic_modifier = 4
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
@@ -235,7 +238,7 @@
 	spawn_positions = 2
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	
+
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
@@ -272,7 +275,7 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
-	
+
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(7,12), rand(7,12), rand(10,15))
@@ -285,7 +288,7 @@
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 1
-	
+
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(5,10), rand(9,12), rand(10,14))
@@ -298,14 +301,75 @@
 	ideal_character_age = 21
 	total_positions = 2
 	spawn_positions = 2
-	
+
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(5,9))
 
-/datum/job/cyborg
-	title = "Cyborg"
-	alt_titles = list(
-		"Robot",
-		"Android",
-		)
+//OFF STATION JOBS
+
+/datum/job/raider
+	title = "Raider"
+	department = "Civilian"
+	faction = "Station"
+	department_flag = CIV
+	total_positions = 5
+	spawn_positions = 5
+	create_record = 0
+	account_allowed = 0
+	has_email = 0
+	no_late_join = 1
+	selection_color = "#6161aa"
+	outfit_type = /decl/hierarchy/outfit/shipraiders
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.real_name = "[get_random_raider_name()]"//Give them a random raider nickname.
+		H.name = H.real_name
+
+		//Peacekeeper setup.
+		H.add_stats(rand(11,18), rand(10,14), rand(7,10))
+		H.add_skills(rand(60, 75), rand(60,75))
+
+		//Some dumb if shit.
+		if(prob(50))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet(H),slot_back)
+		else if(prob(50))
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty(H),slot_back)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/shotgun/pump/shitty(H),slot_back)
+
+		if(prob(50))
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H),slot_wear_mask)
+
+/datum/job/raider/leader
+	title = "Lead Raider"
+	total_positions = 1
+	spawn_positions = 1
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.real_name = "The Leader"
+		H.name = H.real_name
+
+//Stupid random names for them.
+/datum/job/proc/get_random_raider_name()
+	return "[pick("Spook", "Big", "Big Boy", "Big Girl", "Cheese", "Artist", "Greasy", "Dick", "Weasel", "Small", "Dixon", "Dixy", "Rat", "Knot", "Suffering", "Slick", "Scars", "Old Guy", "Heel", "Nine Lives", "Two Fingers", "Poet", "Dash", "Angel", "Bug", "Beast", "Enema", "Animal", "Oz", "Cinnamon", "Heavy", "Echo", "Cannon", "Under", "Smokes", "Joe", "Pig")]"
+
+/obj/item/clothing/under/ert/raider
+	name = "raiders uniform"
+
+
+/decl/hierarchy/outfit/shipraiders
+	name = "Raiders"
+	head = /obj/item/clothing/head/helmet/siege
+	uniform = /obj/item/clothing/under/ert/raider
+	shoes = /obj/item/clothing/shoes/jackboots
+	l_ear = /obj/item/device/radio/headset/raider
+	r_pocket = /obj/item/weapon/card/emag
+	//belt = /obj/item/weapon/gun/projectile/pistol
+	suit = /obj/item/clothing/suit/storage/vest/opvest
+	//mask = /obj/item/clothing/mask/gas
+	gloves = /obj/item/clothing/gloves/thick/swat/combat
+	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
+	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
