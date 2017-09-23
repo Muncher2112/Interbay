@@ -35,7 +35,7 @@
 
 /datum/job/captain
 	title = "Commandant"
-	supervisors = "KNC and you're good will."
+	supervisors = "CMA and you're good will."
 	minimal_player_age = 41
 	economic_modifier = 15
 	ideal_character_age = 65
@@ -209,7 +209,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(10,14), rand(7,10), rand(9,14))
+		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
