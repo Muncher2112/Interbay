@@ -174,6 +174,12 @@ var/list/datum/power/changeling/powerinstances = list()
 	genomecost = 7
 	verbpath = /mob/proc/changeling_rapidregen
 
+/datum/power/changeling/buffstats
+	name = "Buff Stats"
+	desc = "We evolve our dna makeup to give us increased strength, dexterity, and intenlligence."
+	helptext = "ST, DX and IT are all buffed by 5. Is one use only."
+	genomecost = 4
+	verbpath = /mob/proc/changeling_buff_stats
 
 
 // Modularchangling, totally stolen from the new player panel.  YAYY

@@ -838,3 +838,25 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 
 	feedback_add_details("changeling_powers","ED")
 	return 1
+
+/mob/proc/changeling_buff_stats()
+	set category = "Changeling"
+	set name = "Buff Stats (30)"
+	set desc="Give yourself increased stats. One use only!"
+
+	var/datum/changeling/changeling = null
+	if(src.mind && src.mind.changeling)
+		changeling = src.mind.changeling
+	if(!changeling)
+		return 0
+
+	src.mind.changeling.chem_charges -= 30
+
+	var/mob/living/carbon/human/C = src
+	C.adjustStrength(5)
+
+	C.adjustDexterity(5)
+
+	C.adjustInteligence(5)
+
+	src.verbs -= /mob/proc/changeling_buff_stats
