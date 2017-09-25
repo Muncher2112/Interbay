@@ -15,9 +15,9 @@
 						/datum/job/ouvrier,
 						/datum/job/chef,
 						/datum/job/chaplain,
-						/datum/job/janitor,
-						/datum/job/raider,
-						/datum/job/raider/leader
+						/datum/job/janitor
+						///datum/job/raider,
+						///datum/job/raider/leader
 						)
 
 /datum/job/assistant
@@ -203,6 +203,7 @@
 	ideal_character_age = 21
 	total_positions = 3
 	spawn_positions = 3
+	alt_titles = null
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/inge/inge
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
