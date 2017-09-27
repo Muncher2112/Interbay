@@ -440,6 +440,8 @@
 	//It's easier to break out of a grab by a smaller mob
 	break_strength += max(size_difference(affecting, assailant), 0)
 
+	break_strength += affecting.str - assailant.str
+
 	var/break_chance = break_chance_table[Clamp(break_strength, 1, break_chance_table.len)]
 	if(prob(break_chance))
 		if(state == GRAB_KILL && !prob((break_chance+100)/2))
