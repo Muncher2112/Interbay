@@ -1772,13 +1772,12 @@
 	else//We don't want to spam the chat that we're checking ourselves for injuries when we're out fucking cold.
 		to_chat(src, "<span class='notice'><b>Let's see how I am doing.</b></span>")
 
-	for(var/obj/item/organ/external/org in organs)
-		var/list/status = list()
+	
 
-		var/feels = 1 + round(org.pain/100, 0.1)
-		var/brutedamage = org.brute_dam * feels
-		var/burndamage = org.burn_dam * feels
-
+		//var/feels = 1 + round(org.pain/100, 0.1)
+		//var/brutedamage = org.brute_dam * feels
+		//var/burndamage = org.burn_dam * feels
+		/*
 		switch(brutedamage)
 			if(1 to 20)
 				status += "bruised"
@@ -1794,23 +1793,38 @@
 				status += "blistered"
 			if(40 to INFINITY)
 				status += "peeling away"
+		*/
+	for(var/obj/item/organ/external/org in organs)
+		var/list/status = list()
+		var/hurts = org.get_pain() + org.get_damage()
+
+		if(!(chem_effects[CE_PAINKILLER] > 50))
+			switch(hurts)
+				if(1 to 25)
+					status += "<small>pain</small>"
+				if(25 to 75)
+					status += "pain"
+				if(75 to INFINITY)
+					status += "<big>PAIN</big>"
 
 		if(org.is_stump())
 			status += "MISSING"
 		if(org.status & ORGAN_MUTATED)
-			status += "misshapen"
+			status += "MISSHAPEN"
+		if(org.status & ORGAN_BLEEDING)
+			status += "BLEEDING"
 		if(org.dislocated == 2)
-			status += "dislocated"
+			status += "DISLOCATED"
 		if(org.status & ORGAN_BROKEN)
-			status += "hurts when touched"
+			status += "BROKEN"
 		if(org.status & ORGAN_DEAD)
-			status += "is bruised and necrotic"
+			status += "NECROTIC"
 		if(!org.is_usable() || org.is_dislocated())
-			status += "dangling uselessly"
+			status += "UNUSABLE"
 		if(status.len)
-			to_chat(src, "My [org.name] is <span class='warning'>[english_list(status)].</span>")
+			to_chat(src, "<b>[capitalize(org.name)]:</b> <span class='danger'>[english_list(status)]!</span>")
 		else
-			to_chat(src, "My [org.name] is <span class='notice'>OK.</span>")
+			to_chat(src, "<b>[capitalize(org.name)]:</b> <span class='notice'>OK</span>")
 
 /mob/living/carbon/human/throw_impact(atom/hit_atom)
 	if(iswall(hit_atom))

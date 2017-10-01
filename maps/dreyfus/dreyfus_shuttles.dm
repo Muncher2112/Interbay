@@ -74,7 +74,7 @@
 	departure_message = "That Asset Protection vessel is headed back the way it came. Hope they were helpful."
 
 /obj/effect/shuttle_landmark/lavalette/start
-	name = "Espace de Patrouille"
+	name = "Patrol Area"
 	landmark_tag = "nav_lavalette_start"
 
 /obj/effect/shuttle_landmark/lavalette/internim
@@ -82,15 +82,15 @@
 	landmark_tag = "nav_lavalette_transition"
 
 /obj/effect/shuttle_landmark/lavalette/xenoarch
-	name = "Au sas de Xenoarcheologie"
+	name = "To the Xenoarcheology Airlock"
 	landmark_tag = "nav_lavalette_xenoarch"
 
 /obj/effect/shuttle_landmark/lavalette/coupole
-	name =  "Proche de la Coupole"
+	name =  "Near the Dome"
 	landmark_tag = "nav_lavalette_coupole"
 
 /obj/effect/shuttle_landmark/lavalette/residentiel
-	name = "Pres de l'acces Residentiel"
+	name = "Near the Residential Access"
 	landmark_tag = "nav_lavalette_residen"
 
 //Cargo shuttle
@@ -161,7 +161,7 @@
 	departure_message = "Your visitors are on their way out of the system, burning delta-v like it's nothing. Good riddance."
 
 /obj/effect/shuttle_landmark/merc/start
-	name = "Base Mercenaire"
+	name = "Mercenary Base"
 	landmark_tag = "nav_merc_start"
 	docking_controller = "dock_merc"
 
@@ -175,15 +175,15 @@
 	docking_controller = "dock2"
 
 /obj/effect/shuttle_landmark/merc/coupole
-	name = "Proche de la Coupole"
+	name = "Near the Dome"
 	landmark_tag = "nav_merc_coupole"
 
 /obj/effect/shuttle_landmark/merc/minage
-	name = "Au sas de Minage"
+	name = "At the mining airlock"
 	landmark_tag = "nav_merc_minage"
 
 /obj/effect/shuttle_landmark/merc/residentiel
-	name = "Pres de l'acces Residentiel"
+	name = "Near the Residential Access"
 	landmark_tag = "nav_merc_residentiel"
 
 //Ninja
@@ -201,7 +201,7 @@
 	shuttle_area = /area/syndicate_mothership/ninja
 	current_location = "nav_ninja_start"
 	landmark_transition = "nav_ninja_transition"
-	announcer = "Direction Centrale"
+	announcer = "Colonial Magistrate Authority"
 	arrival_message = "Attention, anomalous sensor reading detected entering station proximity."
 	departure_message = "Attention, anomalous sensor reading detected leaving station proximity."
 

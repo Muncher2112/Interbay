@@ -33,6 +33,7 @@
 	#include "structures/machinery.dm"
 	#include "structures/railing.dm"
 	#include "structures/shelf.dm" //Abruti
+	#include "dreyfus_gamemodes.dm"
 
 	#include "dreyfus-01.dmm" // - Abandonné - IA(?), traitement des déchets
 	#include "dreyfus-02.dmm" // - Ingénierie - Moteur. Lifesupport.

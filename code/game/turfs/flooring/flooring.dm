@@ -85,6 +85,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
 
+
 /decl/flooring/linoleum
 	name = "linoleum"
 	desc = "It's like the 2390's all over again."
@@ -118,7 +119,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_freezer
 
-/decl/flooring/tiling/bunker/hydro
+/decl/flooring/tiling/bunker/floor/hydro
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "hydro"
@@ -126,7 +127,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_hydro
 
-/decl/flooring/tiling/bunker/showroom
+/decl/flooring/tiling/bunker/floor/showroom
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "hydro"
@@ -134,7 +135,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_showroom
 
-/decl/flooring/tiling/bunker/cafe
+/decl/flooring/tiling/bunker/floor/cafe
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "cafe"
@@ -145,6 +146,7 @@ var/list/flooring_types
 /decl/flooring/tiling/bunker/floor
 	name = "floor"
 	desc = "Don't slip."
+	icon = 'icons/turf/bunk.dmi'
 	icon_base = "old_tile"
 	has_damage_range = null
 	flags = null
@@ -174,6 +176,29 @@ var/list/flooring_types
 	icon_base = "polar"
 	has_damage_range = null
 
+
+/decl/flooring/tiling/misc
+	icon = 'icons/turf/flooring/misc.dmi'
+	has_damage_range = null
+	can_paint = 0
+
+/decl/flooring/tiling/misc/sec
+	icon_base = "sec_chess"
+
+/decl/flooring/tiling/misc/med
+	icon_base = "tealwh_chess"
+
+/decl/flooring/tiling/misc/cargo
+	icon_base = "cargo_chess"
+
+/decl/flooring/tiling/misc/blue
+	icon_base = "blue_chess"
+
+/decl/flooring/tiling/misc/purple
+	icon_base = "prwh_chess"
+
+
+
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
@@ -183,7 +208,7 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
-	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
+	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE
 
 /decl/flooring/reinforced
 	name = "reinforced floor"

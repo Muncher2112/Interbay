@@ -253,6 +253,19 @@ obj/machinery/access_button
 	var/on = 1
 
 
+obj/machinery/access_button/emag_act(var/remaining_charges, var/mob/user)
+	if (!emagged)
+		emagged = 1
+		req_access.Cut()
+		req_one_access.Cut()
+		to_chat(user, "You break the ID authentication lock on \the [src].")
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(2, 1, src)
+		s.start()
+		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		return 1
+
+
 obj/machinery/access_button/update_icon()
 	if(on)
 		icon_state = "access_button_standby"

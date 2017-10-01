@@ -424,11 +424,11 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	to_chat(C, "<span class='notice'>We will attempt to regenerate our form.</span>")
 	C.status_flags |= FAKEDEATH		//play dead
 	C.update_canmove()
-	C.remove_changeling_powers()
+	//C.remove_changeling_powers()
 
 	C.emote("gasp")
 
-	spawn(rand(800,2000))
+	spawn(800)
 		if(changeling_power(20,1,100,DEAD))
 			// charge the changeling chemical cost for stasis
 			changeling.chem_charges -= 20
@@ -490,6 +490,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.SetStunned(0)
 	C.SetWeakened(0)
 	C.lying = 0
+	C.resting = 0
 	C.update_canmove()
 
 	src.verbs -= /mob/proc/changeling_unstun
@@ -837,3 +838,25 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 
 	feedback_add_details("changeling_powers","ED")
 	return 1
+
+/mob/proc/changeling_buff_stats()
+	set category = "Changeling"
+	set name = "Buff Stats (30)"
+	set desc="Give yourself increased stats. One use only!"
+
+	var/datum/changeling/changeling = null
+	if(src.mind && src.mind.changeling)
+		changeling = src.mind.changeling
+	if(!changeling)
+		return 0
+
+	src.mind.changeling.chem_charges -= 30
+
+	var/mob/living/carbon/human/C = src
+	C.adjustStrength(5)
+
+	C.adjustDexterity(5)
+
+	C.adjustInteligence(5)
+
+	src.verbs -= /mob/proc/changeling_buff_stats

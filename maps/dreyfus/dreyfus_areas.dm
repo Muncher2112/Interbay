@@ -18,34 +18,34 @@
 //Coupole
 
 /area/dreyfus/coupole/corridor
-	name = "Corridor Coupole"
+	name = "Dome Hallway"
 	icon_state = "hallC1"
 
 /area/dreyfus/coupole/maintenance/
-	name = "Maintenance Coupole"
+	name = "Dome Maintenance"
 	icon_state = "maintcentral"
 	flags = AREA_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = /decl/turf_initializer/maintenance
 
 /area/dreyfus/coupole/chapelle
-	name = "Chapelle"
+	name = "Chapel"
 	icon_state = "chapel"
 
 /area/dreyfus/coupole/aumonier
-	name = "Bureau Aumonier"
+	name = "Priest's Study"
 	icon_state = "chapeloffice"
 
 /area/dreyfus/coupole/jardin
-	name = "Jardin"
+	name = "Garden"
 	icon_state = "garden"
 
 /area/dreyfus/coupole/conference
-	name = "Salle Conference"
+	name = "Conference Room"
 	icon_state = "observatory"
 
 /area/dreyfus/coupole/solaire/avant/exterieur
-	name = "Panneaux Avant"
+	name = "Fore Solar"
 	icon_state = "panelsA"
 	flags = AREA_EXTERNAL
 	requires_power = 1
@@ -54,11 +54,11 @@
 	base_turf = /turf/space
 
 /area/dreyfus/coupole/solaire/avant/control
-	name = "Controle Panneaux Avant"
+	name = "Fore Solar Control"
 	icon_state = "SolarcontrolA"
 
 /area/dreyfus/coupole/solaire/arriere/exterieur
-	name = "Panneaux Arriere"
+	name = "Aft Solar"
 	icon_state = "panelsA"
 	flags = AREA_EXTERNAL
 	requires_power = 1
@@ -67,13 +67,13 @@
 	base_turf = /turf/space
 
 /area/dreyfus/coupole/solaire/arriere/control
-	name = "Controle Panneaux Arriere"
+	name = "Aft Solar Control"
 	icon_state = "SolarcontrolA"
 
 //Pont administratif
 
 /area/dreyfus/administration/corridor
-	name = "Corridor Administration"
+	name = "Administration Hallway"
 	icon_state = "hallC1"
 
 /area/dreyfus/administration/maintenance
@@ -83,164 +83,164 @@
 	turf_initializer = /decl/turf_initializer/maintenance
 
 /area/dreyfus/administration/maintenance/avant
-	name = "Maintenance Administration Avant"
+	name = "Fore Administration Maintenance"
 	icon_state = "fmaint"
 
 /area/dreyfus/administration/maintenance/arriere
-	name = "Maintenance Administration Arriere"
+	name = "Aft Administration Maintenance"
 	icon_state = "amaint"
 
 /area/dreyfus/administration/toilettes
-	name = "Toilettes Administration"
+	name = "Administration Lavatories"
 	icon_state = "toilet"
 
 /area/dreyfus/administration/sec/reception
-	name = "Reception Securite"
+	name = "Peacekeepers - Lobby"
 	icon_state = "security"
 
 /area/dreyfus/administration/sec/vestiaires
-	name = "Vestiaires Securite"
+	name = "Peacekeepers - Locker Room"
 	icon_state = "brig"
 
 /area/dreyfus/administration/sec/cellule
-	name = "Cellule Detention"
+	name = "Peacekeepers - Brig"
 	icon_state = "sec_prison"
 
 /area/dreyfus/administration/sec/armurerie
-	name = "Armurerie"
+	name = "Peacekeepers - Armory"
 	icon_state = "armory"
 
 /area/dreyfus/administration/sec/marshall
-	name = "Bureau Marshall"
+	name = "Head Peacekeeper's Office"
 	icon_state = "sec_hos"
 
 /area/dreyfus/administration/bureaux/openspace
-	name = "Bureaux Administratif"
+	name = "Administrative Offices"
 	icon_state = "library"
 
 /area/dreyfus/administration/bureaux/executif
-	name = "Bureaux Haute Administration"
+	name = "High Administration Offices"
 	icon_state = "law"
 
 /area/dreyfus/administration/bureaux/directeur
-	name = "Quartier Directeur"
+	name = "Commandant's Quarters"
 	icon_state = "captain"
 
 
 //Pont residentiel
 
 /area/dreyfus/residentiel/dock/corridor
-	name = "Sortie Amarrage"
+	name = "Arrival Docking Point"
 	icon_state = "hallC1"
 	sound_env = HALLWAY
 
 /area/dreyfus/residentiel/dock/toilettes
-	name = "Toilettes Amarrage"
+	name = "Arrival Lavatories"
 	icon_state = "toilet"
 	sound_env = BATHROOM
 
 /area/dreyfus/residentiel/hub/corridor
-	name = "Corridor Hub Residentiel"
+	name = "Residential Hub Hallway"
 	icon_state = "hallC2"
 	sound_env = HALLWAY
 
 /area/dreyfus/residentiel/hub/concierge
-	name = "Stockage Entretien"
+	name = "Custodial Closet"
 	icon_state = "janitor"
 	sound_env = SMALL_ENCLOSED
 
 /area/dreyfus/residentiel/sejour/Corridor
-	name = "Corridor Sejour"
+	name = "Recreation Hallway"
 	icon_state = "hallC3"
 	sound_env = HALLWAY
 
 /area/dreyfus/residentiel/sejour/cryo
-	name = "Salle Cryogenie"
+	name = "Cryogenic Storage"
 	icon_state = "cryo"
 	sound_env = SMALL_SOFTFLOOR
 
 /area/dreyfus/residentiel/sejour/gym
-	name = "Salle Fitness"
+	name = "Gym"
 	icon_state = "fitness"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/sejour/cafet
-	name = "Cantine"
+	name = "Cafeteria"
 	icon_state = "cafeteria"
 	sound_env = STANDARD_STATION
 
 /area/dreyfus/residentiel/sejour/cuisine
-	name = "Cuisine"
+	name = "Kitchen"
 	icon_state = "kitchen"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/sejour/vestiaire
-	name = "Vestiaires"
+	name = "Crew - Locker Room"
 	icon_state = "crew_quarters"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/quartiers/corridor
-	name = "Acces Quartiers"
+	name = "Crew - Hallway"
 	icon_state = "hallf"
 	sound_env = TUNNEL_ENCLOSED
 
 /area/dreyfus/residentiel/quartiers/chambre1
-	name = "Chambre 1"
+	name = "Crew - Bedroom 1"
 	icon_state = "crew_quarters"
 	sound_env = SMALL_SOFTFLOOR
 
 /area/dreyfus/residentiel/quartiers/chambre2
-	name = "Chambre 2"
+	name = "Crew - Bedroom 2"
 	icon_state = "crew_quarters"
 	sound_env = SMALL_SOFTFLOOR
 
 /area/dreyfus/residentiel/quartiers/chambre3
-	name = "Chambre 3"
+	name = "Crew - Bedroom 3"
 	icon_state = "crew_quarters"
 	sound_env = SMALL_SOFTFLOOR
 
 /area/dreyfus/residentiel/clinique/reception
-	name = "Reception Clinique"
+	name = "Medbay - Reception"
 	icon_state = "medbay3"
 	sound_env = SMALL_SOFTFLOOR
 
 /area/dreyfus/residentiel/clinique/urgences
-	name = "Acces Urgences"
+	name = "Medbay - Emergency"
 	icon_state = "medbay4"
 	sound_env = STANDARD_STATION
 
 /area/dreyfus/residentiel/clinique/traitement
-	name = "Salle Traitement"
+	name = "Medbay - Treatment"
 	icon_state = "medbay"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/clinique/laboratoire
-	name = "Laboratoire Medicale"
+	name = "Medbay - Laboratory"
 	icon_state = "medbay2"
 	sound_env = STANDARD_STATION
 
 /area/dreyfus/residentiel/clinique/chirurgie
-	name = "Salle Operation"
+	name = "Medbay - Operating Theater"
 	icon_state = "medbay2"
 	sound_env = STANDARD_STATION
 
 /area/dreyfus/residentiel/clinique/patients
-	name = "Salle Repos Patients"
+	name = "Medbay - Patients Room"
 	icon_state = "patients"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/clinique/vestiaire
-	name = "Vestiaires Clinique"
+	name = "Medbay - Locker Room"
 	icon_state = "medbay"
 	sound_env = STANDARD_STATION
 
 /area/dreyfus/residentiel/clinique/repos
-	name = "Salle Detente Medicale"
+	name = "Medbay - Break Room"
 	icon_state = "medbay2"
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/dreyfus/residentiel/clinique/morgue
-	name = "Morgue"
+	name = "Medbay - Morgue"
 	icon_state = "morgue"
 	sound_env = SMALL_ENCLOSED
 
@@ -252,82 +252,82 @@
 
 
 /area/dreyfus/residentiel/maintenance/avant
-	name = "Maintenance Zone Residentielle Avant"
+	name = "Fore Residential Maintenance"
 	icon_state = "fmaint"
 
 /area/dreyfus/residentiel/maintenance/arriere
-	name = "Maintenance Zone Residentielle Arriere"
+	name = "Aft Residential Maintenance"
 	icon_state = "amaint"
 
 
 //Pont cargo
 
 /area/dreyfus/cargo/maintenance/babord
-	name = "Maintenance Zone Industrielle Babord"
+	name = "Industrial Zone - Port Maintenance"
 	icon_state = "maint_cargo"
 
 /area/dreyfus/cargo/maintenance/tribord
-	name = "Maintenance Zone Industrielle Tribord"
+	name = "Industrial Zone - Starboard Maintenance"
 	icon_state = "maint_cargo"
 
 /area/dreyfus/cargo/industrie/accueil
-	name = "Bureau Commandes et Livraisons"
+	name = "Shipping & Receiving Office"
 	icon_state = "conference"
 
 /area/dreyfus/cargo/industrie/entrepot
-	name = "Entrepot Principal"
+	name = "Primary Warehouse"
 	icon_state = "primarystorage"
 
 /area/dreyfus/cargo/industrie/entrepot/specialise
-	name = "Entrepot Specialise"
+	name = "Auxiliary Warehouse"
 	icon_state = "auxstorage"
 
 /area/dreyfus/cargo/industrie/production
-	name = "Atelier Production"
+	name = "Fabrication Workshop"
 	icon_state = "mining_production"
 
 /area/dreyfus/cargo/industrie/raffinerie
-	name = "Raffinerie"
+	name = "Refinery"
 	icon_state = "mining"
 
 /area/dreyfus/cargo/industrie/bureau_qm
-	name = "Bureau du Contremaitre"
+	name = "Quartermaster's Office"
 	icon_state = "quartoffice"
 
 /area/dreyfus/cargo/industrie/quartiers
-	name = "Quartiers Ouvriers"
+	name = "Crate Pushers Quarters"
 	icon_state = "crew_quarters"
 
 /area/dreyfus/cargo/Corridor
-	name = "Corridor Industrie"
+	name = "Industrial Sector Hallway"
 	icon_state = "hallC1"
 
 /area/dreyfus/cargo/recherche/robotique
-	name = "Atelier Robotique"
+	name = "Technomancy - Robotics Workshop"
 	icon_state = "robotics"
 
 /area/dreyfus/cargo/recherche/developpement
-	name = "Laboratoire Recherche et Developpement"
+	name = "Technomancy - Laboratory"
 	icon_state = "research"
 
 /area/dreyfus/cargo/recherche/salon
-	name = "Salon Pole Recherche"
+	name = "Technomancy - Break Room"
 	icon_state = "research"
 
 /area/dreyfus/cargo/recherche/bureau_rd
-	name = "Bureau Superviseur"
+	name = "Technomancer's Office"
 	icon_state = "quartoffice"
 
 /area/dreyfus/cargo/recherche/labo_xenoarch
-	name = "Laboratoire Xenoarcheologie"
+	name = "Technomancy - Xenoarcheology Lab"
 	icon_state = "xeno_lab"
 
 /area/dreyfus/cargo/recherche/labo_anomalies
-	name = "Laboratoire Anomalies"
+	name = "Technomancy - Anomaly Research Lab"
 	icon_state = "anomaly"
 
 /area/dreyfus/cargo/industrie/raffinerie/avantposte
-	name = "Avant-Poste"
+	name = "Mining Outpost"
 	icon_state = "mining"
 
 /area/dreyfus/cargo/maintenance
@@ -337,7 +337,7 @@
 	turf_initializer = /decl/turf_initializer/maintenance
 
 /area/dreyfus/cargo/industrie/raffinerie/avantposte/solar
-	name = "Panneaux Arriere"
+	name = "Outpost Solar"
 	icon_state = "panelsA"
 	flags = AREA_EXTERNAL
 	requires_power = 1
@@ -349,50 +349,50 @@
 //Pont ingenierie
 
 /area/dreyfus/ingenierie/moteur/atmos
-	name = "Systemes de Survie"
+	name = "Life Support"
 	icon_state = "atmos"
 
 /area/dreyfus/ingenierie/moteur
-	name = "Generateur"
+	name = "Generator"
 	icon_state = "engine"
 
 /area/dreyfus/ingenierie/moteur/SMES
-	name = "Stockage Energetique"
+	name = "Power Storage"
 	icon_state = "engine_smes"
 
 /area/dreyfus/ingenierie/moteur/controle
-	name = "Salle Controle Generateur"
+	name = "Generator Control Room"
 	icon_state = "engine_monitoring"
 
 /area/dreyfus/ingenierie/moteur/acces
-	name = "Maintenance Generateur"
+	name = "Generator Maintenance"
 	icon_state = "maint_engine"
 
 /area/dreyfus/ingenierie/maintenance
-	name = "Maintenance Ingenierie"
+	name = "Engineering Maintenance"
 	icon_state = "maint_engineering"
 	flags = AREA_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = /decl/turf_initializer/maintenance
 
 /area/dreyfus/ingenierie/acces
-	name = "Acces Ingenierie"
+	name = "Engineering Access"
 	icon_state = "engineering_foyer"
 
 /area/dreyfus/ingenierie/controle
-	name = "Salle Controle Station"
+	name = "Station Control Room"
 	icon_state = "engine_monitoring"
 
 /area/dreyfus/ingenierie/equipement
-	name = "Vestiaires Ingenierie"
+	name = "Engineering - Locker Room"
 	icon_state = "engineering_locker"
 
 /area/dreyfus/ingenierie/EVA
-	name = "Salle Stockage SEV"
+	name = "EVA Storage"
 	icon_state = "eva"
 
 /area/dreyfus/ingenierie/quartiers
-	name = "Quartiers Ingenierie"
+	name = "Engineering - Crew Quarters"
 	icon_state = "crew_quarters"
 
 /area/dreyfus/ingenierie/telecomm
@@ -400,13 +400,13 @@
 	icon_state = "tcomsatcham"
 
 /area/dreyfus/ingenierie/detente
-	name = "Salle Detente Ingenierie"
+	name = "Engineering - Break Room"
 	icon_state = "engineering_break"
 
 //Faux pont
 
 /area/dreyfus/fauxpont/maintenance
-	name = "Maintenance Synthetique"
+	name = "Silicons Maintenance"
 	icon_state = "maint_eva"
 	flags = AREA_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
@@ -414,69 +414,66 @@
 
 
 /area/dreyfus/fauxpont/decheterie
-	name = "Traitement des Ordures"
+	name = "Garbage Disposal"
 	icon_state = "disposal"
 
 /area/dreyfus/fauxpont/drones
-	name = "Atelier Auxiliaire"
+	name = "Auxiliary Workshop"
 	icon_state = "ai_cyborg"
 
 /area/dreyfus/fauxpont/iasalon
-	name = "Acces IA"
+	name = "AI Access"
 	icon_state = "ai_foyer"
 
 /area/dreyfus/fauxpont/iacontrole
-	name = "Salle Controle IA"
+	name = "AI Control Room"
 	icon_state = "ai_upload"
 
 /area/dreyfus/fauxpont/iachambre
-	name = "Chambre IA"
+	name = "AI Chamber"
 	icon_state = "ai_chamber"
-
-/area/dreyfus/fauxpont/iasalon
-	name = "Acces IA"
-	icon_state = "ai_foyer"
+	forced_ambience = list('sound/ambience/ai_port_hum.ogg')
 
 /area/dreyfus/fauxpont/vestiaires
-	name = "Vestiaire Auxiliaire"
+	name = "Auxiliary Locker Room"
 	icon_state = "engineering"
 
 // Elevator areas.
 /area/turbolift/coupole
 	name = "Coupole"
 	lift_floor_label = "Sector A"
-	lift_floor_name = "Coupole"
-	lift_announce_str = "Arrive à Sector A, Coupole: Conference room, Chapel, Garden."
+	lift_floor_name = "Dome"
+	lift_announce_str = "Arrived in Sector A, Dome: Conference room, Chapel, Garden."
 
 /area/turbolift/bureaux
 	name = "Administration"
 	lift_floor_label = "Sector B"
 	lift_floor_name = "Administration"
-	lift_announce_str = "Arrive à Sector B, Administration: Employee Offices, Director, Brig and Evacuation."
+	lift_announce_str = "Arrived in Sector B, Administration: Employee Offices, Director, Brig and Evacuation."
 
 /area/turbolift/civil
 	name = "Residential Zone"
 	lift_floor_label = "Sector C"
 	lift_floor_name = "Residential Zone"
-	lift_announce_str = "Arrive à Sector C, Residential Zone: Cafeteria, Gym, Dormitories, Medbay."
+	lift_announce_str = "Arrived in Sector C, Residential Zone: Cafeteria, Gym, Dormitories, Medbay."
 
 /area/turbolift/cargo
 	name = "Industrial Zone"
 	lift_floor_label = "Sector D"
 	lift_floor_name = "Industrial Zone"
-	lift_announce_str = "Arrie à Sector D, Industrial Zone: Factory, Warehouse, Refinery and Research & Development."
+	lift_announce_str = "Arrived in Sector D, Industrial Sector: Factory, Warehouse, Refinery and Research & Development."
 
 /area/turbolift/engi
 	name = "Engineering"
 	lift_floor_label = "Sector E"
 	lift_floor_name = "Engineering"
-	lift_announce_str = "Arrive à Sector E, Engineering: Generator, Survival Systems, Telecommunications."
+	lift_announce_str = "Arrived in Sector E, Engineering: Generator, Survival Systems, Telecommunications."
 	base_turf = /turf/simulated/floor
 
 // Dircen
 
 /area/syndicate_mothership
-	name = "Base Mercenaire"
+	name = "Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0

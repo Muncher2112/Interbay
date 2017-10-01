@@ -18,17 +18,17 @@
 
 	station_name  = "SSNI Dreyfus"
 	station_short = "Dreyfus"
-	dock_name     = "Relais NTTM1-54" // sur Charnay-4
-	boss_name     = "Direction Centrale"
-	boss_short    = "DIRCEN"
-	company_name  = "NanoTrasen Industries"
-	company_short = "NTi"
+	dock_name     = "NTTM1-54 Relay" // sur Charnay-4
+	boss_name     = "Colonial Magistrate Council"
+	boss_short    = "Council"
+	company_name  = "Colonial Magistrate Authority"
+	company_short = "CMA"
 	system_name = "Iota-Pavonis"
 
 	id_hud_icons = 'maps/dreyfus/icons/assignment_hud.dmi'
 
 
-	map_admin_faxes = list("Nanotrasen Industries Direction Centrale")
+	map_admin_faxes = list("Colonial Magistrate Authority")
 
 	shuttle_docked_message = "The shuttle has docked."
 	shuttle_leaving_dock = "The shuttle has departed from home dock."

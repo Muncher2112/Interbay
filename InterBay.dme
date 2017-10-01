@@ -1,4 +1,4 @@
-// DM Environment file for baystation12.dme.
+// DM Environment file for InterBay.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
  // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -1491,7 +1491,6 @@
 #include "code\modules\mob\transform_procs.dm"
 #include "code\modules\mob\typing_indicator.dm"
 #include "code\modules\mob\update_icons.dm"
-#include "code\modules\mob\vision_cone.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"
 #include "code\modules\mob\language\monkey.dm"
@@ -1583,6 +1582,7 @@
 #include "code\modules\mob\living\carbon\human\stripping.dm"
 #include "code\modules\mob\living\carbon\human\unarmed_attack.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
+#include "code\modules\mob\living\carbon\human\vision_cone.dm"
 #include "code\modules\mob\living\carbon\human\whisper.dm"
 #include "code\modules\mob\living\carbon\human\species\species.dm"
 #include "code\modules\mob\living\carbon\human\species\species_attack.dm"

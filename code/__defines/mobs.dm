@@ -177,6 +177,7 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_THROAT 	"throat"
+#define BP_VCHORDS  "vocal chords"
 
 // Limbs.
 #define BP_L_FOOT "l_foot"
