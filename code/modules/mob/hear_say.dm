@@ -13,7 +13,7 @@
 	var/turf/T = get_turf(src)
 	if ((T) && (!(isghost(src)))) //Ghosts can hear even in vacuum.
 		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = (environment)? environment.return_pressure() : 0
+		var/pressure = (environment) ? environment.return_pressure() : 0
 		if(pressure < SOUND_MINIMUM_PRESSURE && get_dist(speaker, src) > 1)
 			return
 
@@ -140,7 +140,7 @@
 			jobname = H.get_assignment()
 
 			if(H.get_assignment() == "No id")//If they don't have an ID then we don't know their job.
-				jobname = "Unknown"
+				jobname = ""
 
 			ageAndGender = ageAndGender2Desc(H.age, H.gender)//Get their age and gender
 

@@ -496,5 +496,7 @@ var/const/CLICK_HANDLER_ALL                  = (~0)
 /atom/proc/middle_click_intent_check(var/mob/M)
 	if(M.middle_click_intent == "kick")
 		return kick_act(M)
-	if(M.middle_click_intent == "jump")
+	else if(M.middle_click_intent == "jump")
 		jump_act(src, M)
+	else
+		M.swap_hand()
