@@ -1,5 +1,6 @@
 /obj/structure/catwalk
-	layer = TURF_LAYER + 0.5
+	plane = ABOVE_PLATING_PLANE
+	layer = LATTICE_LAYER
 	icon = 'maps/dreyfus/icons/catwalks.dmi'
 	icon_state = "catwalk"
 	name = "catwalk"
