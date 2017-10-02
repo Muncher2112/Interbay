@@ -400,3 +400,9 @@
 	name = "\improper Fourth Deck"
 	icon_state = "deck-4"
 
+/obj/structure/sign/nanotrasen
+	name = "\improper NanoTrasen"
+	desc = "An old metal sign which reads 'NanoTrasen'."
+	icon_state = "NT"
+
+
