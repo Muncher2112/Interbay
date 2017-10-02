@@ -65,6 +65,12 @@
 	glass_type = "/glass_medical"
 	airlock_type = "/medical"
 
+/obj/structure/door_assembly/door_assembly_hyd
+	base_icon_state = "hyd"
+	base_name = "Hydroponics Airlock"
+	glass_type = "/glass_hydroponics"
+	airlock_type = "/hydroponics"
+
 /obj/structure/door_assembly/door_assembly_viro
 	base_icon_state = "viro"
 	base_name = "Virology Airlock"

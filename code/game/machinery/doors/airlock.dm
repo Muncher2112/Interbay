@@ -81,6 +81,11 @@
 	icon = 'icons/obj/doors/Doorsec.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 
+/obj/machinery/door/airlock/hydroponics
+	name = "Airlock"
+	icon = 'icons/obj/doors/doorhydro.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_hyd
+
 /obj/machinery/door/airlock/engineering
 	name = "Airlock"
 	icon = 'icons/obj/doors/Dooreng.dmi'
@@ -188,6 +193,16 @@
 	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
+	glass = 1
+
+/obj/machinery/door/airlock/glass_hydroponics
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/doorhydroglass.dmi'
+	hitsound = 'sound/effects/Glasshit.ogg'
+	maxhealth = 300
+	explosion_resistance = 5
+	opacity = 0
+	assembly_type = /obj/structure/door_assembly/door_assembly_hyd
 	glass = 1
 
 /obj/machinery/door/airlock/glass_external
