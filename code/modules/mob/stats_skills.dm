@@ -64,6 +64,24 @@ proc/strToDamageModifier(var/strength)
 		if(16 to INFINITY)
 			return  1.75
 
+proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is also only used once. But I don't give a fuuuuuuuuck.
+	switch(strength)
+		if(1 to 5)
+			if(w_class > ITEM_SIZE_NORMAL)
+				return 20
+
+		if(6 to 11)
+			if(w_class > ITEM_SIZE_NORMAL)
+				return 15
+
+		if(12 to 15)
+			if(w_class > ITEM_SIZE_NORMAL)
+				return 10
+
+		if(16 to INFINITY)
+			if(w_class > ITEM_SIZE_NORMAL)
+				return 5
+
 //Stats helpers.
 /mob/living/carbon/human/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.
 	if(stre)
