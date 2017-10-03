@@ -992,7 +992,7 @@ FIRE ALARM
 	
 	if(sound_state && sound_state <= world.time)
 		playsound(src.loc, 'sound/machines/fire_alarm.ogg', 20, 0)
-		sound_state = world.time+30 //roughly 3 seconds
+		sound_state = world.time + 30 //roughly 3 seconds
 
 	last_process = world.timeofday
 
@@ -1094,6 +1094,7 @@ FIRE ALARM
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration)
 	update_icon()
+	sound_state = 1
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 75, 0)
 	return
 
