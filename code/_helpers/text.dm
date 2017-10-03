@@ -41,10 +41,10 @@
 
 	if(encode)
 		// The below \ escapes have a space inserted to attempt to enable Travis auto-checking of span class usage. Please do not remove the space.
-		//In addition to processing html, html_encode removes byond formatting codes like "\ red", "\ i" and other.
+		//In addition to processing html, rhtml_encode removes byond formatting codes like "\ red", "\ i" and other.
 		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
 		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
-		input = html_encode(input)
+		input = rhtml_encode(input)
 	else
 		//If not need encode text, simply remove < and >
 		//note: we can also remove here byond formatting codes: 0xFF + next byte
@@ -56,7 +56,7 @@
 
 	return input
 
-//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
+//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after rhtml_encode().
 //Best used for sanitize object names, window titles.
 //If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
@@ -143,7 +143,7 @@
 
 //Old variant. Haven't dared to replace in some places.
 /proc/sanitize_old(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
-	return html_encode(replace_characters(t,repl_chars))
+	return rhtml_encode(replace_characters(t,repl_chars))
 
 /*
  * Text searches
@@ -304,7 +304,7 @@ proc/TextPreview(var/string,var/len=40)
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
 /proc/copytext_preserve_html(var/text, var/first, var/last)
-	return html_encode(copytext(html_decode(text), first, last))
+	return rhtml_encode(copytext(html_decode(text), first, last))
 
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
