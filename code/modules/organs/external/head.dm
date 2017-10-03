@@ -153,6 +153,7 @@
 	desc = "Welp. Someone had their teeth knocked out."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "tooth1"
+	drop_sound = null
 
 /obj/item/stack/teeth/New()
 	..()

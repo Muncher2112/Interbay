@@ -168,7 +168,7 @@ var/list/slot_equipment_priority = list( \
 	if(!I)
 		return
 	if(I.drop_sound)
-		playsound(I, I.drop_sound, 50, 0)
+		playsound(I, I.drop_sound, 25, 0)
 	visible_message("<small>\the [I.name] falls to the floor.")
 
 /*

@@ -24,6 +24,7 @@
 	sharpness = 25
 	weapon_speed_delay = 20
 	parry_sounds = list('sound/weapons/blade_parry1.ogg', 'sound/weapons/blade_parry2.ogg', 'sound/weapons/blade_parry3.ogg')
+	drop_sound = 'sound/items/drop_sword.ogg'
 
 
 /obj/item/weapon/material/sword/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -53,30 +54,39 @@
 /obj/item/weapon/material/sword/attack_self(mob/user)
 	..()
 	if(atk_mode == SLASH)
-		atk_mode = STAB
-		to_chat(user, "You will now stab.")
-		edge = 0
-		sharp = 1
-		attack_verb = list("stabbed")
-		hitsound = "stab_sound"
-		return
-
+		switch_intent(user,STAB)
 	else if(atk_mode == STAB)
-		atk_mode = BASH
-		to_chat(user, "You will now bash with the hilt.")
-		edge = 0
-		sharp = 0
-		attack_verb = list("bashed", "smacked")
-		hitsound = "swing_hit"
-		return
-
-
+		switch_intent(user,BASH)
 	else if(atk_mode == BASH)
-		atk_mode = SLASH
-		to_chat(user, "You will now slash.")
-		attack_verb = list("slashed", "diced")
-		hitsound = "slash_sound"
-		return
+		switch_intent(user,SLASH)
+
+
+
+/obj/item/weapon/material/sword/proc/switch_intent(mob/user,var/intent)
+	switch(intent)
+		if(STAB)
+			atk_mode = STAB
+			to_chat(user, "You will now stab.")
+			edge = 0
+			sharp = 1
+			attack_verb = list("stabbed")
+			hitsound = "stab_sound"
+			return
+		if(BASH)
+			atk_mode = BASH
+			to_chat(user, "You will now bash with the hilt.")
+			edge = 0
+			sharp = 0
+			attack_verb = list("bashed", "smacked")
+			hitsound = "swing_hit"
+			return
+
+		if(SLASH)
+			atk_mode = SLASH
+			to_chat(user, "You will now slash.")
+			attack_verb = list("slashed", "diced")
+			hitsound = "slash_sound"
+			return
 
 
 
@@ -122,3 +132,11 @@
 	drawsound = 'sound/items/unholster_knife.ogg'
 	sharpness = 15
 	weapon_speed_delay = 10
+	drop_sound = 'sound/items/knife_drop.ogg'
+
+/obj/item/weapon/material/sword/combat_knife/attack_self(mob/user)
+	..()
+	if(atk_mode == SLASH)
+		switch_intent(STAB)
+	else
+		switch_intent(SLASH)

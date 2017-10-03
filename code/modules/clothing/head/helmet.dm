@@ -16,6 +16,7 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = ITEM_SIZE_NORMAL
+	drop_sound = 'sound/items/helm_drop.ogg'
 
 /obj/item/clothing/head/helmet/solgov
 	name = "\improper Sol Central Government helmet"
