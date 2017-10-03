@@ -468,7 +468,7 @@
 "iZ" = (/turf/simulated/wall/r_wall,/area/ai_monitored/storage/eva)
 "ja" = (/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/plating,/area/ai_monitored/storage/eva)
 "jb" = (/turf/simulated/floor/airless{icon_state = "asteroidplating"},/area/mine/explored)
-"jc" = (/obj/structure/catwalk,/turf/simulated/open,/area/mine/explored)
+"jc" = (/obj/structure/catwalk,/turf/simulated/floor/plating,/area/mine/explored)
 "jd" = (/obj/effect/floor_decal/industrial/warning/dust{tag = "icon-warning_dust (WEST)"; icon_state = "warning_dust"; dir = 8},/turf/simulated/floor/airless{icon_state = "asteroidplating"},/area/mine/explored)
 "je" = (/obj/structure/catwalk,/obj/machinery/atmospherics/unary/vent_scrubber/on{tag = "icon-map_scrubber_on (EAST)"; icon_state = "map_scrubber_on"; dir = 4},/turf/simulated/floor/plating,/area/engineering/engine_room)
 "jf" = (/obj/machinery/door/airlock/maintenance_hatch{name = "Engine Access"; req_access = list(10)},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/bunker/floor/black,/area/engineering)

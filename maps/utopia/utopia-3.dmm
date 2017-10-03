@@ -65,7 +65,7 @@
 "bm" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/glass/rag,/obj/effect/floor_decal/spline/plain{dir = 8},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/crew_quarters/bar)
 "bn" = (/obj/structure/table/reinforced,/obj/machinery/chemical_dispenser/bar_alc/full,/obj/effect/floor_decal/spline/plain,/obj/item/weapon/reagent_containers/food/drinks/shaker,/turf/simulated/floor/tiled/dark,/area/crew_quarters/bar)
 "bo" = (/obj/structure/table/reinforced,/obj/item/weapon/book/manual/barman_recipes,/obj/item/clothing/head/that{pixel_x = 4; pixel_y = 6},/turf/simulated/floor/tiled/dark,/area/crew_quarters/bar)
-"bp" = (/obj/machinery/vending/boozeomat,/turf/simulated/wall,/area/crew_quarters/bar)
+"bp" = (/obj/machinery/vending/boozeomat,/turf/space,/area/crew_quarters/bar)
 "bq" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/misc/blue,/area/crew_quarters/bar)
 "br" = (/obj/structure/table/marble,/obj/machinery/reagentgrinder,/turf/simulated/floor/tiled/misc/blue,/area/crew_quarters/bar)
 "bs" = (/obj/structure/table/marble,/obj/machinery/microwave{pixel_x = -3; pixel_y = 6},/turf/simulated/floor/tiled/misc/blue,/area/crew_quarters/bar)
