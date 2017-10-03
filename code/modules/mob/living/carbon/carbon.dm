@@ -280,51 +280,53 @@
 	if(target.type == /obj/screen) return
 
 	var/atom/movable/item = src.get_active_hand()
-
+	var/weight_class = ITEM_SIZE_NORMAL
+	
 	if(!item) return
 
+	if(istype(item,/obj/item))//If it's an item set the weight_class to the item's w_class
+		var/obj/item/I = item
+		weight_class = I.w_class		
+
 	var/throw_range = item.throw_range
-	if (istype(item, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = item
-		item = G.throw_held() //throw the person instead of the grab
-		if(ismob(item))
-			var/mob/M = item
 
-			//limit throw range by relative mob size
-			throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
+	src.visible_message("<span class='warning'>[src] is trying to throw [item].</span>")
+	if(do_after(src, strToSpeedModifier(src.str, weight_class)))
+		if (istype(item, /obj/item/weapon/grab))//If it's a human it's a huge w_class.
+			var/obj/item/weapon/grab/G = item
+			item = G.throw_held() //throw the person instead of the grab
+			if(ismob(item))
+				var/mob/M = item
+				weight_class = ITEM_SIZE_HUGE
 
-			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-			var/turf/end_T = get_turf(target)
-			if(start_T && end_T)
-				var/start_T_descriptor = "<font color='#6b5d00'>[start_T] \[[start_T.x],[start_T.y],[start_T.z]\] ([start_T.loc])</font>"
-				var/end_T_descriptor = "<font color='#6b4400'>[start_T] \[[end_T.x],[end_T.y],[end_T.z]\] ([end_T.loc])</font>"
-				admin_attack_log(usr, M, "Threw the victim from [start_T_descriptor] to [end_T_descriptor].", "Was from [start_T_descriptor] to [end_T_descriptor].", "threw, from [start_T_descriptor] to [end_T_descriptor], ")
-				if(ishuman(usr))//People are heavy. Throwing them is exhausting.
-					var/mob/living/carbon/human/H = usr
-					H.adjustStaminaLoss(rand(10,30))
+				//limit throw range by relative mob size
+				throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
 
-	src.drop_from_inventory(item)
-	if(!item || !isturf(item.loc))
-		return
+				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+				var/turf/end_T = get_turf(target)
+				if(start_T && end_T)
+					var/start_T_descriptor = "<font color='#6b5d00'>[start_T] \[[start_T.x],[start_T.y],[start_T.z]\] ([start_T.loc])</font>"
+					var/end_T_descriptor = "<font color='#6b4400'>[start_T] \[[end_T.x],[end_T.y],[end_T.z]\] ([end_T.loc])</font>"
+					admin_attack_log(usr, M, "Threw the victim from [start_T_descriptor] to [end_T_descriptor].", "Was from [start_T_descriptor] to [end_T_descriptor].", "threw, from [start_T_descriptor] to [end_T_descriptor], ")
+					if(ishuman(usr))//People are heavy. Throwing them is exhausting.
+						var/mob/living/carbon/human/H = usr
+						H.adjustStaminaLoss(rand(10,30))
 
-	//actually throw it!
-	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+		src.drop_from_inventory(item)
+		if(!item || !isturf(item.loc))
+			return
 
-	if(!src.lastarea)
-		src.lastarea = get_area(src.loc)
-	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
-		src.inertia_dir = get_dir(target, src)
-		step(src, inertia_dir)
+		//actually throw it!
+		src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
+		if(!src.lastarea)
+			src.lastarea = get_area(src.loc)
+		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+			src.inertia_dir = get_dir(target, src)
+			step(src, inertia_dir)
 
-/*
-	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
-		src.inertia_dir = get_dir(target, src)
-		step(src, inertia_dir)
-*/
-
-	playsound(src, 'sound/effects/throw.ogg', 50, 1)
-	item.throw_at(target, throw_range, item.throw_speed, src)
+		playsound(src, 'sound/effects/throw.ogg', 50, 1)
+		item.throw_at(target, throw_range, item.throw_speed, src)
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()

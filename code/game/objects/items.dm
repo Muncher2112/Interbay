@@ -83,6 +83,7 @@
 
 	var/next_attack_time = 0
 	var/weapon_speed_delay = 15
+	var/drop_sound = null
 
 
 /obj/item/New()
@@ -184,7 +185,7 @@
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
 			temp = H.organs_by_name[BP_L_HAND]
-		if(temp && !temp.is_usable())
+		if(temp && !temp.is_usable() || temp && temp.status & ORGAN_BROKEN)
 			to_chat(user, "<span class='notice'>You try to move your [temp.name], but cannot!</span>")
 			return
 		if(!temp)
@@ -722,3 +723,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			break
 	throw_at(target, rand(1,3), throw_speed)
 	user.visible_message("[user] kicks \the [src.name].")
+
+
+/obj/item/throw_impact(atom/hit_atom)
+	..()
+	if(drop_sound)
+		playsound(src, drop_sound, 50, 0)
