@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/sec/MK
 	desc = "Similar in both appearance and use of the NT Mk58, the MK pistol is an cheap knock off that preys on the unsuspecting firearm buyers."
-	jam_chance = 35
+	jam_chance = 5
 
 /obj/item/weapon/gun/projectile/silenced/cheap
 	desc = "A handgun with an integrated silencer(?). Uses .45 rounds."
