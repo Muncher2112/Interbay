@@ -140,15 +140,13 @@ var/list/slot_equipment_priority = list( \
 // If canremove or other conditions need to be checked then use unEquip instead.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	if(W)
-		if(W.drop_sound)
-			playsound(W, W.drop_sound, 50, 0)
 		remove_from_mob(W, target)
 		if(!(W && W.loc)) return 1 // self destroying objects (tk, grabs)
 		update_icons()
 		return 1
 	return 0
 
-//Drops the item in our left hand
+//Drops the item in our left hand 
 /mob/proc/drop_l_hand(var/atom/Target)
 	return drop_from_inventory(l_hand, Target)
 
@@ -158,8 +156,20 @@ var/list/slot_equipment_priority = list( \
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
-	if(hand)	return drop_l_hand(Target)
-	else		return drop_r_hand(Target)
+	if(hand)	
+		make_item_drop_sound()
+		return drop_l_hand(Target)
+	else		
+		make_item_drop_sound()
+		return drop_r_hand(Target)
+
+/mob/proc/make_item_drop_sound()
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		return
+	if(I.drop_sound)
+		playsound(I, I.drop_sound, 50, 0)
+	visible_message("<small>\the [I.name] falls to the floor.")
 
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.

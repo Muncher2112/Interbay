@@ -83,7 +83,7 @@
 
 	var/next_attack_time = 0
 	var/weapon_speed_delay = 15
-	var/drop_sound = null
+	var/drop_sound = 'sound/items/device_drop.ogg'
 
 
 /obj/item/New()
