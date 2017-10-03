@@ -293,11 +293,11 @@
 	src.visible_message("<span class='warning'>[src] is trying to throw [item].</span>")
 	if(do_after(src, strToSpeedModifier(src.str, weight_class)))
 		if (istype(item, /obj/item/weapon/grab))//If it's a human it's a huge w_class.
-			weight_class = ITEM_SIZE_HUGE
 			var/obj/item/weapon/grab/G = item
 			item = G.throw_held() //throw the person instead of the grab
 			if(ismob(item))
 				var/mob/M = item
+				weight_class = ITEM_SIZE_HUGE
 
 				//limit throw range by relative mob size
 				throw_range = round(M.throw_range * min(src.mob_size/M.mob_size, 1))
