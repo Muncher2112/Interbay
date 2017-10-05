@@ -190,6 +190,9 @@
 		outputting = 1
 	else
 		outputting = 0
+	if(outputting)
+		playsound(src 'sound/effects/smes_loop.ogg', 50, 0)
+
 
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick

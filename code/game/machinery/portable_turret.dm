@@ -455,6 +455,8 @@ var/list/turret_icons
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
+	if(raised)
+		playsound(src, 'sound/effects/turret/turret_loop.ogg', 50, 0)
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))
@@ -552,6 +554,7 @@ var/list/turret_icons
 
 	set_raised_raising(1, 0)
 	update_icon()
+	playsound(src, 'sound/effects/turret/open.wav', 50, -1)
 
 /obj/machinery/porta_turret/proc/popDown()	//pops the turret down
 	last_target = null
@@ -572,6 +575,7 @@ var/list/turret_icons
 
 	set_raised_raising(0, 0)
 	update_icon()
+	playsound(src, 'sound/effects/turret/open.wav', 50, -1)
 
 /obj/machinery/porta_turret/proc/set_raised_raising(var/raised, var/raising)
 	src.raised = raised
