@@ -86,7 +86,7 @@
 	for(var/obj/o in below)
 		if(isitem(o)) continue
 		if(o.invisibility) continue//If it's invisible don't render it.
-		if(o.icon == null) continue//If it has no icon don't render it.
+//		if(o.icon == null) continue//If it has no icon don't render it.
 		//if(istype(o,/obj/structure/stairs)) continue
 		var/image/temp2 = image(o, dir=o.dir, layer = ABOVE_WIRE_LAYER*o.layer)
 		temp2.plane = SHADOW_TURF_PLANE
@@ -96,7 +96,7 @@
 		temp2.pixel_y = o.pixel_y
 		o_img += temp2
 		noverlays += o_img
-
+	/*
 	var/image/m_img = list()
 	for(var/mob/m in below)
 		if(m.invisibility) continue//If it's invisble don't render it.
@@ -110,6 +110,7 @@
 			temp2.pixel_y = m.pixel_y
 			m_img += temp2
 			noverlays += m_img
+	*/
 
 	//var/image/I = image('icons/effects/ULIcons.dmi', "[lum]-[lum]-[lum]")
 	//I.layer = TURF_LAYER + 0.2
