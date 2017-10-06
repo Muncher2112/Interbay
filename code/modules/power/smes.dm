@@ -191,7 +191,7 @@
 	else
 		outputting = 0
 	if(outputting)
-		playsound(src 'sound/effects/smes_loop.ogg', 50, 0)
+		playsound(src, 'sound/effects/smes_loop.ogg', 50, 0)
 
 
 // called after all power processes are finished
