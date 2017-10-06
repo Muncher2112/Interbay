@@ -60,8 +60,8 @@
 		O.hide(0)
 
 /turf/simulated/open/update_icon()
-	//if(!below)
-	//	return
+	if(!below)
+		return
 	overlays.Cut()
 	var/image/t_img = list()
 	//underlays = list(image(icon = below.icon, icon_state = below.icon_state))
@@ -84,10 +84,12 @@
 	*/
 	var/image/o_img = list()
 	for(var/obj/o in below)
-		if(o.invisibility) continue
+		if(isitem(o)) continue
+		if(o.invisibility) continue//If it's invisible don't render it.
+		if(o.icon == null) continue//If it has no icon don't render it.
 		//if(istype(o,/obj/structure/stairs)) continue
 		var/image/temp2 = image(o, dir=o.dir, layer = ABOVE_WIRE_LAYER*o.layer)
-		temp2.plane = BELOW_TURF_PLANE
+		temp2.plane = SHADOW_TURF_PLANE
 		temp2.color = o.color//rgb(127,127,127)
 		temp2.overlays += o.overlays
 		temp2.pixel_x = o.pixel_x
@@ -97,10 +99,11 @@
 
 	var/image/m_img = list()
 	for(var/mob/m in below)
-		if(m.invisibility) continue
+		if(m.invisibility) continue//If it's invisble don't render it.
+		if(m.icon == null) continue//If it has no icon don't render it.
 		if(istype(m, /mob/living))
 			var/image/temp2 = image(m, dir=m.dir, layer = ABOVE_WIRE_LAYER*m.layer)
-			temp2.plane = BELOW_TURF_PLANE
+			temp2.plane = SHADOW_TURF_PLANE
 			temp2.color = m.color//rgb(127,127,127)
 			temp2.overlays += m.overlays
 			temp2.pixel_x = m.pixel_x
@@ -112,18 +115,18 @@
 	//I.layer = TURF_LAYER + 0.2
 	//noverlays += I
 	var/image/dark_layer = image('icons/effects/ULIcons.dmi', "1-1-1")
-	dark_layer.layer = MOB_LAYER
+//	dark_layer.layer = MOB_LAYER
 	dark_layer.plane = ABOVE_TURF_PLANE
 	overlays += dark_layer
 
-
+	/*
 	var/obj/structure/stairs/S = locate() in below
 	if(S && S.loc == below)
 		var/image/I = image(icon = S.icon, icon_state = "below", dir = S.dir, layer = ABOVE_WIRE_LAYER)
 		I.pixel_x = S.pixel_x
 		I.pixel_y = S.pixel_y
 		noverlays += I
-
+	*/
 
 	//if(!istype(below,/turf/space))
 	//  noverlays += image(icon =icon, icon_state = "empty", layer = ABOVE_WIRE_LAYER)

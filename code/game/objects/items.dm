@@ -91,6 +91,7 @@
 	if(randpixel && (!pixel_x && !pixel_y) && isturf(loc)) //hopefully this will prevent us from messing with mapper-set pixel_x/y
 		pixel_x = rand(-randpixel, randpixel)
 		pixel_y = rand(-randpixel, randpixel)
+	spawn(0) check_shadow()
 
 /obj/item/Destroy()
 	qdel(hidden_uplink)
@@ -251,9 +252,11 @@
 			user.l_hand.update_twohanding()
 		if(user.r_hand)
 			user.r_hand.update_twohanding()
+	spawn(0) check_shadow()
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	spawn(0) check_shadow()
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
