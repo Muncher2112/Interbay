@@ -638,11 +638,11 @@
 				return
 			if("general")
 				var/msg = sanitize(input(usr,"Update the general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
+				flavor_texts[href_list["flavor_change"]] = post_edit_cp1251(sanitize(msg, extra = 0))
 				return
 			else
 				var/msg = sanitize(input(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
+				flavor_texts[href_list["flavor_change"]] = post_edit_cp1251(sanitize(msg, extra = 0))
 			//	set_flavor()
 				return
 
@@ -1772,7 +1772,7 @@
 	else//We don't want to spam the chat that we're checking ourselves for injuries when we're out fucking cold.
 		to_chat(src, "<span class='notice'><b>Let's see how I am doing.</b></span>")
 
-	
+
 
 		//var/feels = 1 + round(org.pain/100, 0.1)
 		//var/brutedamage = org.brute_dam * feels

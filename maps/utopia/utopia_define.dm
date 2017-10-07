@@ -1,10 +1,10 @@
 
 /datum/map/utopia
 	name = "Utopia"
-	full_name = "SS Utopia"
+	full_name = "Space Station Utopia"
 	path = "utopia"
 
-	lobby_icon = 'maps/dreyfus/icons/lobby.dmi'
+	lobby_icon = 'maps/utopia/utopia_lobby.dmi'
 
 	station_levels = list(1,2,3)
 //	admin_levels = list(8)
@@ -14,7 +14,7 @@
 
 	allowed_spawns = list("Arrivals Shuttle")
 
-	station_name  = "SS Utopia"
+	station_name  = "Space Station Utopia"
 	station_short = "Utopia"
 	dock_name     = "NTTM1-54 Relay"
 	boss_name     = "Colonial Magistrate Council"

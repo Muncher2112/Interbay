@@ -75,6 +75,8 @@ datum/controller/game_controller/proc/setup_objects()
 	for(var/atom/movable/object)
 		if(!QDELETED(object))
 			object.initialize()
+			if(istype(object, /obj/item/))
+				object:check_shadow()
 			CHECK_SLEEP_MASTER
 
 	report_progress("Initializing areas")

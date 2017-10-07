@@ -165,6 +165,7 @@
 /mob/New()
 	..()
 	ability_master = new /obj/screen/movable/ability_master(null,src)
+	spawn(0) check_shadow()
 
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//

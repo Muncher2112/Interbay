@@ -189,6 +189,9 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Translate(0, 16*(size_multiplier-1))
 	transform = M
 
+	if(shadow)
+		shadow.sync_icon(src)
+
 var/global/list/damage_icon_parts = list()
 
 //DAMAGE OVERLAYS
