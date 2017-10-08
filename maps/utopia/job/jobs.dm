@@ -53,8 +53,8 @@
 	minimal_player_age = 31
 	economic_modifier = 12
 	ideal_character_age = 45
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/adjoint
 
 	equip(var/mob/living/carbon/human/H)
@@ -276,6 +276,7 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
+	minimal_access = list(access_bar, access_kitchen)
 
 	equip(var/mob/living/carbon/human/H)
 		..()
