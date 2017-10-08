@@ -62,7 +62,7 @@
 /area/solar
 	flags = AREA_EXTERNAL
 	requires_power = 1
-	always_unpowered = 1
+	always_unpowered = 0
 	has_gravity = FALSE
 	base_turf = /turf/space
 
