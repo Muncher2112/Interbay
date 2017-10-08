@@ -12,6 +12,7 @@
 	#include "items/cards_ids.dm"
 	#include "utopia_gamemodes.dm"
 	#include "utopia_presets.dm"
+	#include "utopia_shuttles.dm"
 
 	#include "utopia-1.dmm"
 	#include "utopia-2.dmm"
