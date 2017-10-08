@@ -243,16 +243,21 @@
 			if(400 to 450)
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You really need to use the restroom!</span>")
+					bowels += 15
 			if(450 to 500)
 				if(prob(2))
 					handle_shit()
 				else if(prob(10))
 					to_chat(src, "<span class='danger'>You're about to shit yourself!</span>")
-			if(500 to INFINITY)
+					bowels += 25
+			if(500 to 550)
 				if(prob(15))
 					handle_shit()
 				else if(prob(30))
 					to_chat(src, "<span class='danger'>OH MY GOD YOU HAVE TO SHIT!</span>")
+					bowels += 35
+			if(550 to INFINITY)
+				handle_shit()
 
 	if(bladder >= 100)//Your bladder is smaller than your colon
 		switch(bladder)
@@ -262,17 +267,21 @@
 			if(250 to 400)
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You really need to use the restroom!</span>")
+					bladder += 15
 			if(400 to 500)
 				if(prob(2))
 					handle_piss()
 				else if(prob(10))
 					to_chat(src, "<span class='danger'>You're about to piss yourself!</span>")
-			if(500 to INFINITY)
+					bladder += 25
+			if(500 to 550)
 				if(prob(15))
 					handle_piss()
 				else if(prob(30))
 					to_chat(src, "<span class='danger'>OH MY GOD YOU HAVE TO PEE!</span>")
-
+					bladder += 35
+			if(550 to INFINITY)
+				handle_piss()
 
 //Shitting
 /mob/living/carbon/human/proc/handle_shit()
