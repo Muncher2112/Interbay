@@ -9,19 +9,26 @@
 	mouse_opacity = 0
 	layer = TURF_LAYER
 	plane = OBJ_MOB_SHADOW_PLANE
-	var/mob/owner = null
+	status_flags = GODMODE
+	anchored = 1
+	unacidable = 1
+	opacity = 0					// Don't trigger lighting recalcs gah! TODO - consider multi-z lighting.
+	//auto_init = FALSE 			// We do not need to be initialize()d
+	var/mob/owner = null		// What we are a shadow of.
+
 
 /mob/shadow/New(var/mob/L)
 	if(!istype(L))
 		del(src)
 		return
-	//..()
+	..()
 	owner = L
 	sync_icon(L)
 
 /mob/Destroy()
-	qdel(shadow)
-	shadow = null
+	if(shadow)
+		qdel(shadow)
+		shadow = null
 	. = ..()
 
 /mob/shadow/fall()
@@ -47,6 +54,22 @@
 /mob/living/check_shadow()
 	var/mob/M = src
 	if(isturf(M.loc))
+		for(var/turf/simulated/open/OS = GetAbove(src); OS && istype(OS); OS = GetAbove(OS))
+			//Check above
+			if(!M.shadow)
+				M.shadow = new /mob/shadow(M)
+			M.shadow.forceMove(OS)
+			M = M.shadow
+
+	// Clean up mob shadow if it has one
+	if(M.shadow)
+		qdel(M.shadow)
+		M.shadow = null
+		var/client/C = M.client
+		if(C && C.eye == shadow)
+			M.reset_view(0)
+	/*
+	if(isturf(M.loc))
 		var/turf/simulated/open/OS = GetAbove(src)
 		while(OS)
 			if(!M.shadow)
@@ -58,6 +81,7 @@
 	if(M.shadow)
 		qdel(M.shadow)
 		M.shadow = null
+	*/
 
 /mob/living/update_icons()
 	..()
@@ -97,8 +121,9 @@
 	sync_icon(L)
 
 /obj/item/Destroy()
-	qdel(shadow)
-	shadow = null
+	if(shadow)
+		qdel(shadow)
+		shadow = null
 	. = ..()
 
 /obj/item/shadow/examine(mob/user)
@@ -118,6 +143,21 @@
 /obj/item/proc/check_shadow()
 	var/obj/item/M = src
 	if(isturf(M.loc))
+		for(var/turf/simulated/open/OS = GetAbove(src); OS && istype(OS); OS = GetAbove(OS))
+			//Check above
+			if(!M.shadow)
+				M.shadow = new /obj/item/shadow(M)
+			M.shadow.forceMove(OS)
+			M = M.shadow
+
+	// Clean up mob shadow if it has one
+	if(M.shadow)
+		qdel(M.shadow)
+		M.shadow = null
+
+	/*
+	var/obj/item/M = src
+	if(isturf(M.loc))
 		var/turf/simulated/open/OS = GetAbove(src)
 		while(OS)
 			if(!M.shadow)
@@ -129,3 +169,4 @@
 	if(M.shadow)
 		qdel(M.shadow)
 		M.shadow = null
+	*/
