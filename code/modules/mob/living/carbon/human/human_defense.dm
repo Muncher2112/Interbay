@@ -317,7 +317,6 @@ meteor_act
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood
 		attack_bloody(I, user, effective_force, hit_zone)
-
 	return 1
 
 /mob/living/carbon/human/proc/attack_bloody(obj/item/W, mob/living/attacker, var/effective_force, var/hit_zone)
@@ -332,6 +331,8 @@ meteor_act
 		return //if the weapon itself didn't get bloodied than it makes little sense for the target to be bloodied either
 
 	//getting the weapon bloodied is easier than getting the target covered in blood, so run prob() again
+
+
 	if(prob(33 + W.sharp*10))
 		var/turf/location = loc
 		if(istype(location, /turf/simulated))
@@ -355,6 +356,12 @@ meteor_act
 					update_inv_glasses(0)
 			if(BP_CHEST)
 				bloody_body(src)
+	if(prob(50))	//Spawn a bloodsplatter effect
+		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(src)
+		B.blood_source = src
+		var/n = rand(1,3)
+		var/turf/targ = get_ranged_target_turf(src, get_dir(attacker, src), n)
+		B.GoTo(targ, n)
 
 /mob/living/carbon/human/proc/projectile_hit_bloody(obj/item/projectile/P, var/effective_force, var/hit_zone)
 	if(P.damage_type != BRUTE || P.nodamage)

@@ -69,11 +69,28 @@
 
 //TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
+	var/turf/target_loca = get_turf(target)
 	if(blocked >= 100)		return 0//Full block
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 
 	var/mob/living/L = target
+	if(damage && damage_type == BRUTE)//&& L.blood_volume
+		var/splatter_dir = dir
+		if(starting)
+			splatter_dir = get_dir(starting, target_loca)
+			target_loca = get_step(target_loca, splatter_dir)
+		if(isalien(L))
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
+		else
+			var/blood_color = "#C80000"
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				blood_color = H.species.blood_color
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_loca, splatter_dir, blood_color)
+		if(prob(50))
+			target_loca.add_blood(L)
+
 
 	L.apply_effects(stun, weaken, paralyze, 0, stutter, eyeblur, drowsy, agony, blocked)
 	//radiation protection is handled separately from other armour types.

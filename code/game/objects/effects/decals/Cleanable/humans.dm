@@ -20,6 +20,7 @@ var/global/list/image/splatter_cache=list()
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
 	var/drytime
+	var/nostep = 0 //used by onwall bloods
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -226,6 +227,115 @@ var/global/list/image/splatter_cache=list()
 
                         if (step_to(src, get_step(src, direction), 0))
                                 break
+
+//SPLATTER EFFECT BEGIN
+/obj/effect/decal/cleanable/blood/hitsplatter
+	name = "blood splatter"
+	pass_flags = PASSTABLE | PASSGRILLE
+	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
+	var/splattering = 0
+	var/turf/prev_loc
+	var/mob/living/blood_source
+	var/skip = 0 //Skip creation of blood when destroyed?
+	amount = 3
+
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/n=rand(1, 3))
+	for(var/i in 1 to n)
+		if(!src)
+			return
+		if(splattering)
+			return
+		prev_loc = loc
+		step_towards(src,T)
+		if(!src)
+			return
+		sleep(2)
+	if(T.contents.len)
+		for(var/obj/item/I in T.contents)
+			I.add_blood(blood_source)
+	qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/New()
+	..()
+	prev_loc = loc //Just so we are sure prev_loc exists
+
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
+	if(splattering) return
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		I.add_blood(blood_source)
+	if(istype(A, /turf/simulated/wall))
+		if(istype(prev_loc)) //var definition already checks for type
+			loc = A
+			splattering = 1 //So "Bump()" and "Crossed()" procs aren't called at the same time
+			skip = 1
+			sleep(3)
+			var/mob/living/carbon/human/H = blood_source
+			if(istype(H))
+				var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
+				//Adjust pixel offset to make splatters appear on the wall
+				if(istype(B))
+					B.pixel_x = dir & EAST ? 32 : (dir & WEST ? -32 : 0)
+					B.pixel_y = dir & NORTH ? 32 : (dir & SOUTH ? -32 : 0)
+					B.nostep = 1
+			qdel(src)
+		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
+			loc = A //Either way we got this.
+			splattering = 1 //So "Bump()" and "Crossed()" procs aren't called at the same time
+			sleep(3)
+			qdel(src)
+		return
+
+	qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Crossed(atom/A)
+	if(splattering) return
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		I.add_blood(blood_source)
+		amount--
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(H.wear_suit)
+			H.wear_suit.add_blood(H)
+			H.update_inv_wear_suit(0)    //updates mob overlays to show the new blood (no refresh)
+		else if(H.w_uniform)
+			H.w_uniform.add_blood(H)
+			H.update_inv_w_uniform(0)    //updates mob overlays to show the new blood (no refresh)
+		amount--
+
+	if(istype(A, /turf/simulated/wall))
+		if(istype(prev_loc)) //var definition already checks for type
+			loc = A
+			splattering = 1 //So "Bump()" and "Crossed()" procs aren't called at the same time
+			skip = 1
+			sleep(3)
+			var/mob/living/carbon/human/H = blood_source
+			if(istype(H))
+				var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
+				//Adjust pixel offset to make splatters appear on the wall
+				if(istype(B))
+					B.pixel_x = dir & EAST ? 32 : (dir & WEST ? -32 : 0)
+					B.pixel_y = dir & NORTH ? 32 : (dir & SOUTH ? -32 : 0)
+					B.nostep = 1
+			qdel(src)
+		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
+			loc = A //Either way we got this.
+			splattering = 1 //So "Bump()" and "Crossed()" procs aren't called at the same time
+			sleep(3)
+			qdel(src)
+		return
+
+	if(amount <= 0)
+		qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
+	if(istype(loc, /turf/simulated) && !skip)
+		blood_splatter(loc,blood_source,1)
+	..()
+
+//Splatter effect END
 
 
 /obj/effect/decal/cleanable/mucus
