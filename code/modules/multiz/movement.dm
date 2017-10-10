@@ -159,7 +159,7 @@
 	if(istype(landing, /turf/simulated/open))
 		visible_message("\The [src] falls from the area above through \the [landing]!", "You hear a whoosh of displaced air.")
 
-	else
+	else if(!ishuman(src))
 		visible_message("\The [src] falls from the area above and slams into \the [landing]!", "You hear something slam into the floor.")
 
 
@@ -168,18 +168,18 @@
 		return
 
 	if(!istype(landing, /turf/simulated/open))
-		if(statscheck(dex, 20, 0, src))
+		if(statscheck(dex, 20, 0, src) || !lying)
 			to_chat(src, "You land softly")
 			return
 
-	playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)//Splat
-	var/damage = 10
-	apply_damage(rand(0, damage), BRUTE, BP_HEAD)
-	apply_damage(rand(0, damage), BRUTE, BP_CHEST)
-	apply_damage(rand(0, damage), BRUTE, BP_L_LEG)
-	apply_damage(rand(0, damage), BRUTE, BP_R_LEG)
-	apply_damage(rand(0, damage), BRUTE, BP_L_ARM)
-	apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
-	Stun(1)
-	Weaken(1)
-	updatehealth()
+		playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)//Splat
+		var/damage = 10
+		apply_damage(rand(0, damage), BRUTE, BP_HEAD)
+		apply_damage(rand(0, damage), BRUTE, BP_CHEST)
+		apply_damage(rand(0, damage), BRUTE, BP_L_LEG)
+		apply_damage(rand(0, damage), BRUTE, BP_R_LEG)
+		apply_damage(rand(0, damage), BRUTE, BP_L_ARM)
+		apply_damage(rand(0, damage), BRUTE, BP_R_ARM)
+		Stun(1)
+		Weaken(1)
+		updatehealth()
