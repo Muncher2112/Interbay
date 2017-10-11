@@ -168,7 +168,7 @@
 		return
 
 	if(!istype(landing, /turf/simulated/open))
-		if(statscheck(dex, 20, 0, src) || !lying)
+		if(statscheck(dex, 20, 0, src) && !lying)
 			to_chat(src, "You land softly")
 			return
 
