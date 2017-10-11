@@ -16,6 +16,8 @@
 						/datum/job/chef,
 						/datum/job/chaplain,
 						/datum/job/janitor
+						///datum/job/medassist,
+						///datum/job/cadet,
 						///datum/job/raider,
 						///datum/job/raider/leader
 						)
@@ -130,6 +132,10 @@
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
+	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
+			access_chemistry, access_virology, access_cmo, access_surgery)
+	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
+			access_chemistry, access_virology, access_cmo, access_surgery)
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
@@ -243,7 +249,7 @@
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
-
+//kid roles
 /datum/job/ouvrier
 	selection_color = "#7c6a2e"
 	title = "Cargo Kid"
@@ -266,6 +272,32 @@
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
+		..()
+
+/datum/job/medassist
+	selection_color = "#633d63"
+	title = "Medical Assistant"
+	supervisors = "the doctors"
+	minimal_player_age = 16
+	economic_modifier = 2
+	ideal_character_age = 21
+	total_positions = 2
+	spawn_positions = 2
+	faction = "Station"
+	department_flag = MED
+	department = "Supply"
+	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
+			access_chemistry, access_virology, access_cmo, access_surgery)
+	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
+			access_chemistry, access_virology, access_cmo, access_surgery)
+	account_allowed = 0			  //This breaks things.
+	has_email = 0				  //Kids don't need emails.
+	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
+
+	equip(var/mob/living/carbon/human/H)
+		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
+		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
+		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 		..()
 
 /datum/job/chef
