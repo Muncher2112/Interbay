@@ -43,53 +43,53 @@
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-/turf/simulated/floor/bunker/hydro
+/turf/simulated/floor/tiled/bunker/
+	name = "bunker floor"
+	icon = 'icons/turf/bunk.dmi'
+	icon_state = "plating"
+	initial_flooring = /decl/flooring/tiling/bunker/
+
+/turf/simulated/floor/tiled/bunker/hydro
 	name = "hydro floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "hydrofloor"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/hydro
+	initial_flooring = /decl/flooring/tiling/bunker/hydro
 
-/turf/simulated/floor/bunker/showroom
+/turf/simulated/floor/tiled/bunker/showroom
 	name = "showroom floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "showroomfloor"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/showroom
+	initial_flooring = /decl/flooring/tiling/bunker/showroom
 
-/turf/simulated/floor/bunker/cafe
+/turf/simulated/floor/tiled/bunker/cafe
 	name = "cafe floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "cafe"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/cafe
+	initial_flooring = /decl/flooring/tiling/bunker/cafe
 
-/turf/simulated/floor/bunker/floor
-	name = "floor"
-	icon = 'icons/turf/bunk.dmi'
-	icon_state = "old_tile"
-	initial_flooring = /decl/flooring/tiling/bunker/floor
-
-/turf/simulated/floor/bunker/floor/yellow
+/turf/simulated/floor/tiled/bunker/yellow
 	name = "floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "old_tile_cargo"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/yellow
+	initial_flooring = /decl/flooring/tiling/bunker/yellow
 
-/turf/simulated/floor/bunker/floor/black
+/turf/simulated/floor/tiled/bunker/black
 	name = "floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "old_tile_black"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/black
+	initial_flooring = /decl/flooring/tiling/bunker/black
 
-/turf/simulated/floor/bunker/floor/red
+/turf/simulated/floor/tiled/bunker/red
 	name = "floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "old_tile_red"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/red
+	initial_flooring = /decl/flooring/tiling/bunker/red
 
-/turf/simulated/floor/bunker/floor/polar
+/turf/simulated/floor/tiled/bunker/polar
 	name = "floor"
 	icon = 'icons/turf/bunk.dmi'
 	icon_state = "polar"
-	initial_flooring = /decl/flooring/tiling/bunker/floor/polar
+	initial_flooring = /decl/flooring/tiling/bunker/polar
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -112,6 +112,12 @@
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
+
+/turf/simulated/floor/tiled/bar
+	name = "bar floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "bar"
+	initial_flooring = /decl/flooring/tiling/bar
 
 /turf/simulated/floor/tiled/misc
 	icon = 'icons/turf/flooring/misc.dmi'

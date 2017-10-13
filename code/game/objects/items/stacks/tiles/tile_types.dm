@@ -132,6 +132,15 @@
 /obj/item/stack/tile/linoleum/fifty
 	amount = 50
 
+/obj/item/stack/tile/bunker
+	name = "bunker floor tile"
+	singular_name = "bunker floor tile"
+	icon_state = "tile_bunker"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/bunker/fifty
+	amount = 50
+
 /obj/item/stack/tile/floor_hydro
 	name = "hydro floor tile"
 	singular_name = "hydro floor tile"
@@ -157,4 +166,49 @@
 	matter = list("plastic" = 937.5)
 
 /obj/item/stack/tile/floor_cafe/fifty
+	amount = 50
+
+/obj/item/stack/tile/yellow
+	name = "yellow floor tile"
+	singular_name = "yellow floor tile"
+	icon_state = "tile_bunker_yellow"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/yellow/fifty
+	amount = 50
+
+/obj/item/stack/tile/black
+	name = "black floor tile"
+	singular_name = "black floor tile"
+	icon_state = "tile_bunker_black"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/black/fifty
+	amount = 50
+
+/obj/item/stack/tile/red
+	name = "red floor tile"
+	singular_name = "red floor tile"
+	icon_state = "tile_bunker_red"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/red/fifty
+	amount = 50
+
+/obj/item/stack/tile/polar
+	name = "polar floor tile"
+	singular_name = "polar floor tile"
+	icon_state = "tile_bunker_polar"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/polar/fifty
+	amount = 50
+
+/obj/item/stack/tile/bar
+	name = "bar floor tile"
+	singular_name = "bar floor tile"
+	icon_state = "tile_bar"
+	matter = list("plastic" = 937.5)
+
+/obj/item/stack/tile/bar/fifty
 	amount = 50
