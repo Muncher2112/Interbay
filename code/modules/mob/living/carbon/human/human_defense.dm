@@ -356,12 +356,25 @@ meteor_act
 					update_inv_glasses(0)
 			if(BP_CHEST)
 				bloody_body(src)
+
+	//All this is copypasta'd from projectile code. Basically there's a cool splat animation when someone gets hit by something.
+	var/splatter_dir = dir
+	var/turf/target_loca = get_turf(src)
+	splatter_dir = get_dir(attacker, target_loca)
+	target_loca = get_step(target_loca, splatter_dir)
+	var/blood_color = "#C80000"
+	blood_color = src.species.blood_color
+	new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_loca, splatter_dir, blood_color)
+	target_loca.add_blood(src)
+
+	/* //This is deprecated and barely works. Hopefully the above will make a nice replacement.
 	if(prob(50))	//Spawn a bloodsplatter effect
 		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(src)
 		B.blood_source = src
 		var/n = rand(1,3)
 		var/turf/targ = get_ranged_target_turf(src, get_dir(attacker, src), n)
 		B.GoTo(targ, n)
+	*/
 
 /mob/living/carbon/human/proc/projectile_hit_bloody(obj/item/projectile/P, var/effective_force, var/hit_zone)
 	if(P.damage_type != BRUTE || P.nodamage)
