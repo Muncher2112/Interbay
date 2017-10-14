@@ -1295,8 +1295,8 @@
 				return
 			to_chat(H, "<spawn class='warning'>You smell something foul...")
 			H.add_event("disgust", /datum/happiness_event/disgust/verygross)
-				if(prob(75))
-					H.vomit()
+			if(prob(75))
+				H.vomit()
 
 //So that people will stop shitting in the fucking hallways all the time. Actually this will probably encourage them.
 /mob/living/carbon/human/proc/handle_smelly_things()
