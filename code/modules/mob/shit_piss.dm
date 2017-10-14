@@ -180,7 +180,6 @@
 	description = "It's pee."
 	reagent_state = LIQUID
 	color = COLOR_YELLOW
-	var/dried = 0
 	taste_description = "urine"
 
 /datum/reagent/urine/touch_turf(var/turf/T)
@@ -203,8 +202,6 @@
 		bitesize = 3
 
 	throw_impact(atom/hit_atom)
-		//if(src.reagents.total_volume)
-		//	src.reagents.handle_reactions()
 		playsound(src.loc, "sound/effects/squishy.ogg", 40, 1)
 		var/turf/T = src.loc
 		if(!istype(T, /turf/space))
