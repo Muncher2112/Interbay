@@ -115,3 +115,4 @@
 
 	var/obj/screen/fov = null//The screen object because I can't figure out how the hell TG does their screen objects so I'm just using legacy code.
 	var/usefov = 1
+	var/decaylevel = 0 // For rotting bodies
