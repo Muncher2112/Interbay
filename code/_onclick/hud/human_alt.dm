@@ -355,6 +355,14 @@
 	hud_elements |= mymob.surrender
 
 
+	mymob.happiness_icon = new /obj/screen()
+	mymob.happiness_icon.name = "mood"
+	mymob.happiness_icon.icon = ui_style
+	mymob.happiness_icon.icon_state = "mood4"
+	mymob.happiness_icon.screen_loc = ui_happiness
+	hud_elements |= mymob.happiness_icon
+
+
 	mymob.zone_sel = new /obj/screen/zone_sel( null )
 	mymob.zone_sel.icon = 'icons/mob/puppet.dmi'
 	mymob.zone_sel.overlays.Cut()

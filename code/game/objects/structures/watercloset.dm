@@ -212,6 +212,9 @@
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
 
+		M.set_hygiene(HYGIENE_LEVEL_CLEAN)
+		M.add_event("shower", /datum/happiness_event/nice_shower)
+
 		//flush away reagents on the skin
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first

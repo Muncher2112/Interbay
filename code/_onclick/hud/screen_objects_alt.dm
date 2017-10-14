@@ -97,6 +97,11 @@
 			usr.ClickOn(master)
 	return 1
 
+/obj/screen/happiness_icon/Click()
+	var/mob/living/carbon/C = usr
+	C.print_happiness(C)
+
+
 /obj/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
@@ -521,7 +526,10 @@
 				usr.fixeye.icon_state = "fixeye_on"
 			else
 				usr.fixeye.icon_state = "fixeye"
-
+		
+		if("mood")
+			var/mob/living/carbon/C = usr
+			C.print_happiness(C)
 
 		if("module")
 			if(isrobot(usr))

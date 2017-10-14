@@ -113,8 +113,9 @@
 
 //Middle right (status indicators)
 #define ui_stamina "EAST+1, NORTH -10"
-#define ui_temp "EAST+1, NORTH-11"
-#define ui_health "EAST+1, NORTH-12"
+#define ui_temp "EAST+1, NORTH-4"
+#define ui_health "EAST+1, NORTH-11"
+#define ui_happiness "EAST+1, NORTH-12"
 #define ui_nutrition "EAST+1, NORTH-13"
 #define ui_internal "EAST+1, NORTH-2"
 									//borgs

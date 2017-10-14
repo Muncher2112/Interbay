@@ -295,7 +295,9 @@
 
 		else if(w_uniform)
 			message = "<B>[src]</B> shits their pants."
-			src.reagents.add_reagent("poo", 10)
+			reagents.add_reagent("poo", 10)
+			adjust_hygiene(-25)
+			add_event("embarassment", /datum/happiness_event/hygiene/shit)
 
 		//Poo on the face.
 		else if(M != src && M.lying)//Can only shit on them if they're lying down.
@@ -308,11 +310,11 @@
 			var/turf/location = src.loc
 
 			var/obj/item/weapon/reagent_containers/food/snacks/poo/V = new/obj/item/weapon/reagent_containers/food/snacks/poo(location)
-			if(src.reagents)
-				src.reagents.trans_to(V, rand(1,5))
+			if(reagents)
+				reagents.trans_to(V, rand(1,5))
 
 		playsound(src.loc, 'sound/effects/poo2.ogg', 60, 1)
-		src.bowels -= rand(60,80)
+		bowels -= rand(60,80)
 
 	else
 		to_chat(src, "You don't have to.")
@@ -323,7 +325,7 @@
 //Peeing
 /mob/living/carbon/human/proc/handle_piss()
 	var/message = null
-	if (src.bladder < 30)
+	if (bladder < 30)
 		to_chat(src, "You don't have to.")
 		return
 
@@ -332,19 +334,25 @@
 	var/obj/structure/sink/S = locate() in src.loc
 	if((U || S) && gender != FEMALE)//In the urinal or sink.
 		message = "<B>[src]</B> urinates into the [U ? U : S]."
-		src.reagents.remove_any(rand(1,8))
-		src.bladder -= 50
+		reagents.remove_any(rand(1,8))
+		bladder -= 50
 	else if(T)//In the toilet.
 		message = "<B>[src]</B> urinates into the [T]."
-		src.reagents.remove_any(rand(1,8))
-		src.bladder -= 50
+		reagents.remove_any(rand(1,8))
+		bladder -= 50
+
+	else if(w_uniform)
+		message = "<B>[src]</B> pisses their pants."
+		adjust_hygiene(-25)
+		add_event("embarassment", /datum/happiness_event/hygiene/pee)
+		bladder -= 50
 	else
 		var/turf/TT = src.loc
 		var/obj/effect/decal/cleanable/urine/D = new/obj/effect/decal/cleanable/urine(src.loc)
-		if(src.reagents)
-			src.reagents.trans_to(D, rand(1,8))
+		if(reagents)
+			reagents.trans_to(D, rand(1,8))
 		message = "<B>[src]</B> pisses on the [TT.name]."
-		src.bladder -= 50
+		bladder -= 50
 	visible_message("[message]")
 
 

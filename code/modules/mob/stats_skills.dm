@@ -26,7 +26,7 @@ proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/
 	if(skill >= requirement)
 		return 1
 	else
-		if(prob(skill))
+		if(prob(skill + mood_affect(user, 0, 1)))
 			return 1
 		else
 			if(show_message)
@@ -38,6 +38,7 @@ proc/statscheck(var/stat, var/requirement, var/show_message, var/mob/user, var/m
 	//var/dice = "1d20"
 	if(stat < requirement)
 		var/H = rand(1,20)
+		H += mood_affect(user, 1)
 		if(stat >= H)
 			//world << "Rolled and passed."
 			return 1
@@ -48,6 +49,16 @@ proc/statscheck(var/stat, var/requirement, var/show_message, var/mob/user, var/m
 	else
 		//world << "Didn't roll and passed."
 		return 1
+
+//having a bad mood fucks your shit up fam.
+proc/mood_affect(var/mob/user, var/stat = null, var/skill = null)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.happiness <= MOOD_LEVEL_SAD3)
+			if(stat)
+				return 5
+			if(skill)
+				return -15
 
 
 proc/strToDamageModifier(var/strength)

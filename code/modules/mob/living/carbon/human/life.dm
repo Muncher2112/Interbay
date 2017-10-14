@@ -81,6 +81,10 @@
 
 		handle_smelly_things()
 
+		handle_happiness()
+
+		handle_hygiene()
+
 		if(!client && !mind)
 			species.handle_npc(src)
 
@@ -1290,7 +1294,9 @@
 			if(H.stat == DEAD)//This shouldn't even need to be a fucking check.
 				return
 			to_chat(H, "<spawn class='warning'>You smell something foul...")
-			H.vomit()
+			H.add_event("disgust", /datum/happiness_event/disgust/verygross)
+				if(prob(75))
+					H.vomit()
 
 //So that people will stop shitting in the fucking hallways all the time. Actually this will probably encourage them.
 /mob/living/carbon/human/proc/handle_smelly_things()
@@ -1300,7 +1306,9 @@
 	if(/obj/effect/decal/cleanable/poo in range(5, src))
 		if(prob(2))
 			to_chat(src, "<spawn class='warning'>Something smells like shit...")
-			vomit()
+			add_event("disgust", /datum/happiness_event/disgust/verygross)
+			if(prob(50))
+				vomit()
 
 	for(var/obj/item/weapon/reagent_containers/food/snacks/poo/P in range(5, src))
 		if(istype(P.loc, /obj/machinery/disposal) || istype(P.loc, /obj/item/weapon/storage/bag))
@@ -1308,5 +1316,7 @@
 
 		if(prob(2))
 			to_chat(src, "<spawn class='warning'>Something smells like shit...")
-			vomit()
+			add_event("disgust", /datum/happiness_event/disgust/verygross)
+			if(prob(50))
+				vomit()
 

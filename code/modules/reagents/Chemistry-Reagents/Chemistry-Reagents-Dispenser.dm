@@ -104,6 +104,7 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
+	quench_amount = 5
 
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
@@ -125,6 +126,7 @@
 		strength_mod = 0
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
+	M.add_event("booze", /datum/happiness_event/booze)
 	var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
 
 	if(effective_dose >= strength) // Early warning

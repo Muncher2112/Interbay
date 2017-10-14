@@ -63,6 +63,8 @@
 			else
 				take_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * 0.1 * PROCESS_ACCURACY, prob(1)) // Chance to warn them
 
+		handle_thirst()
+
 	// Heal a bit if needed. This allows recovery from low amounts of toxloss.
 	if(damage < min_broken_damage)
 		damage = max(0, damage - 0.1 * PROCESS_ACCURACY)
@@ -83,3 +85,28 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
+
+/obj/item/organ/internal/liver/proc/handle_thirst()
+	owner.adjust_thirst(-THIRST_FACTOR)
+	switch(owner.thirst)
+		if(THIRST_LEVEL_FILLED to INFINITY)
+			owner.add_event("thirst", /datum/happiness_event/thirst/filled)
+		if(THIRST_LEVEL_MEDIUM to THIRST_LEVEL_FILLED)
+			owner.add_event("thirst", /datum/happiness_event/thirst/watered)
+		if(THIRST_LEVEL_THIRSTY to THIRST_LEVEL_MEDIUM)
+			owner.clear_event("thirst")
+		if(THIRST_LEVEL_DEHYDRATED to THIRST_LEVEL_THIRSTY)
+			owner.add_event("thirst", /datum/happiness_event/thirst/thirsty)
+			if(prob(1))
+				to_chat(owner, "<span class='warning'>You fall down because of your thirst.</span>")
+				owner.Weaken(1)
+				owner.Stun(1)
+		if(0 to THIRST_LEVEL_DEHYDRATED)
+			owner.add_event("thirst", /datum/happiness_event/thirst/dehydrated)
+			if(prob(5))
+				to_chat(owner, "<span class='warning'>You faint from dehydration.</span>")
+				owner.Paralyse(5)
+			else if(prob(6))
+				to_chat(owner, "<span class='warning'>You fall down because of your thirst.</span>")
+				owner.Weaken(1)
+				owner.Stun(1)

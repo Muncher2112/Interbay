@@ -990,6 +990,9 @@
 					src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
 					playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
+					adjust_hygiene(-25)
+					add_event("hygiene", /datum/happiness_event/hygiene/vomitted)
+
 					var/turf/location = loc
 					if (istype(location, /turf/simulated))
 						location.add_vomit_floor(src, 1)

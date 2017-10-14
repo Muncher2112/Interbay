@@ -62,6 +62,20 @@
 					return
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
+			
+			if(fullness <= NUTRITION_LEVEL_STARVING)
+				to_chat(C, "<span class='notice'>You hungrily chew some of \the [src] and gobble it down!</span>")
+			if(fullness > NUTRITION_LEVEL_STARVING && fullness <= NUTRITION_LEVEL_HUNGRY)
+				to_chat(C, "<span class='notice'>You hungrily begin to eat \the [src].</span>")
+			if(fullness > NUTRITION_LEVEL_HUNGRY && fullness <= NUTRITION_LEVEL_FULL)
+				to_chat(C, "<span class='notice'>You bite of \the [src].</span>")
+			if(fullness > NUTRITION_LEVEL_FULL && fullness <= NUTRITION_LEVEL_FAT)
+				to_chat(C, "<span class='notice'>You unwillingly chew a bit of \the [src].</span>")
+			if(fullness > NUTRITION_LEVEL_FAT)	// The more you eat - the more you can eat
+				to_chat(C, "<span class='warning'>You cannot force any more of \the [src] to go down your throat!</span>")
+				return 0
+
+			/*
 			if (fullness <= 50)
 				to_chat(C, "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 50 && fullness <= 150)
@@ -73,6 +87,7 @@
 			if (fullness > 550)
 				to_chat(C, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
 				return 0
+			*/
 		else
 			if(!M.can_force_feed(user, src))
 				return
