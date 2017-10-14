@@ -240,6 +240,7 @@
 			if(250 to 400)
 				if(prob(5))
 					to_chat(src, "<b>You need to use the bathroom.</b>")
+					bowels += 15
 			if(400 to 450)
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You really need to use the restroom!</span>")
@@ -264,6 +265,7 @@
 			if(100 to 250)
 				if(prob(5))
 					to_chat(src, "<b>You need to use the bathroom.</b>")
+					bladder += 15
 			if(250 to 400)
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You really need to use the restroom!</span>")
