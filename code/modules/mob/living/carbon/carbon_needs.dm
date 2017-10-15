@@ -6,7 +6,7 @@
 	if(!msg)
 		msg += "<span class='info'>I feel indifferent.</span>"
 
-	msg += "*---------*</span><br>"
+	msg += "<span class='info'>*---------*</span>"
 	to_chat(src, msg)
 
 /mob/living/carbon/proc/update_happiness()
