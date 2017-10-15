@@ -330,6 +330,9 @@
 	if(is_nude() && mutilated_genitals)
 		msg += "<span class='warning'><B>THEIR GROIN IS DESTROYED!</B></span>\n"
 
+	if(happiness <= MOOD_LEVEL_SAD2)
+		msg += "<span class='warning'>[T.He] looks sad.</span>\n"
+
 	if(decaylevel == 1)
 		msg += "[T.He] [T.is] starting to smell.\n"
 	if(decaylevel == 2)
