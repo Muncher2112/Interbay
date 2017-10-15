@@ -393,3 +393,12 @@
 
 /datum/reagent/luminol/touch_mob(var/mob/living/L)
 	L.reveal_blood()
+
+/datum/reagent/dognium
+	name = "Dognium"
+	description = "Woof. You feel like this reagent must have been generated from somewhere."
+	taste_description = "dogs"
+	taste_mult = 1.1
+	reagent_state = LIQUID
+	id = "dognium"
+	color = "#247CFF"

@@ -556,6 +556,13 @@
 	required_reagents = list("oxycodone" = 1, "anti_toxin" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/dognium
+	name = "dognium"
+	id = "dognium"
+	result = "dognium"
+	required_reagents = list("aluminum" = 1, "iron" = 1, "potassium" = 1)
+	result_amount = 3
+
 /* Solidification */
 
 /datum/chemical_reaction/phoronsolidification
