@@ -65,7 +65,7 @@
 /mob/proc/flash_sadness()
 	if(prob(1))
 		flick("sadness",pain)
-		var/list/spoopysound = list('sound/effects/badmood1.ogg','sound/effects/badmood2.ogg','sound/effects/badmood3.ogg','sound/effects/badmood4.ogg')
+		var/spoopysound = pick('sound/effects/badmood1.ogg','sound/effects/badmood2.ogg','sound/effects/badmood3.ogg','sound/effects/badmood4.ogg')
 		sound_to(src, spoopysound)
 
 /mob/living/carbon/proc/handle_happiness()
