@@ -79,17 +79,9 @@
 
 		handle_medical_side_effects()
 
-		handle_smelly_things()
-
-		handle_happiness()
-
-		handle_hygiene()
 
 		if(!client && !mind)
 			species.handle_npc(src)
-
-	if(stat == DEAD)
-		handle_decay()
 
 
 	if(!handle_some_updates())
@@ -656,6 +648,8 @@
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
 		blinded = 1
 		silent = 0
+		handle_decay()
+
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
@@ -664,6 +658,16 @@
 			blinded = 1
 			silent = 0
 			return 1
+
+		//handle_gas_mask_sound()
+
+		handle_combat_mode()
+
+		handle_smelly_things()
+
+		handle_happiness()
+
+		handle_hygiene()
 
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
@@ -742,7 +746,6 @@
 			gloves.germ_level += 1
 
 		CheckStamina()
-		handle_combat_mode()
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
@@ -1269,6 +1272,7 @@
 
 	if(decaytime > 6000 && decaytime <= 12000)//20 minutes for decaylevel2 -- bloated and very stinky
 		decaylevel = 1
+		overlays -= flies
 		overlays += flies
 
 	if(decaytime > 12000 && decaytime <= 18000)//30 minutes for decaylevel3 -- rotting and gross
@@ -1320,3 +1324,10 @@
 			if(prob(50))
 				vomit()
 
+
+/mob/living/carbon/human/proc/handle_gas_mask_sound()
+	//var/soundcooldown = world.time
+	if(istype(wear_mask, /obj/item/clothing/mask/gas))
+		//if((world.time - soundcooldown) >= 300)
+		var/mask_sound = pick('sound/effects/gasmask1.ogg','sound/effects/gasmask2.ogg','sound/effects/gasmask3.ogg','sound/effects/gasmask4.ogg','sound/effects/gasmask5.ogg','sound/effects/gasmask6.ogg','sound/effects/gasmask7.ogg','sound/effects/gasmask8.ogg','sound/effects/gasmask9.ogg','sound/effects/gasmask10.ogg')
+		sound_to(src, mask_sound)
