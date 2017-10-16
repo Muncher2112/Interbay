@@ -122,12 +122,17 @@
 
 /mob/living/carbon/proc/handle_hygiene()
 	adjust_hygiene(-HYGIENE_FACTOR)
+	var/image/smell = image('icons/effects/effects.dmi', "smell")//This is a hack, there has got to be a safer way to do this but I don't know it at the moment.
 	switch(hygiene)
 		if(HYGIENE_LEVEL_NORMAL to INFINITY)
 			add_event("hygiene", /datum/happiness_event/hygiene/clean)
+			overlays -= smell
 		if(HYGIENE_LEVEL_DIRTY to HYGIENE_LEVEL_NORMAL)
 			clear_event("hygiene")
+			overlays -= smell
 		if(0 to HYGIENE_LEVEL_DIRTY)
+			overlays -= smell
+			overlays += smell
 			add_event("hygiene", /datum/happiness_event/hygiene/smelly)
 
 /mob/living/carbon/proc/adjust_hygiene(var/amount)
