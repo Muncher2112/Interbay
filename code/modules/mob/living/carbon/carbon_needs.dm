@@ -63,7 +63,7 @@
 			to_chat(src, "<span class='info'>My mood gets better.</span>")
 
 /mob/proc/flash_sadness()
-	if(prob(1))
+	if(prob(2))
 		flick("sadness",pain)
 		var/spoopysound = pick('sound/effects/badmood1.ogg','sound/effects/badmood2.ogg','sound/effects/badmood3.ogg','sound/effects/badmood4.ogg')
 		sound_to(src, spoopysound)
