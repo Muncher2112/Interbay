@@ -97,6 +97,7 @@
 
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
+		handle_gas_mask_sound()
 		..()
 
 // Calculate how vulnerable the human is to under- and overpressure.
@@ -1330,4 +1331,4 @@
 	if(istype(wear_mask, /obj/item/clothing/mask/gas))
 		//if((world.time - soundcooldown) >= 300)
 		var/mask_sound = pick('sound/effects/gasmask1.ogg','sound/effects/gasmask2.ogg','sound/effects/gasmask3.ogg','sound/effects/gasmask4.ogg','sound/effects/gasmask5.ogg','sound/effects/gasmask6.ogg','sound/effects/gasmask7.ogg','sound/effects/gasmask8.ogg','sound/effects/gasmask9.ogg','sound/effects/gasmask10.ogg')
-		sound_to(src, mask_sound)
+		playsound(src, mask_sound, 50, 1)
