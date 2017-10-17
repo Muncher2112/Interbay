@@ -211,10 +211,7 @@
 		if(M.back)
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
-
-		M.set_hygiene(HYGIENE_LEVEL_CLEAN)
-		M.add_event("shower", /datum/happiness_event/nice_shower)
-
+		
 		//flush away reagents on the skin
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
@@ -227,6 +224,10 @@
 			var/washmask = 1
 			var/washears = 1
 			var/washglasses = 1
+
+			if(H.is_nude())//Don't get clean showering with you clothes on.
+				H.set_hygiene(HYGIENE_LEVEL_CLEAN)
+				H.add_event("shower", /datum/happiness_event/nice_shower)
 
 			if(H.wear_suit)
 				washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
