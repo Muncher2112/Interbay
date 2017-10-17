@@ -336,7 +336,7 @@
 		message = "<B>[src]</B> urinates into the [U ? U : S]."
 		reagents.remove_any(rand(1,8))
 		bladder -= 50
-	else if(T)//In the toilet.
+	else if(T && T.open)//In the toilet.
 		message = "<B>[src]</B> urinates into the [T]."
 		reagents.remove_any(rand(1,8))
 		bladder -= 50
