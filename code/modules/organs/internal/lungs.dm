@@ -138,6 +138,7 @@
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			owner.emote("gasp")
+			gasp_sound(src)
 
 		var/ratio = inhale_pp/safe_pressure_min
 		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))	// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
