@@ -1,5 +1,5 @@
 /**********************************
-*******Interactions code by HONKERTRON feat TestUnit********
+*******Interactions code by HONKERTRON feat TestUnit with translations and code edits by Matt********
 **Contains a lot ammount of ERP and MEHANOYEBLYA**
 ***********************************/
 
@@ -45,12 +45,12 @@
 	if (!hashands_p)
 		temp = P.organs_by_name[BP_L_HAND]
 		hashands = (temp && temp.is_usable())
-	var/mouthfree = !(H.wear_mask)//((H.head && (H.head.flags & HEADCOVERSMOUTH)) || (H.wear_mask && (H.wear_mask.flags & MASKCOVERSMOUTH)))
-	var/mouthfree_p = !(P.wear_mask)// ((P.head && (P.head.flags & HEADCOVERSMOUTH)) || (P.wear_mask && (P.wear_mask.flags & MASKCOVERSMOUTH)))
-	var/haspenis = H.has_penis()//((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
-	var/haspenis_p = P.has_penis()//((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
-	var/hasvagina = (H.gender == FEMALE && H.species.genitals)// && H.species.name != "Unathi" && H.species.name != "Stok")
-	var/hasvagina_p = (P.gender == FEMALE && P.species.genitals)// && P.species.name != "Unathi" && P.species.name != "Stok")
+	var/mouthfree = !(H.wear_mask)
+	var/mouthfree_p = !(P.wear_mask)
+	var/haspenis = H.has_penis()
+	var/haspenis_p = P.has_penis()
+	var/hasvagina = (H.gender == FEMALE && H.species.genitals)
+	var/hasvagina_p = (P.gender == FEMALE && P.species.genitals)
 	var/hasanus_p = P.species.anus
 	var/isnude = H.is_nude()
 	var/isnude_p = P.is_nude()
@@ -139,8 +139,7 @@
 	var/mutilated_genitals = 0 //Whether or not they can do the fug.
 
 mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
-	var/message = ""//"êîí÷àåò íà ïîë!"
-	//var/ya = "&#1103;"
+	var/message = ""
 	var/turf/T
 
 	if (H.gender == MALE)
@@ -196,7 +195,7 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 	if (H.multiorgasms > H.potenzia / 3)
 		if (H.staminaloss < P.potenzia * 4)
 			H.staminaloss += H.potenzia
-	//if (H.staminaloss > 100)
+	if (H.staminaloss > 100)
 		H.druggy = 300
 		H.erpcooldown = 600
 
@@ -213,7 +212,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 			if (H.lastfucked != P || H.lfhole != hole)
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "licked")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
@@ -238,7 +236,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 			if (H.lastfucked != P || H.lfhole != hole)
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "fingered")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
@@ -290,7 +287,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				message = pick(" shoves their dick into [P]'s pussy.")
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "fucked")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
@@ -325,7 +321,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				message = pick(" shoves their dick into [P]'s asshole.")
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "fucked in anus")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
@@ -353,7 +348,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 			playsound(loc, "honk/sound/interactions/bang[rand(1, 3)].ogg", 70, 1, -1)
 
 		if("oral")
-
 			message = pick("fucks [P]'s throat.")
 			if (prob(35))
 				message = pick(" sucks [P]'s [P.gender == FEMALE ? "vag" : "dick"]..", " licks [P]'s [P.gender == FEMALE ? "vag" : "dick"]..")
@@ -361,7 +355,6 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				message = pick(" shoves their dick down [P]'s throat.")
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "fucked in mouth")
 
 			if (prob(5) && H.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H][message]</B></font>")
@@ -381,20 +374,17 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				playsound(loc, "honk/sound/interactions/champ[rand(1, 2)].ogg", 50, 1, -1)
 			if (prob(H.potenzia))
 				P.staminaloss += 3
-				H.visible_message("<B>[H] fucks [P]'s mouth.</B>")//[pick("äàâèòñ[ya] èíñòðóìåíòîì <B>[H]</B>", "çàäûõàåòñ[ya]", "êîð÷èòñ[ya] â ðâîòíîì ïîçûâå")].")
+				H.visible_message("<B>[H] fucks [P]'s mouth.</B>")
 				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<B>[H] fucks [P]'s mouth.</B>")//("<B>[P]</B> [pick("äàâèòñ[ya] èíñòðóìåíòîì <B>[H]</B>", "çàäûõàåòñ[ya]", "êîð÷èòñ[ya] â ðâîòíîì ïîçûâå")].")
+					P.visible_message("<B>[H] fucks [P]'s mouth.</B>")
 
 
 		if("mount")
-
 			message = pick("fucks [P]'s dick", "rides [P]'s dick", "rides [P]")
-
 			if (H.lastfucked != P || H.lfhole != hole)
-				message = pick("begins to hop on [P]'s dick")//"îñòîðîæíî íàñàæèâàåòñ[ya] íà ïîëîâîé îðãàí [P]")
+				message = pick("begins to hop on [P]'s dick")
 				H.lastfucked = P
 				H.lfhole = hole
-				//add_logs(P, H, "fucked")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message].</B></font>")
@@ -440,8 +430,6 @@ mob/living/carbon/human/proc/moan()
 					playsound(loc, "honk/sound/interactions/under_moan_f[rand(1, 4)].ogg", 70, 1, 1)
 				lastmoan = moan
 
-				//if (istype(H.head, /obj/item/clothing/head/kitty)  || istype(H.head, /obj/item/clothing/head/collectable/kitty))
-				//	playsound(loc, "honk/sound/interactions/purr_f[rand(1, 3)].ogg", 70, 1, 0)
 
 mob/living/carbon/human/proc/handle_lust()
 	lust -= 4
