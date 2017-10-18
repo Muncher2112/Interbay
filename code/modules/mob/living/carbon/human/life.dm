@@ -310,6 +310,7 @@
 		if(prob(15) && !nervous_system_failure())
 			if(!is_asystole())
 				emote("gasp")
+				gasp_sound(src)
 			else
 				emote(pick("shiver","twitch"))
 		adjustOxyLoss(HUMAN_MAX_OXYLOSS)
