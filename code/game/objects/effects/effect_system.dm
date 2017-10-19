@@ -288,7 +288,7 @@ steam.start() -- spawns the effect
 	if (R.coughedtime != 1)
 		R.coughedtime = 1
 		R.emote("gasp")
-		gasp_sound(R)
+		R.gasp_sound()
 		spawn (20)
 			R.coughedtime = 0
 	R.updatehealth()

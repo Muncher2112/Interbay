@@ -31,24 +31,24 @@
 	if(message)
 		custom_emote(2,message)
 
-/mob/proc/gasp_sound(var/mob/M)
+/mob/proc/gasp_sound()
 	var/gaspsound = null
 	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
-	if(M.stat)
+	if(stat)
 		return
 
 	if(muzzled)
 		custom_emote(2,"[src.name] makes a muffled gasping noise.")
 		return
 
-	if(M.gender == MALE)
+	if(gender == MALE)
 		gaspsound = "sound/voice/gasp_male[rand(1,7)].ogg"
 
-	if(M.gender == FEMALE)
+	if(gender == FEMALE)
 		gaspsound = "sound/voice/gasp_female[rand(1,7)].ogg"
 
 	if(gaspsound)
-		playsound(M, gaspsound, 25, 0, 1)
+		playsound(src, gaspsound, 25, 0, 1)
 
 
 /mob/proc/agony_moan()
