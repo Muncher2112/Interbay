@@ -2,7 +2,7 @@
 	if(stat)
 		return
 	var/screamsound = null
-	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
+	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle)
 	var/message = null
 
 	if(ishuman(src))
@@ -33,7 +33,7 @@
 
 /mob/proc/gasp_sound()
 	var/gaspsound = null
-	var/muzzled = istype(src.wear_mask, /obj/item/clothing/mask/muzzle)
+	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle)
 	if(stat)
 		return
 
