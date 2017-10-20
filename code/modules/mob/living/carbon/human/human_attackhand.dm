@@ -106,8 +106,8 @@
 					to_chat(M, "<span class='notice'>You already grabbed [src].</span>")
 					return
 			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
-				return 
-			
+				return
+
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
@@ -142,10 +142,10 @@
 			if(!affecting || affecting.is_stump())
 				to_chat(M, "<span class='danger'>They are missing that limb!</span>")
 				return 1
-			
+
 			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
 				return 1
-			
+
 			switch(src.a_intent)
 				if(I_HELP)
 					if(!src.combat_mode)
@@ -197,7 +197,11 @@
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != BP_CHEST) // Missed!
 					if(!src.lying)
-						attack_message = "[H] attempted to strike [src], but missed!"
+						if(skillcheck(H.melee_skill, 60, 0, H) == CRIT_FAILURE)
+							H.resolve_critical_miss()
+							attack_message = null
+						else
+							attack_message = "[H] attempted to strike [src], but missed!"
 					else
 						attack_message = "[H] attempted to strike [src], but \he rolled out of the way!"
 						src.set_dir(pick(cardinal))
@@ -253,7 +257,7 @@
 			M.do_attack_animation(src)
 
 			if(attempt_dodge())//Trying to dodge it before they even have the chance to miss us.
-				return 
+				return
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)

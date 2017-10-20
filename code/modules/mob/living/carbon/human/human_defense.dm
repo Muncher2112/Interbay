@@ -202,10 +202,15 @@ meteor_act
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
-	if(!user.combat_mode && !skillcheck(user.melee_skill, 60, 0, user))
+	if(skillcheck(user.melee_skill, 60, 0, user) == CRIT_FAILURE)
+		user.resolve_critical_miss(I)
+		return null
+
+	if(!user.combat_mode)
 		visible_message("<span class='danger'>[user] botches the attack on [src]!</span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
+
 
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
@@ -331,8 +336,6 @@ meteor_act
 		return //if the weapon itself didn't get bloodied than it makes little sense for the target to be bloodied either
 
 	//getting the weapon bloodied is easier than getting the target covered in blood, so run prob() again
-
-
 	if(prob(33 + W.sharp*10))
 		var/turf/location = loc
 		if(istype(location, /turf/simulated))
@@ -366,15 +369,6 @@ meteor_act
 	blood_color = src.species.blood_color
 	new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_loca, splatter_dir, blood_color)
 	target_loca.add_blood(src)
-
-	/* //This is deprecated and barely works. Hopefully the above will make a nice replacement.
-	if(prob(50))	//Spawn a bloodsplatter effect
-		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(src)
-		B.blood_source = src
-		var/n = rand(1,3)
-		var/turf/targ = get_ranged_target_turf(src, get_dir(attacker, src), n)
-		B.GoTo(targ, n)
-	*/
 
 /mob/living/carbon/human/proc/projectile_hit_bloody(obj/item/projectile/P, var/effective_force, var/hit_zone)
 	if(P.damage_type != BRUTE || P.nodamage)
@@ -663,3 +657,29 @@ meteor_act
 	else
 		user.visible_message("<span class=danger>[user] tried to kick [src] in the [affecting.name], but missed!<span>")
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+
+
+//We crit failed, let's see what happens to us.
+/mob/living/proc/resolve_critical_miss(var/obj/item/I)
+	var/result = rand(1,3)
+	
+	if(!I)
+		visible_message("<span class='danger'>[src] punches themself in the face!</span>")
+		attack_hand(src)
+		return
+	
+	switch(result)
+		if(1)//They drop their weapon.
+			visible_message("<span class='danger'>\The [I] flies out of \the [src]'s hand!</span>")
+			drop_from_inventory(I)
+			throw_at(get_edge_target_turf(I, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
+			return
+		if(2)
+			visible_message("<span class='danger'>[src] botches the attack, stumbles, and falls!</span>")
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+			Weaken(1)
+			Stun(3)
+			return
+		if(3)
+			visible_message("<span class='danger'>[src] botches the attack and hits themself!</span>")
+			attackby(I, src)

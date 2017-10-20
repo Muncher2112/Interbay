@@ -9,6 +9,12 @@
 // - Matt 																//
 //////////////////////////////////////////////////////////////////////////
 
+//defines
+#define CRIT_SUCCESS_NORM 5
+#define CRIT_FAILURE_NORM 5
+#define CRIT_SUCCESS 2
+#define CRIT_FAILURE 3
+
 
 //I am aware this is probably the worst possible way of doing it but I'm using this method till I get a better one. - Matt
 /mob
@@ -22,15 +28,25 @@
 	var/medical_skill = 20
 	var/engineering_skill = 50
 
+	//crit shit
+	var/crit_success_chance = CRIT_SUCCESS_NORM
+	var/crit_failure_chance = CRIT_FAILURE_NORM
+
 proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
 	if(skill >= requirement)
+		if(prob(user.crit_success_chance))
+			return CRIT_SUCCESS
 		return 1
 	else
 		if(prob(skill + mood_affect(user, 0, 1)))
+			if(prob(user.crit_success_chance))
+				return CRIT_SUCCESS
 			return 1
 		else
 			if(show_message)
 				to_chat(user, "<span class = 'warning'>[message]</span>")
+			if(prob(user.crit_failure_chance))
+				return CRIT_FAILURE
 			return 0
 
 
