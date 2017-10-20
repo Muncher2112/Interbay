@@ -423,7 +423,8 @@
 	M.reload_fullscreen()
 
 	M.emote("gasp")
-	M.Weaken(rand(10,25))
+	M.gasp_sound()
+	M.Weaken(rand(5,10))
 	M.updatehealth()
 	apply_brain_damage(M, deadtime)
 
