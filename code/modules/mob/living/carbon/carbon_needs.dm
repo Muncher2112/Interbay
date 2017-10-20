@@ -72,8 +72,12 @@
 	switch(happiness)
 		if(-5000000 to MOOD_LEVEL_SAD4)
 			flash_sadness()
+			crit_failure_chance = 20
 		if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
 			flash_sadness()
+			crit_failure_chance = 15
+		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY1)
+			crit_failure_chance = CRIT_SUCCESS_NORM
 		/*
 		if(MOOD_LEVEL_SAD3 to MOOD_LEVEL_SAD2)
 			flash_sadness()
