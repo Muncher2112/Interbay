@@ -248,6 +248,7 @@
 					to_chat(src, "<span class='warning'>You feel strange!</span>")
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
+					gasp_sound()
 		if(radiation > 150)
 			damage = 8
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
