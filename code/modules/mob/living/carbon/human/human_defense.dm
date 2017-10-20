@@ -670,16 +670,16 @@ meteor_act
 	
 	switch(result)
 		if(1)//They drop their weapon.
-			visible_message("<span class='danger'>\The [I] flies out of \the [src]'s hand!</span>")
+			visible_message("<span class='danger'><big>CRITICAL FAILURE! \The [I] flies out of [src]'s hand!</big></span>")
 			drop_from_inventory(I)
 			throw_at(get_edge_target_turf(I, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
 			return
 		if(2)
-			visible_message("<span class='danger'>[src] botches the attack, stumbles, and falls!</span>")
+			visible_message("<span class='danger'><big>CRITICAL FAILURE! [src] botches the attack, stumbles, and falls!</big></span>")
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 			Weaken(1)
 			Stun(3)
 			return
 		if(3)
-			visible_message("<span class='danger'>[src] botches the attack and hits themself!</span>")
+			visible_message("<span class='danger'><big>CRITICAL FAILURE! [src] botches the attack and hits themself!</big></span>")
 			attackby(I, src)
