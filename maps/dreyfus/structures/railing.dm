@@ -16,11 +16,12 @@
 //actually railing code
 /obj/structure/railing
 	name = "railing"
-	desc = "A standart steel railing. Prevents from human stupidity."
+	desc = "A standard steel railing. Prevents human stupidity."
 	icon = 'maps/dreyfus/icons/railing.dmi'
 	density = 1
 	throwpass = 1
-	layer = 3.2//Just above doors
+	//layer = 3.2//Just above doors 	//Layers mean nothing.
+	plane = ABOVE_HUMAN_PLANE // They go ontop of humans.
 	//pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1
 	flags = ON_BORDER

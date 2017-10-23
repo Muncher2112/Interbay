@@ -6,7 +6,7 @@
 	density = 0
 	anchored = 1.0
 	w_class = ITEM_SIZE_NORMAL
-	plane = ABOVE_PLATING_PLANE
+	plane = HIDING_MOB_PLANE//ABOVE_PLATING_PLANE
 	layer = LATTICE_LAYER
 	//	flags = CONDUCT
 
