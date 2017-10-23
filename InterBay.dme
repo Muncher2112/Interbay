@@ -2397,6 +2397,7 @@
 #include "maps\bunker1\bunker_turfs.dm"
 #include "maps\dreyfus\dreyfus_define.dm"
 #include "maps\dreyfus\structures\catwalk.dm"
+#include "maps\dreyfus\structures\gym.dm"
 #include "maps\dreyfus\structures\railing.dm"
 #include "maps\example\example_define.dm"
 #include "maps\exodus\exodus_define.dm"
