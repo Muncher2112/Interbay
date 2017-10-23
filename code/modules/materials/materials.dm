@@ -132,7 +132,7 @@ var/list/name_to_material
 		to_chat(user, "<span class='warning'>You need one rod and one sheet of [display_name] to make anything useful.</span>")
 		return
 
-	if(!skillcheck(user.engineering_skill, 60, 1, user, message = "I have botched bulding what I'm building."))
+	if(!user.skillcheck(user.engineering_skill, 60, 1, message = "I have botched bulding what I'm building."))
 		return
 
 	used_stack.use(1)
@@ -149,7 +149,7 @@ var/list/name_to_material
 		to_chat(user, "<span class='warning'>You need five wires and one sheet of [display_name] to make anything useful.</span>")
 		return
 
-	if(!skillcheck(user.engineering_skill, 60, 1, user, message = "I have botched adding the wires."))
+	if(!user.skillcheck(user.engineering_skill, 60, 1, message = "I have botched adding the wires."))
 		return
 
 	used_stack.use(5)
@@ -461,7 +461,7 @@ var/list/name_to_material
 		to_chat(user, "<span class='warning'>This task is too complex for your clumsy hands.</span>")
 		return 1
 
-	if(!skillcheck(user.engineering_skill, 60, 1, user, message = "I have failed to build a window."))
+	if(!user.skillcheck(user.engineering_skill, 60, 1, message = "I have failed to build a window."))
 		return 1
 
 	var/turf/T = user.loc

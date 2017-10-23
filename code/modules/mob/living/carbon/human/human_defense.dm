@@ -202,7 +202,7 @@ meteor_act
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
-	if(skillcheck(user.melee_skill, 60, 0, user) == CRIT_FAILURE)
+	if(user.skillcheck(user.melee_skill, 60, 0) == CRIT_FAILURE)
 		user.resolve_critical_miss(I)
 		return null
 

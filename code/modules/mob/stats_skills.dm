@@ -32,44 +32,43 @@
 	var/crit_success_chance = CRIT_SUCCESS_NORM
 	var/crit_failure_chance = CRIT_FAILURE_NORM
 
-proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
-	if(skill >= requirement)
-		if(prob(user.crit_success_chance))
+/mob/proc/skillcheck(var/skill, var/requirement, var/show_message, var/message = "I have failed to do this.")//1 - 100
+	if(skill >= requirement)//If we already surpass the skill requirements no need to roll.
+		if(prob(src.crit_success_chance))//Only thing we roll for is a crit success.
 			return CRIT_SUCCESS
 		return 1
 	else
-		if(prob(skill + mood_affect(user, 0, 1)))
-			if(prob(user.crit_success_chance))
+		if(prob(skill + src.mood_affect(0, 1)))//Otherwise we roll to see if we pass.
+			if(prob(crit_success_chance))//And again to see if we get a crit scucess.
 				return CRIT_SUCCESS
 			return 1
 		else
-			if(show_message)
-				to_chat(user, "<span class = 'warning'>[message]</span>")
-			if(prob(user.crit_failure_chance))
+			if(show_message)//If we don't pass then we return failure
+				to_chat(src, "<span class = 'warning'>[message]</span>")
+			if(prob(crit_failure_chance))//And roll for a crit failure.
 				return CRIT_FAILURE
 			return 0
 
 
-proc/statscheck(var/stat, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
-	//var/dice = "1d20"
+/mob/proc/statscheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
 	if(stat < requirement)
-		var/H = rand(1,20)
-		H += mood_affect(user, 1)
-		if(stat >= H)
+		var/H = rand(1,20)// our "dice"
+		H += mood_affect(1)// our skill modifier
+		if(stat >= H)//Rolling that d20
 			//world << "Rolled and passed."
 			return 1
 		else
-			if(show_message)
-				to_chat(user, "<span class = 'warning'>[message]</span>")
+			if(show_message)//If we fail then print this message and return 0.
+				to_chat(src, "<span class = 'warning'>[message]</span>")
 			return 0
 	else
 		//world << "Didn't roll and passed."
 		return 1
 
 //having a bad mood fucks your shit up fam.
-proc/mood_affect(var/mob/user, var/stat = null, var/skill = null)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
+/mob/proc/mood_affect(var/stat = null, var/skill = null)
+	if(iscarbon(src))
+		var/mob/living/carbon/C = src
 		if(C.happiness <= MOOD_LEVEL_SAD3)
 			if(stat)
 				return 5
@@ -110,7 +109,7 @@ proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is al
 				return 5
 
 //Stats helpers.
-/mob/living/carbon/human/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.
+/mob/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.
 	if(stre)
 		str = stre
 	if(dexe)
@@ -144,7 +143,7 @@ proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is al
 		if(80 to INFINITY)
 			return "<b>GOD LIKE</b>"
 
-/mob/living/carbon/human/proc/add_skills(var/melee, var/ranged, var/medical, var/engineering)//To make adding skills quicker.
+/mob/proc/add_skills(var/melee, var/ranged, var/medical, var/engineering)//To make adding skills quicker.
 	if(melee)
 		melee_skill = melee
 	if(ranged)

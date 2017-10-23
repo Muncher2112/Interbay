@@ -197,7 +197,7 @@
 					hit_zone = ran_zone(hit_zone)
 				if(prob(15) && hit_zone != BP_CHEST) // Missed!
 					if(!src.lying)
-						if(skillcheck(H.melee_skill, 60, 0, H) == CRIT_FAILURE)
+						if(H.skillcheck(H.melee_skill, 60, 0) == CRIT_FAILURE)
 							H.resolve_critical_miss()
 							attack_message = null
 						else
