@@ -69,7 +69,6 @@
 		user.facedir(SOUTH)
 		user.Stun(4)
 		user.adjustStaminaLoss(rand(20,40))
-		user.
 		user.loc = src.loc
 		var/image/W = image('goon/icons/obj/fitness.dmi',"fitnessweight-w")
 		W.plane = ABOVE_HUMAN_PLANE
