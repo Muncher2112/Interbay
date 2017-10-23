@@ -5,7 +5,7 @@
 		msg += event.description
 
 	if(!events.len)
-		msg += "<span class='info'>I feel indifferent.</span>"
+		msg += "<span class='info'>I feel indifferent.</span>\n"
 
 
 	msg += "<span class='info'>*---------*</span>"
