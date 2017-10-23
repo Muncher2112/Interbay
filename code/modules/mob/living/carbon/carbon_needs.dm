@@ -3,8 +3,10 @@
 	for(var/i in events)
 		var/datum/happiness_event/event = events[i]
 		msg += event.description
-	if(!msg)
+
+	if(!events.len)
 		msg += "<span class='info'>I feel indifferent.</span>"
+
 
 	msg += "<span class='info'>*---------*</span>"
 	to_chat(src, msg)
