@@ -322,6 +322,9 @@ meteor_act
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood
 		attack_bloody(I, user, effective_force, hit_zone)
+	if(user.skillcheck(user.melee_skill,0,0) == CRIT_SUCCESS)
+		resolve_critical_hit()
+
 	return 1
 
 /mob/living/carbon/human/proc/attack_bloody(obj/item/W, mob/living/attacker, var/effective_force, var/hit_zone)
@@ -683,3 +686,25 @@ meteor_act
 		if(3)
 			visible_message("<span class='danger'><big>CRITICAL FAILURE! [src] botches the attack and hits themself!</big></span>")
 			attackby(I, src)
+
+/mob/living/proc/resolve_critical_hit()
+	var/result = rand(1,3)
+
+	switch(result)
+		if(1)
+			visible_message("<span class='danger'><big>CRITICAL HIT! IT MUST BE PAINFUL</big></span>")
+			apply_damage(rand(5,10), BRUTE)
+			return
+
+		if(2)
+			visible_message("<span class='danger'><big>CRITICAL HIT! [src] is stunned!</big></span>")
+			Weaken(1)
+			Stun(3)
+			return
+
+		if(3)
+			visible_message("<span class='danger'><big>CRITICAL HIT! [src] is knocked unconcious by the blow!</big></span>")
+			apply_effect(20, PARALYZE)
+			return
+
+
