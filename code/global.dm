@@ -176,3 +176,10 @@ var/global/obj/item/device/radio/announcer/global_announcer = new
 var/global/obj/item/device/radio/announcer/subspace/global_headset = new
 
 var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+
+//Counters for the end of the round.
+var/global/times_came = 0
+var/global/shit_left = 0
+var/global/piss_left = 0
+var/global/deaths_in_space = 0
+var/global/total_deaths = 0

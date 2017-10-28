@@ -199,6 +199,8 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 		H.druggy = 300
 		H.erpcooldown = 600
 
+	times_came++
+
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	//var/ya = "&#1103;"
 	var/message = ""

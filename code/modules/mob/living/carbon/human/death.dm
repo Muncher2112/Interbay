@@ -74,7 +74,7 @@
 		handle_organs()
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
-		spawn(1)
+		spawn(10)
 			if(bowels >= 30)
 				handle_shit()
 			if(bladder >= 30)

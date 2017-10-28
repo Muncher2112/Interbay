@@ -25,7 +25,10 @@
 /mob/living/death(gibbed, deathmessage="seizes up and falls limp...", show_dead_message)
 	. = ..(gibbed, deathmessage, show_dead_message)
 	if(.)
+		if(isinspace())
+			deaths_in_space++
 		stop_aiming(no_message=1)
+		total_deaths++
 
 /mob/living/update_canmove()
 	..()

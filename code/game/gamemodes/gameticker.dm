@@ -457,6 +457,7 @@ var/global/datum/controller/gameticker/ticker
 	if(dronecount)
 		to_world("<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
+	/*
 	if(all_money_accounts.len)
 		var/datum/money_account/max_profit = all_money_accounts[1]
 		var/datum/money_account/max_loss = all_money_accounts[1]
@@ -470,6 +471,20 @@ var/global/datum/controller/gameticker/ticker
 				max_loss = D
 		to_world("<b>[max_profit.owner_name]</b> received most <font color='green'><B>PROFIT</B></font> today, with net profit of <b>T[max_profit.get_balance()]</b>.")
 		to_world("On the other hand, <b>[max_loss.owner_name]</b> had most <font color='red'><B>LOSS</B></font>, with total loss of <b>T[max_loss.get_balance()]</b>.")
+	*/
+
+
+	//ROUND END STATS
+	var/round_end_stats = "<b>ROUND END STATS:</b>\n"
+	round_end_stats += "Number of times the floor was shit on: <font color='red'><B>[shit_left]</B></font>.\n"
+	round_end_stats += "Number of times the floor was pissed on: <font color='red'><B>[piss_left]</B></font>.\n"
+	round_end_stats += "Number of orgasms: <font color='red'><B>[times_came]</B></font>.\n"
+	round_end_stats += "Number of deaths in space: <font color='red'><B>[deaths_in_space]</B></font>.\n"
+	round_end_stats += "Total bloodshed: <font color='red'><B>[total_deaths]</B></font>.\n"
+
+	to_world(round_end_stats)
+
+
 
 	mode.declare_completion()//To declare normal completion.
 
