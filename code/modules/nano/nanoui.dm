@@ -86,7 +86,8 @@ nanoui is used to open and update nano browser uis
 	add_template("main", ntemplate_filename)
 
 	if (ntitle)
-		title = sanitize(ntitle)
+		title = html_encode(ntitle)
+		title = sanitize(title, MAX_MESSAGE_LEN, FALSE)
 	if (nwidth)
 		width = nwidth
 	if (nheight)
