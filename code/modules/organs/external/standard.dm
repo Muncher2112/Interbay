@@ -51,6 +51,20 @@
 	gendered_icon = 1
 	artery_name = "iliac artery"
 
+/obj/item/organ/external/groin/droplimb(var/clean, var/disintegrate = DROPLIMB_EDGE, var/ignore_children, var/silen)
+	if(owner.has_penis())//Instead of bisecting them entirely just fucking drop their dick off.
+		owner.mutilate_genitals()
+		owner.visible_message("<span class='danger'><big>\The [owner]'s penis flies off in a bloody arc!</big></span>")
+		playsound(owner, 'sound/effects/gore/severed.ogg', 50, 1, -1)
+		var/obj/item/organ/internal/penis/P = new(src)
+		if(P && istype(loc,/turf))
+			P.throw_at(get_edge_target_turf(P,pick(alldirs)),rand(1,3),30)
+			var/turf/T = P.loc
+			T.add_blood(owner)
+
+
+
+
 /obj/item/organ/external/arm
 	organ_tag = BP_L_ARM
 	name = "left arm"
