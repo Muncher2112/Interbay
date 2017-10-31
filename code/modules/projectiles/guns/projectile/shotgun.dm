@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/shotgun
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	parry_sounds = list('sound/weapons/blunt_parry1.ogg', 'sound/weapons/blunt_parry2.ogg', 'sound/weapons/blunt_parry3.ogg')
 	magazine_based = 0
 
 /obj/item/weapon/gun/projectile/shotgun/pump
