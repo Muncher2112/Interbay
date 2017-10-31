@@ -25,6 +25,13 @@
 	..()
 	M.visible_message("[M] pushes the bolt of \the [src.name]")//For deaf people.
 
+
+//Paryying.
+/obj/item/weapon/gun/projectile/shotgun/pump/boltaction/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_sword_parry(user, damage, damage_source, attacker, def_zone, attack_text))
+		return 1
+	return 0
+
 /*
 //This is OP at the moment.
 /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/verb/scope()
