@@ -13,6 +13,7 @@
 	#include "frontier_gamemodes.dm"
 	#include "frontier_presets.dm"
 	#include "frontier_shuttles.dm"
+	#include "frontier_elevator.dm"
 
 	#include "frontier-1.dmm"
 	#include "frontier-2.dmm"
