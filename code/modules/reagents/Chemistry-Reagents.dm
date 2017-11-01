@@ -37,6 +37,8 @@
 	var/list/glass_special = null // null equivalent to list()
 	var/quench_amount = 1
 
+	var/spawn_temperature = T20C
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
