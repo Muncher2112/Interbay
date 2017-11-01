@@ -295,7 +295,7 @@
 			message = "<B>[src]</B> defecates into the [T]."
 
 		else if(w_uniform)
-			message = "<B>[src]</B> shits their pants."
+			message = "<B>[src]</B> shits \his pants."
 			reagents.add_reagent("poo", 10)
 			adjust_hygiene(-25)
 			add_event("shitself", /datum/happiness_event/hygiene/shit)
@@ -335,19 +335,27 @@
 	var/obj/structure/urinal/U = locate() in src.loc
 	var/obj/structure/toilet/T = locate() in src.loc
 	var/obj/structure/sink/S = locate() in src.loc
+	var/obj/item/weapon/reagent_containers/RC = locate() in src.loc
 	if((U || S) && gender != FEMALE)//In the urinal or sink.
-		message = "<B>[src]</B> urinates into the [U ? U : S]."
-		reagents.remove_any(rand(1,8))
-		
-	else if(T && T.open)//In the toilet.
-		message = "<B>[src]</B> urinates into the [T]."
+		message = "<B>[src]</B> urinates into [U ? U : S]."
 		reagents.remove_any(rand(1,8))
 
+	else if(T && T.open)//In the toilet.
+		message = "<B>[src]</B> urinates into [T]."
+		reagents.remove_any(rand(1,8))
+
+	else if(RC && RC.is_open_container())//Inside a beaker, glass, etc.
+		message = "<B>[src]</B> urinates into [RC]."
+		var/amount = rand(1,8)
+		RC.reagents.add_reagent("urine", amount)
+		if(reagents)
+			reagents.trans_to(RC, amount)
+
 	else if(w_uniform)//In your pants.
-		message = "<B>[src]</B> pisses their pants."
+		message = "<B>[src]</B> pisses \his pants."
 		adjust_hygiene(-25)
 		add_event("pissedself", /datum/happiness_event/hygiene/pee)
-	
+
 	else//On the floor.
 		var/turf/TT = src.loc
 		var/obj/effect/decal/cleanable/urine/D = new/obj/effect/decal/cleanable/urine(src.loc)
@@ -355,7 +363,7 @@
 			reagents.trans_to(D, rand(1,8))
 		message = "<B>[src]</B> pisses on the [TT.name]."
 		piss_left++//Global var for round end, not how much piss is left.
-	
+
 	bladder -= 50
 	visible_message("[message]")
 
