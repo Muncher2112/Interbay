@@ -306,8 +306,10 @@
 /mob/living/carbon/human/proc/get_visible_name()
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
-	if(id_name && (id_name != face_name))
+	if(id_name && (id_name != face_name) && face_name != "Unknown")
 		return "[face_name] (as [id_name])"
+	else if(id_name && (id_name != face_name) && face_name == "Unknown")//Hacky af.
+		return id_name
 	return face_name
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
@@ -330,6 +332,13 @@
 		if(I)
 			return I.registered_name
 	return
+
+/mob/living/carbon/human/proc/get_job_name()
+	if(wear_id)
+		var/obj/item/weapon/card/id/I = wear_id.GetIdCard()
+		if(I)
+			return I.assignment
+
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
