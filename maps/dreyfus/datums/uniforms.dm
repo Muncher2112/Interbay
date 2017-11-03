@@ -1,5 +1,5 @@
-/decl/hierarchy/outfit/job/dreyfus/commandant
-	name = OUTFIT_JOB_NAME("Commandant")
+/decl/hierarchy/outfit/job/dreyfus/magistrate
+	name = OUTFIT_JOB_NAME("Magistrate")
 	l_ear = /obj/item/device/radio/headset/heads/captain
 	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
 	suit = /obj/item/clothing/suit/leathercoat

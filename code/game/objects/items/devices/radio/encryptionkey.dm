@@ -112,6 +112,11 @@
 	icon_state = "srv_cypherkey"
 	channels = list("Service" = 1)
 
+/obj/item/device/encryptionkey/headset_inquisition
+	name = "inquisition radio key"
+	icon_state = "hos_cypherkey"
+	channels = list("Inquisition" = 1)
+
 /obj/item/device/encryptionkey/ert
 	name = "\improper ERT radio encryption key"
 	channels = list("Response Team" = 1, "Science" = 1, "Command" = 1, "Medical" = 1, "Engineering" = 1, "Security" = 1, "Supply" = 1, "Service" = 1)

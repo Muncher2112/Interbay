@@ -3,8 +3,6 @@
 						/datum/job/assistant,
 						/datum/job/captain,
 						/datum/job/hop,
-						/datum/job/rd,
-						/datum/job/scientist,
 						/datum/job/doctor,
 						/datum/job/hos,
 						/datum/job/officer,
@@ -15,7 +13,11 @@
 						/datum/job/ouvrier,
 						/datum/job/chef,
 						/datum/job/chaplain,
-						/datum/job/janitor
+						/datum/job/janitor,
+						/datum/job/arbiter,
+						/datum/job/supreme_arbiter
+						///datum/job/rd,
+						///datum/job/scientist,
 						///datum/job/medassist,
 						///datum/job/cadet,
 						///datum/job/raider,
@@ -36,12 +38,12 @@
 
 
 /datum/job/captain
-	title = "Commandant"
+	title = "Magistrate"
 	supervisors = "CMA and you're good will."
 	minimal_player_age = 41
 	economic_modifier = 15
 	ideal_character_age = 65
-	outfit_type = /decl/hierarchy/outfit/job/dreyfus/commandant
+	outfit_type = /decl/hierarchy/outfit/job/dreyfus/magistrate
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -51,7 +53,7 @@
 
 /datum/job/hop
 	title = "Overseer"
-	supervisors = "the Commandant"
+	supervisors = "the Magistrate"
 	minimal_player_age = 31
 	economic_modifier = 12
 	ideal_character_age = 45
@@ -82,7 +84,7 @@
 
 /datum/job/rd
 	title = "Technomancer"
-	supervisors = "the Commandant"
+	supervisors = "the Magistrate"
 	minimal_player_age = 21
 	economic_modifier = 9
 	ideal_character_age = 40
@@ -144,7 +146,7 @@
 
 /datum/job/hos
 	title = "Head Peacekeeper"
-	supervisors = "the Commandant"
+	supervisors = "the Magistrate"
 	department_flag = SEC
 	faction = "Station"
 	total_positions = 1
@@ -340,6 +342,49 @@
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(5,9))
 
+
+//CHURCH JOBS
+/datum/job/arbiter
+	title = "Arbiter"
+	department = "Civilian"
+	faction = "Station"
+	department_flag = CIV
+	total_positions = 3
+	spawn_positions = 3
+	selection_color = "#6161aa"
+	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
+	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	outfit_type = /decl/hierarchy/outfit/job/arbiter
+
+	equip(var/mob/living/carbon/human/H)//Peacekeeper stats.
+		..()
+		if(!H.religion_is_legal())//So that they can't be heretics.
+			H.religion = LEGAL_RELIGION
+		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		H.add_skills(rand(60, 75), rand(60,75))
+
+//The inquisitor, aka the supreme abriter.
+/datum/job/supreme_arbiter
+	title = "Supreme Arbiter"
+	department = "Civilian"
+	faction = "Station"
+	department_flag = CIV
+	total_positions = 3
+	spawn_positions = 3
+	selection_color = "#6161aa"
+	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
+	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	outfit_type = /decl/hierarchy/outfit/job/supreme_arbiter
+
+	equip(var/mob/living/carbon/human/H)//Still weaker than the Head Peacekeeper.
+		..()
+		if(!H.religion_is_legal())//So that they can't be heretics.
+			H.religion = LEGAL_RELIGION
+		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		H.add_skills(rand(60, 75), rand(60,75))
+
+
+
 //OFF STATION JOBS
 
 /datum/job/raider
@@ -392,18 +437,3 @@
 
 /obj/item/clothing/under/ert/raider
 	name = "raiders uniform"
-
-
-/decl/hierarchy/outfit/shipraiders
-	name = "Raiders"
-	head = /obj/item/clothing/head/helmet/siege
-	uniform = /obj/item/clothing/under/ert/raider
-	shoes = /obj/item/clothing/shoes/jackboots
-	l_ear = /obj/item/device/radio/headset/raider
-	r_pocket = /obj/item/weapon/card/emag
-	//belt = /obj/item/weapon/gun/projectile/pistol
-	suit = /obj/item/clothing/suit/storage/vest/opvest
-	//mask = /obj/item/clothing/mask/gas
-	gloves = /obj/item/clothing/gloves/thick/swat/combat
-	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR

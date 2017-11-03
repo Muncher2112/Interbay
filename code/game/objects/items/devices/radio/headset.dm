@@ -220,6 +220,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
+/obj/item/device/radio/headset/inquision
+	name = "inquision's headset"
+	desc = "The headset of religious intolorence."
+	icon_state = "rob_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/headset_inquisition
+
 /obj/item/device/radio/headset/entertainment
 	name = "actor's radio headset"
 	desc = "specially made to make you sound less cheesy."
