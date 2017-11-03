@@ -21,7 +21,7 @@
 
 /obj/item/clothing/suit/storage/vest/arbiter
 	name = "arbiter's vest"
-	desc = "Bright orange so heretics see you coming."
+	desc = "To protect you from heretical attacks."
 	icon_state = "arbiter"
 	item_state = "arbiter"
 	armor = list(melee = 40, bullet = 35, laser = 40, energy = 35, bomb = 30, bio = 0, rad = 0)
