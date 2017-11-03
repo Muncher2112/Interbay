@@ -545,6 +545,19 @@ var/global/datum/controller/occupations/job_master
 				var/obj/item/clothing/glasses/G = H.glasses
 				G.prescription = 7
 
+		if(H.religion)//In case they somehow don't have one.
+			if(H.religion_is_legal())
+				to_chat(H, "You are a worshipper of <b><font color='red'>[H.religion]</font></b>. It's the only legal religion in this land, do not be swayed by the heretics of the <b>[ILLEGAL_RELIGION]</b>.")
+			else
+				to_chat(H, "You are a worshipper of the <b><font color='red'>[H.religion]</font>. It is not a legal religion of this land. Do not be caught by the <b>Inquisition</b>.")
+				var/brothers_message = "Your fellow resisters are here too, they are:\n"
+				for(var/mob/living/carbon/human/M in player_list)
+					if(!M.religion_is_legal() && M != H)
+						brothers_message += "[M.name]\n"
+				brothers_message += "Protect them like family. Do not give their name\'s away to the Inquisition."
+
+
+
 		BITSET(H.hud_updateflag, ID_HUD)
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 		BITSET(H.hud_updateflag, SPECIALROLE_HUD)

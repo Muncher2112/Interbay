@@ -42,7 +42,7 @@
 	var/home_system = ""
 	var/citizenship = ""
 	var/personal_faction = ""
-	var/religion = ""
+	//religion used to be here, then it gained gameplay relevance.
 
 	//Equipment slots
 	var/obj/item/wear_suit = null

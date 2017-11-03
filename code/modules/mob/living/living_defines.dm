@@ -59,3 +59,6 @@
 	var/list/in_vision_cones = list()
 
 	var/footstep = 0
+
+	//This has gameplay relevance, this is no longer just fluff.
+	var/religion = LEGAL_RELIGION

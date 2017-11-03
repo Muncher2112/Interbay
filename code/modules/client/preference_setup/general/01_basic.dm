@@ -42,6 +42,8 @@ datum/preferences
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += "<b>RELIGION</b> "
+	. += "<a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
 	if(config.allow_Metadata)
 		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 	. = jointext(.,null)
@@ -86,6 +88,15 @@ datum/preferences
 		var/choice = input(user, "Where would you like to spawn when late-joining?") as null|anything in spawnkeys
 		if(!choice || !spawntypes[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.spawnpoint = choice
+		return TOPIC_REFRESH
+
+	else if(href_list["religion"])
+		
+		if(pref.religion == LEGAL_RELIGION)
+			pref.religion = ILLEGAL_RELIGION
+		else
+			pref.religion = LEGAL_RELIGION		
+			
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])

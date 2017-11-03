@@ -58,7 +58,7 @@ datum/preferences
 	var/home_system = "Unset"           //System of birth.
 	var/citizenship = "None"            //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
-	var/religion = "None"               //Religious association.
+	var/religion = LEGAL_RELIGION       //Religious association. It's legal by default, and has to manually be changed to illegal. THIS IS VERY IMPORTANT TO GAMEPLAY NOW!
 
 	var/char_branch	= "None"            // military branch
 	var/char_rank = "None"              // military rank
