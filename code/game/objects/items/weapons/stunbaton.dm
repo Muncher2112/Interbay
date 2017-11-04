@@ -18,6 +18,12 @@
 	var/obj/item/weapon/cell/bcell
 	var/hitcost = 10
 
+//So stun batons can parry.
+/obj/item/weapon/melee/baton/handle_shield(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_sword_parry(user, damage, damage_source, attacker, def_zone, attack_text))
+		return 1
+	return 0
+
 /obj/item/weapon/melee/baton/loaded
 	bcell = /obj/item/weapon/cell/device/high
 
@@ -52,7 +58,7 @@
 		icon_state = "[initial(name)]"
 
 	if(icon_state == "[initial(name)]_active")
-		set_light(1.5, 2, "#FF6A00")
+		set_light(1.5, 2, "#D9E9FF")
 	else
 		set_light(0)
 

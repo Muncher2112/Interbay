@@ -121,6 +121,8 @@
 	id_type = /obj/item/weapon/card/id/arbiter
 //	id = /obj/item/weapon/card/id/arbiter
 	pda_type = /obj/item/device/pda/lawyer
+	belt = /obj/item/weapon/melee/baton/loaded//So they at least start off with some kind of weapon to defend themselves.
+	pda_slot = slot_l_store //So they don't lose their PDA.
 
 
 /decl/hierarchy/outfit/job/supreme_arbiter
