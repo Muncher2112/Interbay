@@ -29,6 +29,15 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = 0
 
+//Magistrate
+/obj/item/clothing/suit/robes
+	name = "magistrate's robes"
+	desc = "Fit for a king... or a uh... magistrate."
+	icon_state = "robes"
+	item_state = "robes"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
 	name = "chaplain hoodie"

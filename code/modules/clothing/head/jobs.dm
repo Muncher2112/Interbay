@@ -17,6 +17,13 @@
 		)
 	body_parts_covered = 0
 
+//Magistrate
+/obj/item/clothing/head/crown
+	name = "magistrate's crown"
+	icon_state = "crown"
+	item_state = "crown"
+	desc = "It's good being magistrate."
+
 /obj/item/clothing/head/caphat/cap
 	name = "captain's cap"
 	desc = "You fear to wear it for the negligence it brings."
