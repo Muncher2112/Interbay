@@ -28,5 +28,5 @@
 
 #elif !defined(MAP_OVERRIDE)
 
-	#warn A map has already been included, ignoring Dreyfus
+	#warn A map has already been included, ignoring Utopia
 #endif
