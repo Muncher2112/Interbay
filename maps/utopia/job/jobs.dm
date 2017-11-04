@@ -37,7 +37,7 @@
 
 /datum/job/captain
 	title = "Commandant"
-	supervisors = "CMA and you're good will."
+	supervisors = "CMA and your good will."
 	minimal_player_age = 41
 	economic_modifier = 15
 	ideal_character_age = 65
