@@ -281,3 +281,23 @@ obj/item/weapon/reagent_containers/pill/noexcutite/New()
 		reagents.add_reagent("antidexafen", 10)
 		reagents.add_reagent("lemonjuice", 5)
 		reagents.add_reagent("menthol", REM*0.2)
+
+
+/obj/item/weapon/reagent_containers/pill/blue
+	name = "blue pill"
+	desc = "A blue pill."
+	icon_state = "pill9"
+	color = "#1169aa"
+
+	New()
+		..()
+		reagents.add_reagent("coffee", 20)
+		reagents.add_reagent("capsaicin", 5)
+		reagents.add_reagent("hyperzine",5 )
+		if(prob(1))
+			reagents.add_reagent("coffee", 30)
+
+/obj/item/weapon/reagent_containers/pill/blue/pink
+	name = "pink pill"
+	desc = "A pink pill."
+	color = "#e99cad"
