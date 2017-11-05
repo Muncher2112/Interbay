@@ -1433,10 +1433,6 @@
 			qdel(hud_used)
 		hud_used = new /datum/hud(src)
 
-	if(config && config.use_cortical_stacks && client && client.prefs.has_cortical_stack)
-		create_stack()
-	full_prosthetic = null
-
 	//recheck species-restricted clothing
 	for(var/slot in slot_first to slot_last)
 		var/obj/item/clothing/C = get_equipped_item(slot)

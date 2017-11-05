@@ -463,13 +463,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/scalpel/manager
 	sort_string = "MBBAD"
 
-/datum/design/item/neural_lace
-	id = "neural lace"
-	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_DATA = 3)
-	materials = list (DEFAULT_WALL_MATERIAL = 10000, "glass" = 7500, "silver" = 1000, "gold" = 1000)
-	build_path = /obj/item/organ/internal/stack
-	sort_string = "MBBAE"
-
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
@@ -1113,13 +1106,6 @@ CIRCUITS BELOW
 	id = "operating"
 	build_path = /obj/item/weapon/circuitboard/operating
 	sort_string = "FACAA"
-
-/datum/design/circuit/resleever
-	name = "neural lace resleever"
-	id = "resleever"
-	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
-	build_path = /obj/item/weapon/circuitboard/resleever
-	sort_string = "FAGAH"
 
 /datum/design/circuit/crewconsole
 	name = "crew monitoring console"

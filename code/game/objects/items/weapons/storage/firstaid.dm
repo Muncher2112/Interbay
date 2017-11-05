@@ -253,3 +253,15 @@
 	desc = "Mild painkiller, also known as Tylenol. Won't fix the cause of your headache (unlike cyanide), but might make it bearable."
 
 	startswith = list(/obj/item/weapon/reagent_containers/pill/paracetamol = 7)
+
+/obj/item/weapon/storage/pill_bottle/blue
+	name = "bottle of blue pills"
+	desc = "Blue pills for him - Take two capsules 40 minutes before desired effect."
+
+	startswith = list(/obj/item/weapon/reagent_containers/pill/blue = 4)
+
+/obj/item/weapon/storage/pill_bottle/pink
+	name = "bottle of pink pills"
+	desc = "Pink pills for her - Take two capsules 40 minutes before desired effect."
+
+	startswith = list(/obj/item/weapon/reagent_containers/pill/blue/pink = 4)

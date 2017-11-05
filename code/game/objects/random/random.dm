@@ -124,7 +124,9 @@
 					prob(2);/obj/item/weapon/storage/belt/utility,\
 					prob(1);/obj/item/weapon/storage/belt/utility/atmostech,\
 					prob(5);/obj/random/tool,\
-					prob(2);/obj/item/weapon/tape_roll)
+					prob(2);/obj/item/weapon/tape_roll,\
+					prob(1);/obj/item/weapon/storage/pill_bottle/blue,\
+					prob(1);/obj/item/weapon/storage/pill_bottle/pink)
 
 /obj/random/medical
 	name = "Random Medical equipment"

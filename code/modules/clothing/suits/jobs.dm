@@ -223,3 +223,10 @@
 	allowed = list(/obj/item/stack/medical, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/hypospray, /obj/item/weapon/reagent_containers/syringe, \
 	/obj/item/device/healthanalyzer, /obj/item/device/flashlight, /obj/item/device/radio, /obj/item/weapon/tank/emergency,/obj/item/weapon/scalpel,/obj/item/weapon/retractor,/obj/item/weapon/hemostat, \
 	/obj/item/weapon/cautery,/obj/item/weapon/bonegel,/obj/item/weapon/FixOVein)
+
+/obj/item/clothing/suit/storage/doctor_vest
+	name = "doctor\'s vest"
+	desc = "A vest worn by doctors. Comes with pockets for bandages and the like."
+	icon_state = "doctor_vest"
+	item_state = "doctor_vest"
+	blood_overlay_type = "armor"
