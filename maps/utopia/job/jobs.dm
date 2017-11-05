@@ -353,7 +353,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#6161aa"
-	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
+	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/arbiter
 
@@ -374,7 +374,7 @@
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#6161aa"
-	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
+	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/supreme_arbiter
 
