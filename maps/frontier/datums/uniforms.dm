@@ -1,7 +1,7 @@
 /decl/hierarchy/outfit/job/dreyfus/magistrate
 	name = OUTFIT_JOB_NAME("Magistrate")
 	l_ear = /obj/item/device/radio/headset/heads/captain
-	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
+	uniform = /obj/item/clothing/under/rank/magistrate
 	shoes = /obj/item/clothing/shoes/dress
 	id_type = /obj/item/weapon/card/id/dreyfus/gold
 	pda_type = /obj/item/device/pda/captain
@@ -92,6 +92,35 @@
 	shoes = /obj/item/clothing/shoes/child_shoes
 	id = /obj/item/weapon/card/id/dreyfus/cargo
 
+//church outfits
+/decl/hierarchy/outfit/job/arbiter
+	name = OUTFIT_JOB_NAME("Arbiter")
+	head = /obj/item/clothing/head/helmet/arbiter
+	uniform = /obj/item/clothing/under/rank/arbiter
+	shoes = /obj/item/clothing/shoes/jackboots/arbiter
+	l_ear = /obj/item/device/radio/headset/inquision
+//	r_pocket = /obj/item/weapon/abriter_scanner
+	suit = /obj/item/clothing/suit/storage/vest/arbiter
+	gloves = /obj/item/clothing/gloves/arbiter
+	id_type = /obj/item/weapon/card/id/arbiter
+	pda_type = /obj/item/device/pda/lawyer
+	belt = /obj/item/weapon/melee/baton/loaded//So they at least start off with some kind of weapon to defend themselves.
+	pda_slot = slot_l_store //So they don't lose their PDA.
+
+
+/decl/hierarchy/outfit/job/supreme_arbiter
+	name = OUTFIT_JOB_NAME("Supreme Arbiter")
+	head = /obj/item/clothing/head/helmet/arbiter/suprme
+	uniform = /obj/item/clothing/under/rank/arbiter
+	shoes = /obj/item/clothing/shoes/jackboots/arbiter
+	l_ear = /obj/item/device/radio/headset/inquision
+	//r_pocket = /obj/item/weapon/abriter_scanner
+	suit = /obj/item/clothing/suit/storage/vest/cowl
+	gloves = /obj/item/clothing/gloves/arbiter
+	id_type = /obj/item/weapon/card/id/arbiter
+	pda_type = /obj/item/device/pda/lawyer
+
+
 //Raider outfit.
 /decl/hierarchy/outfit/shipraiders
 	name = "Raiders"
@@ -106,32 +135,3 @@
 	gloves = /obj/item/clothing/gloves/thick/swat/combat
 	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
 	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
-
-//church outfits
-/decl/hierarchy/outfit/job/arbiter
-	name = OUTFIT_JOB_NAME("Arbiter")
-	head = /obj/item/clothing/head/helmet/arbiter
-	uniform = /obj/item/clothing/under/rank/arbiter
-	shoes = /obj/item/clothing/shoes/jackboots/arbiter
-	l_ear = /obj/item/device/radio/headset/inquision
-//	r_pocket = /obj/item/weapon/abriter_scanner
-	suit = /obj/item/clothing/suit/storage/vest/arbiter
-	gloves = /obj/item/clothing/gloves/arbiter
-	id_type = /obj/item/weapon/card/id/arbiter
-//	id = /obj/item/weapon/card/id/arbiter
-	pda_type = /obj/item/device/pda/lawyer
-	belt = /obj/item/weapon/melee/baton/loaded//So they at least start off with some kind of weapon to defend themselves.
-	pda_slot = slot_l_store //So they don't lose their PDA.
-
-
-/decl/hierarchy/outfit/job/supreme_arbiter
-	name = OUTFIT_JOB_NAME("Supreme Arbiter")
-	head = /obj/item/clothing/head/helmet/arbiter
-	uniform = /obj/item/clothing/under/rank/arbiter
-	shoes = /obj/item/clothing/shoes/jackboots/arbiter
-	l_ear = /obj/item/device/radio/headset/inquision
-	//r_pocket = /obj/item/weapon/abriter_scanner
-	suit = /obj/item/clothing/suit/storage/vest/cowl
-	gloves = /obj/item/clothing/gloves/arbiter
-	id_type = /obj/item/weapon/card/id/arbiter
-	pda_type = /obj/item/device/pda/lawyer

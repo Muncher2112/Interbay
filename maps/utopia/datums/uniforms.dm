@@ -1,14 +1,13 @@
 /decl/hierarchy/outfit/job/dreyfus/magistrate
 	name = OUTFIT_JOB_NAME("Magistrate")
 	l_ear = /obj/item/device/radio/headset/heads/captain
-	uniform = /obj/item/clothing/under/rank/internalaffairs/plain/nt
-	suit = /obj/item/clothing/suit/leathercoat
+	uniform = /obj/item/clothing/under/rank/magistrate
 	shoes = /obj/item/clothing/shoes/dress
-	glasses = /obj/item/clothing/glasses/sunglasses/big
-	l_hand = /obj/item/weapon/storage/briefcase
 	id_type = /obj/item/weapon/card/id/dreyfus/gold
 	pda_type = /obj/item/device/pda/captain
 	gloves = /obj/item/clothing/gloves/white
+	head = /obj/item/clothing/head/crown//FIT FOR A FUCKING KING
+	suit = /obj/item/clothing/suit/robes
 
 /decl/hierarchy/outfit/job/dreyfus/adjoint
 	name = OUTFIT_JOB_NAME("Directeur Adjoint")
@@ -93,21 +92,6 @@
 	shoes = /obj/item/clothing/shoes/child_shoes
 	id = /obj/item/weapon/card/id/dreyfus/cargo
 
-//Raider outfit.
-/decl/hierarchy/outfit/shipraiders
-	name = "Raiders"
-	head = /obj/item/clothing/head/helmet/siege
-	uniform = /obj/item/clothing/under/ert/raider
-	shoes = /obj/item/clothing/shoes/jackboots
-	l_ear = /obj/item/device/radio/headset/raider
-	r_pocket = /obj/item/weapon/card/emag
-	//belt = /obj/item/weapon/gun/projectile/pistol
-	suit = /obj/item/clothing/suit/storage/vest/opvest
-	//mask = /obj/item/clothing/mask/gas
-	gloves = /obj/item/clothing/gloves/thick/swat/combat
-	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
-
 //church outfits
 /decl/hierarchy/outfit/job/arbiter
 	name = OUTFIT_JOB_NAME("Arbiter")
@@ -119,7 +103,6 @@
 	suit = /obj/item/clothing/suit/storage/vest/arbiter
 	gloves = /obj/item/clothing/gloves/arbiter
 	id_type = /obj/item/weapon/card/id/arbiter
-//	id = /obj/item/weapon/card/id/arbiter
 	pda_type = /obj/item/device/pda/lawyer
 	belt = /obj/item/weapon/melee/baton/loaded//So they at least start off with some kind of weapon to defend themselves.
 	pda_slot = slot_l_store //So they don't lose their PDA.
@@ -127,7 +110,7 @@
 
 /decl/hierarchy/outfit/job/supreme_arbiter
 	name = OUTFIT_JOB_NAME("Supreme Arbiter")
-	head = /obj/item/clothing/head/helmet/arbiter
+	head = /obj/item/clothing/head/helmet/arbiter/suprme
 	uniform = /obj/item/clothing/under/rank/arbiter
 	shoes = /obj/item/clothing/shoes/jackboots/arbiter
 	l_ear = /obj/item/device/radio/headset/inquision
@@ -136,3 +119,16 @@
 	gloves = /obj/item/clothing/gloves/arbiter
 	id_type = /obj/item/weapon/card/id/arbiter
 	pda_type = /obj/item/device/pda/lawyer
+
+
+//Raider outfit.
+/decl/hierarchy/outfit/shipraiders
+	name = "Raiders"
+	head = /obj/item/clothing/head/helmet/siege
+	uniform = /obj/item/clothing/under/ert/raider
+	shoes = /obj/item/clothing/shoes/jackboots
+	l_ear = /obj/item/device/radio/headset/raider
+	r_pocket = /obj/item/weapon/card/emag
+	suit = /obj/item/clothing/suit/storage/vest/opvest
+	gloves = /obj/item/clothing/gloves/thick/swat/combat
+	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR

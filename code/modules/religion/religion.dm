@@ -40,6 +40,12 @@
 	item_state = "arbiter"
 	flags_inv = HIDEFACE|HIDEEARS|BLOCKHEADHAIR//Hides their identity.
 
+/obj/item/clothing/head/helmet/arbiter/suprme
+	name = "suprme arbiter helmet"
+	desc = "The standard helmet that arbiter's wear."
+	icon_state = "inquisitor"
+	item_state = "inquisitor"
+
 /obj/item/clothing/head/helmet/inquisitor
 	name = "supreme arbiter helmet"
 	desc = "The special helmet that the supreme arbiter wears."

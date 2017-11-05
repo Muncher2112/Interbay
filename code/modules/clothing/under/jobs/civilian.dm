@@ -15,6 +15,14 @@
 	item_state = "b_suit"
 	worn_state = "captain"
 
+//Magistrates uniform.
+/obj/item/clothing/under/rank/magistrate
+	name = "magistrate's uniform"
+	desc = "Regal as you can afford."
+	icon_state = "magistrate"
+	item_state = "magistrate"
+	worn_state = "magistrate"
+
 
 /obj/item/clothing/under/rank/cargo
 	name = "quartermaster's jumpsuit"
