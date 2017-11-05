@@ -318,7 +318,7 @@
 
 /datum/job/chaplain
 	title = "Chaplain"
-	supervisors = "the Overseer and God"
+	supervisors = "the Arbiters and Verina"
 	minimal_player_age = 21
 	economic_modifier = 6
 	ideal_character_age = 30
@@ -347,13 +347,14 @@
 /datum/job/arbiter
 	title = "Arbiter"
 	department = "Civilian"
+	supervisors = "the Supreme Arbiter and Verina"
 	faction = "Station"
 	department_flag = CIV
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#6161aa"
 	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
-	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/arbiter
 
 	equip(var/mob/living/carbon/human/H)//Peacekeeper stats.
@@ -367,13 +368,14 @@
 /datum/job/supreme_arbiter
 	title = "Supreme Arbiter"
 	department = "Civilian"
+	supervisors = "our glorious god Verina"
 	faction = "Station"
 	department_flag = CIV
 	total_positions = 3
 	spawn_positions = 3
 	selection_color = "#6161aa"
 	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
-	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/supreme_arbiter
 
 	equip(var/mob/living/carbon/human/H)//Still weaker than the Head Peacekeeper.
@@ -420,6 +422,8 @@
 
 		if(prob(50))
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H),slot_wear_mask)
+
+		H.religion = ILLEGAL_RELIGION//Their raiders they believe in the raider religion.
 
 /datum/job/raider/leader
 	title = "Lead Raider"

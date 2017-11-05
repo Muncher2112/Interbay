@@ -171,7 +171,7 @@
 
 
 /obj/structure/closet/secure_closet/security
-	name = "security officer's locker"
+	name = "peacekeeper's locker"
 	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -188,23 +188,40 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
-//		new /obj/item/clothing/suit/armor/vest/nt(src)
-//		new /obj/item/clothing/head/helmet(src)
-//		new /obj/item/weapon/cartridge/security(src)
+		new /obj/item/clothing/suit/storage/vest/opvest(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
 		new /obj/item/weapon/melee/classic_baton(src)
-//		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/device/hailer(src)
-//		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/clothing/head/soft/sec/corp(src)
-//		new /obj/item/clothing/under/rank/security/corp(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/device/holowarrant(src)
+		return
+
+//INQUISITION LOCKER
+/obj/structure/closet/secure_closet/arbiter
+	name = "arbiter's locker"
+	req_access = list(access_chapel_office)
+	icon_state = "chaplainsecure1"
+	icon_closed = "chaplainsecure"
+	icon_locked = "chaplainsecure1"
+	icon_opened = "chaplainsecureopen"
+	icon_broken = "chaplainsecurebroken"
+	icon_off = "chaplainsecureoff"
+
+	New()
+		..()
+		new /obj/item/weapon/storage/backpack/satchel_black(src)
+		new /obj/item/clothing/suit/storage/vest/arbiter(src)
+		new /obj/item/clothing/head/helmet/arbiter(src)
+		new /obj/item/weapon/reagent_containers/spray/pepper(src)
+		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
+		new /obj/item/weapon/melee/baton/loaded(src)
+		new /obj/item/taperoll/police(src)
 		return
 
 
