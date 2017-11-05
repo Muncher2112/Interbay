@@ -418,3 +418,29 @@ var/list/floor_decals = list()
 	icon = 'icons/turf/overlays.dmi'
 	icon_state = "snowfloor"
 
+/obj/effect/floor_decal/new_floors
+	icon = 'icons/turf/flooring/misc.dmi'
+
+/obj/effect/floor_decal/new_floors/mem
+	icon_state = "mem"
+
+/obj/effect/floor_decal/new_floors/mento
+	icon_state = "mento"
+
+/obj/effect/floor_decal/new_floors/mori
+	icon_state = "mori"
+
+/obj/effect/floor_decal/new_floors/aesculapius
+	icon_state = "aesculapius"
+
+/obj/effect/floor_decal/new_floors/blue
+	icon_state = "bluech"
+
+/obj/effect/floor_decal/new_floors/bluefull
+	icon_state = "bluefull"
+
+/obj/effect/floor_decal/new_floors/bluesolid
+	icon_state = "bluesolid"
+
+/obj/effect/floor_decal/new_floors/n00
+	icon_state = "n00"

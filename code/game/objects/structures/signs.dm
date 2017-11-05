@@ -429,3 +429,18 @@
 	name = "\improper NanoTrasen"
 	desc = "An old metal sign which reads 'NanoTrasen'."
 	icon_state = "NT"
+
+/obj/structure/sign/church
+	name = "\improper Church"
+	desc = "Heretics beware."
+	icon_state = "church"
+
+/obj/structure/sign/kitchen
+	name = "\improper Kitchen"
+	desc = "Food be here."
+	icon_state = "kitchen"
+
+/obj/structure/sign/magistrate
+	name = "\improper Magistrate"
+	desc = "How regal."
+	icon_state = "magistrate"
