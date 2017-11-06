@@ -224,7 +224,9 @@
 		new /obj/item/taperoll/police(src)
 		new /obj/item/weapon/reagent_containers/syringe/revelator(src)
 		new /obj/item/weapon/reagent_containers/syringe/revelator(src)
-		new /obj/item/abriter_scanner(src)
+		new /obj/item/arbiter_scanner(src)
+		new /obj/item/weapon/handcuffs(src)
+		new /obj/item/weapon/handcuffs(src)
 		return
 
 

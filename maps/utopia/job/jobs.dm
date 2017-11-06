@@ -364,7 +364,7 @@
 		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
 
-//The inquisitor, aka the supreme abriter.
+//The inquisitor, aka the supreme arbiter.
 /datum/job/supreme_arbiter
 	title = "Supreme Arbiter"
 	department = "Civilian"
