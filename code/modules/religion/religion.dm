@@ -63,3 +63,67 @@
 	desc = "Sleek, and red as the blood of the heretics."
 	icon_state = "arbiter"
 	item_state = "arbiter"
+
+//The revelator toxin
+/datum/reagent/toxin/revelator
+	name = "revelator"
+	id = "revelator"
+	description = "For proving heretics."
+	strength = 25//Yep, it's poisonous. To discourage random checking.
+
+/obj/item/weapon/reagent_containers/syringe/revelator
+	name = "Syringe (revelator)"
+	desc = "Contains drugs for checking heretics."
+	New()
+		..()
+		reagents.add_reagent("revelator",15)
+
+
+//The scanner
+/obj/item/abriter_scanner
+	icon = 'icons/obj/device.dmi'
+	icon_state = "arbiterscanner"
+	name = "heretic scanner"
+	desc = "Inject someone with revelator and then scan them for results."
+	force = 0
+	var/stored_info = 0
+
+/obj/item/abriter_scanner/attack(mob/living/L, mob/user)
+
+	if(!L.reagents.has_reagent("revelator"))
+		user.visible_message("<span class='notice'>The [src] beeps: \"ERROR: Subject needs revelator.\"</span>")
+
+	else if(do_after(user,30))
+		if(L.religion != LEGAL_RELIGION)
+			stored_info = 2
+		else
+			stored_info = 1
+		user.visible_message("<span class='notice'>The [src] beeps: \"SCANNING COMPLETE.\"</span>")
+	..()
+
+//The machine
+/obj/machinery/arbiter_computer
+	var/mob/living/suspect
+	name = "Heretic scanner machine"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "arbiter_computer"
+	density = 1
+	anchored = 1
+
+/obj/machinery/arbiter_computer/attackby(var/obj/item/I, var/mob/user)
+	if(!istype(I,/obj/item/abriter_scanner))
+		return
+
+	var/obj/item/abriter_scanner/scanner = I
+	if(!scanner.stored_info)
+		visible_message("<span class='notice'>The [src] beeps: \"No data detected.\"</span>")
+		return
+	if(scanner.stored_info == 2)
+		visible_message("<span class='notice'>The [src] beeps: \"Subject is heretic.\"</span>")
+		return
+	else
+		visible_message("<span class='notice'>The [src] beeps: \"Subject is <b>NOT</b> a heretic.\"</span>")
+
+/obj/machinery/arbiter_computer/attack_hand(mob/user as mob)
+	..()
+	visible_message("<span class='notice'The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")

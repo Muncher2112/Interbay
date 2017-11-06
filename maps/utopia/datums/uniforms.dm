@@ -114,7 +114,7 @@
 	uniform = /obj/item/clothing/under/rank/arbiter
 	shoes = /obj/item/clothing/shoes/jackboots/arbiter
 	l_ear = /obj/item/device/radio/headset/inquision
-	//r_pocket = /obj/item/weapon/abriter_scanner
+	r_pocket = /obj/item/abriter_scanner
 	suit = /obj/item/clothing/suit/storage/vest/cowl
 	gloves = /obj/item/clothing/gloves/arbiter
 	id_type = /obj/item/weapon/card/id/arbiter
