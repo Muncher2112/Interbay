@@ -481,6 +481,10 @@ var/global/datum/controller/gameticker/ticker
 	round_end_stats += "Number of orgasms: <font color='red'><B>[times_came]</B></font>.\n"
 	round_end_stats += "Number of deaths in space: <font color='red'><B>[deaths_in_space]</B></font>.\n"
 	round_end_stats += "Total bloodshed: <font color='red'><B>[total_deaths]</B></font>.\n"
+	round_end_stats += "<font color='red'>The [ILLEGAL_RELIGION] worshippers were:</font>\n"
+	for(var/mob/living/carbon/human/H in player_list)
+		if(H.religion == ILLEGAL_RELIGION)
+			round_end_stats += "<font color='red'><b>[H.name]</b></font>\n"
 
 	to_world(round_end_stats)
 
