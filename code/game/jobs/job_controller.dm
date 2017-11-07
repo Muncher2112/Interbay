@@ -562,7 +562,7 @@ var/global/datum/controller/occupations/job_master
 				for(var/mob/living/carbon/human/M in player_list)
 					if(!M.religion_is_legal() && M != H)
 						brothers_message += "[M.name]\n"
-				brothers_message += "Protect them like family. Do not give their name\'s away to the Inquisition."
+				brothers_message += "Protect them like family. Do not give their names\' away to the Inquisition."
 
 
 
