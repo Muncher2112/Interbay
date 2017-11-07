@@ -217,6 +217,7 @@
 		..()
 		new /obj/item/weapon/storage/backpack/satchel_black(src)
 		new /obj/item/clothing/suit/storage/vest/arbiter(src)
+		new /obj/item/clothing/under/rank/arbiter(src)
 		new /obj/item/clothing/head/helmet/arbiter(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
