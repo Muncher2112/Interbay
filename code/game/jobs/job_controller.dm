@@ -555,6 +555,9 @@ var/global/datum/controller/occupations/job_master
 					to_chat(H, "<span class='danger'>Try as you might... you just can't seem to remember the prayer today. This won't look good to the Arbiters.")
 			else
 				to_chat(H, "You are a worshipper of the <b><font color='red'>[H.religion]</font>. It is not a legal religion of this land. Do not be caught by the <b>Inquisition</b>.")
+				if(prob(5))
+					H.mind.prayer = accepted_prayer
+					to_chat(H, "<span class='notice'>You can't believe your luck, you've managed to pick up on the selected prayer for today. It's: <b>[H.mind.prayer]</b> Remember this prayer, and Gods save you from the Arbiters.\n</span>")
 				var/brothers_message = "Your fellow resisters are here too, they are:\n"
 				for(var/mob/living/carbon/human/M in player_list)
 					if(!M.religion_is_legal() && M != H)
