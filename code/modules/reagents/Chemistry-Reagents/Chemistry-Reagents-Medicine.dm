@@ -582,6 +582,7 @@
 	if(volume <= 0.02 && dose >= 0.05 && world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
 		data = world.time
 		to_chat(M, "<span class='warning'>You feel antsy, your concentration wavers...</span>")
+		M.add_event("relaxed", /datum/happiness_event/antsy)//It's relaxed so that it overrides the relaxed event.
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY * 0.3)
 			data = world.time

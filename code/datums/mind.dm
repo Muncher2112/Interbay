@@ -66,6 +66,8 @@
 	//used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
 	var/ambitions
 
+	var/prayer
+
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -112,6 +114,8 @@
 			obj_count++
 	if(ambitions)
 		output += "<HR><B>Ambitions:</B> [ambitions]<br>"
+	if(prayer)
+		output += "<HR><B>The Prayer Of Deo Machina:</B> [prayer]<br>"
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()

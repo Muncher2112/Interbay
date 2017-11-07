@@ -548,6 +548,8 @@ var/global/datum/controller/occupations/job_master
 		if(H.religion)//In case they somehow don't have one.
 			if(H.religion_is_legal())
 				to_chat(H, "You are a worshipper of <b><font color='red'>[H.religion]</font></b>. It's the only legal religion in this land, do not be swayed by the heretics of the <b>[ILLEGAL_RELIGION]</b>.")
+				H.mind.prayer = accepted_prayer
+				to_chat(H, "<span class='notice'>The prayer today is: <b>[H.mind.prayer]</b> Remember this prayer.")
 			else
 				to_chat(H, "You are a worshipper of the <b><font color='red'>[H.religion]</font>. It is not a legal religion of this land. Do not be caught by the <b>Inquisition</b>.")
 				var/brothers_message = "Your fellow resisters are here too, they are:\n"

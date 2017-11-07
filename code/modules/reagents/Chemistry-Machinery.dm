@@ -251,6 +251,7 @@
 		if(!R.total_volume)
 			dat += "Beaker is empty."
 		else
+			dat += "Temperature: [round(R.temperature-T0C,0.1)]C<BR>"
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
@@ -263,6 +264,7 @@
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
+			dat += "Temperature: [round(reagents.temperature-T0C,0.1)]C<BR>"
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "

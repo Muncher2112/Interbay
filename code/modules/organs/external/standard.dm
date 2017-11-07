@@ -56,11 +56,14 @@
 		owner.mutilate_genitals()
 		owner.visible_message("<span class='danger'><big>\The [owner]'s penis flies off in a bloody arc!</big></span>")
 		playsound(owner, 'sound/effects/gore/severed.ogg', 50, 1, -1)
-		var/obj/item/organ/internal/penis/P = new(src)
+		
+		new /obj/item/organ/internal/penis(owner.loc)
+		/*
 		if(P && istype(loc,/turf))
 			P.throw_at(get_edge_target_turf(P,pick(alldirs)),rand(1,3),30)
 			var/turf/T = P.loc
 			T.add_blood(owner)
+		*/
 
 
 

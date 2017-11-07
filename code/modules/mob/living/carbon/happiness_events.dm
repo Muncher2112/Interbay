@@ -105,6 +105,11 @@
 	happiness = 1
 	timeout = 1800
 
+/datum/happiness_event/antsy//Withdrawl.
+	description = "<span class='info'>I could use a smoke.</span>\n"
+	happiness = -3
+	timeout = 1800
+
 
 
 //Embarassment

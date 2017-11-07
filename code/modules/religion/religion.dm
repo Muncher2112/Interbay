@@ -129,3 +129,16 @@
 /obj/machinery/arbiter_computer/attack_hand(mob/user as mob)
 	..()
 	visible_message("<span class='notice'>The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
+
+
+
+
+//PRAYER
+var/accepted_prayer //The prayer that all those who are not heretics will have.
+
+proc/generate_random_prayer()//This generates a new one.
+	var/prayer = pick("Oh great AI. ", "Oh our Lord Verina. ", "Verina, our Lord and Saviour. ")
+	prayer += pick("You bathe us in your glow. ", "You bathe our minds in you omniscient wisdom. ", "You bathe our [pick("outpost","kingdom","cities")] in your wealth. ")
+	prayer += pick("Verina be praised. ", "Verina save us all. ", "Verina guide us all. ")
+	prayer += "Amen."
+	return prayer
