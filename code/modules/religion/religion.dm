@@ -121,7 +121,7 @@
 		visible_message("<span class='notice'>The [src] beeps: \"No data detected.\"</span>")
 		return
 	if(scanner.stored_info == 2)
-		visible_message("<span class='notice'>The [src] beeps: \"Subject is heretic.\"</span>")
+		visible_message("<span class='notice'>The [src] beeps: \"Subject <b>IS</b> a heretic.\"</span>")
 		return
 	else
 		visible_message("<span class='notice'>The [src] beeps: \"Subject is <b>NOT</b> a heretic.\"</span>")
