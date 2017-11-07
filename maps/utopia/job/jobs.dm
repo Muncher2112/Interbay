@@ -317,7 +317,7 @@
 		H.add_stats(rand(7,12), rand(7,12), rand(10,15))
 
 /datum/job/chaplain
-	title = "Chaplain"
+	title = "Priest"
 	supervisors = "the Arbiters and Verina"
 	minimal_player_age = 21
 	economic_modifier = 6
@@ -327,6 +327,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
+		if(!H.religion_is_legal())//Heretical priests would be weird.
+			H.religion = LEGAL_RELIGION
 		H.add_stats(rand(5,10), rand(9,12), rand(10,14))
 
 /datum/job/janitor

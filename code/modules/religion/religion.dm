@@ -39,6 +39,7 @@
 	icon_state = "arbiter"
 	item_state = "arbiter"
 	flags_inv = HIDEFACE|HIDEEARS|BLOCKHEADHAIR//Hides their identity.
+	body_parts_covered = HEAD|FACE|EYES//Blocks their face and shit.
 
 /obj/item/clothing/head/helmet/arbiter/suprme
 	name = "suprme arbiter helmet"
@@ -85,6 +86,7 @@
 	icon_state = "arbiterscanner"
 	name = "heretic scanner"
 	desc = "Inject someone with revelator and then scan them for results."
+	w_class = ITEM_SIZE_SMALL
 	force = 0
 	var/stored_info = 0
 
@@ -126,4 +128,4 @@
 
 /obj/machinery/arbiter_computer/attack_hand(mob/user as mob)
 	..()
-	visible_message("<span class='notice'The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
+	visible_message("<span class='notice'>The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
