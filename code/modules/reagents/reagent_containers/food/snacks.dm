@@ -62,7 +62,7 @@
 					return
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
-			
+
 			if(fullness <= NUTRITION_LEVEL_STARVING)
 				to_chat(C, "<span class='notice'>You hungrily chew some of \the [src] and gobble it down!</span>")
 			if(fullness > NUTRITION_LEVEL_STARVING && fullness <= NUTRITION_LEVEL_HUNGRY)

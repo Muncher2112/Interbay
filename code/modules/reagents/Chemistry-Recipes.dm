@@ -36,7 +36,13 @@
 	var/list/required_reagents = list()
 	var/list/catalysts = list()
 	var/list/inhibitors = list()
-	var/result_amount = 0
+
+	var/temperature_min = 0				//Reaction starts
+	var/temperature_max = INFINITY		//Reaction stops
+	var/thermal_reaction_factor = 0.0	//>0 reaction is exothermic, if <0 reaction is endothermic. (Proportional to consumed reagents)
+
+
+	var/result_amount = 0				//If the reaction yield no result, the energy will be transfered to air
 
 	//how far the reaction proceeds each time it is processed. Used with either REACTION_RATE or HALF_LIFE macros.
 	var/reaction_rate = HALF_LIFE(1)
@@ -67,6 +73,9 @@
 	if(holder.has_any_reagent(inhibitors))
 		return 0
 
+	//checks that the reagent mix is at a suitable temperature
+	if(holder.temperature < temperature_min || holder.temperature >= temperature_max)
+		return 0
 	return 1
 
 /datum/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
@@ -112,17 +121,37 @@
 	//need to obtain the new reagent's data before anything is altered
 	var/data = send_data(holder, reaction_progress)
 
+	var/reactant_used = 0
 	//remove the reactants
 	for(var/reactant in required_reagents)
 		var/amt_used = required_reagents[reactant] * reaction_progress
+		reactant_used += amt_used
 		holder.remove_reagent(reactant, amt_used, safety = 1)
 
-	//add the product
-	var/amt_produced = result_amount * reaction_progress
-	if(result)
-		holder.add_reagent(result, amt_produced, data, safety = 1)
+	var/amt_produced = 0
+	var/energy_moved = holder.temperature * reactant_used
+	var/stolen_energy = energy_moved * thermal_reaction_factor
 
-	on_reaction(holder, amt_produced)
+	//add the product
+	if(result)
+		amt_produced = result_amount * reaction_progress
+
+		//the energy that was in the reactants is now in the produce.
+		holder.add_reagent(result, amt_produced, data, safety=1, heat=(energy_moved+stolen_energy)/amt_produced)
+	else
+		//if there is no reaction result,
+		if(stolen_energy != 0)
+			holder.adjust_energy(stolen_energy)
+			//warning("Stolen energy from beaker:[stolen_energy]J")
+
+		//transfer the energy to the turf if possible
+		var/turf/T = get_turf(holder.my_atom)
+		if(istype(T))
+			var/datum/gas_mixture/air = T.return_air()
+			air.add_thermal_energy(energy_moved-stolen_energy)
+			//warning("Evaporated base:[energy_moved]J Total evaporated:[energy_moved-stolen_energy]J")
+
+	on_reaction(holder, amt_produced, reactant_used)
 
 	return reaction_progress
 
@@ -133,12 +162,14 @@
 //called after processing reactions, if they occurred
 /datum/chemical_reaction/proc/post_reaction(var/datum/reagents/holder)
 	var/atom/container = holder.my_atom
-	if(mix_message && container && !ismob(container))
+	if(container && !ismob(container))
 		var/turf/T = get_turf(container)
-		var/list/seen = viewers(4, T)
-		for(var/mob/M in seen)
-			M.show_message("<span class='notice'>\icon[container] [mix_message]</span>", 1)
-		playsound(T, reaction_sound, 80, 1)
+		if(mix_message)
+			var/list/seen = viewers(4, T)
+			for(var/mob/M in seen)
+				M.show_message("<span class='notice'>\icon[container] [mix_message]</span>", 1)
+		if(reaction_sound)
+			playsound(T, reaction_sound, 80, 1)
 
 //obtains any special data that will be provided to the reaction products
 //this is called just before reactants are removed.
@@ -569,7 +600,10 @@
 	name = "Solid Phoron"
 	id = "solidphoron"
 	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "phoron" = 20)
+	required_reagents = list("iron" = 5, "phoron" = 20)
+
+	temperature_max = T0C
+
 	result_amount = 1
 
 /datum/chemical_reaction/phoronsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -664,6 +698,7 @@
 	result_amount = 2
 	log_is_important = 1
 	reaction_rate = HALF_LIFE(0)
+	temperature_min = T0C+5
 
 /datum/chemical_reaction/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
@@ -1604,20 +1639,6 @@
 	required_reagents = list("milk" = 1, "beer" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/icetea
-	name = "Iced Tea"
-	id = "icetea"
-	result = "icetea"
-	required_reagents = list("ice" = 1, "tea" = 2)
-	result_amount = 3
-
-/datum/chemical_reaction/icecoffee
-	name = "Iced Coffee"
-	id = "icecoffee"
-	result = "icecoffee"
-	required_reagents = list("ice" = 1, "coffee" = 2)
-	result_amount = 3
-
 /datum/chemical_reaction/nuka_cola
 	name = "Nuka Cola"
 	id = "nuka_cola"
@@ -1852,27 +1873,6 @@
 	required_reagents = list("tequilla" = 2, "limejuice" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/longislandicedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
-/datum/chemical_reaction/icedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
-/datum/chemical_reaction/threemileisland
-	name = "Three Mile Island Iced Tea"
-	id = "threemileisland"
-	result = "threemileisland"
-	required_reagents = list("longislandicedtea" = 10, "uranium" = 1)
-	result_amount = 10
-
 /datum/chemical_reaction/whiskeysoda
 	name = "Whiskey Soda"
 	id = "whiskeysoda"
@@ -1992,20 +1992,6 @@
 	required_reagents = list("honey" = 1, "water" = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
-
-/datum/chemical_reaction/iced_beer
-	name = "Iced Beer"
-	id = "iced_beer"
-	result = "iced_beer"
-	required_reagents = list("beer" = 10, "frostoil" = 1)
-	result_amount = 10
-
-/datum/chemical_reaction/iced_beer2
-	name = "Iced Beer"
-	id = "iced_beer"
-	result = "iced_beer"
-	required_reagents = list("beer" = 5, "ice" = 1)
-	result_amount = 6
 
 /datum/chemical_reaction/grog
 	name = "Grog"
@@ -2223,3 +2209,77 @@
 	result = "antidexafen"
 	required_reagents = list("paracetamol" = 1, "carbon" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/cook_protein
+	name = "Cook protein"
+	id = "cook_protein"
+	result = "protein"
+	required_reagents = list("raw_protein" = 1)
+	temperature_min = T0C+71
+	result_amount = 1
+	reaction_rate = HALF_LIFE(3)
+	mix_message = ""
+
+/datum/chemical_reaction/cook_fiber
+	name = "Cook fiber"
+	id = "cook_fiber"
+	result = "fiber"
+	required_reagents = list("raw_fiber" = 1)
+	temperature_min = T0C+71
+	result_amount = 1
+	reaction_rate = HALF_LIFE(3)
+	mix_message = ""
+
+/datum/chemical_reaction/ice_to_water
+	name = "Melt ice"
+	id = "melt_ice"
+	result = "water"
+	required_reagents = list("ice" = 1)
+	temperature_min = T0C
+	result_amount = 1
+	reaction_rate = HALF_LIFE(3)
+	mix_message = ""
+	reaction_sound = 'sound/effects/icecubes.ogg'
+
+/datum/chemical_reaction/water_to_ice
+	name = "Ice"
+	id = "ice"
+	result = "ice"
+	required_reagents = list("water" = 1)
+	temperature_max = T0C
+	result_amount = 1
+	reaction_rate = HALF_LIFE(3)
+	mix_message = ""
+	reaction_sound = 'sound/effects/icecubes.ogg'
+
+/datum/chemical_reaction/water_evaporation
+	name = "Steam"
+	id = "water_evaporation"
+	result = null
+	required_reagents = list("water" = 1)
+	temperature_min = T0C + 100
+	reaction_rate = REACTION_RATE(0.1)
+	mix_message = ""
+	reaction_sound = 'sound/effects/bubbles2.ogg'
+	thermal_reaction_factor = -0.1	//Steam robs the mixture of a bit of heat.
+
+//Todo, add water vapor!
+
+/datum/chemical_reaction/phoron_evaporation
+	name = "Phoron"
+	id = "phoron_evaporation"
+	result = null
+	required_reagents = list("phoron" = 1)
+	temperature_min = PHORON_MINIMUM_BURN_TEMPERATURE
+	temperature_max = PHORON_FLASHPOINT
+	reaction_rate = REACTION_RATE(0.1)
+	mix_message = ""
+	reaction_sound = 'sound/effects/bubbles2.ogg'
+	thermal_reaction_factor = -0.5	//Phoron robs the mixture of a lot of heat as it evaporates.
+
+/datum/chemical_reaction/phoron_evaporation/on_reaction(var/datum/reagents/holder, var/created_volume, var/removed_volume)
+	var/turf/T = get_turf(holder.my_atom)
+	if(istype(T))
+		var/datum/gas_mixture/air = T.return_air()
+		air.adjust_gas_temp("phoron", removed_volume * LIQUIDFUEL_AMOUNT_TO_MOL, holder.temperature, update = 1)
+	return

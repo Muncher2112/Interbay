@@ -23,8 +23,34 @@
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
 
-/obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
+/obj/item/weapon/reagent_containers/examine(mob/user)
+	..()
+	feel_temperature(user)
+
+
+/obj/item/weapon/reagent_containers/proc/feel_temperature(mob/user)
+	if(!reagents.total_volume)
+		return
+
+	var/feels = ""
+	if(reagents.temperature < (T0C - 10))
+		feels = "extremely cold"
+	else if(reagents.temperature < T0C + 5)
+		feels = "ice cold"
+	else if(reagents.temperature < T0C + 15)
+		feels = "cold"
+	else if(reagents.temperature < T0C + 25)
+		feels = "lukewarm"
+	else if(reagents.temperature < T0C + 40)
+		feels = "hot"
+	else if(reagents.temperature < T0C + 60)
+		feels = "very hot"
+	else
+		feels = "searing hot"
+
+	to_chat(user, "[src] feels [feels] to the touch.")
 	return
+
 
 /obj/item/weapon/reagent_containers/afterattack(obj/target, mob/user, flag)
 	return

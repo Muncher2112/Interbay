@@ -668,6 +668,8 @@
 	adj_sleepy = -3
 	adj_temp = 20
 
+	spawn_temperature = T0C+37
+
 	glass_name = "tea"
 	glass_desc = "Tasty black tea, it has antioxidants, it's good for you!"
 	glass_special = list(DRINK_VAPOR)
@@ -685,6 +687,7 @@
 	taste_description = "sweet tea"
 	color = "#104038" // rgb: 16, 64, 56
 	adj_temp = -5
+	spawn_temperature = T0C+5
 
 	glass_name = "iced tea"
 	glass_desc = "No relation to a certain rap artist/ actor."
@@ -702,6 +705,8 @@
 	adj_sleepy = -2
 	adj_temp = 25
 	overdose = 45
+
+	spawn_temperature = T0C+40
 
 	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
@@ -787,6 +792,8 @@
 	color = "#403010"
 	nutrition = 2
 	adj_temp = 5
+
+	spawn_temperature = T0C+30
 
 	glass_name = "hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
@@ -1073,6 +1080,8 @@
 	reagent_state = SOLID
 	color = "#619494"
 	adj_temp = -5
+
+	spawn_temperature = T0C-20
 
 	glass_name = "ice"
 	glass_desc = "Generally, you're supposed to put something else in there too..."

@@ -5,6 +5,7 @@
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/atom/my_atom = null
+	var/temperature = 0
 
 /datum/reagents/New(var/max = 100, atom/A = null)
 	..()
@@ -72,6 +73,8 @@
 
 /datum/reagents/proc/update_total() // Updates volume.
 	total_volume = 0
+	temperature = max(0,temperature)
+
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
 			del_reagent(R.id)
@@ -82,6 +85,16 @@
 /datum/reagents/proc/handle_reactions()
 	if(chemistryProcess)
 		chemistryProcess.mark_for_update(src)
+
+/datum/reagents/proc/adjust_energy(var/energy, var/safety = 0)
+	if(!total_volume)
+		return
+	temperature += energy/total_volume
+
+	if(!safety)
+		handle_reactions()
+	if(my_atom)
+		my_atom.on_reagent_change()
 
 //returns 1 if the holder should continue reactiong, 0 otherwise.
 /datum/reagents/proc/process_reactions()
@@ -120,7 +133,7 @@
 
 /* Holder-to-chemical */
 
-/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
+/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/heat = -1)
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
@@ -129,7 +142,11 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
+			if(heat==-1)	//no heat was provided? get the spawn temperature for this.
+				heat = current.spawn_temperature
 			current.volume += amount
+			temperature = ( (amount * heat) + (total_volume * temperature) ) / ( amount + total_volume )
+
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
 			update_total()
@@ -137,14 +154,19 @@
 				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change()
+
 			return 1
 	var/datum/reagent/D = chemical_reagents_list[id]
+
 	if(D)
 		var/datum/reagent/R = new D.type()
+		if(heat==-1)		//no heat was provided? get the spawn temperature for this.
+			heat = R.spawn_temperature
 		reagent_list += R
 		R.holder = src
 		R.volume = amount
 		R.initialize_data(data)
+		temperature = ( (amount * heat) + (total_volume * temperature) ) / ( amount + total_volume )
 		update_total()
 		if(!safety)
 			handle_reactions()
@@ -260,7 +282,7 @@
 
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, heat = temperature) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.id, amount_to_transfer, 1)
 
@@ -308,7 +330,7 @@
 
 	var/datum/reagents/F = new /datum/reagents(amount)
 	var/tmpdata = get_data(id)
-	F.add_reagent(id, amount, tmpdata)
+	F.add_reagent(id, amount, tmpdata, heat=temperature)
 	remove_reagent(id, amount)
 
 	return F.trans_to(target, amount) // Let this proc check the atom's type
