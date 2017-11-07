@@ -380,7 +380,7 @@
 			if(job.announced)
 				AnnounceArrival(character, rank, spawnpoint.msg)
 		matchmaker.do_matchmaking()
-	log_and_message_admins("has joined the round as [character.mind.assigned_role].", character)
+	log_and_message_admins("has joined the round as [character.mind.assigned_role]. Religion: [character.religion].", character)
 	qdel(src)
 
 
