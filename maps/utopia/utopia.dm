@@ -18,7 +18,8 @@
 	#include "utopia-2.dmm"
 	#include "utopia-3.dmm"
 	#include "utopia-4.dmm"
-
+	#include "utopia-5.dmm"
+	#include "utopia-6.dmm"
 
 	#include "../shared/exodus_torch/_include.dm"
 
