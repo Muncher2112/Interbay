@@ -65,6 +65,8 @@
 	icon_state = "arbiter"
 	item_state = "arbiter"
 
+
+//REAGENTS
 //The revelator toxin
 /datum/reagent/toxin/revelator
 	name = "revelator"
@@ -79,7 +81,20 @@
 		..()
 		reagents.add_reagent("revelator",15)
 
+/datum/reagent/toxin/unrevelator
+	name = "unrevelator"
+	id = "unrevelator"
+	description = "For tricking church members."
+	strength = 25//Yep, it's poisonous. To discourage taking it all the time.
 
+/obj/item/weapon/reagent_containers/syringe/unrevelator
+	name = "weird old syringe"
+	desc = "You're not sure what it has."
+	New()
+		..()
+		reagents.add_reagent("unrevelator",15)
+
+//TOOLS
 //The scanner
 /obj/item/arbiter_scanner
 	icon = 'icons/obj/device.dmi'
@@ -96,7 +111,7 @@
 		user.visible_message("<span class='notice'>The [src] beeps: \"ERROR: Subject needs revelator.\"</span>")
 
 	else if(do_after(user,30))
-		if(L.religion != LEGAL_RELIGION)
+		if(L.religion != LEGAL_RELIGION && !L.reagents.has_reagent("unrevelator")//Unrevelator can trick the result.
 			stored_info = 2
 		else
 			stored_info = 1

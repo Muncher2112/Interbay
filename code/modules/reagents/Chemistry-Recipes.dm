@@ -565,7 +565,6 @@
 	required_reagents = list("mindbreaker" = 1, "carbon" = 1)
 	result_amount = 3
 
-
 /datum/chemical_reaction/paroxetine
 	name = "Paroxetine"
 	id = "paroxetine"
@@ -593,6 +592,20 @@
 	result = "dognium"
 	required_reagents = list("aluminum" = 1, "iron" = 1, "potassium" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/revelator
+	name = "revelator"
+	id = "revelator"
+	result = "revelator"
+	required_reagents = list(list("mindbreaker" = 1, "phoron" = 1, "dognium" = 3)
+	log_is_important = 1
+
+/datum/chemical_reaction/unrevelator
+	name = "unrevelator"
+	id = "unrevelator"
+	result = "unrevelator"
+	required_reagents = list(list("mindbreaker" = 1, "hclacid" = 1, "dognium" = 3)
+	log_is_important = 1
 
 /* Solidification */
 
