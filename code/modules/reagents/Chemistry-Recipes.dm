@@ -598,6 +598,7 @@
 	id = "revelator"
 	result = "revelator"
 	required_reagents = list("mindbreaker" = 1, "phoron" = 1, "dognium" = 3)
+	result_amount = 5
 	log_is_important = 1
 
 /datum/chemical_reaction/unrevelator
@@ -605,6 +606,7 @@
 	id = "unrevelator"
 	result = "unrevelator"
 	required_reagents = list("mindbreaker" = 1, "hclacid" = 1, "dognium" = 3)
+	result_amount = 5
 	log_is_important = 1
 
 /* Solidification */
