@@ -111,7 +111,7 @@
 		user.visible_message("<span class='notice'>The [src] beeps: \"ERROR: Subject needs revelator.\"</span>")
 
 	else if(do_after(user,30))
-		if(L.religion != LEGAL_RELIGION && !L.reagents.has_reagent("unrevelator")//Unrevelator can trick the result.
+		if(L.religion != LEGAL_RELIGION && !L.reagents.has_reagent("unrevelator"))//Unrevelator can trick the result.
 			stored_info = 2
 		else
 			stored_info = 1
