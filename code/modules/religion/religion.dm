@@ -96,7 +96,7 @@
 
 //TOOLS
 //The scanner
-/obj/item/arbiter_scanner
+/obj/item/device/arbiter_scanner
 	icon = 'icons/obj/device.dmi'
 	icon_state = "arbiterscanner"
 	name = "heretic scanner"
@@ -105,7 +105,7 @@
 	force = 0
 	var/stored_info = 0
 
-/obj/item/arbiter_scanner/attack(mob/living/L, mob/user)
+/obj/item/device/arbiter_scanner/attack(mob/living/L, mob/user)
 
 	if(!L.reagents.has_reagent("revelator"))
 		user.visible_message("<span class='notice'>The [src] beeps: \"ERROR: Subject needs revelator.\"</span>")
@@ -128,10 +128,10 @@
 	anchored = 1
 
 /obj/machinery/arbiter_computer/attackby(var/obj/item/I, var/mob/user)
-	if(!istype(I,/obj/item/arbiter_scanner))
+	if(!istype(I,/obj/item/device/arbiter_scanner))
 		return
 
-	var/obj/item/arbiter_scanner/scanner = I
+	var/obj/item/device/arbiter_scanner/scanner = I
 	if(!scanner.stored_info)
 		visible_message("<span class='notice'>The [src] beeps: \"No data detected.\"</span>")
 		return

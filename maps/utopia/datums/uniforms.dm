@@ -8,6 +8,7 @@
 	gloves = /obj/item/clothing/gloves/white
 	head = /obj/item/clothing/head/crown//FIT FOR A FUCKING KING
 	suit = /obj/item/clothing/suit/robes
+	cash = 50
 
 /decl/hierarchy/outfit/job/dreyfus/adjoint
 	name = OUTFIT_JOB_NAME("Directeur Adjoint")
@@ -99,7 +100,7 @@
 	uniform = /obj/item/clothing/under/rank/arbiter
 	shoes = /obj/item/clothing/shoes/jackboots/arbiter
 	l_ear = /obj/item/device/radio/headset/inquision
-	r_pocket = /obj/item/arbiter_scanner
+	r_pocket = /obj/item/device/arbiter_scanner
 	suit = /obj/item/clothing/suit/storage/vest/arbiter
 	gloves = /obj/item/clothing/gloves/arbiter
 	id_type = /obj/item/weapon/card/id/arbiter
@@ -132,3 +133,4 @@
 	suit = /obj/item/clothing/suit/storage/vest/opvest
 	gloves = /obj/item/clothing/gloves/thick/swat/combat
 	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
+	cash = 0
