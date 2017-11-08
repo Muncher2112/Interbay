@@ -654,6 +654,14 @@
 				flavor_texts[href_list["flavor_change"]] = post_edit_cp1251(sanitize(msg, extra = 0))
 			//	set_flavor()
 				return
+	//Crafting
+	if (href_list["craft"])
+		var/turf/T = get_step(src, dir)
+		if(!T.Adjacent(src))
+			return 0
+		var/rname = href_list["craft"]
+		var/datum/crafting_recipie/R = crafting_recipies[rname]
+		R.make(src, T)
 
 	///////Interactions!!///////
 	if(href_list["interaction"])

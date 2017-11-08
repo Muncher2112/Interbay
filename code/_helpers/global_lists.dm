@@ -68,6 +68,9 @@ var/global/list/endgame_safespawns = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
+//Crafting
+var/global/list/crafting_recipies = list()
+
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
 	"head" = HEAD,
@@ -199,6 +202,11 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
+
+	paths = typesof(/datum/crafting_recipie) - /datum/crafting_recipie
+	for(var/T in paths)
+		var/datum/crafting_recipie/R = new T
+		crafting_recipies[R.name] = R
 
 	return 1
 
