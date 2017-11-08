@@ -7,9 +7,10 @@
 	uniform = /obj/item/clothing/under/rank/cargo
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_hand = /obj/item/weapon/clipboard
+	l_hand = /obj/item/device/price_scanner
 	id_type = /obj/item/weapon/card/id/cargo/head
 	pda_type = /obj/item/device/pda/quartermaster
+	cash = 100
 
 /decl/hierarchy/outfit/job/cargo/cargo_tech
 	name = OUTFIT_JOB_NAME("Cargo technician")

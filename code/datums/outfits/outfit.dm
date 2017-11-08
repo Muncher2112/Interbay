@@ -56,6 +56,8 @@ var/list/outfits_decls_by_type_
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
 	var/satchel_black = /obj/item/weapon/storage/backpack/satchel_black
 
+	var/cash = 25
+
 	var/flags // Specific flags
 
 /decl/hierarchy/outfit/New()
@@ -177,6 +179,20 @@ var/list/outfits_decls_by_type_
 	if(H.species)
 		if(!(flags & OUTFIT_NO_SURVIAL_GEAR))
 			H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
+
+	if(cash)
+		spawn_money(cash, H.loc, H)
+		/*
+		/var/obj/item/weapon/spacecash/bundle/bundle
+		bundle.worth = cash
+		bundle.update_icon()
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(new bundle(H), slot_r_hand)
+
+		else
+			H.equip_to_slot_or_del(new bundle(H.back), slot_in_backpack)
+		*/
+
 	check_and_try_equip_xeno(H)
 
 /decl/hierarchy/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)

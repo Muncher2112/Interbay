@@ -28,7 +28,7 @@
 	title = "Lackey"
 	supervisors = "Everyone"
 	minimal_player_age = 14
-	economic_modifier = 3
+	economic_modifier = 1
 	ideal_character_age = 21
 	alt_titles = null
 
@@ -41,7 +41,7 @@
 	title = "Magistrate"
 	supervisors = "CMA and you're good will."
 	minimal_player_age = 41
-	economic_modifier = 15
+	economic_modifier = 10
 	ideal_character_age = 65
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/magistrate
 
@@ -55,7 +55,7 @@
 	title = "Overseer"
 	supervisors = "the Magistrate"
 	minimal_player_age = 31
-	economic_modifier = 12
+	economic_modifier = 5
 	ideal_character_age = 45
 	total_positions = 1
 	spawn_positions = 1
@@ -113,7 +113,7 @@
 	title = "Tenchotrainee"
 	supervisors = "Technomancer"
 	minimal_player_age = 19
-	economic_modifier = 8
+	economic_modifier = 2
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
@@ -130,7 +130,7 @@
 	title = "Doctor"
 	supervisors = "the Overseer"
 	minimal_player_age = 19
-	economic_modifier = 8
+	economic_modifier = 2
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
@@ -177,7 +177,7 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	economic_modifier = 4
+	economic_modifier = 3
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 0
@@ -194,7 +194,7 @@
 	title = "Quartermaster"
 	supervisors = "the Overseer"
 	minimal_player_age = 21
-	economic_modifier = 7
+	economic_modifier = 3
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 2
@@ -207,7 +207,7 @@
 	title = "Upkeeper"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 5
+	economic_modifier = 3
 	ideal_character_age = 21
 	total_positions = 3
 	spawn_positions = 3
@@ -306,7 +306,7 @@
 	title = "Cook"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 4
+	economic_modifier = 2
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
@@ -320,7 +320,7 @@
 	title = "Priest"
 	supervisors = "the Arbiters and Verina"
 	minimal_player_age = 21
-	economic_modifier = 6
+	economic_modifier = 3
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 1
@@ -335,7 +335,7 @@
 	title = "Janitor"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 2
+	economic_modifier = 1
 	ideal_character_age = 21
 	total_positions = 2
 	spawn_positions = 2
@@ -354,6 +354,7 @@
 	department_flag = CIV
 	total_positions = 3
 	spawn_positions = 3
+	economic_modifier = 3
 	selection_color = "#6161aa"
 	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)
@@ -375,6 +376,7 @@
 	department_flag = CIV
 	total_positions = 3
 	spawn_positions = 3
+	economic_modifier = 5
 	selection_color = "#6161aa"
 	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)

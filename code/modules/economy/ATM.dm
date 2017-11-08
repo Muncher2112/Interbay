@@ -190,7 +190,7 @@
 							t += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
 							t += "<input type='text' name='funds_amount' value='' style='width:200px; background-color:white;'><input type='submit' value='Withdraw'>"
 							t += "</form>"
-							t += "<A href='?src=\ref[src];choice=view_screen;view_screen=1'>Change account security level</a><br>"
+							//t += "<A href='?src=\ref[src];choice=view_screen;view_screen=1'>Change account security level</a><br>"
 							t += "<A href='?src=\ref[src];choice=view_screen;view_screen=2'>Make transfer</a><br>"
 							t += "<A href='?src=\ref[src];choice=view_screen;view_screen=3'>View transaction log</a><br>"
 							t += "<A href='?src=\ref[src];choice=balance_statement'>Print balance statement</a><br>"
@@ -203,20 +203,24 @@
 
 			else
 				//change our display depending on account security levels
-				if(!account_security_level)
-					t += "To log in to your savings account, press 'submit' with ID clearly displayed. If you wish to log into another account, please enter the account number into the field below or insert a registered ID card into the slot above and then press 'submit'.<BR>"
+				//if(!account_security_level)
+				//	t += "To log in to your savings account, press 'submit' with ID clearly displayed. If you wish to log into another account, please enter the account number into the field below or insert a registered ID card into the slot above and then press 'submit'.<BR>"
+				/*
 				else if (account_security_level == 1)
 					t += "This account requires a PIN to access. For security reasons the account # will need re-entered or ID bound to this account re-scanned."
 				else
 					t += "<span class='bad'><b>Due to the security settings on this account, all information needs to be re-entered and the ID bound to this account placed in the slot above.</b></span><BR>"
+				*/
+				t += "To log in to your savings account, press 'submit' with ID clearly displayed. If you wish to log into another account, please enter the account number into the field below or insert a registered ID card into the slot above and then press 'submit'.<BR>"
 				t += "<form name='atm_auth' action='?src=\ref[src]' method='get'>"
 				t += "<input type='hidden' name='src' value='\ref[src]'>"
 				t += "<input type='hidden' name='choice' value='attempt_auth'>"
 				t += "<b>Account:</b> <input type='text' id='account_num' name='account_num' style='width:250px; background-color:white;'><BR><BR>"
 				//Leave the PIN field out of sight until needed
-				if(account_security_level)
-					t += "<b>PIN:</b> <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><BR><BR>"
+				//if(account_security_level)
+				//	t += "<b>PIN:</b> <input type='text' id='account_pin' name='account_pin' style='width:250px; background-color:white;'><BR><BR>"
 				t += "<input type='submit' value='Submit'><br>"
+
 				t += "</div></form>"
 
 
@@ -278,7 +282,8 @@
 						account_security_level = D.security_level
 
 					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && login_card.associated_account_number == tried_account_num ? 2 : 1)
-
+					//Just a hack. No more pins.
+					account_security_level = 0
 					if(!authenticated_account)
 						number_incorrect_tries++
 						//let's not count an incorrect try on someone who just needs to put in more information

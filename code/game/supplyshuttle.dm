@@ -127,11 +127,12 @@ var/list/point_source_descriptions = list(
 
 /datum/controller/supply
 	//supply points
-	var/points = 50
-	var/points_per_process = 1.5
+	var/points = 150//50 originally. But it no longer generates per process.
+	var/points_per_process = 0//1.5
 	var/points_per_slip = 2
 	var/points_per_platinum = 5 // 5 points per sheet
 	var/points_per_phoron = 5
+	var/points_per_money = 0.02
 	var/point_sources = list()
 	var/pointstotalsum = 0
 	var/pointstotal = 0
@@ -182,6 +183,8 @@ var/list/point_source_descriptions = list(
 	proc/sell()
 		var/phoron_count = 0
 		var/plat_count = 0
+		var/money_count = 0
+		var/item_count = 0
 		for(var/area/subarea in shuttle.shuttle_area)
 			for(var/atom/movable/MA in subarea)
 				if(MA.anchored)	continue
@@ -210,6 +213,16 @@ var/list/point_source_descriptions = list(
 							switch(P.get_material_name())
 								if("phoron") phoron_count += P.get_amount()
 								if("platinum") plat_count += P.get_amount()
+
+						//Sell spacecash.
+						if(istype(A, /obj/item/weapon/spacecash))
+							var/obj/item/weapon/spacecash/cashmoney = A
+							money_count += cashmoney.worth
+
+						else if(istype(A, /obj/item))
+							var/obj/item/I = A
+							item_count = get_value(I)
+
 				qdel(MA)
 
 		if(phoron_count)
@@ -219,6 +232,13 @@ var/list/point_source_descriptions = list(
 		if(plat_count)
 			var/temp = plat_count * points_per_platinum
 			add_points_from_source(temp, "platinum")
+
+		if(money_count)
+			var/temp = money_count * points_per_money
+			add_points_from_source(temp, "money")
+
+		if(item_count)
+			add_points_from_source(item_count, "item")
 
 	//Buyin
 	proc/buy()
