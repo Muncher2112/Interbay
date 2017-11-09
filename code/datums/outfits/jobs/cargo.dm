@@ -7,7 +7,8 @@
 	uniform = /obj/item/clothing/under/rank/cargo
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_hand = /obj/item/device/price_scanner
+	//l_hand = 
+	r_pocket = /obj/item/device/price_scanner
 	id_type = /obj/item/weapon/card/id/cargo/head
 	pda_type = /obj/item/device/pda/quartermaster
 	cash = 100

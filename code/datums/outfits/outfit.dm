@@ -180,8 +180,9 @@ var/list/outfits_decls_by_type_
 		if(!(flags & OUTFIT_NO_SURVIAL_GEAR))
 			H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL)
 
-	if(cash)
-		spawn_money(cash, H.loc, H)
+	//Commented out because of runtimes.
+	//if(cash)
+	//	spawn_money(cash, H.loc, H)
 		/*
 		/var/obj/item/weapon/spacecash/bundle/bundle
 		bundle.worth = cash
