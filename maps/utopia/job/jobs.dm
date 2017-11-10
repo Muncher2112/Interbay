@@ -374,8 +374,8 @@
 	supervisors = "our glorious god Verina"
 	faction = "Station"
 	department_flag = CIV
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 1
+	spawn_positions = 1
 	economic_modifier = 5
 	selection_color = "#6161aa"
 	access = list(access_maint_tunnels, access_chapel_office)
