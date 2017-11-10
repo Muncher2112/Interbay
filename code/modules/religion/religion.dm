@@ -104,11 +104,21 @@
 	w_class = ITEM_SIZE_SMALL
 	force = 0
 	var/stored_info = 0
+	var/emagged = 0
+
+/obj/item/device/arbiter_scanner/emag_act(var/remaining_charges, var/mob/user)
+	if(!emagged)
+		emagged = 1
+		playsound(src, 'sound/effects/sparks3.ogg', 30, 0, -6)
 
 /obj/item/device/arbiter_scanner/attack(mob/living/L, mob/user)
 
 	if(!L.reagents.has_reagent("revelator"))
 		user.visible_message("<span class='notice'>The [src] beeps: \"ERROR: Subject needs revelator.\"</span>")
+
+	if(emagged)
+		stored_info = rand(1,2)
+		return
 
 	else if(do_after(user,30))
 		if(L.religion != LEGAL_RELIGION && !L.reagents.has_reagent("unrevelator"))//Unrevelator can trick the result.
@@ -146,6 +156,14 @@
 	visible_message("<span class='notice'>The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
 
 
+/obj/machinery/arbiter_computer/emag_act(var/remaining_charges, var/mob/user)
+	if(!emagged)
+		emagged = 1
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(2, 1, src)
+		s.start()
+		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
+		return
 
 
 //PRAYER
