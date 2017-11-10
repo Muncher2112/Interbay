@@ -7,10 +7,10 @@
 	uniform = /obj/item/clothing/under/rank/cargo
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
-	//l_hand = 
 	r_pocket = /obj/item/device/price_scanner
 	id_type = /obj/item/weapon/card/id/cargo/head
 	pda_type = /obj/item/device/pda/quartermaster
+	head = /obj/item/clothing/head/mco
 	cash = 100
 
 /decl/hierarchy/outfit/job/cargo/cargo_tech
