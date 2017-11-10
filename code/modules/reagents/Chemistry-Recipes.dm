@@ -128,14 +128,12 @@
 		reactant_used += amt_used
 		holder.remove_reagent(reactant, amt_used, safety = 1)
 
-	var/amt_produced = 0
+	var/amt_produced = result_amount * reaction_progress //NOTE: Reactions use this value even with a null produce.
+
 	var/energy_moved = holder.temperature * reactant_used
 	var/stolen_energy = energy_moved * thermal_reaction_factor
 
-	//add the product
 	if(result)
-		amt_produced = result_amount * reaction_progress
-
 		//the energy that was in the reactants is now in the produce.
 		holder.add_reagent(result, amt_produced, data, safety=1, heat=(energy_moved+stolen_energy)/amt_produced)
 	else
@@ -151,7 +149,7 @@
 			air.add_thermal_energy(energy_moved-stolen_energy)
 			//warning("Evaporated base:[energy_moved]J Total evaporated:[energy_moved-stolen_energy]J")
 
-	on_reaction(holder, amt_produced, reactant_used)
+	on_reaction(holder, amt_produced)
 
 	return reaction_progress
 
@@ -615,10 +613,8 @@
 	name = "Solid Phoron"
 	id = "solidphoron"
 	result = null
-	required_reagents = list("iron" = 5, "phoron" = 20)
-
+	required_reagents = list("phoron" = 20)
 	temperature_max = T0C
-
 	result_amount = 1
 
 /datum/chemical_reaction/phoronsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -2272,6 +2268,7 @@
 	id = "water_evaporation"
 	result = null
 	required_reagents = list("water" = 1)
+	result_amount = 1
 	temperature_min = T0C + 100
 	reaction_rate = REACTION_RATE(0.1)
 	mix_message = ""
@@ -2284,6 +2281,7 @@
 	name = "Phoron"
 	id = "phoron_evaporation"
 	result = null
+	result_amount = 1
 	required_reagents = list("phoron" = 1)
 	temperature_min = PHORON_MINIMUM_BURN_TEMPERATURE
 	temperature_max = PHORON_FLASHPOINT
@@ -2292,9 +2290,9 @@
 	reaction_sound = 'sound/effects/bubbles2.ogg'
 	thermal_reaction_factor = -0.5	//Phoron robs the mixture of a lot of heat as it evaporates.
 
-/datum/chemical_reaction/phoron_evaporation/on_reaction(var/datum/reagents/holder, var/created_volume, var/removed_volume)
+/datum/chemical_reaction/phoron_evaporation/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/T = get_turf(holder.my_atom)
 	if(istype(T))
 		var/datum/gas_mixture/air = T.return_air()
-		air.adjust_gas_temp("phoron", removed_volume * LIQUIDFUEL_AMOUNT_TO_MOL, holder.temperature, update = 1)
+		air.adjust_gas_temp("phoron", created_volume * LIQUIDFUEL_AMOUNT_TO_MOL, holder.temperature, update = 1)
 	return
