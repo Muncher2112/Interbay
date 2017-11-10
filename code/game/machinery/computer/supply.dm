@@ -357,3 +357,22 @@
 	status_signal.data["command"] = command
 
 	frequency.post_signal(src, status_signal)
+
+/obj/machinery/computer/supply/bullshitsnowflakecashin
+	name = "Cargo Cashin Machine"
+	desc = "It's a machine for converting cargo points to cash. You can see small text engraved at the bottom that reads \"<small>Fuck you TGUI and all your stupid bullshit I hate***</small>\" The rest is too small to read."
+	icon = 'icons/obj/terminals.dmi'
+	icon_state = "atm"
+	density = 0
+
+/obj/machinery/computer/supply/bullshitsnowflakecashin/attack_hand(var/mob/user as mob)
+	if(allowed(user))
+		var/cashout = input("How much cash would you like?","[supply_controller.points] points left") as null|num
+		if(cashout)
+			if(supply_controller.points < cashout)
+				to_chat(user, "<span class='warning'> Not enough points.</span>")
+				return
+			supply_controller.points -= cashout
+			spawn_money(cashout,src.loc,user)
+
+
