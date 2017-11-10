@@ -266,9 +266,6 @@
 	department = "Supply"
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	account_allowed = 0			  //This breaks things.
-	create_record = 1             //No one gives a fuck about kids lol.
-	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
 	equip(var/mob/living/carbon/human/H)
