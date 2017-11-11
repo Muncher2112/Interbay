@@ -9,7 +9,7 @@
 						/datum/job/qm,
 						/datum/job/engineer,
 						/datum/job/cargo_tech,
-						/datum/job/mining,
+						///datum/job/mining,
 						///datum/job/ouvrier,
 						/datum/job/chef,
 						/datum/job/chaplain,

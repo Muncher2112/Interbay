@@ -563,6 +563,7 @@ var/global/datum/controller/occupations/job_master
 					if(!M.religion_is_legal() && M != H)
 						brothers_message += "[M.name]\n"
 				brothers_message += "Protect them like family. Do not give their names\' away to the Inquisition."
+				to_chat(H, brothers_message)
 
 
 
