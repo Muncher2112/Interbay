@@ -1445,6 +1445,7 @@
 #include "code\modules\locks\key.dm"
 #include "code\modules\locks\lock.dm"
 #include "code\modules\locks\lock_construct.dm"
+#include "code\modules\lorebook\bookcases.dm"
 #include "code\modules\lorebook\lorebook.dm"
 #include "code\modules\lorebook\content\cooking.dm"
 #include "code\modules\lorebook\content\engineering.dm"

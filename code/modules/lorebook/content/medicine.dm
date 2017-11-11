@@ -39,4 +39,25 @@
 	name = "The Human Anatomy"
 	desc = "Dr. Falkenstein rare unillustrated edition!"
 	icon_state = "bookHacking"
-	chapters = list()
+	chapters = list(/datum/book_chapter/anatomy_brain, /datum/book_chapter/anatomy_heart, /datum/book_chapter/anatomy_lungs)
+
+/datum/book_chapter/anatomy_brain
+	title = "The importance of the brain"
+	content = {"The brain is by far the most important organ in the human body, as long as your patient still shows some sort of brain activity, there is still a chance to save him. All the
+	other organs are merely there to ensure that the brain is kept in good health. The brain doesn't need very much, a steady supply of oxygen and clean blood, free from harmful chemicals and
+	pathogens. Physical thrauma can obviously cause harm to the brain and so will prolonged exposure to the vacuum of space."}
+
+/datum/book_chapter/anatomy_heart
+	title = "The heart"
+	content = {"The human heart behaves as a biological pump, circulating blood around the body, allowing organs to be supplied with oxygen and nutrients that they need to survive. It is one of
+	the most important organs and as such, it is nested deep inside the ribcage. The heart will usually maintain the pressure of the vascular system between 90kPa and 120kPa and will beat around
+	60BPM. Some chemical compounds can raise the heart rate, which can compensate for a low blood pressure, however it will lead to a faster bleedout. In all cases, a pulse exceeding 150BPM can
+	lead to cardiac failure and should generally be avoided. Caffeinated products and tobacco usage typically lead to an increased heartrate. The heart can also stop beating on its own if the
+	patient goes into shock from enduring too much pain, going into shock or due to a lack of blood."}
+
+/datum/book_chapter/anatomy_lungs
+	title = "The lungs"
+	content = {"Lungs are reponsible for supplying oxygen to the bloodstream and are almost as important as the heart itself. They are quite sensible to high and low pressure environments and
+	can easily rupture if exposed to high and low pressure. A ruptured lung will cause your patient to suffocate and slowly take brain damage, it is possible to mitigate the problem temporarly
+	by using a mask and oxygen bottle at a slightly higher pressure than normal. While using air delivery systems in space, it is strongly recommended to check that the delivery pressure is at
+	least 16kPa for pure oxygen or at least 76kPa for 20% airmix systems."}

@@ -38,7 +38,7 @@
 	ears of corn into a blender, and you will have plenty of corn oil in no time."}
 
 /obj/item/weapon/book/rpbook/cooking_fancy
-	name = "Chef Fran&Ccedil;ois's Cookbook"
+	name = "Chef Francois's Cookbook"
 	desc = "Aparently written by a fancy earthworld chef, a long time ago..."
 	icon_state = "book1"
 	chapters = list(/datum/book_chapter/cookbook_cake, /datum/book_chapter/cookbook_pie, /datum/book_chapter/cookbook_soup)
@@ -66,7 +66,7 @@
 	much sugar."}
 
 /datum/book_chapter/cookbook_soup
-	title = "Soups and consom&eacute;s."
+	title = "Soups and consomes."
 	content = {"Soups are one of the oldest ways of preparing food known to man but only became common with the invention of waterproof containers, At the center of any soup is a sizeable volume of
 	water, and could just boil 20 units of plain tap water in a microwave, it is unlikely that your guests will find it filling or humorous. The simplest of soups is the tomato soup and you can
 	produce a bowl of it by microwaving together 10 units of water with a pair of fresh tomatoes. Chanterelles are another excellent choice for soups and a creamy chanterelle soup can easily be
