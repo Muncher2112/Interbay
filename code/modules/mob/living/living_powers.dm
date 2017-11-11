@@ -18,7 +18,7 @@
 
 /mob/living/proc/breath_death()
 	set name = "Breath Death"
-	set desc = "Infect others with your very breathe."
+	set desc = "Infect others with your very breath."
 	set category = "Abilities"
 
 	if(last_special > world.time)

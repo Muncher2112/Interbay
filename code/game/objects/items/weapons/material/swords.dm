@@ -135,7 +135,6 @@
 	drop_sound = 'sound/items/knife_drop.ogg'
 
 /obj/item/weapon/material/sword/combat_knife/attack_self(mob/user)
-	..()
 	if(atk_mode == SLASH)
 		switch_intent(STAB)
 	else
