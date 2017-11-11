@@ -62,7 +62,7 @@
 					return
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
-			
+
 			if(fullness <= NUTRITION_LEVEL_STARVING)
 				to_chat(C, "<span class='notice'>You hungrily chew some of \the [src] and gobble it down!</span>")
 			if(fullness > NUTRITION_LEVEL_STARVING && fullness <= NUTRITION_LEVEL_HUNGRY)
@@ -167,10 +167,16 @@
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
 		var/can_slice_here = isturf(src.loc) && ((locate(/obj/structure/table) in src.loc) || (locate(/obj/machinery/optable) in src.loc) || (locate(/obj/item/weapon/tray) in src.loc))
-		var/hide_item = !has_edge(W) || !can_slice_here
 
-		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
+		if (!can_slice_here || !is_sharp(W))
+			if(is_robot_module(W))
+				return
+
+			var/choice = input("Are you sure that you want to slip \the [W] inside \the [src]?", name) as null|anything in list("Yes","No")
+			if(!choice || choice != "Yes")
+				return
+			if (W.w_class >= src.w_class)
+				to_chat(user, "<span class='warning'>\The [W] cannot fit in \the [src]!</span>")
 				return
 
 			to_chat(user, "<span class='warning'>You slip \the [W] inside \the [src].</span>")
@@ -179,7 +185,7 @@
 			contents += W
 			return
 
-		if (has_edge(W))
+		if (is_sharp(W))
 			if (!can_slice_here)
 				to_chat(user, "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>")
 				return

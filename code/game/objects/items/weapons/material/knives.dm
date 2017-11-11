@@ -4,7 +4,6 @@
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
-	edge = 0
 	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("patted", "tapped")
@@ -24,7 +23,6 @@
 		attack_verb = list("slashed", "stabbed")
 	else
 		force = 3
-		edge = 0
 		sharp = 0
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
@@ -58,7 +56,6 @@
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = CONDUCT
 	sharp = 1
-	//edge = 1
 	sharpness = 25
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
