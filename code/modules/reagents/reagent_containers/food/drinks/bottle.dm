@@ -15,7 +15,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
 	..()
-	if(isGlass) 
+	if(isGlass)
 		unacidable = 1
 		drop_sound = 'sound/items/drop_glass.ogg'
 
@@ -166,7 +166,6 @@
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = 1
-	edge = 0
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
