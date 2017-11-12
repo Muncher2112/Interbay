@@ -483,7 +483,7 @@ var/global/datum/controller/gameticker/ticker
 	round_end_stats += "Total teeth lost: <font color='red'><B>[teeth_lost]</B></font>.\n"
 	round_end_stats += "Total bloodshed: <font color='red'><B>[total_deaths]</B></font>.\n"
 	round_end_stats += "<font color='red'>The [ILLEGAL_RELIGION] worshippers were:</font>\n"
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in human_mob_list)
 		if(H.religion == ILLEGAL_RELIGION)
 			round_end_stats += "<font color='red'><b>[H.name]</b></font>\n"
 
