@@ -128,6 +128,39 @@
 		user.visible_message("<span class='notice'>The [src] beeps: \"SCANNING COMPLETE.\"</span>")
 	..()
 
+//The brander
+/obj/item/weapon/brander
+	name = "branding device"
+	desc = "A special baton, heated red hot by electricity for branding heretics, and other criminals. Activate it to select the brand."
+	icon_state = "brander"
+	item_state = "baton"
+	var/brand = "HERETIC"
+
+
+
+/obj/item/weapon/brander/attack(mob/living/carbon/human/H as mob, mob/living/user as mob)
+	var/obj/item/organ/external/head/O = locate() in H.organs
+	if(O && !H.branded)
+		if(!user.doing_something)
+			user.doing_something = 1
+			H.visible_message("<span class='danger'>[user] begins to brand [src]\'s face with the [src]!</span>",
+								"<span class='danger'>[user] begins to brand you!</span>")
+			if(do_after(user, 50))
+				H.custom_pain("[pick("OH GOD IT BURNS SO BAD!", "OH GOD WHY!", "OH GOD YOUR FACE!")]", 250, affecting = O)
+				H.branded = brand
+				user.doing_something = 0
+				playsound(H, 'sound/items/Welder2.ogg', 40, 1, -1)
+			else 
+				user.doing_something = 0
+
+/obj/item/weapon/brander/attack_self(mob/user)
+	..()
+	var/input = input(user,"Select Brand Type", "Brands") as null|anything in list("HERETIC", "THIEF", "RAPIST", "CRIMINAL")
+	if(input)
+		brand = input
+
+	
+
 //The machine
 /obj/machinery/arbiter_computer
 	var/mob/living/suspect

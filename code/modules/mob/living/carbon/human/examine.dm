@@ -177,14 +177,28 @@
 	if(wear_id)
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
-	if(src.str > user.str && src.str < (user.str + 5))
-		msg += "* [T.He] looks stronger than you.\n"
-	
-	if(src.str > (user.str + 5))
-		msg += "<b>* [T.He] looks a lot stronger than you.</b>\n"
+	if(!skipface && branded)//For brands.
+		msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THIER FACE!</b></span>"
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.religion == LEGAL_RELIGION && H != src && branded == "HERETIC")
+				msg += "<span class='notice'> Viewing such a spectacle fills you with pleasure.</span>"
+				H.add_event("punishedheretic", /datum/happiness_event/punished_heretic)
+			else
+				msg += "<span class='notice'> It is a horrid reminder of what could happen to you.</span>"
+			
+			if(H != src)
+				src.add_event("lookedupon", /datum/happiness_event/humiliated)
+		msg += "\n"
 
-	if(src.str < user.str)
-		msg += "* [T.He] looks weaker than you.\n"
+	if(str > user.str && str < (user.str + 5))
+		msg += "[T.He] looks stronger than you.\n"
+
+	if(str > (user.str + 5))
+		msg += "<b>[T.He] looks a lot stronger than you.</b>\n"
+
+	if(str < user.str)
+		msg += "[T.He] looks weaker than you.\n"
 
 	//Jitters
 	if(is_jittery)
@@ -224,10 +238,10 @@
 
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"
-	
+
 	if(on_fire)
 		msg += "<span class='warning'>[T.He] [T.is] on fire!.</span>\n"
-	
+
 	msg += "<span class='warning'>"
 
 
@@ -428,7 +442,7 @@
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
-	
+
 	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)
 
 /mob/living/carbon/human/verb/set_flavor()

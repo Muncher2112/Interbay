@@ -10,7 +10,7 @@
 						/datum/job/engineer,
 						/datum/job/cargo_tech,
 						///datum/job/mining,
-						///datum/job/ouvrier,
+						/datum/job/ouvrier,
 						/datum/job/chef,
 						/datum/job/chaplain,
 						/datum/job/janitor,
