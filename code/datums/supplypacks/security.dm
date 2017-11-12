@@ -28,16 +28,16 @@
 
 /decl/hierarchy/supply_pack/security/weapons
 	name = "Weapons crate"
-	contains = list(/obj/item/weapon/melee/baton = 2,
-					/obj/item/weapon/gun/energy/gun = 2,
-					/obj/item/weapon/gun/energy/taser = 2,
-					/obj/item/weapon/gun/projectile/sec = 2,
-					/obj/item/weapon/storage/box/flashbangs,
-					/obj/item/weapon/storage/box/teargas)
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure/weapon
+	num_contained = 3
+	contains = list(/obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty = 2,
+					/obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet = 2,
+					/obj/item/weapon/gun/projectile/shotgun/pump/shitty = 2,
+					/obj/item/weapon/material/sword/combat_knife = 2,
+					/obj/item/weapon/material/sword,
+					/obj/item/weapon/material/sword/sabre)
+	cost = 250
 	containername = "\improper Weapons crate"
-	access = access_security
+	supply_method = /decl/supply_method/randomized
 
 /decl/hierarchy/supply_pack/security/flareguns
 	name = "Flare guns crate"
@@ -46,9 +46,7 @@
 					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
 					/obj/item/weapon/storage/box/flashshells)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Flare gun crate"
-	access = access_security
 
 /decl/hierarchy/supply_pack/security/eweapons
 	name = "Advanced Energy Weapons crate"
@@ -56,7 +54,7 @@
 					/obj/item/weapon/gun/energy/xray/pistol = 1,
 					/obj/item/weapon/shield/energy = 2,
 					/obj/item/clothing/suit/armor/laserproof = 2)
-	cost = 125
+	cost = 300
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Advanced Energy Weapons crate"
 	access = access_heads
@@ -72,10 +70,8 @@
 					/obj/item/clothing/suit/storage/vest)
 
 	name = "Armor crate"
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	cost = 250
 	containername = "\improper Armor crate"
-	access = access_security
 	supply_method = /decl/supply_method/randomized
 
 /decl/hierarchy/supply_pack/security/riot
