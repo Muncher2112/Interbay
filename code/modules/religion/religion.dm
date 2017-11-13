@@ -143,7 +143,7 @@
 	if(O && !H.branded)
 		if(!user.doing_something)
 			user.doing_something = 1
-			H.visible_message("<span class='danger'>[user] begins to brand [src]\'s face with the [src]!</span>",
+			H.visible_message("<span class='danger'>[user] begins to brand [H]\'s face with the [src]!</span>",
 								"<span class='danger'>[user] begins to brand you!</span>")
 			if(do_after(user, 50))
 				H.custom_pain("[pick("OH GOD IT BURNS SO BAD!", "OH GOD WHY!", "OH GOD YOUR FACE!")]", 250, affecting = O)
