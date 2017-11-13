@@ -69,7 +69,7 @@
 //REAGENTS
 //The revelator toxin
 /datum/reagent/toxin/revelator
-	name = "revelator"
+	name = "Revelator"
 	id = "revelator"
 	description = "For proving heretics."
 	strength = 25//Yep, it's poisonous. To discourage random checking.
@@ -82,7 +82,7 @@
 		reagents.add_reagent("revelator",15)
 
 /datum/reagent/toxin/unrevelator
-	name = "unrevelator"
+	name = "Unrevelator"
 	id = "unrevelator"
 	description = "For tricking church members."
 	strength = 25//Yep, it's poisonous. To discourage taking it all the time.
@@ -150,7 +150,7 @@
 				H.branded = brand
 				user.doing_something = 0
 				playsound(H, 'sound/items/Welder2.ogg', 40, 1, -1)
-			else 
+			else
 				user.doing_something = 0
 
 /obj/item/weapon/brander/attack_self(mob/user)
@@ -159,7 +159,7 @@
 	if(input)
 		brand = input
 
-	
+
 
 //The machine
 /obj/machinery/arbiter_computer

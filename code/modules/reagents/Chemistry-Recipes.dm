@@ -592,7 +592,7 @@
 	result_amount = 3
 
 /datum/chemical_reaction/revelator
-	name = "revelator"
+	name = "Revelator"
 	id = "revelator"
 	result = "revelator"
 	required_reagents = list("mindbreaker" = 1, "phoron" = 1, "dognium" = 3)
@@ -600,7 +600,7 @@
 	log_is_important = 1
 
 /datum/chemical_reaction/unrevelator
-	name = "unrevelator"
+	name = "Unrevelator"
 	id = "unrevelator"
 	result = "unrevelator"
 	required_reagents = list("mindbreaker" = 1, "hclacid" = 1, "dognium" = 3)

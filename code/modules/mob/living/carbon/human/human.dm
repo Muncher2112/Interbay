@@ -660,7 +660,7 @@
 		if(!T.Adjacent(src))
 			return 0
 		var/rname = href_list["craft"]
-		var/datum/crafting_recipie/R = crafting_recipies[rname]
+		var/datum/crafting_recipe/R = crafting_recipes[rname]
 		R.make(src, T)
 
 	///////Interactions!!///////

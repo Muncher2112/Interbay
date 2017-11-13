@@ -5,7 +5,7 @@
 	if(stat) //zombie goasts pls go
 		return
 
-	if(!crafting_recipies)
+	if(!crafting_recipes)
 		return
 
 	var/dat = ""
@@ -13,8 +13,8 @@
 	if(!spot.Adjacent(src))
 		src << "<span class='warning'>You need more space to work.</span>"
 		return
-	for(var/name in crafting_recipies)
-		var/datum/crafting_recipie/R = crafting_recipies[name]
+	for(var/name in crafting_recipes)
+		var/datum/crafting_recipe/R = crafting_recipes[name]
 		if(R.can_make(src, spot))
 			dat += "<A href='?src=\ref[src];craft=[name]'>[R.name]</A> "
 			dat += "Parts: "
@@ -38,7 +38,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/datum/crafting_recipie
+/datum/crafting_recipe
 	var/name = "" 			//in-game display name
 	var/list/parts 			//type paths of items consumed associated with how many are needed
 	var/list/tools 			//type paths of items needed but not consumed
@@ -47,7 +47,7 @@
 	var/time = 0 			//time in 1/10th of second
 	var/base_chance = 100 	//base chance to get it right without skills
 
-/datum/crafting_recipie/proc/check_parts(var/list/things)
+/datum/crafting_recipe/proc/check_parts(var/list/things)
 	if(!parts)
 		return 1
 	var/list/needs = parts.Copy()
@@ -65,13 +65,13 @@
 			return 1
 	return 0
 
-/datum/crafting_recipie/proc/check_tools(var/list/things)
+/datum/crafting_recipe/proc/check_tools(var/list/things)
 	for(var/T in tools)
 		if(!(locate(T) in things))
 			return 0
 	return 1
 
-/datum/crafting_recipie/proc/use_ingridients(var/list/things)
+/datum/crafting_recipe/proc/use_ingridients(var/list/things)
 	var/list/needs = parts.Copy()
 	var/list/to_del = list()
 	for(var/T in needs)
@@ -102,11 +102,11 @@
 		return 1
 	return 0
 
-/datum/crafting_recipie/proc/can_make(var/mob/user, var/turf/spot)
+/datum/crafting_recipe/proc/can_make(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
 	return check_parts(things) && check_tools(things)
 
-/datum/crafting_recipie/proc/make(var/mob/user, var/turf/spot)
+/datum/crafting_recipe/proc/make(var/mob/user, var/turf/spot)
 	if(!can_make(user,spot))
 		return 0
 	user << "<span class='notice'>You start making \a [name].</span>"

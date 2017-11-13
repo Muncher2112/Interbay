@@ -115,7 +115,7 @@
 	backpack = null
 	l_ear = null
 	r_ear = null
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
+	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIVAL_GEAR
 
 
 /decl/hierarchy/outfit/job/inmate/equip()

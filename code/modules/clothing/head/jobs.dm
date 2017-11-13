@@ -162,7 +162,7 @@
 	icon_state = "beret_corporate_whitered"
 
 /obj/item/clothing/head/mco
-	name = "QM's hat"
-	desc = "For money grubbing QMs."
+	name = "quartermaster\'s hat"
+	desc = "For money grubbing quartermasters."
 	icon_state = "mco"
 	item_state = "mco"

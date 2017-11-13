@@ -132,5 +132,5 @@
 	r_pocket = /obj/item/weapon/card/emag
 	suit = /obj/item/clothing/suit/storage/vest/opvest
 	gloves = /obj/item/clothing/gloves/thick/swat/combat
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
+	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIVAL_GEAR
 	cash = 0

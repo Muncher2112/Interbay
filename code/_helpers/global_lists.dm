@@ -18,7 +18,7 @@ var/global/list/chemical_reactions_list				//list of all /datum/chemical_reactio
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
+var/global/list/side_effects = list()				//list of all medical sideeffects types by their names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
@@ -69,7 +69,7 @@ var/global/list/endgame_safespawns = list()
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
 //Crafting
-var/global/list/crafting_recipies = list()
+var/global/list/crafting_recipes = list()
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
@@ -203,10 +203,10 @@ var/global/list/string_slot_flags = list(
 		var/datum/poster/P = new T
 		poster_designs += P
 
-	paths = typesof(/datum/crafting_recipie) - /datum/crafting_recipie
+	paths = typesof(/datum/crafting_recipe) - /datum/crafting_recipe
 	for(var/T in paths)
-		var/datum/crafting_recipie/R = new T
-		crafting_recipies[R.name] = R
+		var/datum/crafting_recipe/R = new T
+		crafting_recipes[R.name] = R
 
 	return 1
 

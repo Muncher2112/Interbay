@@ -178,7 +178,7 @@
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
 	if(!skipface && branded)//For brands.
-		msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THIER FACE!</b></span>"
+		msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THEIR FACE!</b></span>"
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.religion == LEGAL_RELIGION && H != src && branded == "HERETIC")
@@ -186,7 +186,7 @@
 				H.add_event("punishedheretic", /datum/happiness_event/punished_heretic)
 			else
 				msg += "<span class='notice'> It is a horrid reminder of what could happen to you.</span>"
-			
+
 			if(H != src)
 				src.add_event("lookedupon", /datum/happiness_event/humiliated)
 		msg += "\n"

@@ -373,4 +373,4 @@
 	//mask = /obj/item/clothing/mask/gas
 	gloves = /obj/item/clothing/gloves/thick/swat/combat
 	//back = /obj/item/weapon/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
-	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIAL_GEAR
+	flags = OUTFIT_NO_BACKPACK|OUTFIT_NO_SURVIVAL_GEAR
