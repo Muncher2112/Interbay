@@ -198,13 +198,14 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 	if (H.staminaloss > 100)
 		H.druggy = 300
 		H.erpcooldown = 600
+	H.add_event("came", /datum/happiness_event/came)
 
 	times_came++
 
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	//var/ya = "&#1103;"
 	var/message = ""
-
+	H.adjustStaminaLoss(5)
 	switch(hole)
 
 		if("vaglick")

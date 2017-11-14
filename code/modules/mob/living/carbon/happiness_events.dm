@@ -129,8 +129,8 @@
 	timeout = 1800
 
 //Good sex here too because why not.
-/datum/happiness_event/goodsex
-	description = "<span class='info'><b>That sex was really good!</b>\n"
+/datum/happiness_event/came
+	description = "<span class='binfo'>I came!\n"
 	happiness = 4
 	timeout = 1800
 
