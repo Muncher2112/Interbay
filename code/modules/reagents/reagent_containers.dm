@@ -31,24 +31,29 @@
 /obj/item/weapon/reagent_containers/proc/feel_temperature(mob/user)
 	if(!reagents.total_volume)
 		return
+	if(!Adjacent(user))
+		return
 
-	var/feels = ""
-	if(reagents.temperature < (T0C - 10))
-		feels = "extremely cold"
-	else if(reagents.temperature < T0C + 5)
-		feels = "ice cold"
-	else if(reagents.temperature < T0C + 15)
-		feels = "cold"
-	else if(reagents.temperature < T0C + 25)
-		feels = "lukewarm"
-	else if(reagents.temperature < T0C + 40)
-		feels = "hot"
-	else if(reagents.temperature < T0C + 60)
-		feels = "very hot"
-	else
-		feels = "searing hot"
+	//todo: make temperature sensing unified across this and gasses.
+	var/feels
+	switch(reagents.temperature)
+		if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
+			feels = "extremely cold"
+		if(BODYTEMP_HEAT_DAMAGE_LIMIT to TEMPERATURE_REFRESHING)
+			feels = "ice cold"
+		if(TEMPERATURE_REFRESHING to T0C+15)
+			feels = "cold"
+		if(T0C+15 to T0C + 25)
+			feels = ""
+		if(T0C + 25 to TEMPERATURE_WARM)
+			feels = "hot"
+		if(TEMPERATURE_WARM to BODYTEMP_HEAT_DAMAGE_LIMIT)
+			feels = "very hot"
+		else
+			feels = "searing hot"
 
-	to_chat(user, "[src] feels [feels] to the touch.")
+	if(feels != "")//lukewarm won't be mentioned at all.
+		to_chat(user, "[src] feels [feels] to the touch.")
 	return
 
 
