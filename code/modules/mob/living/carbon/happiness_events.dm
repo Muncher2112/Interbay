@@ -131,7 +131,7 @@
 //Good sex here too because why not.
 /datum/happiness_event/came
 	description = "<span class='binfo'>I came!\n"
-	happiness = 4
+	happiness = 10
 	timeout = 1800
 
 //For when you get branded.
