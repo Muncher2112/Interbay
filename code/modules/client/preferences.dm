@@ -30,7 +30,7 @@ datum/preferences
 	var/age = 30						//age of character
 	var/spawnpoint = "Default" 			//where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/backbag = 2						//backpack type
+	var/backbag = 3						//backpack type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color

@@ -45,8 +45,7 @@
 /proc/can_not_locate(var/atom/container, var/container_thing)
 	return !(locate(container_thing) in container) // We could just do !can_locate(container, container_thing) but BYOND is pretty awful when it comes to deep proc calls
 
-
-/proc/filter(var/list/list_to_filter, var/list/predicates, var/list/extra_predicate_input)
+/proc/Filter(var/list/list_to_filter, var/list/predicates, var/list/extra_predicate_input)
 	. = list()
 	for(var/entry in list_to_filter)
 		var/predicate_input
