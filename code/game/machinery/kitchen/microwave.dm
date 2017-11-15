@@ -371,6 +371,7 @@
 	src.reagents.clear_reagents()
 	ffuu.reagents.add_reagent("carbon", amount)
 	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.temperature = rand(TEMPERATURE_WARM-1,BODYTEMP_HEAT_DAMAGE_LIMIT+1) //Warm the ...food?
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)

@@ -10,7 +10,18 @@
 
 			last_taste_time = world.time
 			last_taste_text = text_output
-	return from.trans_to_holder(target,amount,multiplier,copy) //complete transfer
+
+	var/T = from.temperature
+	var/ingested_amount = from.trans_to_holder(target,amount,multiplier,copy) //complete transfer
+
+	if(ingested_amount)
+		//hot/cold moodlets
+		if(T > TEMPERATURE_WARM )
+			add_event("hot_food", /datum/happiness_event/hot_food)
+		else if(T < TEMPERATURE_REFRESHING)
+			add_event("cold_drink", /datum/happiness_event/cold_drink)
+
+	return ingested_amount
 
 /* what this does:
 catalogue the 'taste strength' of each one

@@ -20,7 +20,7 @@
 	var/cook_time = 200				// How many ticks the cooking will take.
 	var/can_cook_mobs				// Whether or not this machine accepts grabbed mobs.
 	var/food_color					// Colour of resulting food item.
-	var/cooked_sound				// Sound played when cooking completes.
+	var/cooked_sound = 'sound/machines/ding.ogg' // Sound played when cooking completes.
 	var/can_burn_food				// Can the object burn food that is left inside?
 	var/burn_chance = 10			// How likely is the food to burn?
 	var/obj/item/cooking_obj		// Holder for the currently cooking object.
@@ -116,7 +116,8 @@
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(src) //Holy typepaths, Batman.
 
 	if(cooking_obj.reagents && cooking_obj.reagents.total_volume)
-		cooking_obj.reagents.trans_to(result, cooking_obj.reagents.total_volume)
+		var/T = rand(TEMPERATURE_WARM-1, BODYTEMP_HEAT_DAMAGE_LIMIT+1) //Warm food.
+		cooking_obj.reagents.trans_to(result, cooking_obj.reagents.total_volume, force_temperature=T)
 
 	// Set icon and appearance.
 	change_product_appearance(result)

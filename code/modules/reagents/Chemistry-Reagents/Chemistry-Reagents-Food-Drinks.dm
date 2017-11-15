@@ -668,7 +668,7 @@
 	adj_sleepy = -3
 	adj_temp = 20
 
-	spawn_temperature = T0C+37
+	spawn_temperature = T0C+60
 
 	glass_name = "tea"
 	glass_desc = "Tasty black tea, it has antioxidants, it's good for you!"
@@ -687,7 +687,7 @@
 	taste_description = "sweet tea"
 	color = "#104038" // rgb: 16, 64, 56
 	adj_temp = -5
-	spawn_temperature = T0C+5
+	spawn_temperature = T0C+4
 
 	glass_name = "iced tea"
 	glass_desc = "No relation to a certain rap artist/ actor."
@@ -706,7 +706,7 @@
 	adj_temp = 25
 	overdose = 45
 
-	spawn_temperature = T0C+40
+	spawn_temperature = T0C+70
 
 	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
@@ -793,7 +793,7 @@
 	nutrition = 2
 	adj_temp = 5
 
-	spawn_temperature = T0C+30
+	spawn_temperature = T0C+60
 
 	glass_name = "hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
@@ -1040,8 +1040,8 @@
 /datum/reagent/drink/dry_ramen
 	name = "Dry Ramen"
 	id = "dry_ramen"
-	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
-	taste_description = "dry and cheap noodles"
+	description = "Space age food, since August 25, 1958. Contains dried noodles and vegetables."
+	taste_description = "dry and crunchy noodles"
 	reagent_state = SOLID
 	nutrition = 1
 	color = "#302000"
@@ -1050,7 +1050,7 @@
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
-	taste_description = "wet and cheap noodles"
+	taste_description = "cheap noodles"
 	reagent_state = LIQUID
 	color = "#302000"
 	nutrition = 5
@@ -1060,7 +1060,7 @@
 	name = "Hell Ramen"
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
-	taste_description = "wet and cheap noodles on fire"
+	taste_description = "cheap noodles on fire"
 	reagent_state = LIQUID
 	color = "#302000"
 	nutrition = 5

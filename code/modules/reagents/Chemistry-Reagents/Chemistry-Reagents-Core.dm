@@ -9,6 +9,7 @@
 	taste_mult = 1.3
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
+	spawn_temperature = T0C+37
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
