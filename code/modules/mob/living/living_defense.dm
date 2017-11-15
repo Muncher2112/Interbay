@@ -27,7 +27,7 @@
 			show_message("<span class='warning'>[absorb_text]</span>")
 		else
 			show_message("<span class='warning'>Your armor absorbs the blow!</span>")
-		
+
 		playsound(src, "sound/weapons/armorblockheavy[rand(1,3)].ogg", 50, 1, 1)
 		return 100
 
@@ -151,7 +151,7 @@
 
 	if(user.str)//If they have strength then add it.
 		effective_force *= strToDamageModifier(user.str)
-	
+
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, damage_flags, used_weapon=I)
 
 	//I.force = (I.force / strToDamageModifier(user.str))//Sets it back to it's initial force.
@@ -284,6 +284,13 @@
 	else if(fire_stacks <= 0)
 		ExtinguishMob() //Fire's been put out.
 		return 1
+	else if (prob(2/fire_stacks))
+		fire_stacks = 0
+		for (var/obj/item/clothing/C in src)
+			C.reagents.remove_reagent("fuel", 1000)
+			for(var/datum/reagent/R in C.reagent_list)
+				if (istype(R, /datum/reagent/ethanol))
+					C.reagents.remove_reagent(R.id, 1000)
 
 	if(HUSK in mutations)
 		fire_stacks = max(0, fire_stacks - 0.1) //I guess the fire runs out of fuel eventually
