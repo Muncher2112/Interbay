@@ -173,11 +173,14 @@ default behaviour is:
 	return can_move_mob(tmob, 1, 0)
 
 /mob/living/verb/succumb()
-	set hidden = 1
-	if ((src.health < src.maxHealth/2)) // Health below half of maxhealth.
+	set name = "Succumb"
+	set category = "IC"
+	if ((src.health < src.maxHealth/2) || is_asystole()) // Health below half of maxhealth, or asystole.
 		src.adjustBrainLoss(src.health + src.maxHealth * 2) // Deal 2x health in BrainLoss damage, as before but variable.
 		updatehealth()
 		to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
+	else 
+		to_chat(src, "<span class='notice'>You are too alive to die.</span>")
 
 
 /mob/living/proc/updatehealth()
