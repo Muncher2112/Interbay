@@ -296,6 +296,13 @@
 				playsound(usr.loc,'sound/machines/dotprinter.ogg', 40, 1)
 				return 1
 				. = TRUE
+		if("cashin")
+			var/cashdesired = input("How much money would you like to cash in?","Cashing in", 1) as null|num
+
+			var/cash_to_remove = round(min(cashdesired,supply_controller.points))
+			supply_controller.points -= cash_to_remove
+			spawn_money(cash_to_remove,src.loc,usr)
+			. = TRUE
 		if("login") //sign in as merchant
 			if(!src.allowed(usr))
 				return TRUE

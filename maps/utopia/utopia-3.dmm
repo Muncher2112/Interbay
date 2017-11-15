@@ -480,7 +480,7 @@
 "jl" = (/obj/machinery/computer/secure_data,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/lino,/area/security/checkpoint2)
 "jm" = (/obj/structure/closet/emcloset,/obj/machinery/light/small,/turf/simulated/floor/plating,/area/security/checkpoint2)
 "jn" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/security/checkpoint2)
-"jo" = (/obj/structure/disposalpipe/segment,/obj/effect/floor_decal/newcorner/yellow/quarter,/obj/machinery/computer/supply/bullshitsnowflakecashin{pixel_x = -32},/turf/simulated/floor/tiled,/area/quartermaster/office)
+"jo" = (/obj/structure/disposalpipe/segment,/obj/effect/floor_decal/newcorner/yellow/quarter,/turf/simulated/floor/tiled,/area/quartermaster/office)
 "jp" = (/obj/machinery/computer/supply,/obj/machinery/light,/obj/effect/floor_decal/newcorner/yellow,/turf/simulated/floor/tiled,/area/quartermaster/office)
 "jq" = (/obj/structure/bed/chair/office/dark,/obj/effect/landmark/start{name = "Quartermaster"},/obj/effect/floor_decal/newcorner/yellow/quarter{tag = "icon-yellow-quarter (WEST)"; icon_state = "yellow-quarter"; dir = 8},/turf/simulated/floor/tiled,/area/quartermaster/office)
 "jr" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 1},/obj/machinery/power/port_gen/pacman,/obj/structure/cable/yellow,/turf/simulated/floor/plating,/area/outpost/mining_main/maintenance)
