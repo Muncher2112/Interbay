@@ -25,6 +25,9 @@
   </ui-section>
   <ui-section label='Points'>
     <span>{{Math.floor(adata.points)}}</span>
+    {{#if data.active}}
+      <ui-button action='cashin'>Cash in</ui-button>
+    {{/if}}
   </ui-section>
   <ui-section label='Total points earned this shift'>
     <span>{{data.pointstotalsum}}</span>
