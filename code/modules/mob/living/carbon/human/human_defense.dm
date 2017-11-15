@@ -225,7 +225,7 @@ meteor_act
 
 
 	if(blocked == 100)
-		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]'s [affecting.name] with the [I], but it does no damage!")//visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user] but it did no damage!</span>")
+		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]'s [affecting.name] with the [I], but it does no damage!")
 		return null
 
 	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
@@ -290,14 +290,22 @@ meteor_act
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 
+	//Ok this block of text handles cutting arteries, tendons, and limbs off.
+	//First we cut an artery, the reason for that, is that arteries are funninly enough, not that lethal, and don't have the biggest impact. They'll still make you bleed out, but they're less immediately lethal.
 	if(I.sharp && prob(I.sharpness * 2) && !(affecting.status & ORGAN_ARTERY_CUT))
 		affecting.sever_artery()
 		if(affecting.artery_name == "cartoid artery")
 			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
 		else
 			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
+	
+	//Next tendon, which disables the limb, but does not remove it, making it easier to fix, and less lethal, than losing it.
+	else if(I.sharp && (I.sharpness * 2) && !(affecting.status & ORGAN_TENDON_CUT))
+		affecting.sever_tendon()
+		src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.tendon_name] tendon!</span>")
 
-	else if(I.sharp && I.edge)//Experimental change to make sword fights less shitty.
+	//Finally if we pass all that, we cut the limb off. This should reduce the number of one hit sword kills.
+	else if(I.sharp && I.edge)
 		if(prob(I.sharpness * strToDamageModifier(user.str)))
 			affecting.droplimb(0, DROPLIMB_EDGE)
 
