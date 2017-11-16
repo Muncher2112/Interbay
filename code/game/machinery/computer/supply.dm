@@ -297,7 +297,7 @@
 				return 1
 				. = TRUE
 		if("cashin")
-			var/cashdesired = input("How much money would you like to cash in?","Cashing in", 1) as null|num
+			var/cashdesired = input("How how many supply points would you like to convert to cash?","Cashing in", 1) as null|num
 			if(cashdesired)
 				var/cash_to_remove = round(min(cashdesired,supply_controller.points))
 				supply_controller.points -= cash_to_remove
