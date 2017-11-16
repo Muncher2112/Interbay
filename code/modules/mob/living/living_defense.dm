@@ -288,7 +288,7 @@
 		fire_stacks = 0
 		for (var/obj/item/clothing/C in src)
 			C.reagents.remove_reagent("fuel", 1000)
-			for(var/datum/reagent/R in C.reagent_list)
+			for(var/datum/reagent/R in C.reagents.reagent_list)
 				if (istype(R, /datum/reagent/ethanol))
 					C.reagents.remove_reagent(R.id, 1000)
 
