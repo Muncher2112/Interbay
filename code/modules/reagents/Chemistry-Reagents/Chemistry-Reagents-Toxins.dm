@@ -425,6 +425,8 @@
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
 	M.add_chemical_effect(CE_PULSE, -1)
+	M.add_event("high", /datum/happiness_event/high)
+	//SUGAR CRACK PIE, GET ME HIGH
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -481,6 +483,7 @@
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))
 		M.emote("drool")
+	M.add_event("high", /datum/happiness_event/high)
 
 /datum/reagent/mindbreaker
 	name = "Mindbreaker Toxin"
@@ -538,6 +541,7 @@
 		M.druggy = max(M.druggy, 40)
 		if(prob(15))
 			M.emote(pick("twitch", "giggle"))
+	M.add_event("high", /datum/happiness_event/high)
 
 /* Transformations */
 
