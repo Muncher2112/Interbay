@@ -103,7 +103,7 @@
 		log = runtime_log
 
 	world.name = "[server_name]: [station_name()]"
-	
+
 	callHook("startup")
 	//Emergency Fix
 	load_mods()
@@ -493,8 +493,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
-	spawn(0)
-		sound_to(world, sound(pick('sound/misc/endsound4.ogg', 'sound/misc/endsound5.ogg')))// random end sounds!! - LastyBatsy
+	spawn (0)
+		sound_to(world, pick('sound/misc/endsound4.ogg', 'sound/misc/endsound5.ogg'))// random end sounds!! - LastyBatsy
 
 	processScheduler.stop()
 
