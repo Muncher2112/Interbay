@@ -112,13 +112,17 @@
 
 /datum/happiness_event/hot_food //Hot food feels good!
 	description = "<span class='info'>I've eaten something warm.</span>\n"
-	happiness = 1
+	happiness = 3
 	timeout = 1800
 
 /datum/happiness_event/cold_drink //Cold drinks feel good!
 	description = "<span class='info'>I've had something refreshing.</span>\n"
-	happiness = 1
+	happiness = 3
 	timeout = 1800
+
+/datum/happiness_event/high
+	description = "<span class='binfo'>I'm high as fuck</span>\n"
+	happiness = 12
 
 
 
