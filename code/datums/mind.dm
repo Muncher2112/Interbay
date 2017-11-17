@@ -120,10 +120,9 @@
 		output += "<HR><B>The Prayer Of Deo Machina:</B> [prayer]<br>"
 	if(religion == ILLEGAL_RELIGION)
 		var/brothers_message = "Your fellow resisters are here too, they are:<br>"
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/human/H in human_mob_list)
 			if(H.religion == ILLEGAL_RELIGION)
 				brothers_message += "<b> [H.name]</b><br>"
-			brothers_message += " Protect them like family. Do not give their names away to the Inquisition."
 		output += brothers_message
 	recipient << browse(output,"window=memory")
 
