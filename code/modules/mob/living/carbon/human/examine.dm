@@ -56,6 +56,12 @@
 
 	msg += "<br>"
 
+	if((!skipface || wear_id) && src != user)
+		var/mob/living/carbon/human/H = user
+		var/classdesc = get_social_description(H)
+
+		msg += "[T.He] [T.is] [get_social_class()] [classdesc]\n"
+
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties

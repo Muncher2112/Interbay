@@ -37,3 +37,5 @@
 	var/happiness = 0
 	var/thirst = THIRST_LEVEL_FILLED
 	var/hygiene = HYGIENE_LEVEL_NORMAL
+	//What your social class is. Shows up when you're examined.
+	var/social_class = SOCIAL_CLASS_MED

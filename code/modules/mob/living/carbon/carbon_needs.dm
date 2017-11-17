@@ -1,5 +1,6 @@
 /mob/living/carbon/proc/print_happiness()
 	var/msg = "\n<span class='info'>I am a follower of <font color='red'>[religion]</font></span>.\n" 
+	msg += "<span class='info'>I am [get_social_class()].</span>\n"
 	msg += "<span class='info'>*---------*\n<EM>Current mood</EM>\n"
 	for(var/i in events)
 		var/datum/happiness_event/event = events[i]

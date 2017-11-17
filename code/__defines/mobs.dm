@@ -246,6 +246,10 @@
 #define SPECIES_SKRELL "Skrell"
 #define SPECIES_NABBER "Nabber"
 
+#define SOCIAL_CLASS_MIN 1
+#define SOCIAL_CLASS_MED 2
+#define SOCIAL_CLASS_MAX 3
+
 #define SURGERY_CLOSED 0
 #define SURGERY_OPEN 1
 #define SURGERY_RETRACTED 2
