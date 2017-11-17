@@ -12,6 +12,7 @@ datum/preferences
 	S["age"]					>> pref.age
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
+	S["religion"]				>> pref.religion
 
 /datum/category_item/player_setup_item/general/basic/save_character(var/savefile/S)
 	S["real_name"]				<< pref.real_name
@@ -20,6 +21,7 @@ datum/preferences
 	S["age"]					<< pref.age
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
+	S["religion"]				<< pref.religion
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	var/datum/species/S = all_species[pref.species ? pref.species : SPECIES_HUMAN]
@@ -31,6 +33,8 @@ datum/preferences
 		pref.real_name      = random_name(pref.gender, pref.species)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
+
+	if(!pref.religion)    pref.religion =    LEGAL_RELIGION
 
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
@@ -91,12 +95,11 @@ datum/preferences
 		return TOPIC_REFRESH
 
 	else if(href_list["religion"])
-		
+
 		if(pref.religion == LEGAL_RELIGION)
 			pref.religion = ILLEGAL_RELIGION
 		else
-			pref.religion = LEGAL_RELIGION		
-			
+			pref.religion = LEGAL_RELIGION
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])

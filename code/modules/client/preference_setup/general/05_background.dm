@@ -10,7 +10,6 @@
 	from_file(S["home_system"],pref.home_system)
 	from_file(S["citizenship"],pref.citizenship)
 	from_file(S["faction"],pref.faction)
-	from_file(S["religion"],pref.religion)
 	from_file(S["nanotrasen_relation"],pref.nanotrasen_relation)
 	from_file(S["memory"],pref.memory)
 
@@ -21,7 +20,6 @@
 	to_file(S["home_system"],pref.home_system)
 	to_file(S["citizenship"],pref.citizenship)
 	to_file(S["faction"],pref.faction)
-	to_file(S["religion"],pref.religion)
 	to_file(S["nanotrasen_relation"],pref.nanotrasen_relation)
 	to_file(S["memory"],pref.memory)
 
@@ -29,7 +27,6 @@
 	if(!pref.home_system) pref.home_system = "Unset"
 	if(!pref.citizenship) pref.citizenship = "None"
 	if(!pref.faction)     pref.faction =     "None"
-	if(!pref.religion)    pref.religion =    LEGAL_RELIGION
 
 	pref.nanotrasen_relation = sanitize_inlist(pref.nanotrasen_relation, COMPANY_ALIGNMENTS, initial(pref.nanotrasen_relation))
 
@@ -39,7 +36,6 @@
 	. += "Home System: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
 	. += "Citizenship: <a href='?src=\ref[src];citizenship=1'>[pref.citizenship]</a><br/>"
 	. += "Faction: <a href='?src=\ref[src];faction=1'>[pref.faction]</a><br/>"
-	. += "Religion: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
 
 	. += "<br/><b>Records</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
@@ -53,7 +49,7 @@
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
 		. += "Memory:<br>"
 		. += "<a href='?src=\ref[src];set_memory=1'>[TextPreview(pref.memory,40)]</a><br>"
-	
+
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["nt_relation"])
@@ -96,25 +92,6 @@
 				pref.faction = cp1251_to_utf8(post_edit_utf8(raw_choice))
 		else
 			pref.faction = choice
-		return TOPIC_REFRESH
-
-	else if(href_list["religion"])
-		var/choice = null// input(user, "Please choose a religion.", "Character Preference", pref.religion) as null|anything in religion_choices + list("None","Other")
-
-		if(pref.religion == LEGAL_RELIGION)
-			choice = ILLEGAL_RELIGION
-		else
-			choice = LEGAL_RELIGION
-		if(!choice || !CanUseTopic(user))
-			return TOPIC_NOACTION
-		/*
-		if(choice == "Other")
-			var/raw_choice = sanitize(input(user, "Please enter a religon.", "Character Preference")  as text|null, MAX_NAME_LEN)
-			if(raw_choice)
-				pref.religion = cp1251_to_utf8(post_edit_utf8(raw_choice))
-		*/
-		else
-			pref.religion = choice
 		return TOPIC_REFRESH
 
 	else if(href_list["set_medical_records"])
