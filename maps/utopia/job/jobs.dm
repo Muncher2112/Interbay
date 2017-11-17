@@ -40,7 +40,7 @@
 
 /datum/job/captain
 	title = "Magistrate"
-	supervisors = "CMA and you're good will."
+	supervisors = "CMA and your good will."
 	minimal_player_age = 41
 	economic_modifier = 10
 	ideal_character_age = 65
@@ -313,7 +313,7 @@
 	ideal_character_age = 21
 	total_positions = 1
 	spawn_positions = 1
-	minimal_access = list(access_bar, access_kitchen)
+	minimal_access = list(access_bar, access_kitchen, access_hydroponics)
 
 	equip(var/mob/living/carbon/human/H)
 		..()
