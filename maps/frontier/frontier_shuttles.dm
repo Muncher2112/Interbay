@@ -1,7 +1,7 @@
 //Helpers for the pods
 //If you want to make a new one
 //Just copy paste the pod 1 code and change 1 for 2 and so on
-
+/*
 /datum/shuttle/autodock/ferry/escape_pod
 	category = /datum/shuttle/autodock/ferry/escape_pod
 	sound_takeoff = 'sound/effects/rocket.ogg'
@@ -55,7 +55,7 @@
 	number = 1
 
 //Rescue shuttle
-/*
+
 /datum/shuttle/autodock/multi/antag/rescue
 	name = "Rescue"
 	warmup_time = 0
@@ -113,7 +113,7 @@
 	landmark_tag = "nav_cargo_station"
 	docking_controller = "cargo_bay"
 
-
+/*
 //Mining shuttle
 /datum/shuttle/autodock/ferry/mining
 	name = "Supply"
@@ -132,7 +132,7 @@
 	name = "minig"
 	landmark_tag = "nav_cargo_station"
 	docking_controller = "cargo_bay"
-
+*/
 
 //Emergency shuttle
 
@@ -160,6 +160,7 @@
 	landmark_tag = "nav_escape_dock"
 	docking_controller = "escape_dock"
 
+//Commented out till I map these in.
 //Merc
 /*
 /datum/shuttle/autodock/multi/antag/mercenary
@@ -208,7 +209,7 @@
 	landmark_tag = "nav_merc_residentiel"
 */
 //Ninja
-
+/*
 //Ninja Shuttle.
 /datum/shuttle/autodock/multi/antag/ninja
 	name = "Ninja"
@@ -286,3 +287,4 @@
 /obj/effect/shuttle_landmark/skipjack/ind
     name = "Mining Airlock"
     landmark_tag = "nav_skipjack_ind"
+   */
