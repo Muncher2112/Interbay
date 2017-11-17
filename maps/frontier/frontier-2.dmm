@@ -22,7 +22,7 @@
 "av" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/plating,/area/outpost/mining_main/refinery)
 "aw" = (/obj/machinery/conveyor{dir = 1; id = "mining_internal"},/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/turf/simulated/floor,/area/outpost/mining_main/refinery)
 "ax" = (/obj/machinery/arbiter_computer,/turf/simulated/floor/tiled/bunker,/area/chapel/office{name = "\improper Inquisition"})
-"ay" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled/bunker,/area/chapel/office{name = "\improper Inquisition"})
+"ay" = (/obj/structure/table/woodentable,/obj/item/weapon/brander,/turf/simulated/floor/tiled/bunker,/area/chapel/office{name = "\improper Inquisition"})
 "az" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/obj/structure/table/woodentable,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/bunker,/area/chapel/office{name = "\improper Inquisition"})
 "aA" = (/turf/simulated/wall/r_wall,/area/outpost/mining_main/dorms)
 "aB" = (/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/grille,/turf/simulated/floor/plating,/area/outpost/mining_main/dorms)
