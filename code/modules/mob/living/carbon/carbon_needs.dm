@@ -80,9 +80,9 @@
 		if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
 			flash_sadness()
 			crit_mood_modifier = -5
-		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY1)
+		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY2)
 			crit_mood_modifier = CRIT_SUCCESS_NORM
-		if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
+		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_4)
 			crit_mood_modifier = 5
 		if(MOOD_LEVEL_HAPPY4 to INFINITY)
 			crit_mood_modifier = 10
