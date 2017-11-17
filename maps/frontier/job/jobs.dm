@@ -31,6 +31,7 @@
 	economic_modifier = 1
 	ideal_character_age = 21
 	alt_titles = null
+	social_class = SOCIAL_CLASS_MIN
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -44,6 +45,7 @@
 	economic_modifier = 10
 	ideal_character_age = 65
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/magistrate
+	social_class = SOCIAL_CLASS_MAX
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -60,6 +62,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/adjoint
+	social_class = SOCIAL_CLASS_HIGH
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -91,6 +94,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	outfit_type = /decl/hierarchy/outfit/job/science/superviseur
+	social_class = SOCIAL_CLASS_HIGH
 	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_maint_tunnels, access_external_airlocks,
@@ -163,6 +167,7 @@
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimal_player_age = 7
 	outfit_type = /decl/hierarchy/outfit/job/security/head_peacekeeper
+	social_class = SOCIAL_CLASS_HIGH
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -267,6 +272,7 @@
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
+	social_class = SOCIAL_CLASS_MIN
 
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
@@ -308,11 +314,6 @@
 	total_positions = 2
 	spawn_positions = 2
 	minimal_access = list(access_bar, access_kitchen, access_hydroponics)
-	alt_titles = list(
-		"Chef",
-		"Bartender",
-		"Barmaid"
-		)
 
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -373,7 +374,7 @@
 /datum/job/supreme_arbiter
 	title = "Supreme Arbiter"
 	department = "Civilian"
-	supervisors = "our glorious god Verina"
+	supervisors = "our glorious God, Verina"
 	faction = "Station"
 	department_flag = CIV
 	total_positions = 1
@@ -408,6 +409,7 @@
 	no_late_join = 1
 	selection_color = "#6161aa"
 	outfit_type = /decl/hierarchy/outfit/shipraiders
+	social_class = SOCIAL_CLASS_MIN
 
 	equip(var/mob/living/carbon/human/H)
 		..()
