@@ -28,7 +28,7 @@
 	title = "Lackey"
 	supervisors = "Everyone"
 	minimal_player_age = 14
-	economic_modifier = 3
+	economic_modifier = 1
 	ideal_character_age = 21
 	alt_titles = null
 
@@ -41,7 +41,7 @@
 	title = "Magistrate"
 	supervisors = "CMA and you're good will."
 	minimal_player_age = 41
-	economic_modifier = 15
+	economic_modifier = 10
 	ideal_character_age = 65
 	outfit_type = /decl/hierarchy/outfit/job/dreyfus/magistrate
 
@@ -55,7 +55,7 @@
 	title = "Overseer"
 	supervisors = "the Magistrate"
 	minimal_player_age = 31
-	economic_modifier = 12
+	economic_modifier = 5
 	ideal_character_age = 45
 	total_positions = 1
 	spawn_positions = 1
@@ -113,7 +113,7 @@
 	title = "Tenchotrainee"
 	supervisors = "Technomancer"
 	minimal_player_age = 19
-	economic_modifier = 8
+	economic_modifier = 2
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
@@ -130,7 +130,7 @@
 	title = "Doctor"
 	supervisors = "the Overseer"
 	minimal_player_age = 19
-	economic_modifier = 8
+	economic_modifier = 2
 	ideal_character_age = 30
 	total_positions = 3
 	spawn_positions = 3
@@ -177,7 +177,7 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	economic_modifier = 4
+	economic_modifier = 3
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 0
@@ -194,7 +194,7 @@
 	title = "Quartermaster"
 	supervisors = "the Overseer"
 	minimal_player_age = 21
-	economic_modifier = 7
+	economic_modifier = 3
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 2
@@ -207,7 +207,7 @@
 	title = "Upkeeper"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 5
+	economic_modifier = 3
 	ideal_character_age = 21
 	total_positions = 3
 	spawn_positions = 3
@@ -266,9 +266,6 @@
 	department = "Supply"
 	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	account_allowed = 0			  //This breaks things.
-	create_record = 1             //No one gives a fuck about kids lol.
-	has_email = 0				  //Nor do kids get email accounts.
 	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
 
 	equip(var/mob/living/carbon/human/H)
@@ -306,34 +303,41 @@
 	title = "Cook"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 4
+	economic_modifier = 2
 	ideal_character_age = 21
-	total_positions = 1
-	spawn_positions = 1
-	minimal_access = list(access_bar, access_kitchen)
+	total_positions = 2
+	spawn_positions = 2
+	minimal_access = list(access_bar, access_kitchen, access_hydroponics)
+	alt_titles = list(
+		"Chef",
+		"Bartender",
+		"Barmaid"
+		)
 
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(7,12), rand(7,12), rand(10,15))
 
 /datum/job/chaplain
-	title = "Chaplain"
-	supervisors = "the Overseer and God"
+	title = "Priest"
+	supervisors = "the Arbiters and Verina"
 	minimal_player_age = 21
-	economic_modifier = 6
+	economic_modifier = 3
 	ideal_character_age = 30
 	total_positions = 1
 	spawn_positions = 1
 
 	equip(var/mob/living/carbon/human/H)
 		..()
+		if(!H.religion_is_legal())//Heretical priests would be weird.
+			H.religion = LEGAL_RELIGION
 		H.add_stats(rand(5,10), rand(9,12), rand(10,14))
 
 /datum/job/janitor
 	title = "Janitor"
 	supervisors = "the Overseer"
 	minimal_player_age = 16
-	economic_modifier = 2
+	economic_modifier = 1
 	ideal_character_age = 21
 	total_positions = 2
 	spawn_positions = 2
@@ -347,13 +351,15 @@
 /datum/job/arbiter
 	title = "Arbiter"
 	department = "Civilian"
+	supervisors = "the Supreme Arbiter and Verina"
 	faction = "Station"
 	department_flag = CIV
 	total_positions = 3
 	spawn_positions = 3
+	economic_modifier = 3
 	selection_color = "#6161aa"
-	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
-	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	access = list(access_maint_tunnels, access_chapel_office)
+	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/arbiter
 
 	equip(var/mob/living/carbon/human/H)//Peacekeeper stats.
@@ -363,32 +369,32 @@
 		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
 
-//The inquisitor, aka the supreme abriter.
+//The inquisitor, aka the supreme arbiter.
 /datum/job/supreme_arbiter
 	title = "Supreme Arbiter"
 	department = "Civilian"
+	supervisors = "our glorious god Verina"
 	faction = "Station"
 	department_flag = CIV
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 1
+	spawn_positions = 1
+	economic_modifier = 5
 	selection_color = "#6161aa"
-	access = list(access_robotics, access_maint_tunnels, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_robotics)
-	minimal_access = list(access_tox, access_maint_tunnels, access_tox_storage, access_research, access_xenoarch, access_robotics)
+	access = list(access_maint_tunnels, access_chapel_office)
+	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/supreme_arbiter
 
 	equip(var/mob/living/carbon/human/H)//Still weaker than the Head Peacekeeper.
 		..()
 		if(!H.religion_is_legal())//So that they can't be heretics.
 			H.religion = LEGAL_RELIGION
-		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
-		H.add_skills(rand(60, 75), rand(60,75))
+		H.add_stats(rand(9,14), rand(8,12), rand(12,16))
+		H.add_skills(rand(60, 75), rand(60,75), rand(50,75))
 
 
 
 //OFF STATION JOBS
 
-
-//Raiders. Currently unused.
 /datum/job/raider
 	title = "Raider"
 	department = "Civilian"
@@ -422,6 +428,8 @@
 
 		if(prob(50))
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H),slot_wear_mask)
+
+		H.religion = ILLEGAL_RELIGION//Their raiders they believe in the raider religion.
 
 /datum/job/raider/leader
 	title = "Lead Raider"
