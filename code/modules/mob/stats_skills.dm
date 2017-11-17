@@ -31,21 +31,34 @@
 	//crit shit
 	var/crit_success_chance = CRIT_SUCCESS_NORM
 	var/crit_failure_chance = CRIT_FAILURE_NORM
+	var/crit_success_modifier = 0
+	var/crit_failure_modifier = 0
+	var/crit_mood_modifier = 0
+
+
+/mob/proc/get_success_chance()
+	return crit_success_chance + crit_success_modifier + crit_mood_modifier
+
+/mob/proc/get_failure_chance()
+	return crit_failure_chance + crit_failure_modifier + crit_mood_modifier
+
+
+
 
 /mob/proc/skillcheck(var/skill, var/requirement, var/show_message, var/message = "I have failed to do this.")//1 - 100
 	if(skill >= requirement)//If we already surpass the skill requirements no need to roll.
-		if(prob(src.crit_success_chance))//Only thing we roll for is a crit success.
+		if(prob(get_success_chance()))//Only thing we roll for is a crit success.
 			return CRIT_SUCCESS
 		return 1
 	else
 		if(prob(skill + src.mood_affect(0, 1)))//Otherwise we roll to see if we pass.
-			if(prob(crit_success_chance))//And again to see if we get a crit scucess.
+			if(prob(get_success_chance()))//And again to see if we get a crit scucess.
 				return CRIT_SUCCESS
 			return 1
 		else
 			if(show_message)//If we don't pass then we return failure
 				to_chat(src, "<span class = 'warning'>[message]</span>")
-			if(prob(crit_failure_chance))//And roll for a crit failure.
+			if(prob(get_failure_chance()))//And roll for a crit failure.
 				return CRIT_FAILURE
 			return 0
 

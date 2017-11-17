@@ -1,6 +1,6 @@
 /mob/living/carbon/proc/print_happiness()
 	var/msg = "\n<span class='info'>I am a follower of <font color='red'>[religion]</font></span>.\n" 
-	msg += "<span class='info'>I am [get_social_class()].</span>\n"
+	msg += "<span class='info'>I am [get_social_class()]</span>\n"
 	msg += "<span class='info'>*---------*\n<EM>Current mood</EM>\n"
 	for(var/i in events)
 		var/datum/happiness_event/event = events[i]
@@ -76,28 +76,16 @@
 	switch(happiness)
 		if(-5000000 to MOOD_LEVEL_SAD4)
 			flash_sadness()
-			crit_failure_chance = 20
+			crit_mood_modifier = -10
 		if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
 			flash_sadness()
-			crit_failure_chance = 15
+			crit_mood_modifier = -5
 		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY1)
-			crit_failure_chance = CRIT_SUCCESS_NORM
-		/*
-		if(MOOD_LEVEL_SAD3 to MOOD_LEVEL_SAD2)
-			flash_sadness()
-		if(MOOD_LEVEL_SAD2 to MOOD_LEVEL_SAD1)
-			clear_fullscreen("insanity")
-		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY1)
-			clear_fullscreen("insanity")
-		if(MOOD_LEVEL_HAPPY1 to MOOD_LEVEL_HAPPY2)
-			clear_fullscreen("insanity")
+			crit_mood_modifier = CRIT_SUCCESS_NORM
 		if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
-			clear_fullscreen("insanity")
-		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
-			clear_fullscreen("insanity")
+			crit_mood_modifier = 5
 		if(MOOD_LEVEL_HAPPY4 to INFINITY)
-			clear_fullscreen("insanity")
-		*/
+			crit_mood_modifier = 10
 
 
 /mob/living/carbon/proc/add_event(category, type) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
