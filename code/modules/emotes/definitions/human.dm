@@ -75,7 +75,7 @@
 	if(user.erpcooldown)
 		to_chat(user, "<span class='info'>You don't feel like it right now.</span>")
 		return
-	user.visible_message("<b>[user]</b< masturbates.")
+	user.visible_message("<b>[user]</b> masturbates.")
 	user.lust += 10
 	if (user.lust >= user.resistenza)
 		user.cum(user, user)
