@@ -344,12 +344,14 @@
 		message = "<B>[src]</B> urinates into [T]."
 		reagents.remove_any(rand(1,8))
 
-	else if(RC && RC.is_open_container())//Inside a beaker, glass, etc.
-		message = "<B>[src]</B> urinates into [RC]."
-		var/amount = rand(1,8)
-		RC.reagents.add_reagent("urine", amount)
-		if(reagents)
-			reagents.trans_to(RC, amount)
+	else if(RC && (istype(RC,/obj/item/weapon/reagent_containers/food/drinks || istype(RC,/obj/item/weapon/reagent_containers/glass)))) 
+		if(RC.is_open_container())
+			//Inside a beaker, glass, drink, etc.
+			message = "<B>[src]</B> urinates into [RC]."
+			var/amount = rand(1,8)
+			RC.reagents.add_reagent("urine", amount)
+			if(reagents)
+				reagents.trans_to(RC, amount)
 
 	else if(w_uniform)//In your pants.
 		message = "<B>[src]</B> pisses \his pants."
