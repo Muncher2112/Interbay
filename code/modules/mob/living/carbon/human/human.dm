@@ -1912,6 +1912,8 @@
 			return "<b>filth</b>."
 		if(SOCIAL_CLASS_MED)
 			return "<b>working class</b>."
+		if(SOCIAL_CLASS_HIGH)
+			return "<b>a lesser noble</b>"
 		if(SOCIAL_CLASS_MAX)
 			return "<b>a noble</b>."
 
