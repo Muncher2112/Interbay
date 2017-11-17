@@ -82,7 +82,7 @@
 			crit_mood_modifier = -5
 		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY2)
 			crit_mood_modifier = CRIT_SUCCESS_NORM
-		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL4)
+		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
 			crit_mood_modifier = 5
 		if(MOOD_LEVEL_HAPPY4 to INFINITY)
 			crit_mood_modifier = 10
