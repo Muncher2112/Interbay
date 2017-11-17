@@ -141,7 +141,7 @@
 mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/message = ""
 	var/turf/T
-
+	
 	if (H.gender == MALE)
 		var/datum/reagent/blood/source = H.get_blood(H.vessel)
 		if (P)
@@ -205,7 +205,7 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	//var/ya = "&#1103;"
 	var/message = ""
-	H.adjustStaminaLoss(1)
+	H.adjustStaminaLoss(2)
 	switch(hole)
 
 		if("vaglick")
@@ -434,7 +434,7 @@ mob/living/carbon/human/proc/moan()
 				lastmoan = moan
 
 
-mob/living/carbon/human/proc/handle_lust()
+/mob/living/carbon/human/proc/handle_lust()
 	lust -= 4
 	if (lust <= 0)
 		lust = 0

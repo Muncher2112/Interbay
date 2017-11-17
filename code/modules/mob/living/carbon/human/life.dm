@@ -672,6 +672,8 @@
 
 		handle_hygiene()
 
+		handle_lust()
+
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
 				if(prob(3))
@@ -691,8 +693,8 @@
 
 		if(getHalLoss() >= (species.total_health - 100))
 			if(!stat)
-				to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
+				//to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
+				src.visible_message("<span class='warning'><B>[src]</B> gives into the pain!</span>")//("<B>[src]</B> [species.halloss_message].")
 			Paralyse(10)
 
 		if(paralysis || sleeping)

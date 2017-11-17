@@ -142,7 +142,6 @@
 
 	emote("moan",1)
 
-
 /mob/living/carbon/human/verb/raise()
 	set name = "Raise Hand"
 	set category = "Emotes"
@@ -202,3 +201,9 @@
 	set category = "Emotes"
 
 	emote("clearthroat",1)
+
+/mob/living/carbon/human/verb/fap()
+	set name = "Fap"
+	set category = "Emotes"
+
+	emote("fap",1)
