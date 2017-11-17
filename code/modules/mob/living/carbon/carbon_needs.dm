@@ -1,5 +1,5 @@
 /mob/living/carbon/proc/print_happiness()
-	var/msg = "\n<span class='info'>I am a follower of <font color='red'>[religion]</font></span>.\n" 
+	var/msg = "\n<span class='info'>I am a follower of <font color='red'>[religion]</font></span>.\n"
 	msg += "<span class='info'>I am [get_social_class()]</span>\n"
 	msg += "<span class='info'>*---------*\n<EM>Current mood</EM>\n"
 	for(var/i in events)
@@ -82,7 +82,7 @@
 			crit_mood_modifier = -5
 		if(MOOD_LEVEL_SAD1 to MOOD_LEVEL_HAPPY2)
 			crit_mood_modifier = CRIT_SUCCESS_NORM
-		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_4)
+		if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL4)
 			crit_mood_modifier = 5
 		if(MOOD_LEVEL_HAPPY4 to INFINITY)
 			crit_mood_modifier = 10
