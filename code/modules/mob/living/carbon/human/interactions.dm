@@ -205,7 +205,7 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	//var/ya = "&#1103;"
 	var/message = ""
-	H.adjustStaminaLoss(2)
+	H.adjustStaminaLoss(5)
 	switch(hole)
 
 		if("vaglick")
