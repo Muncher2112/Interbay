@@ -89,7 +89,7 @@
 		//dat +=  {"• <A href='?src=\ref[usr];interaction=fuckyou'><font color=red>Insult.</font></A><BR>"}
 		//dat +=  {"• <A href='?src=\ref[usr];interaction=threaten'><font color=red>Threaten.</font></A><BR>"}
 
-	if (mouthfree)
+	if (mouthfree && (lying == P.lying || !lying))
 		dat += {"<font size=3><B>Mouth:</B></font><BR>"}
 		dat += {"<A href='?src=\ref[usr];interaction=kiss'>Kiss.</A><BR>"}
 		if (Adjacent(P))
@@ -141,7 +141,7 @@
 mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/message = ""
 	var/turf/T
-	
+
 	if (H.gender == MALE)
 		var/datum/reagent/blood/source = H.get_blood(H.vessel)
 		if (P)
