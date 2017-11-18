@@ -146,7 +146,7 @@ var/list/slot_equipment_priority = list( \
 		return 1
 	return 0
 
-//Drops the item in our left hand 
+//Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
 	return drop_from_inventory(l_hand, Target)
 
@@ -156,20 +156,21 @@ var/list/slot_equipment_priority = list( \
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
-	if(hand)	
+	if(hand)
 		make_item_drop_sound()
 		return drop_l_hand(Target)
-	else		
+	else
 		make_item_drop_sound()
 		return drop_r_hand(Target)
 
 /mob/proc/make_item_drop_sound()
 	var/obj/item/I = get_active_hand()
-	if(!I)
-		return
-	if(I.drop_sound)
-		playsound(I, I.drop_sound, 25, 0)
-	visible_message("<small>\the [I.name] falls to the floor.")
+	spawn (1)
+		if(!I)
+			return
+		if(I.drop_sound)
+			playsound(I, I.drop_sound, 25, 0)
+		visible_message("<small>\the [I.name] falls to the floor.")
 
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
