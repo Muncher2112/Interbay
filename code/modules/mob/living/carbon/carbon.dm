@@ -7,6 +7,8 @@
 
 	if (!default_language && species_language)
 		default_language = all_languages[species_language]
+
+	my_hygiene_factor = (rand(HYGIENE_FACTOR_LOWEST*100, HYGIENE_FACTOR_HIGHEST*100))/100
 	..()
 
 /mob/living/carbon/Life()
@@ -153,7 +155,7 @@
 			hud_used.swaphands_hud_object.dir = 2
 		else
 			hud_used.swaphands_hud_object.dir = 1
-			
+
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -281,12 +283,12 @@
 
 	var/atom/movable/item = src.get_active_hand()
 	var/weight_class = ITEM_SIZE_NORMAL
-	
+
 	if(!item) return
 
 	if(istype(item,/obj/item))//If it's an item set the weight_class to the item's w_class
 		var/obj/item/I = item
-		weight_class = I.w_class		
+		weight_class = I.w_class
 
 	var/throw_range = item.throw_range
 

@@ -32,10 +32,11 @@
 	//the second is the message in question.
 	var/last_taste_time = 0
 	var/last_taste_text = ""
-	
+
 	//For sad, thirsty, and dirty lads.
 	var/happiness = 0
 	var/thirst = THIRST_LEVEL_FILLED
 	var/hygiene = HYGIENE_LEVEL_NORMAL
+	var/my_hygiene_factor = HYGIENE_FACTOR
 	//What your social class is. Shows up when you're examined.
 	var/social_class = SOCIAL_CLASS_MED

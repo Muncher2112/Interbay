@@ -117,7 +117,7 @@
 	update_happiness()
 
 /mob/living/carbon/proc/handle_hygiene()
-	adjust_hygiene(-HYGIENE_FACTOR)
+	adjust_hygiene(-my_hygiene_factor)
 	var/image/smell = image('icons/effects/effects.dmi', "smell")//This is a hack, there has got to be a safer way to do this but I don't know it at the moment.
 	switch(hygiene)
 		if(HYGIENE_LEVEL_NORMAL to INFINITY)
