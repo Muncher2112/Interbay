@@ -839,6 +839,7 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 	feedback_add_details("changeling_powers","ED")
 	return 1
 
+/mob/var/used_changeling_buff_stats = FALSE
 /mob/proc/changeling_buff_stats()
 	set category = "Changeling"
 	set name = "Buff Stats (30)"
@@ -849,6 +850,11 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 		changeling = src.mind.changeling
 	if(!changeling)
 		return 0
+
+	if (used_changeling_buff_stats)
+		return
+
+	used_changeling_buff_stats = TRUE
 
 	src.mind.changeling.chem_charges -= 30
 
