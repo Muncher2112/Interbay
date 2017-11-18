@@ -14,7 +14,7 @@
 //#####DECALS#####
 /obj/effect/decal/cleanable/poo
 	name = "poo stain"
-	desc = "Well that sinks."
+	desc = "Well that stinks."
 	density = 0
 	anchored = 1
 	layer = 2
@@ -344,7 +344,7 @@
 		message = "<B>[src]</B> urinates into [T]."
 		reagents.remove_any(rand(1,8))
 
-	else if(RC && (istype(RC,/obj/item/weapon/reagent_containers/food/drinks || istype(RC,/obj/item/weapon/reagent_containers/glass)))) 
+	else if(RC && (istype(RC,/obj/item/weapon/reagent_containers/food/drinks || istype(RC,/obj/item/weapon/reagent_containers/glass))))
 		if(RC.is_open_container())
 			//Inside a beaker, glass, drink, etc.
 			message = "<B>[src]</B> urinates into [RC]."
@@ -368,5 +368,4 @@
 
 	bladder -= 50
 	visible_message("[message]")
-
 
