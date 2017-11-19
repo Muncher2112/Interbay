@@ -1909,20 +1909,21 @@
 	var/socclass = social_class
 	switch(socclass)
 		if(SOCIAL_CLASS_MIN)
-			return "<b>filth</b>."
+			return "<b>filth</b>"
 		if(SOCIAL_CLASS_MED)
-			return "<b>working class</b>."
+			return "<b>working class</b>"
 		if(SOCIAL_CLASS_HIGH)
 			return "<b>a lesser noble</b>"
 		if(SOCIAL_CLASS_MAX)
-			return "<b>a noble</b>."
+			return "<b>a noble</b>"
 
 
 /mob/living/carbon/human/proc/get_social_description(var/mob/living/carbon/human/H)
 	var/socclass = social_class
-	if(socclass < H.social_class)
-		return "They are of a <b>lesser</b> social class than me."
-	else if(socclass > H.social_class)
-		return "They are of a <b>higher</b> social class than me."
-	else
-		return "They are of the same social class as me."
+	if(ishuman(H))
+		if(socclass < H.social_class)
+			return "They are of a <b>lesser</b> social class than me."
+		else if(socclass > H.social_class)
+			return "They are of a <b>higher</b> social class than me."
+		else
+			return "They are of the same social class as me."
