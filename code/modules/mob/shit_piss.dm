@@ -210,19 +210,21 @@
 	icon_state = "poop2"
 	item_state = "poop"
 
-	New()
-		..()
-		icon_state = pick("poop1", "poop2", "poop3", "poop4", "poop5", "poop6", "poop7")
-		reagents.add_reagent("poo", 10)
-		bitesize = 3
+/obj/item/weapon/reagent_containers/food/snacks/poo/New()
+	..()
+	icon_state = pick("poop1", "poop2", "poop3", "poop4", "poop5", "poop6", "poop7")
+	reagents.add_reagent("poo", 10)
+	bitesize = 3
 
-	throw_impact(atom/hit_atom)
-		playsound(src.loc, "sound/effects/squishy.ogg", 40, 1)
-		var/turf/T = src.loc
-		if(!istype(T, /turf/space))
-			new /obj/effect/decal/cleanable/poo(T)
-		qdel(src)
-		..()
+/obj/item/weapon/reagent_containers/food/snacks/poo/throw_impact(atom/hit_atom)
+	if(prob(50)) //this is so we actually have a chance of recovering some from disposal.
+		return
+	playsound(src.loc, "sound/effects/squishy.ogg", 40, 1)
+	var/turf/T = src.loc
+	if(!istype(T, /turf/space))
+		new /obj/effect/decal/cleanable/poo(T)
+	qdel(src)
+	..()
 
 //#####BOTTLES#####
 
@@ -304,9 +306,21 @@
 
 		//Poo in the loo.
 		var/obj/structure/toilet/T = locate() in src.loc
+		var/obj/machinery/disposal/toilet/T2 = locate() in src.loc
 		var/mob/living/M = locate() in src.loc
 		if(T && T.open)
-			message = "<B>[src]</B> defecates into the [T]."
+			message = "<B>[src]</B> defecates into \the [T]."
+
+		else if (T2 && T2.open)
+			message = "<B>[src]</B> defecates into \the [T2]."
+			var/obj/item/weapon/reagent_containers/food/snacks/poo/V = new/obj/item/weapon/reagent_containers/food/snacks/poo(src.loc)
+			if(reagents)
+				reagents.trans_to(V, rand(1,5))
+
+			if(T2.CanInsertItem(src)) //attempt to insert the shit into the toilet.
+				V.forceMove(T2)
+			else
+				shit_left++
 
 		else if(w_uniform)
 			message = "<B>[src]</B> shits \his pants."
@@ -322,9 +336,7 @@
 		//Poo on the floor.
 		else
 			message = "<B>[src]</B> [pick("shits", "craps", "poops")]."
-			var/turf/location = src.loc
-
-			var/obj/item/weapon/reagent_containers/food/snacks/poo/V = new/obj/item/weapon/reagent_containers/food/snacks/poo(location)
+			var/obj/item/weapon/reagent_containers/food/snacks/poo/V = new/obj/item/weapon/reagent_containers/food/snacks/poo(src.loc)
 			if(reagents)
 				reagents.trans_to(V, rand(1,5))
 
@@ -347,14 +359,15 @@
 		return
 
 	var/obj/structure/urinal/U = locate() in src.loc
-	var/obj/structure/toilet/T = locate() in src.loc
+	var/obj/machinery/disposal/toilet/T = locate() in src.loc
+	var/obj/machinery/disposal/toilet/T2 = locate() in src.loc
 	var/obj/structure/sink/S = locate() in src.loc
 	var/obj/item/weapon/reagent_containers/RC = locate() in src.loc
 	if((U || S) && gender != FEMALE)//In the urinal or sink.
 		message = "<B>[src]</B> urinates into [U ? U : S]."
 		reagents.remove_any(rand(1,8))
 
-	else if(T && T.open)//In the toilet.
+	else if( (T && T.open) || (T2 && T2.open) )//In the toilet.
 		message = "<B>[src]</B> urinates into [T]."
 		reagents.remove_any(rand(1,8))
 

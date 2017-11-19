@@ -16,6 +16,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
+	var/ptype = DISPOSAL_BIN //used for disposal construction
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled
@@ -48,6 +49,9 @@
 	if(trunk)
 		trunk.linked = null
 	return ..()
+
+/obj/machinery/disposal/proc/CanInsertItem(var/mob/living/user=null)
+	return 1
 
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
@@ -84,7 +88,7 @@
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
-					C.ptype = 6 // 6 = disposal unit
+					C.ptype = ptype
 					C.anchored = 1
 					C.set_density(1)
 					C.update()
@@ -129,16 +133,12 @@
 	if(!I)
 		return
 
+	if(!CanInsertItem(user))
+		return
+
 	user.drop_item()
-	if(I)
-		I.forceMove(src)
-
-	to_chat(user, "You place \the [I] into the [src].")
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-
+	I.forceMove(src)
+	user.visible_message("\proper [user] places \the [I] into \the [src].", "You place \the [I] into the [src].")
 	update_icon()
 
 // mouse drop another mob or self
@@ -460,13 +460,14 @@
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return
-		if(prob(75))
-			I.forceMove(src)
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] lands in \the [src].", 3)
-		else
-			for(var/mob/M in viewers(src))
-				M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
+		if(CanInsertItem())
+			if(prob(75))
+				I.forceMove(src)
+				for(var/mob/M in viewers(src))
+					M.show_message("\The [I] lands in \the [src].", 3)
+			else
+				for(var/mob/M in viewers(src))
+					M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
 		return 0
 	else
 		return ..(mover, target, height, air_group)

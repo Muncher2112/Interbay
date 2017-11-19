@@ -11,8 +11,8 @@
 	var/base_name = "tray"
 
 	// Plant maintenance vars.
-	var/waterlevel = 100       // Water (max 100)
-	var/nutrilevel = 10        // Nutrient (max 10)
+	var/waterlevel = 0         // Water (max 100)	//Trays now start empty of water & nutrients.
+	var/nutrilevel = 0         // Nutrient (max 10)
 	var/pestlevel = 0          // Pests (max 10)
 	var/weedlevel = 0          // Weeds (max 10)
 
@@ -66,6 +66,7 @@
 		"diethylamine" =    2,
 		"nutriment" =       1,
 		"adminordrazine" =  1,
+		"poo" =             1,
 		"eznutrient" =      1,
 		"robustharvest" =   1,
 		"left4zed" =        1
