@@ -1,10 +1,14 @@
 //todo: toothbrushes, and some sort of "toilet-filthinator" for the hos
 
+/*************************************************************
+WE DONT USE THOSE ANYMORE ---> /obj/machinery/disposal/toilet/
+*************************************************************/
+
 /obj/structure/toilet
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
-	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "toilet00"
+	icon = 'icons/obj/machines/toilets.dmi'
+	icon_state = "base"
 	density = 0
 	anchored = 1
 	var/open = 0			//if the lid is up
@@ -40,7 +44,13 @@
 	update_icon()
 
 /obj/structure/toilet/update_icon()
-	icon_state = "toilet[open][cistern]"
+	overlays.Cut()
+	if(!cistern)
+		overlays += image(icon, src, "cisternlid")
+	if(open)
+		overlays += image(icon, src, "lid-up")
+	else
+		overlays += image(icon, src, "lid-down")
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/crowbar))
@@ -211,7 +221,7 @@
 		if(M.back)
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
-		
+
 		//flush away reagents on the skin
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first

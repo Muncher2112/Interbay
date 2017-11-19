@@ -39,9 +39,6 @@ proc/random_hair_style(gender, species = SPECIES_HUMAN)
 				continue
 			if(gender == FEMALE && S.gender == MALE)
 				continue
-
-		if( !(species in S.species_allowed))
-			continue
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
 	if(valid_hairstyles.len)
@@ -61,10 +58,6 @@ proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 				continue
 			if(gender == FEMALE && S.gender == MALE)
 				continue
-
-		if( !(species in S.species_allowed))
-			continue
-
 		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
 
 	if(valid_facialhairstyles.len)

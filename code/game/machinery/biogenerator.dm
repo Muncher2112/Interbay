@@ -112,10 +112,12 @@
 					dat += "Food<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>([round(50/build_eff)])</FONT><BR>"
+/*	We have other fertilizers now
 					dat += "Nutrient<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=60'>E-Z-Nutrient</A> <FONT COLOR=blue>([round(60/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=300'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=120'>Left 4 Zed</A> <FONT COLOR=blue>([round(120/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=600'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=rh;cost=150'>Robust Harvest</A> <FONT COLOR=blue>([round(150/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=rh5;cost=750'>x5</A><BR>"
+*/
 					dat += "Leather<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=blue>([round(100/build_eff)])</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=blue>([round(250/build_eff)])</FONT><BR>"
@@ -192,6 +194,7 @@
 			beaker.reagents.add_reagent("milk", 10)
 		if("meat")
 			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
+/* we have other fertilizers now :)
 		if("ez")
 			new/obj/item/weapon/reagent_containers/glass/bottle/eznutrient(loc)
 		if("l4z")
@@ -216,6 +219,7 @@
 			new/obj/item/weapon/reagent_containers/glass/bottle/robustharvest(loc)
 			new/obj/item/weapon/reagent_containers/glass/bottle/robustharvest(loc)
 			new/obj/item/weapon/reagent_containers/glass/bottle/robustharvest(loc)
+*/
 		if("wallet")
 			new/obj/item/weapon/storage/wallet/leather(loc)
 		if("gloves")
