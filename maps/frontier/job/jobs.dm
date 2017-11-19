@@ -1,6 +1,6 @@
 /datum/map/frontier
 	allowed_jobs = list(
-						///datum/job/assistant,
+						/datum/job/assistant,
 						/datum/job/captain,
 						/datum/job/hop,
 						/datum/job/doctor,
@@ -33,6 +33,8 @@
 	ideal_character_age = 21
 	alt_titles = null
 	social_class = SOCIAL_CLASS_MIN
+	total_positions = 0
+	spawn_positions = 0
 
 	equip(var/mob/living/carbon/human/H)
 		..()
