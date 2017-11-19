@@ -1,6 +1,6 @@
 /datum/map/frontier
 	allowed_jobs = list(
-						/datum/job/assistant,
+						///datum/job/assistant,
 						/datum/job/captain,
 						/datum/job/hop,
 						/datum/job/doctor,
@@ -12,14 +12,15 @@
 						/datum/job/mining,
 						/datum/job/ouvrier,
 						/datum/job/chef,
-						/datum/job/chaplain,
+						///datum/job/chaplain,
 						/datum/job/janitor,
 						/datum/job/arbiter,
-						/datum/job/supreme_arbiter
+						/datum/job/supreme_arbiter,
+						/datum/job/medassist,
+						/datum/job/jr_upkeep,
+						/datum/job/cadet
 						///datum/job/rd,
 						///datum/job/scientist,
-						///datum/job/medassist,
-						///datum/job/cadet,
 						///datum/job/raider,
 						///datum/job/raider/leader
 						)
@@ -279,6 +280,7 @@
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
 		..()
 
+
 /datum/job/medassist
 	selection_color = "#633d63"
 	title = "Medical Assistant"
@@ -290,20 +292,64 @@
 	spawn_positions = 2
 	faction = "Station"
 	department_flag = MED
-	department = "Supply"
+	department = "Medical"
 	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
 			access_chemistry, access_virology, access_cmo, access_surgery)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads, access_tox,
 			access_chemistry, access_virology, access_cmo, access_surgery)
-	account_allowed = 0			  //This breaks things.
-	has_email = 0				  //Kids don't need emails.
-	outfit_type = /decl/hierarchy/outfit/job/cargo_kid
+	outfit_type = /decl/hierarchy/outfit/job/medassist.
 
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
 		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 		..()
+
+
+/datum/job/cadet
+	selection_color = "#633d63"
+	title = "Cadet"
+	supervisors = "the peacekeepers"
+	minimal_player_age = 16
+	economic_modifier = 2
+	ideal_character_age = 21
+	total_positions = 2
+	spawn_positions = 2
+	faction = "Station"
+	department_flag = SEC
+	department = "Security"
+	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
+	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	outfit_type = /decl/hierarchy/outfit/job/cadet
+
+	equip(var/mob/living/carbon/human/H)
+		H.set_species("Child")
+		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
+		H.add_skills(rand(30,50), rand(50,65), rand(25,60))
+		..()
+
+/datum/job/jr_upkeep
+	selection_color = "#633d63"
+	title = "Junior Upkeeper"
+	supervisors = "the upkeepers"
+	minimal_player_age = 16
+	economic_modifier = 2
+	ideal_character_age = 21
+	total_positions = 2
+	spawn_positions = 2
+	faction = "Station"
+	department_flag = SEC
+	department = "Security"
+	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_emergency_storage, access_tcomsat)
+	outfit_type = /decl/hierarchy/outfit/job/jr_upkeep
+
+	equip(var/mob/living/carbon/human/H)
+		H.set_species("Child")
+		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
+		H.add_skills(rand(30,50), rand(50,65), rand(25,60))
+		..()
+
 
 /datum/job/chef
 	title = "Cook"
