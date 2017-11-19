@@ -175,6 +175,7 @@
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/poo(T)
 
+//URINE
 /datum/reagent/urine
 	name = "urine"
 	id = "urine"
@@ -188,6 +189,19 @@
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/urine(T)
 
+//SEMEN
+/datum/reagent/semen
+	name = "semen"
+	id = "semen"
+	description = "It's semen."
+	reagent_state = LIQUID
+	color = COLOR_WHITE
+	taste_description = "salt"
+
+/datum/reagent/semen/touch_turf(var/turf/T)
+	src = null
+	if(!istype(T, /turf/space))
+		new /obj/effect/decal/cleanable/cum(T)
 
 /obj/item/weapon/reagent_containers/food/snacks/poo
 	name = "poo"

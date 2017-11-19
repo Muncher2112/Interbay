@@ -160,6 +160,10 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 		if (H.species.genitals)
 			if (hole == "mouth" || H.zone_sel.selecting == "mouth")
 				message = pick("cums right in [P]'s mouth.")
+				var/datum/reagents/holder = new
+				var/amt = rand(20,30)
+				holder.add_reagent("semen", amt)
+				holder.trans_to_mob(P, amt, CHEM_INGEST)
 
 			else if (hole == "vagina")
 				message = pick("cums in [P]'s pussy")
