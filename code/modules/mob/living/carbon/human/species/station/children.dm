@@ -7,7 +7,6 @@
 	max_age = 14
 	icobase = 'icons/mob/human_races/child/r_child.dmi'
 	deform = 'icons/mob/human_races/child/r_def_child.dmi'
-	//damage_overlays = 'icons/mob/human_races/masks/dam_monkey.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_child.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_child.dmi'
 	spawn_flags = SPECIES_IS_RESTRICTED//No more kids becoming nuke ops.
