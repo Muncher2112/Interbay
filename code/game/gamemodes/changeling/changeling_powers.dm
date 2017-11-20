@@ -1,4 +1,5 @@
 var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
+/mob/var/used_changeling_buff_stats = FALSE
 
 /datum/changeling //stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 	var/list/datum/absorbed_dna/absorbed_dna = list()
@@ -76,6 +77,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			if(!(P in src.verbs))
 				src.verbs += P.verbpath
 
+
+	remove_changeling_powers_special()
+
 	for(var/language in languages)
 		mind.changeling.absorbed_languages |= language
 
@@ -92,6 +96,11 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/datum/power/changeling/P in mind.changeling.purchasedpowers)
 		if(P.isVerb)
 			verbs -= P.verbpath
+
+//removes changeling verbs that were automatically added, but shouldn't be there
+/mob/proc/remove_changeling_powers_special()
+	if (used_changeling_buff_stats)
+		verbs -= /mob/proc/changeling_buff_stats
 
 
 //Helper proc. Does all the checks and stuff for us to avoid copypasta
@@ -839,7 +848,6 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 	feedback_add_details("changeling_powers","ED")
 	return 1
 
-/mob/var/used_changeling_buff_stats = FALSE
 /mob/proc/changeling_buff_stats()
 	set category = "Changeling"
 	set name = "Buff Stats (30)"
@@ -852,6 +860,7 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 		return 0
 
 	if (used_changeling_buff_stats)
+		verbs -= /mob/proc/changeling_buff_stats
 		return
 
 	used_changeling_buff_stats = TRUE
@@ -865,4 +874,4 @@ var/list/datum/absorbed_dna/hivemind_bank = list()
 
 	C.adjustInteligence(5)
 
-	src.verbs -= /mob/proc/changeling_buff_stats
+	verbs -= /mob/proc/changeling_buff_stats
