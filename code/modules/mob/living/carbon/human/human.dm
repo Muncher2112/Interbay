@@ -1905,6 +1905,7 @@
 		potenzia = -1
 		mutilated_genitals = 1
 		return 1
+
 /mob/living/carbon/proc/get_social_class()
 	var/socclass = social_class
 	switch(socclass)
