@@ -52,14 +52,18 @@
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
-		return 1
+		return TRUE
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
+
+	if (locate(/obj/structure/table) in get_turf(mover))
+		return TRUE
+
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 //32 и 4 - в той же клетке
 
 /obj/structure/railing/examine(mob/user)
