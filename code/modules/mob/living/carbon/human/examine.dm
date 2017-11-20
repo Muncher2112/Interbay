@@ -49,12 +49,15 @@
 		if(is_synth && species.type != /datum/species/machine)
 			species_name += "Cyborg "
 		species_name += "[species.name]"
-		msg += ", <b><font color='[species.get_flesh_colour(src)]'> \a [species_name]!</font></b>"
+//		msg += ", <b><font color='[species.get_flesh_colour(src)]'> \a [species_name]!</font></b>"
 	var/extra_species_text = species.get_additional_examine_text(src)
 	if(extra_species_text)
 		msg += "[extra_species_text]<br>"
 
 	msg += "<br>"
+
+	if (isChild())
+		msg += "[T.He] [T.is] a child.\n"
 
 	if((!skipface || wear_id) && src != user)
 		var/mob/living/carbon/human/H = user
