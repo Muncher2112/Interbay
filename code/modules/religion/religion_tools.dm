@@ -42,7 +42,7 @@
 
 
 
-/obj/item/weapon/brander/attack(mob/living/carbon/human/H as mob, mob/living/user as mob)
+/obj/item/weapon/brander/attack(mob/living/carbon/human/H, mob/living/user)
 	var/obj/item/organ/external/head/O = locate() in H.organs
 	if(O && !H.branded)
 		if(!user.doing_something)
