@@ -403,8 +403,8 @@
 	supervisors = "the Supreme Arbiter and Verina"
 	faction = "Station"
 	department_flag = CIV
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	economic_modifier = 3
 	selection_color = "#6161aa"
 	access = list(access_maint_tunnels, access_chapel_office)
