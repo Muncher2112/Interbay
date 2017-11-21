@@ -662,8 +662,6 @@
 			silent = 0
 			return 1
 
-		//handle_gas_mask_sound()
-
 		handle_combat_mode()
 
 		handle_smelly_things()
