@@ -9,11 +9,6 @@
 	item_cost = 4
 	path = /obj/item/weapon/grenade/smokebomb
 
-/datum/uplink_item/item/grenades/smokes
-	name = "5xSmoke Grenades"
-	item_cost = 16
-	path = /obj/item/weapon/storage/box/smokes
-
 /datum/uplink_item/item/grenades/frag
 	name = "1xFragmentation Grenade"
 	item_cost = 10
