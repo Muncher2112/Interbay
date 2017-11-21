@@ -6,9 +6,21 @@
 
 /proc/load_ckey_whitelist()
 	log_admin("Loading ckey_whitelist")
-	ckey_whitelist = file2list(CKEYWHITELIST)
+	ckey_whitelist = list()
+	var/list/Lines = file2list(CKEYWHITELIST)
+	for(var/line in Lines)
+		if(!length(line))
+			continue
+
+		var/ascii = text2ascii(line,1)
+
+		if(copytext(line,1,2) == "#" || ascii == 9 || ascii == 32)//# space or tab
+			continue
+
+		ckey_whitelist.Add("Entry: [line]")
+
 	if(!ckey_whitelist.len)
-		log_admin("ckey_whitelist was empty")
+		log_admin("ckey_whitelist: empty or missing.")
 		ckey_whitelist = null
 	else
 		log_admin("ckey_whitelist: [ckey_whitelist.len] entrie(s).")
