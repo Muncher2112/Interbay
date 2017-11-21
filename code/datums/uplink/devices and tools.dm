@@ -20,6 +20,15 @@
 	item_cost = 16
 	path = /obj/item/weapon/plastique
 
+<<<<<<< HEAD
+=======
+/datum/uplink_item/item/tools/camera_mask
+	name = "Camera MIU"
+	item_cost = 60
+	antag_costs = list(MODE_MERCENARY = 30)
+	path = /obj/item/clothing/mask/ai
+
+>>>>>>> Takes out lots of traitor items
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 24
@@ -35,11 +44,14 @@
 	item_cost = 16
 	path = /obj/item/device/encryptionkey/syndicate
 
+<<<<<<< HEAD
 /datum/uplink_item/item/tools/bear_trap
 	name = "Rusty bear trap"
 	item_cost = 15
 	path = /obj/item/weapon/beartrap
 
+=======
+>>>>>>> Takes out lots of traitor items
 /*
 /datum/uplink_item/item/tools/heavy_armor
 	name = "Heavy Armor Vest and Helmet"
