@@ -18,6 +18,11 @@
 	name = "Random Toxin - Beaker"
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
+/*
+/datum/uplink_item/item/stealthy_weapons/concealed_cane
+	name = "Concealed Cane Sword"
+	item_cost = 8
+	path = /obj/item/weapon/cane/concealed
 
 /datum/uplink_item/item/stealth_items/switchblade
 	name = "Switchblade"
