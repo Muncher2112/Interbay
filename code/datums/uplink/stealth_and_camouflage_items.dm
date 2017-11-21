@@ -18,7 +18,6 @@
 	name = "Syringe of Unrevelator"
 	item_cost = 5
 	path = /obj/item/weapon/reagent_containers/syringe/unrevelator
-
 /*
 /datum/uplink_item/item/stealth_items/id
 	name = "Agent ID card"
