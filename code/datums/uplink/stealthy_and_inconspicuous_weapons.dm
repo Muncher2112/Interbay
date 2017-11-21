@@ -23,16 +23,6 @@
 	name = "Switchblade"
 	item_cost = 25
 	path = /obj/item/weapon/material/butterfly/switchblade
-/*
-/datum/uplink_item/item/stealthy_weapons/concealed_cane
-	name = "Concealed Cane Sword"
-	item_cost = 8
-	path = /obj/item/weapon/cane/concealed
-
-/datum/uplink_item/item/stealth_items/switchblade
-	name = "Switchblade"
-	item_cost = 25
-	path = /obj/item/weapon/material/butterfly/switchblade
 
 /datum/uplink_item/item/stealthy_weapons/parapen
 	name = "Paralysis Pen"
