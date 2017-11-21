@@ -34,6 +34,9 @@ var/global/list/language_keys[0]					// Table of say codes for all languages
 var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
 var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
+//Server access whitelist
+var/global/list/ckey_whitelist = null
+
 var/list/mannequins_
 
 // Posters

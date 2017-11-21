@@ -4,6 +4,10 @@ world/IsBanned(key,address,computer_id)
 	if(ckey(key) in admin_datums)
 		return ..()
 
+	//Check if user is whitelisted
+	if(config.useckeywhitelist && !check_ckey_whitelisted(ckey(key)))
+		return list("reason"="priviat", "desc"="\nPrivate party. Pool's closed.")
+
 	//Guest Checking
 	if(!config.guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
@@ -82,4 +86,3 @@ world/IsBanned(key,address,computer_id)
 		return ..()	//default pager ban stuff
 #endif
 #undef OVERRIDE_BAN_SYSTEM
-
