@@ -187,6 +187,40 @@ datum/objective/debrain//I want braaaainssss
 				return 1
 		return 0
 
+datum/objective/brand //HERETIC
+	find_target()
+		..()
+		if (owner && owner.religion == ILLEGAL_RELIGION)
+			if(find_target_by_role("Supreme Arbiter") )
+				target = find_target_by_role("Supreme Arbiter")
+		if(target && target.current)
+			explanation_text = "Brand [target.current.real_name] a heretic for all to see."
+		else
+			explanation_text = "Free Objective"
+		return target
+
+
+	find_target_by_role(role, role_type=0)
+		..(role, role_type)
+		if(target && target.current)
+			explanation_text = "Brand [target.current.real_name] the [!role_type ? target.assigned_role : target.special_role] a heretic."
+		else
+			explanation_text = "Free Objective"
+		return target
+
+	check_completion()
+		if(!target)//If it's a free objective.
+			return 1
+		if( !owner.current || owner.current.stat==DEAD )//If you're otherwise dead.
+			return 0
+		if( !target.current)
+			return 0
+		var/atom/A = target.current
+		if (ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(H.branded == "HERETIC")
+				return 1
+		return 0
 
 datum/objective/protect//The opposite of killing a dude.
 	find_target()
@@ -411,7 +445,17 @@ datum/objective/steal
 	var/target_name
 
 	var/global/possible_items[] = list(
-		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
+		"the Magistrates crown" = /obj/item/clothing/head/crown,
+		"the Supreme Arbiter's brand" = /obj/item/weapon/brander,
+		"the Magistrate's robes" = /obj/item/clothing/suit/robes,
+		"the Head Peace Keeper's uniform" = /obj/item/clothing/under/rank/head_of_security/corp,
+		"the Overseer's headset" = /obj/item/device/radio/headset/heads/hop,
+		"the Head Peacekeeper's uniform" = /obj/item/clothing/under/rank/head_of_security/corp,
+		"the Supreme Arbiter's helmet" = /obj/item/clothing/head/helmet/arbiter/supreme,
+		"the pinpointer" = /obj/item/weapon/pinpointer,
+	)
+	// OLD OBJECTIVES
+		/*"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		"a bluespace rift generator" = /obj/item/integrated_circuit/manipulation/bluespace_rift,
 		"an RCD" = /obj/item/weapon/rcd,
 		"a jetpack" = /obj/item/weapon/tank/jetpack,
@@ -431,10 +475,10 @@ datum/objective/steal
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-	)
+	)	*/
 
-	var/global/possible_items_special[] = list(
-		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
+	var/global/possible_items_special[] = list()
+		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,//Broken with the change to nuke disk making it respawn on z level change.
 		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
 		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
@@ -442,7 +486,7 @@ datum/objective/steal
 		"10 diamonds" = /obj/item/stack/material/diamond,
 		"50 gold bars" = /obj/item/stack/material/gold,
 		"25 refined uranium bars" = /obj/item/stack/material/uranium,
-	)
+		*/
 
 
 	proc/set_target(item_name)

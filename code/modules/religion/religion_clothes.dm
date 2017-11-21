@@ -28,9 +28,9 @@
 	flags_inv = HIDEFACE|HIDEEARS|BLOCKHEADHAIR//Hides their identity.
 	body_parts_covered = HEAD|FACE|EYES//Blocks their face and shit.
 
-/obj/item/clothing/head/helmet/arbiter/suprme
-	name = "suprme arbiter helmet"
-	desc = "The standard helmet that arbiter's wear."
+/obj/item/clothing/head/helmet/arbiter/supreme
+	name = "supreme arbiter helmet"
+	desc = "The special helmet that the supreme arbiter wears."
 	icon_state = "inquisitor"
 	item_state = "inquisitor"
 

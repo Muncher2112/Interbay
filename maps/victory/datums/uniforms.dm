@@ -111,7 +111,7 @@
 
 /decl/hierarchy/outfit/job/supreme_arbiter
 	name = OUTFIT_JOB_NAME("Supreme Arbiter")
-	head = /obj/item/clothing/head/helmet/arbiter/suprme
+	head = /obj/item/clothing/head/helmet/arbiter/supreme
 	uniform = /obj/item/clothing/under/rank/arbiter
 	shoes = /obj/item/clothing/shoes/jackboots/arbiter
 	l_ear = /obj/item/device/radio/headset/inquision
