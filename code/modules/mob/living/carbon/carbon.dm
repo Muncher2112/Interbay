@@ -291,9 +291,11 @@
 		weight_class = I.w_class
 
 	var/throw_range = item.throw_range
+	var/throw_delay = strToSpeedModifier(src.str, weight_class)
+	throw_delay /= (10/get_dist(src, target))
 
 	src.visible_message("<span class='warning'>[src] is trying to throw [item].</span>")
-	if(do_after(src, strToSpeedModifier(src.str, weight_class)))
+	if(do_after(src, throw_delay))
 		if (istype(item, /obj/item/weapon/grab))//If it's a human it's a huge w_class.
 			var/obj/item/weapon/grab/G = item
 			item = G.throw_held() //throw the person instead of the grab
