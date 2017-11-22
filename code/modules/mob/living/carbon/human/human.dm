@@ -1912,7 +1912,7 @@
 		if(SOCIAL_CLASS_MIN)
 			return "<b>filth</b>"
 		if(SOCIAL_CLASS_MED)
-			return "<b>working class</b>"
+			return "<b>a commoner</b>"
 		if(SOCIAL_CLASS_HIGH)
 			return "<b>a lesser noble</b>"
 		if(SOCIAL_CLASS_MAX)
