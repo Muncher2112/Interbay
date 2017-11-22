@@ -4,6 +4,27 @@
 /datum/uplink_item/item/visible_weapons
 	category = /datum/uplink_category/visible_weapons
 
+/datum/uplink_item/item/visible_weapons/sawnoff
+	name = "Sawnoff Shotgun"
+	item_cost = 45
+	path = /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
+
+/datum/uplink_item/item/visible_weapons/energy_sword
+	name = "Energy Sword"
+	item_cost = 32
+	path = /obj/item/weapon/melee/energy/sword
+
+/datum/uplink_item/item/visible_weapons/revolver
+	name = "Revolver"
+	item_cost = 56
+	antag_costs = list(MODE_MERCENARY = 7)
+	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
+
+/datum/uplink_item/item/visible_weapons/throwing_star
+	name = "Throwing Star"
+	item_cost = 5
+	path = /obj/item/weapon/material/star/ninja
+/*
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
 	item_cost = 20
@@ -13,11 +34,6 @@
 	name = "Energy Crossbow"
 	item_cost = 24
 	path = /obj/item/weapon/gun/energy/crossbow
-
-/datum/uplink_item/item/visible_weapons/energy_sword
-	name = "Energy Sword"
-	item_cost = 32
-	path = /obj/item/weapon/melee/energy/sword
 
 /datum/uplink_item/item/visible_weapons/g9mm
 	name = "Silenced Holdout Pistol"
@@ -33,12 +49,6 @@
 	name = "Energy Gun"
 	item_cost = 32
 	path = /obj/item/weapon/gun/energy/gun
-
-/datum/uplink_item/item/visible_weapons/revolver
-	name = "Revolver"
-	item_cost = 56
-	antag_costs = list(MODE_MERCENARY = 7)
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
 
 /datum/uplink_item/item/visible_weapons/grenade_launcher
 	name = "Grenade Launcher"
@@ -79,11 +89,6 @@
 	item_cost = 52
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
 
-/datum/uplink_item/item/visible_weapons/sawnoff
-	name = "Sawnoff Shotgun"
-	item_cost = 45
-	path = /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
-
 /datum/uplink_item/item/visible_weapons/deagle
 	name = "Magnum Pistol"
 	item_cost = 52
@@ -105,3 +110,4 @@
 	item_cost = 60
 	antag_costs = list(MODE_MERCENARY = 9)
 	path = /obj/item/weapon/gun/magnetic/railgun/flechette
+*/

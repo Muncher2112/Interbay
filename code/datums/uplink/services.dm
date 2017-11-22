@@ -2,7 +2,7 @@
 * Services *
 ************/
 /datum/uplink_item/item/services
-	category = /datum/uplink_category/services
+	//category = /datum/uplink_category/services
 
 /datum/uplink_item/item/services/fake_ion_storm
 	name = "Ion Storm Announcement"

@@ -1712,7 +1712,7 @@ window "mainwindow"
 		is-minimized = false
 		is-maximized = true
 		can-scroll = none
-		icon = 'icons\\ss13_64.png'
+		icon = 'icons\\interbay_64x64.png'
 		image = ""
 		image-mode = stretch
 		keep-aspect = false

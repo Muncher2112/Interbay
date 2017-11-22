@@ -5,6 +5,22 @@
 	item_cost = 4
 	category = /datum/uplink_category/ammunition
 
+/datum/uplink_item/item/ammo/shotgun_shells
+	name = "Shotgun Shells box"
+	item_cost = 8
+	path = /obj/item/weapon/storage/box/shotgunshells
+
+/datum/uplink_item/item/ammo/shotgun_slugs
+	name = "Shotgun Slugs box"
+	item_cost = 8
+	path = /obj/item/weapon/storage/box/shotgunammo
+
+/datum/uplink_item/item/ammo/a357
+	name = ".357"
+	item_cost = 8
+	path = /obj/item/ammo_magazine/a357
+
+/*
 /datum/uplink_item/item/ammo/c45m
 	name = ".45"
 	path = /obj/item/ammo_magazine/c45m
@@ -21,11 +37,6 @@
 	name = "Darts"
 	path = /obj/item/ammo_magazine/chemdart
 
-/datum/uplink_item/item/ammo/a357
-	name = ".357"
-	item_cost = 8
-	path = /obj/item/ammo_magazine/a357
-
 /datum/uplink_item/item/ammo/a762
 	name = "7.62mm"
 	item_cost = 8
@@ -35,16 +46,6 @@
 	name = "14.5mm"
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/sniperammo
-
-/datum/uplink_item/item/ammo/shotgun_shells
-	name = "Shotgun Shells box"
-	item_cost = 8
-	path = /obj/item/weapon/storage/box/shotgunshells
-
-/datum/uplink_item/item/ammo/shotgun_slugs
-	name = "Shotgun Slugs box"
-	item_cost = 8
-	path = /obj/item/weapon/storage/box/shotgunammo
 
 /datum/uplink_item/item/ammo/c45uzi
 	name = ".45 SMG Magazine"
@@ -65,3 +66,4 @@
 	name = "Flechette Magazine"
 	item_cost = 8
 	path = /obj/item/weapon/magnetic_ammo
+*/

@@ -27,6 +27,23 @@
 	genitals = 1
 	anus = 1
 
+/mob/living/carbon/human/proc/get_pleasure_amt(hole)
+	switch (hole)
+		if ("anal")
+			return 7 - (potenzia/5)
+		if ("anal-2")
+			return get_pleasure_amt("anal") * 0.50
+		if ("vaginal")
+			switch (potenzia)
+				if (-INFINITY to 9)
+					return potenzia * 0.33
+				if (9 to 16)
+					return potenzia * 0.66
+				if (16 to INFINITY)
+					return potenzia * 1.00
+		if ("vaginal-2")
+			return get_pleasure_amt("vaginal") * 2
+
 /mob/living/carbon/human/proc/is_nude()
 	return (!w_uniform) ? 1 : 0
 
@@ -138,7 +155,7 @@
 	var/lastmoan
 	var/mutilated_genitals = 0 //Whether or not they can do the fug.
 
-mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
+/mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/message = ""
 	var/turf/T
 
@@ -208,7 +225,7 @@ mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/ca
 
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	var/message = ""
-	H.adjustStaminaLoss(5)
+	H.adjustStaminaLoss(4)
 	switch(hole)
 
 		if("vaglick")
@@ -296,7 +313,7 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
-				P.lust += H.potenzia * 2
+				P.lust += H.get_pleasure_amt("vaginal-2")
 			else
 				H.visible_message("<font color=purple>[H] [message]</font>")
 			if (istype(P.loc, /obj/structure/closet))
@@ -306,8 +323,8 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 			if (H.lust >= H.resistenza)
 				H.cum(H, P, "vagina")
 
-			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
-				P.lust += H.potenzia * 0.5
+			if (P.stat != DEAD)
+				P.lust += H.get_pleasure_amt("vaginal")
 				if (H.potenzia > 20)
 					P.staminaloss += H.potenzia * 0.25
 				if (P.lust >= P.resistenza)
@@ -330,7 +347,7 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
-				P.lust += H.potenzia * 2
+				P.lust += H.get_pleasure_amt("anal-2")
 			else
 				H.visible_message("<font color=purple>[H] [message]</font>")
 			if (istype(P.loc, /obj/structure/closet))
@@ -342,10 +359,8 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 
 			if (P.stat != DEAD && P.stat != UNCONSCIOUS)
 				if (H.potenzia > 13)
-					P.lust += H.potenzia * 0.25
 					P.staminaloss += H.potenzia * 0.25
-				else
-					P.lust += H.potenzia * 0.75
+				P.lust += H.get_pleasure_amt("anal")
 				if (P.lust >= P.resistenza)
 					P.cum(P, H)
 				else
@@ -418,7 +433,7 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 			if (H.species.name == "Slime People")
 				playsound(loc, "honk/sound/interactions/champ[rand(1, 2)].ogg", 50, 1, -1)
 
-mob/living/carbon/human/proc/moan()
+/mob/living/carbon/human/proc/moan()
 
 	var/mob/living/carbon/human/H = src
 	switch(species.name)

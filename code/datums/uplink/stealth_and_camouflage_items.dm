@@ -14,6 +14,12 @@
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/spy
 
+/datum/uplink_item/item/tools/unrevelator_syringe
+	name = "Syringe of Unrevelator"
+	item_cost = 5
+	path = /obj/item/weapon/reagent_containers/syringe/unrevelator
+
+/*
 /datum/uplink_item/item/stealth_items/id
 	name = "Agent ID card"
 	item_cost = 12
@@ -24,12 +30,8 @@
 	item_cost = 20
 	path = /obj/item/weapon/storage/backpack/chameleon/sydie_kit
 
-/datum/uplink_item/item/stealth_items/voice
-	name = "Voice Changer"
-	item_cost = 20
-	path = /obj/item/clothing/mask/gas/voice
-
 /datum/uplink_item/item/stealth_items/chameleon_projector
 	name = "Chameleon-Projector"
 	item_cost = 32
 	path = /obj/item/device/chameleon
+*/
