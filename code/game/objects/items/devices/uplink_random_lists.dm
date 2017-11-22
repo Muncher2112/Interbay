@@ -45,38 +45,16 @@ var/list/uplink_random_selections_
 /datum/uplink_random_selection/default/New()
 	..()
 
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/g9mm)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/revolver)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/heavysniper, 15, 0)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/grenades/emp, 50)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/crossbow, 33)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/energy_sword, 75)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/soap, 5, 100)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/concealed_cane, 50, 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/detomatix, 20, 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/parapen)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/cigarette_kit)
-
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/id)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/spy)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/chameleon_kit)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/chameleon_projector)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/voice)
-
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/toolbox, reselect_propbability = 10)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/plastique)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_radio)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_binary)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/emag, 100, 50)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/clerical)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/space_suit, 50, 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/thermal)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/heavy_armor)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/powersink, 10, 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/ai_module, 25, 0)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/teleporter, 10, 0)
-
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/implants/imp_freedom)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/implants/imp_compress)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/implants/imp_explosive)
@@ -96,8 +74,6 @@ var/list/uplink_random_selections_
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/hardsuit_modules/thermal, reselect_propbability = 15)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/hardsuit_modules/thermal, reselect_propbability = 15)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/hardsuit_modules/thermal, reselect_propbability = 15)
-
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/suit_sensor_mobile)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/services/suit_sensor_shutdown, 75, 0)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/services/suit_sensor_garble, 75, 0)
 
@@ -106,8 +82,8 @@ var/list/uplink_random_selections_
 			/datum/uplink_item/item/ammo,
 			/datum/uplink_item/item/badassery,
 			/datum/uplink_item/item/telecrystal,
-			/datum/uplink_item/item/tools/teleporter,
-			/datum/uplink_item/item/tools/supply_beacon,
+			///datum/uplink_item/item/tools/teleporter,
+			//datum/uplink_item/item/tools/supply_beacon,
 			/datum/uplink_item/item/implants/imp_uplink,
 			/datum/uplink_item/deity
 		)

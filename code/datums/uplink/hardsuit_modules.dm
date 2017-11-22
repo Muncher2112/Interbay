@@ -2,7 +2,7 @@
 * Hardsuit Modules *
 *******************/
 /datum/uplink_item/item/hardsuit_modules
-	category = /datum/uplink_category/hardsuit_modules
+	//category = /datum/uplink_category/hardsuit_modules
 
 /datum/uplink_item/item/hardsuit_modules/thermal
 	name = "\improper Thermal Scanner"

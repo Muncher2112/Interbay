@@ -2,7 +2,7 @@
 * Badassery *
 ************/
 /datum/uplink_item/item/badassery
-	category = /datum/uplink_category/badassery
+	//category = /datum/uplink_category/badassery
 
 /datum/uplink_item/item/badassery/balloon
 	name = "For showing that You Are The BOSS (Useless Balloon)"

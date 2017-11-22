@@ -115,6 +115,13 @@
 	reagents.add_reagent("zombiepowder", 10)
 	reagents.add_reagent("cryptobiolin", 15)
 
+/obj/item/weapon/pen/reagent/unrevelator
+	desc = "A syringe full of unrevelator.  Great for avoiding pesky zealots trying to scan you."
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
+
+/obj/item/weapon/pen/reagent/paralysis/New()
+	..()
+	reagents.add_reagent("unrevelator", 25)
 /*
  * Chameleon pen
  */

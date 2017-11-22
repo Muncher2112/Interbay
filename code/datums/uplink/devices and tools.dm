@@ -15,25 +15,36 @@
 	path = /obj/item/weapon/storage/secure/briefcase/money
 	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
 
-/datum/uplink_item/item/tools/clerical
-	name = "Morphic Clerical Kit"
-	item_cost = 16
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/clerical
-
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
 	item_cost = 16
 	path = /obj/item/weapon/plastique
 
-/datum/uplink_item/item/tools/heavy_armor
-	name = "Heavy Armor Vest and Helmet"
-	item_cost = 16
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/armor
+/datum/uplink_item/item/tools/emag
+	name = "Cryptographic Sequencer"
+	item_cost = 24
+	path = /obj/item/weapon/card/emag
+
+/datum/uplink_item/item/tools/flashdark
+	name = "Flashdark"
+	item_cost = 32
+	path = /obj/item/device/flashlight/flashdark
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
 	item_cost = 16
 	path = /obj/item/device/encryptionkey/syndicate
+
+/datum/uplink_item/item/tools/bear_trap
+	name = "Rusty bear trap"
+	item_cost = 15
+	path = /obj/item/weapon/beartrap
+
+/*
+/datum/uplink_item/item/tools/heavy_armor
+	name = "Heavy Armor Vest and Helmet"
+	item_cost = 16
+	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/armor
 
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Handheld Shield Diffuser"
@@ -50,11 +61,6 @@
 	name = "Binary Translator Key"
 	item_cost = 20
 	path = /obj/item/device/encryptionkey/binary
-
-/datum/uplink_item/item/tools/emag
-	name = "Cryptographic Sequencer"
-	item_cost = 24
-	path = /obj/item/weapon/card/emag
 
 /datum/uplink_item/item/tools/hacking_tool
 	name = "Door Hacking Tool"
@@ -73,11 +79,6 @@
 	name = "Thermal Imaging Glasses"
 	item_cost = 24
 	path = /obj/item/clothing/glasses/thermal/syndi
-
-/datum/uplink_item/item/tools/flashdark
-	name = "Flashdark"
-	item_cost = 32
-	path = /obj/item/device/flashlight/flashdark
 
 /datum/uplink_item/item/tools/powersink
 	name = "Powersink (DANGER!)"
@@ -103,8 +104,8 @@
 	item_cost = 52
 	path = /obj/item/supply_beacon
 
-/datum/uplink_item/item/tools/camera_mask
-	name = "Camera MIU"
-	item_cost = 60
-	antag_costs = list(MODE_MERCENARY = 30)
-	path = /obj/item/clothing/mask/ai
+/datum/uplink_item/item/tools/clerical
+	name = "Morphic Clerical Kit"
+	item_cost = 16
+	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/clerical
+*/

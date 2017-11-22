@@ -120,7 +120,7 @@
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
-	data["discount_category"] = discount_item ? discount_item.category.name : ""
+	data["discount_category"] = ""
 	data["discount_name"] = discount_item ? discount_item.name : ""
 	data["discount_amount"] = (1-discount_amount)*100
 	data["offer_expiry"] = worldtime2stationtime(next_offer_time)

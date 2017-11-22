@@ -14,15 +14,20 @@
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/cigarette
 
-/datum/uplink_item/item/stealthy_weapons/concealed_cane
-	name = "Concealed Cane Sword"
-	item_cost = 8
-	path = /obj/item/weapon/cane/concealed
-
 /datum/uplink_item/item/stealthy_weapons/random_toxin
 	name = "Random Toxin - Beaker"
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
+
+/datum/uplink_item/item/stealth_items/switchblade
+	name = "Switchblade"
+	item_cost = 25
+	path = /obj/item/weapon/material/butterfly/switchblade
+/*
+/datum/uplink_item/item/stealthy_weapons/concealed_cane
+	name = "Concealed Cane Sword"
+	item_cost = 8
+	path = /obj/item/weapon/cane/concealed
 
 /datum/uplink_item/item/stealthy_weapons/detomatix
 	name = "Detomatix PDA Cartridge"
@@ -33,3 +38,4 @@
 	name = "Paralysis Pen"
 	item_cost = 24
 	path = /obj/item/weapon/pen/reagent/paralysis
+*/

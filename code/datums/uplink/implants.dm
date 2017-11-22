@@ -2,7 +2,7 @@
 * Implants *
 ***********/
 /datum/uplink_item/item/implants
-	category = /datum/uplink_category/implants
+	//category = /datum/uplink_category/implants
 
 /datum/uplink_item/item/implants/imp_freedom
 	name = "Freedom Implant"

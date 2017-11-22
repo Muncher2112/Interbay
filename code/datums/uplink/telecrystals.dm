@@ -2,7 +2,7 @@
 * Telecrystals *
 ***************/
 /datum/uplink_item/item/telecrystal
-	category = /datum/uplink_category/telecrystals
+	//category = /datum/uplink_category/telecrystals
 	desc = "Acquire the uplink crystals in pure form."
 
 /datum/uplink_item/item/telecrystal/get_goods(var/obj/item/device/uplink/U, var/loc)
