@@ -21,7 +21,6 @@ var/datum/antagonist/traitor/traitors
 /datum/antagonist/traitor/create_objectives(var/datum/mind/traitor)
 	if(!..())
 		return
-
 	if(istype(traitor.current, /mob/living/silicon))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = traitor
@@ -44,10 +43,10 @@ var/datum/antagonist/traitor/traitors
 				kill_objective.find_target()
 				traitor.objectives += kill_objective
 			if(34 to 50)
-				var/datum/objective/brig/brig_objective = new
-				brig_objective.owner = traitor
-				brig_objective.find_target()
-				traitor.objectives += brig_objective
+				var/datum/objective/brand/brand_objective = new
+				brand_objective.owner = traitor
+				brand_objective.find_target()
+				traitor.objectives += brand_objective
 			if(51 to 66)
 				var/datum/objective/harm/harm_objective = new
 				harm_objective.owner = traitor

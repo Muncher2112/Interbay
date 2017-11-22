@@ -43,6 +43,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 			to_chat(owner, "<span class='danger'>Your heart has stopped!</span>")
 			pulse = PULSE_NONE
 	else
+		if (pulse == PULSE_NONE)
+			to_chat(owner, "<span class='danger'>Your heart has started beating again!</span>")
 		pulse = PULSE_NORM
 		var/pulse_mod = owner.chem_effects[CE_PULSE]
 		if(owner.shock_stage > 30)
