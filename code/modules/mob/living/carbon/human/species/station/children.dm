@@ -19,6 +19,8 @@
 	if(H.f_style)//Children don't get beards.
 		H.f_style = "Shaved"
 	to_chat(H, "<span class='info'><big>You're [H.age] years old! Act like it!</big></span>")
+	spawn (2)
+		H.potenzia = max(1, H.potenzia - 5)
 	return ..()
 
 /decl/hierarchy/outfit/job/cadet
