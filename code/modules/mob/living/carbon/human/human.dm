@@ -44,6 +44,8 @@
 	add_teeth()
 
 	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//Interactions
+	if (prob(2)) // "30 cm penetrator"
+		potenzia = rand(25,30)
 	resistenza = (prob(80) ? rand(150, 300) : pick(rand(10, 100), rand(350,600)))
 	bladder = rand(0,100)
 	bowels = rand(0, 100)
