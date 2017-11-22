@@ -17,6 +17,7 @@
 
 	var/lisp = 0
 	var/staminaloss = 0
+	var/tongueless = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm

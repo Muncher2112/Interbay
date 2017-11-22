@@ -183,6 +183,7 @@
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_THROAT 	"throat"
 #define BP_VCHORDS  "vocal chords"
+#define BP_TONGUE	"tongue"
 
 // Limbs.
 #define BP_L_FOOT "l_foot"

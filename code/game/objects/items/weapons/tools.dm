@@ -78,7 +78,7 @@
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
 	..()
-/* 
+/*
 //Eye stabbing is lame.
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
@@ -129,8 +129,25 @@
 
 	//Tearing out teeth
 	if(ishuman(C) && user.zone_sel.selecting == "mouth")
+
 		var/mob/living/carbon/human/H = C
 		var/obj/item/organ/external/head/O = locate() in H.organs
+		for (var/obj/item/weapon/grab/G in C.grabbed_by)
+			if(G.loc == user && G.state >= GRAB_AGGRESSIVE)
+				if(!O)
+					return
+				if(!user.doing_something)
+					user.doing_something = 1
+					H.visible_message("<span class='danger'>[user] tries to cut out [H]'s tongue with [src]!</span>",
+								"<span class='danger'>[user] tries to cut out your tongue with [src]!</span>")
+					if(do_after(user,100))//Losing your tongue is a pretty big deal, it should take a while.
+						var/obj/item/organ/internal/tongue/T = H.internal_organs_by_name[BP_TONGUE]
+						T.removed(H)
+						H.visible_message("<span class='danger'>[user] cuts out [H]'s tongue with [src]!</span>",
+								"<span class='danger'>[user] cuts out your tongue with [src]!</span>")
+						return
+
+
 		if(!O || !O.get_teeth())
 			to_chat(user, "<span class='notice'>[H] doesn't have any teeth left!</span>")
 			return

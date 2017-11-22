@@ -105,6 +105,7 @@
 	handle_drugged()
 	handle_slurring()
 	handle_lisp()
+	handle_tongueless()
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
@@ -152,6 +153,15 @@
 		else
 			lisp = 0 //No head = no lisp.
 	return lisp
+
+/mob/living/proc/handle_tongueless()
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		var/obj/item/organ/internal/tongue/T = H.internal_organs_by_name[BP_TONGUE]
+		if(!T)
+			tongueless = 1
+		else
+			tongueless = 0
 
 /mob/living/proc/handle_paralysed()
 	if(paralysis)

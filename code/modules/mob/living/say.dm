@@ -32,7 +32,7 @@ var/list/department_radio_keys = list(
 	  ":X" = "Raider",		".X" = "Raider",
 	  ":U" = "Supply",		".U" = "Supply",
 	  ":V" = "Service",		".V" = "Service",
-	  ":D" = "Inquistion",	".D" = "Inquisition", 
+	  ":D" = "Inquistion",	".D" = "Inquisition",
 	  ":P" = "AI Private",	".P" = "AI Private",
 	  ":Z" = "Entertainment",".Z" = "Entertainment",
 
@@ -114,6 +114,10 @@ proc/get_radio_key_from_channel(var/channel)
 		. = 1
 	if(lisp)
 		message = lisp(message, lisp)
+		. = 1
+	if(tongueless)
+		message = tongueless(message)
+		verb = pick("moans", "screeches")
 		. = 1
 
 	message_data[1] = russian_to_cp1251(message)

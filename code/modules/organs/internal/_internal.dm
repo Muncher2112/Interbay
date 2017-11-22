@@ -75,3 +75,9 @@
 	name = "penis"
 	icon_state = "penis"
 	desc = "Ah, the ol one eyed snake."
+
+/obj/item/organ/internal/tongue
+	name = "tongue"
+	icon_state = "tongue"
+	desc = "Goes in your mouth, or on the head of a dick."
+	parent_organ = BP_HEAD

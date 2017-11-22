@@ -65,6 +65,7 @@
 
 		msg += "[T.He] [T.is] [get_social_class()]. [classdesc]\n"
 
+
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties
@@ -186,19 +187,22 @@
 	if(wear_id)
 		msg += "[T.He] [T.is] wearing \icon[wear_id] \a [wear_id].\n"
 
-	if(!skipface && branded)//For brands.
-		msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THEIR FACE!</b></span>"
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.religion == LEGAL_RELIGION && H != src && branded == "HERETIC")
-				msg += "<span class='notice'> Viewing such a spectacle fills you with pleasure.</span>"
-				H.add_event("punishedheretic", /datum/happiness_event/punished_heretic)
-			else
-				msg += "<span class='notice'> It is a horrid reminder of what could happen to you.</span>"
+	if(!skipface)
+		if(branded)//For brands.
+			msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THEIR FACE!</b></span>"
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(H.religion == LEGAL_RELIGION && H != src && branded == "HERETIC")
+					msg += "<span class='notice'> Viewing such a spectacle fills you with pleasure.</span>"
+					H.add_event("punishedheretic", /datum/happiness_event/punished_heretic)
+				else
+					msg += "<span class='notice'> It is a horrid reminder of what could happen to you.</span>"
 
-			if(H != src)
-				src.add_event("lookedupon", /datum/happiness_event/humiliated)
-		msg += "\n"
+				if(H != src)
+					src.add_event("lookedupon", /datum/happiness_event/humiliated)
+			msg += "\n"
+		if(tongueless)
+			msg += "<span class='danger'>[T.He] [T.is] missing [T.his] tongue!</span>\n"
 
 	if(str > user.str && str < (user.str + 5))
 		msg += "[T.He] looks stronger than you.\n"
