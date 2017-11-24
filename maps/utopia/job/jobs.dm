@@ -15,7 +15,9 @@
 						/datum/job/chaplain,
 						/datum/job/janitor,
 						/datum/job/arbiter,
-						/datum/job/supreme_arbiter
+						/datum/job/supreme_arbiter,
+						/datum/job/machinist,
+						/datum/job/doctor/undertaker
 						///datum/job/rd,
 						///datum/job/scientist,
 						///datum/job/medassist,
@@ -148,6 +150,12 @@
 		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 
 
+/datum/job/doctor/undertaker
+	title = "Undertaker"
+	total_positions = 1
+	spawn_positions = 1
+
+
 /datum/job/hos
 	title = "Head Peacekeeper"
 	supervisors = "the Magistrate"
@@ -256,6 +264,24 @@
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+
+/datum/job/machinist
+	selection_color = "#7c6a2e"
+	title = "Machinist"
+	supervisors = "the Quartermaster"
+	minimal_player_age = 16
+	economic_modifier = 2
+	ideal_character_age = 21
+	total_positions = 1
+	spawn_positions = 1
+	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
+	access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+	minimal_access = list(access_maint_tunnels, access_mailsorting, access_manufacturing, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+
 //kid roles
 /datum/job/ouvrier
 	selection_color = "#7c6a2e"
