@@ -134,7 +134,7 @@
 
 /datum/job/doctor
 	selection_color = "#633d63"
-	title = "Doctor"
+	title = "Practitioner"
 	supervisors = "the Overseer"
 	minimal_player_age = 19
 	economic_modifier = 2
