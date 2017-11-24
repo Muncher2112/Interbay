@@ -68,11 +68,14 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(user.staminaloss >= STAMINA_EXHAUST)//Can't attack people if you're out of stamina.
 		return 0
 
+	if (depotenzia(M, user))
+		return
+
 	if(world.time <= next_attack_time)
 		if(world.time % 3) //to prevent spam
 			to_chat(user, "<span class='warning'>The [src] is not ready to attack again!</span>")
 		return 0
-	
+
 	/////////////////////////
 
 	if(!no_attack_log)
