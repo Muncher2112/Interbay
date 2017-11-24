@@ -33,6 +33,8 @@
 	economic_modifier = 1
 	ideal_character_age = 21
 	alt_titles = null
+	total_positions = 0
+	spawn_positions = 0
 	social_class = SOCIAL_CLASS_MIN
 
 	equip(var/mob/living/carbon/human/H)
