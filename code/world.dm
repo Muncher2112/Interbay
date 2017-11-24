@@ -130,6 +130,7 @@
 
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
+	populate_metal_lathe_recipes()
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()

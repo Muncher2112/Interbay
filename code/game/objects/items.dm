@@ -271,6 +271,13 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
+/obj/item/proc/mill()
+	return
+
+/obj/item/proc/press()
+	return
+
+
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
 // slot uses the slot_X defines found in setup.dm
