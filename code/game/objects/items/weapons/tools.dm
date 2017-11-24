@@ -117,6 +117,9 @@
 	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/living/user as mob)
+	if (depotenzia(C, user))
+		return
+
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
@@ -180,42 +183,8 @@
 			to_chat(user, "<span class='notice'>You are already trying to pull out a tooth!</span>")
 		return
 
-	//Cutting off dick.
-	if(ishuman(C) && user.zone_sel.selecting == "groin")//Todo, make this it's own proc.
-		var/mob/living/carbon/human/H = C
-		var/haspenis = (H.gender == MALE && H.potenzia > -1 && H.species.genitals && !H.mutilated_genitals)
-		if(H.is_nude())//Gotta be naked.
-			if(haspenis)//And have a dick.
-				if(!user.doing_something)//Are they doing something?
-					user.doing_something = 1//Good their not run all this shit.
-					H.visible_message("<span class='danger'>[user] tries to cut off [H]'s penis with [src]!</span>",
-										"<span class='danger'>[user] tries to cut off your penis with [src]!</span>")
-					if(do_after(user, 50))
 
-						H.visible_message("<span class='danger'>[user] cuts off [H]'s penis with [src]!</span>",
-										"<span class='danger'>[user] cuts off your penis with [src]!</span>")
-						H.custom_pain("[pick("OH GOD YOUR DICK!", "OH GOD WHY!", "OH GOD IT HURTS!")]", 100, BP_GROIN)//Pain.
-						H.apply_damage(rand(30,45), BRUTE, BP_GROIN)
-						playsound(H, 'sound/effects/gore/severed.ogg', 50, 1, -1)
-						H.mutilate_genitals()
-						new /obj/item/organ/internal/penis(H.loc)
-
-						user.doing_something = 0
-
-					else
-						to_chat(user, "<span class='notice'>You fail to cut off their penis...</span>")
-						user.doing_something = 0
-						return
-				else
-					to_chat(user, "<span class='notice'>You are already trying to cut off their penis!</span>")
-			else
-				to_chat(user, "They have no penis.")
-		else
-			to_chat(user, "They must be naked to perform the act.")
-
-
-	else
-		..()
+	..()
 
 /*
  * Welding Tool
