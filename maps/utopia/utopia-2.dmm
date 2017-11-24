@@ -77,7 +77,7 @@
 "by" = (/obj/machinery/door/airlock/maintenance{req_access = list(12)},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/plating,/area/hallway/secondary/entry/port)
 "bz" = (/obj/item/weapon/storage/box/beanbags,/obj/item/weapon/gun/projectile/shotgun/doublebarrel,/obj/item/weapon/paper/exodus_bartender,/obj/structure/table/marble,/turf/simulated/floor/tiled/white,/area/hydroponics)
 "bA" = (/obj/structure/table/marble,/obj/machinery/reagentgrinder,/turf/simulated/floor/tiled/white,/area/hydroponics)
-"bB" = (/obj/structure/table/marble,/obj/item/weapon/storage/box/glasses/square,/turf/simulated/floor/tiled/white,/area/hydroponics)
+"bB" = (/obj/structure/table/marble,/obj/item/weapon/storage/box/glasses/square,/obj/item/weapon/storage/fancy/egg_box,/obj/item/weapon/reagent_containers/food/drinks/milk,/turf/simulated/floor/tiled/white,/area/hydroponics)
 "bC" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/white,/area/hydroponics)
 "bD" = (/obj/machinery/cooker/oven,/turf/simulated/floor/tiled/white,/area/hydroponics)
 "bE" = (/obj/machinery/metal_mill,/turf/simulated/floor/tiled/dark,/area/quartermaster/office)
