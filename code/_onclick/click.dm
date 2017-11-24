@@ -257,9 +257,6 @@
 
 /atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user))
-		var/mob/living/L = user
-		if (istype(L) && !L.l_hand && !L.r_hand)
-			return
 		user.start_pulling(src)
 
 /*
