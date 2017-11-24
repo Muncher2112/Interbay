@@ -17,7 +17,7 @@
 		if(copytext(line,1,2) == "#" || ascii == 9 || ascii == 32)//# space or tab
 			continue
 
-		ckey_whitelist.Add("Entry: [line]")
+		ckey_whitelist.Add(line)
 
 	if(!ckey_whitelist.len)
 		log_admin("ckey_whitelist: empty or missing.")
