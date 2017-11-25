@@ -33,7 +33,7 @@
 	category = "General"
 
 /datum/metal_lathe/recipe/action
-	name = "action"
+	name = "Action"
 	path = /obj/item/action
 	category = "General"
 
@@ -53,8 +53,18 @@
 	category = "General"
 
 /datum/metal_lathe/recipe/glass_handle
-	name = "Glass_handle"
+	name = "Glass Handle"
 	path = /obj/item/glass_handle
+	category = "General"
+
+/datum/metal_lathe/recipe/glass_bar
+	name = "Glass Bar"
+	path = /obj/item/glass_bar
+	category = "General"
+
+/datum/metal_lathe/recipe/wire
+	name = "Cable coil"
+	path = /obj/item/stack/cable_coil/30
 	category = "General"
 
 /datum/metal_lathe/recipe/flashlight

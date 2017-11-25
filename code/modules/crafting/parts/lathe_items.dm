@@ -27,6 +27,27 @@
 	press()
 		return /obj/item/weapon/crowbar
 
+
+/obj/item/glass_bar
+	name = "Glass Bar"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	desc = "This is a glass bar.  Can be made into lots of stuff"
+	icon_state = "glass_bar"
+	matter = list("glass" = 15)
+
+	mill()
+		return /obj/item/glass_tube
+
+/obj/item/glass_tube
+	name = "Glass Tube"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	desc = "A hollow glass bar.  Looks like it would fit perfectly as a tube light."
+	icon_state = "glass_tube"
+	matter = list("glass" = 10)
+
+
 /obj/item/metal_shiv
 	name = "Metal shiv"
 	icon = 'icons/obj/crafting.dmi'
