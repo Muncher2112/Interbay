@@ -403,6 +403,7 @@
 	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/supreme_arbiter
+	social_class = SOCIAL_CLASS_HIGH
 
 	equip(var/mob/living/carbon/human/H)//Still weaker than the Head Peacekeeper.
 		..()

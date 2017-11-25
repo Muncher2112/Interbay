@@ -9,6 +9,7 @@
 						/datum/job/qm,
 						/datum/job/engineer,
 						/datum/job/cargo_tech,
+						/datum/job/cargo_tech/machinist,
 						/datum/job/mining,
 						/datum/job/ouvrier,
 						/datum/job/chef,
@@ -18,7 +19,8 @@
 						/datum/job/supreme_arbiter,
 						/datum/job/medassist,
 						/datum/job/jr_upkeep,
-						/datum/job/cadet
+						/datum/job/cadet,
+						/datum/job/doctor/undertaker
 						///datum/job/rd,
 						///datum/job/scientist,
 						///datum/job/raider,
@@ -150,6 +152,10 @@
 		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
 		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 
+/datum/job/doctor/undertaker
+	title = "Undertaker"
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/hos
 	title = "Head Peacekeeper"
@@ -259,6 +265,15 @@
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+
+/datum/job/cargo_tech/machinist
+	title = "Machinist"
+	total_positions = 1
+	spawn_positions = 1
+	equip(var/mob/living/carbon/human/H)
+		..()
+		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+
 //kid roles
 /datum/job/ouvrier
 	selection_color = "#7c6a2e"
@@ -410,6 +425,7 @@
 	access = list(access_maint_tunnels, access_chapel_office)
 	minimal_access = list(access_maint_tunnels, access_chapel_office)
 	outfit_type = /decl/hierarchy/outfit/job/arbiter
+	social_class = SOCIAL_CLASS_HIGH
 
 	equip(var/mob/living/carbon/human/H)//Peacekeeper stats.
 		..()
