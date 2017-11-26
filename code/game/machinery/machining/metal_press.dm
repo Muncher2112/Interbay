@@ -37,7 +37,9 @@
 	if(disabled)
 		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
 		return
-
+	if(busy)
+		to_chat(usr, "<span class='notice'>The press is busy. Please wait for completion of previous operation.</span>")
+		return
 
 	if(!disabled)
 		//var/index = text2num(href_list["make"])
@@ -46,13 +48,13 @@
 		// May want to use this later
 		//making = machine_recipes[index]
 		making = inserted_object
-
+		inserted_object = 0
+		if (!busy) //STOP SPAMMING MY EARS GOH GOD
+			playsound(src,'sound/mecha/hydraulic.ogg',40,1)
 		busy = 1
 		update_use_power(2)
 
-		playsound(src,'sound/mecha/hydraulic.ogg',40,1)
 		sleep(build_time)
-
 		busy = 0
 		update_use_power(1)
 
@@ -60,15 +62,16 @@
 		if(!making || !src) return
 
 		//press the item, for better or worse
-		var/path = making.press()
-		var/obj/item/I
-		if (path)
-			I = new path(loc)
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			S.amount = 0
+		if (!making.press(user))
+			if (user.skillcheck(user.engineering_skill, 65, 1, message = "You try to press the object but it uselessly falls apart.  You don't think this item was meant to be pressed.."))
+				to_chat(user, "<span class='notice'>The [making] falls out of the press.  You don't think this item was meant to be pressed...</span>")
+				new  making.type(src.loc)
+		else
+			var/path = making.press(user)
+			if (path)
+				new path(loc)
 		//consume object
-		inserted_object = 0
+	busy = 0
 
 //THE OBJECT BEING ADDED IS THE LETTER "O" NOT A 0(ZERO)
 /obj/machinery/metal_press/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -95,14 +98,14 @@
 		return 0
 
 	if(istype(O,/obj/item/stack))
-		to_chat(user, "<span class='notice'>The stack is to big for the mill!</span>")
+		to_chat(user, "<span class='notice'>The stack is to big for the press!</span>")
 		return
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	//You can put ANYTHING in as long as it's not full
 	// TODO: needs size check
 	if (inserted_object)
-		to_chat(user, "<span class='notice'>\The [src] is full. Please remove the object from the metal_press in order to insert another.</span>")
+		to_chat(user, "<span class='notice'>\The [src] is full. Please remove the object from the press in order to insert another.</span>")
 		return
 	else
 		inserted_object = eating

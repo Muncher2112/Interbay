@@ -140,20 +140,25 @@
 
 /obj/item/weapon/gun/projectile/revolver/zero_chamber
 	max_shells = 0
+	starts_loaded = 0
 	icon_state = "crafted_revolver"
 
 /obj/item/weapon/gun/projectile/revolver/one_chamber
 	max_shells = 1
+	starts_loaded = 0
 	icon_state = "crafted_revolver"
 
 /obj/item/weapon/gun/projectile/revolver/two_chamber
 	max_shells = 2
+	starts_loaded = 0
 	icon_state = "crafted_revolver"
 
 /obj/item/weapon/gun/projectile/revolver/three_chamber
 	max_shells = 3
+	starts_loaded = 0
 	icon_state = "crafted_revolver"
 
 /obj/item/weapon/gun/projectile/revolver/four_chamber
 	max_shells = 4
+	starts_loaded = 0
 	icon_state = "crafted_revolver"

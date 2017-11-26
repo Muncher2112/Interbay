@@ -39,18 +39,19 @@
 		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
 		return
 
+	if(busy)
+		to_chat(usr, "<span class='notice'>The mill is busy. Please wait for completion of previous operation.</span>")
+		return
+
 	if(!disabled)
 		var/obj/item/making
 		if (!busy) //STOP SPAMMING MY EARS GOH GOD
 			playsound(src,'sound/mecha/mechdrill.ogg',30,1)
 		making = inserted_object
 		inserted_object = 0
-
 		busy = 1
 		update_use_power(2)
-
 		sleep(build_time)
-
 		busy = 0
 		update_use_power(1)
 
@@ -58,18 +59,18 @@
 		if(!making || !src) return
 
 		//Mill the item, for better or worse
-
-		var/path = making.mill(user)
-		var/obj/item/I
-		if (path)
-			I = new path(loc)
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			S.amount = 0
+		if (!making.mill(user))
+			if (user.skillcheck(user.engineering_skill, 65, 1, message = "You try to mill the object but it uselessly falls apart.  You don't think this item was meant to be milled.."))
+				to_chat(user, "<span class='notice'>The [making] falls out of the mill.  You don't think this item was meant to be milled...</span>")
+				new making.type(src.loc)
+		else
+			var/path = making.mill(user)
+			if (path)
+				new path(loc)
 		//consume object
-
 	//user << browse(dat, "window=metal_mill")
 	//onclose(user, "metal_mill")
+	busy = 0
 
 //THE OBJECT BEING ADDED IS THE LETTER "O" NOT A 0(ZERO)
 /obj/machinery/metal_mill/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -99,7 +100,7 @@
 	//You can put ANYTHING in as long as it's not full
 	// TODO: needs size check
 	if (inserted_object)
-		to_chat(user, "<span class='notice'>\The [src] is full. Please remove the object from the metal_mill in order to insert another.</span>")
+		to_chat(user, "<span class='notice'>\The [src] is full. Please remove the object from the mill in order to insert another.</span>")
 		return
 	else
 		inserted_object = eating
