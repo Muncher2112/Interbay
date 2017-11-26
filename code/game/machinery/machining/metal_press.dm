@@ -1,5 +1,5 @@
 /obj/machinery/metal_press
-	name = "Metal Press"
+	name = "Press"
 	desc = "It presses metal.  Use it to make shape metal."
 	icon_state = "press"
 	density = 1
@@ -23,15 +23,6 @@
 /obj/machinery/metal_press/New()
 
 	..()
-	//Create parts for lathe.
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	RefreshParts()
 
 /obj/machinery/metal_press/Destroy()
 	return ..()
@@ -127,24 +118,3 @@
 /obj/machinery/metal_press/attack_hand(mob/user as mob)
 	//user.set_machine(src)
 	interact(user)
-
-/obj/machinery/metal_press/update_icon()
-	icon_state = (panel_open ? "autolathe_t" : "autolathe")
-
-//Updates overall lathe storage size.
-/obj/machinery/metal_press/RefreshParts()
-	..()
-	var/mb_rating = 0
-	var/man_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
-		mb_rating += MB.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
-		man_rating += M.rating
-
-	build_time = 50 / man_rating
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
-
-/obj/machinery/metal_press/dismantle()
-	inserted_object = null
-	..()
-	return 1

@@ -1,5 +1,5 @@
 /obj/machinery/metal_lathe
-	name = "metal_lathe"
+	name = "Lathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "lathe"
 	density = 1
@@ -12,7 +12,7 @@
 
 	var/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
-	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 100)
 	var/show_category = "All"
 
 	var/disabled = 0
@@ -27,12 +27,6 @@
 	..()
 	//Create parts for lathe.
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
 
 /obj/machinery/metal_lathe/Destroy()
@@ -136,6 +130,7 @@
 
 	//Resources are being loaded.
 	var/obj/item/eating = O
+
 	if(!eating.matter)
 		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return
@@ -143,6 +138,7 @@
 	var/filltype = 0       // Used to determine message.
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
+	var/total_material = 0
 
 	for(var/material in eating.matter)
 
@@ -153,13 +149,13 @@
 			to_chat(user, "<span class='notice'>\The [src] is full. Remove material from the lathe in order to insert more.</span>")
 			continue
 
-		var/total_material = eating.matter[material]
+		total_material = eating.matter[material]
 
 		//If it's a stack, we eat multiple sheets.
 		if(istype(eating,/obj/item/stack))
 			var/obj/item/stack/stack = eating
-			total_material += stack.get_amount()
-
+			//Stacks only count as one metal.  This is to reduce numbers while
+			total_material = stack.get_amount()
 		if(stored_material[material] + total_material > storage_capacity[material])
 			total_material = storage_capacity[material] - stored_material[material]
 			filltype = 1
@@ -178,7 +174,7 @@
 	else
 		to_chat(user, "You fill \the [src] with \the [eating].")
 
-	flick("metal_lathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	//flick("metal_lathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -260,26 +256,12 @@
 		if(multiplier > 1 && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			S.amount = multiplier
-
+	busy = 0
 	updateUsrDialog()
-
-/obj/machinery/metal_lathe/update_icon()
-	icon_state = (panel_open ? "autolathe_t" : "autolathe")
 
 //Updates overall lathe storage size.
 /obj/machinery/metal_lathe/RefreshParts()
-	..()
-	var/mb_rating = 0
-	var/man_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
-		mb_rating += MB.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
-		man_rating += M.rating
-
-	//storage_capacity[DEFAULT_WALL_MATERIAL] = mb_rating  * 25000
-	//storage_capacity["glass"] = mb_rating  * 12500
-	build_time = 50 / man_rating
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
+	mat_efficiency = 1
 
 /obj/machinery/metal_lathe/dismantle()
 
