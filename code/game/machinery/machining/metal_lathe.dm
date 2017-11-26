@@ -162,7 +162,7 @@
 		else
 			filltype = 2
 
-		stored_material[material] += total_material
+		stored_material[material] += (2*total_material)
 		total_used += total_material //This will always be 50, meaning steel gets a horrible return rate
 		mass_per_sheet += eating.matter[material]
 
