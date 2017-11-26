@@ -4,12 +4,12 @@
 	icon_state = "taser"
 	item_state = "pistol"//null	//so the human update icon uses the icon_state instead.
 	max_shots = 6
-	projectile_type = /obj/item/projectile/energy/electrode///obj/item/projectile/beam/stun
+	projectile_type = /obj/item/projectile/beam/stun ///obj/item/projectile/energy/electrode
 
-	//firemodes = list(
-	//	list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun),
-	//	list(mode_name="shock", projectile_type=/obj/item/projectile/beam/stun/shock),
-	//	)
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun),
+		list(mode_name="shock", projectile_type=/obj/item/projectile/beam/stun/shock),
+		)
 
 /obj/item/weapon/gun/energy/taser/carbine
 	name = "taser carbine"
