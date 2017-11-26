@@ -169,7 +169,7 @@
 
 	if(!istype(landing, /turf/simulated/open))
 		if(statscheck(dex, 25, 0, src) && !lying)
-			to_chat(src, "You land softly")
+			to_chat(src, "<span class = 'notice'>You land softly.</span>")
 			return
 
 		playsound(src.loc, 'sound/effects/gore/fallsmash.ogg', 75, 1)//Splat

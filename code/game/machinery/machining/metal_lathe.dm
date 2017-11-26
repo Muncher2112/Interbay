@@ -167,7 +167,7 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the metal_lathe in order to insert more.</span>")
+		to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the lathe in order to insert more.</span>")
 		return
 	else if(filltype == 1)
 		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
@@ -199,7 +199,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		to_chat(usr, "<span class='notice'>The metal_lathe is busy. Please wait for completion of previous operation.</span>")
+		to_chat(usr, "<span class='notice'>The lathe is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(href_list["change_category"])
@@ -220,8 +220,8 @@
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)
 			var/turf/exploit_loc = get_turf(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an metal_lathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an metal_lathe to duplicate an item!")
+			message_admins("[key_name_admin(usr)] tried to exploit a metal_lathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
+			log_admin("EXPLOIT : [key_name(usr)] tried to exploit a metal_lathe to duplicate an item!")
 			return
 
 		busy = 1

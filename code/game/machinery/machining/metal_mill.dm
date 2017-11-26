@@ -93,7 +93,7 @@
 		return 0
 
 	if(istype(O,/obj/item/stack))
-		to_chat(user, "<span class='notice'>The stack is to big for the mill!</span>")
+		to_chat(user, "<span class='notice'>[O] is too big for the mill!</span>")
 		return
 	//Resources are being loaded.
 	var/obj/item/eating = O
