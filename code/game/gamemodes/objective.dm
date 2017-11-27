@@ -446,7 +446,6 @@ datum/objective/steal
 
 	var/global/possible_items[] = list(
 		"the Magistrates crown" = /obj/item/clothing/head/crown,
-		"the Supreme Arbiter's brand" = /obj/item/weapon/brander,
 		"the Magistrate's robes" = /obj/item/clothing/suit/robes,
 		"the Head Peace Keeper's uniform" = /obj/item/clothing/under/rank/head_of_security/corp,
 		"the Overseer's headset" = /obj/item/device/radio/headset/heads/hop,

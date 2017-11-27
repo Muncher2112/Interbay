@@ -107,7 +107,8 @@
 					return /obj/item/cylinder/four_slot
 			if(4)
 				to_chat(usr, "<span class='notice'>You nick another hole, and the cylinder falls apart.</span>")
-		return null
+				return /obj/item/weapon/ore/slag
+		return /obj/item/weapon/ore/slag
 
 	press()
 		return /obj/item/wrench_head
@@ -138,27 +139,22 @@
 	desc = "This is reciever."
 	icon_state = "stock"
 
-/obj/item/weapon/gun/projectile/revolver/zero_chamber
+/obj/item/weapon/gun/projectile/revolver/crafted
 	max_shells = 0
 	starts_loaded = 0
 	icon_state = "crafted_revolver"
+	desc = "An ugly revolver made right here on the station.  Looks like it will take .38 ammo"
+	jam_chance = 15
+	caliber = "38"
+	ammo_type = /obj/item/ammo_casing/c38
 
-/obj/item/weapon/gun/projectile/revolver/one_chamber
+/obj/item/weapon/gun/projectile/revolver/crafted/one_chamber
 	max_shells = 1
-	starts_loaded = 0
-	icon_state = "crafted_revolver"
 
-/obj/item/weapon/gun/projectile/revolver/two_chamber
+/obj/item/weapon/gun/projectile/revolver/crafted/two_chamber
 	max_shells = 2
-	starts_loaded = 0
-	icon_state = "crafted_revolver"
 
-/obj/item/weapon/gun/projectile/revolver/three_chamber
+/obj/item/weapon/gun/projectile/revolver/crafted/three_chamber
 	max_shells = 3
-	starts_loaded = 0
-	icon_state = "crafted_revolver"
-
-/obj/item/weapon/gun/projectile/revolver/four_chamber
+/obj/item/weapon/gun/projectile/revolver/crafted/four_chamber
 	max_shells = 4
-	starts_loaded = 0
-	icon_state = "crafted_revolver"
