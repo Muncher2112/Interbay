@@ -22,18 +22,18 @@
 
 /datum/uplink_item/item/visible_weapons/throwing_star
 	name = "Throwing Star"
-	item_cost = 5
-	path = /obj/item/weapon/material/star/ninja
-/*
-/datum/uplink_item/item/visible_weapons/dartgun
-	name = "Dart Gun"
 	item_cost = 20
-	path = /obj/item/weapon/gun/projectile/dartgun
+	path = /obj/item/weapon/material/star/ninja
 
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
 	item_cost = 24
 	path = /obj/item/weapon/gun/energy/crossbow
+/*
+/datum/uplink_item/item/visible_weapons/dartgun
+	name = "Dart Gun"
+	item_cost = 20
+	path = /obj/item/weapon/gun/projectile/dartgun
 
 /datum/uplink_item/item/visible_weapons/g9mm
 	name = "Silenced Holdout Pistol"

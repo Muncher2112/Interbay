@@ -23,6 +23,12 @@
 	name = "Switchblade"
 	item_cost = 25
 	path = /obj/item/weapon/material/butterfly/switchblade
+
+/datum/uplink_item/item/stealthy_weapons/parapen
+	name = "Paralysis Pen"
+	item_cost = 24
+	path = /obj/item/weapon/pen/reagent/paralysis
+
 /*
 /datum/uplink_item/item/stealthy_weapons/concealed_cane
 	name = "Concealed Cane Sword"
@@ -33,9 +39,5 @@
 	name = "Detomatix PDA Cartridge"
 	item_cost = 16
 	path = /obj/item/weapon/cartridge/syndicate
-
-/datum/uplink_item/item/stealthy_weapons/parapen
-	name = "Paralysis Pen"
-	item_cost = 24
-	path = /obj/item/weapon/pen/reagent/paralysis
 */
+
