@@ -144,7 +144,7 @@
 	starts_loaded = 0
 	icon_state = "crafted_revolver"
 	desc = "An ugly revolver made right here on the station.  Looks like it will take .38 ammo"
-	jam_chance = 10
+	jam_chance = 15
 	caliber = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 
