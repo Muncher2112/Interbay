@@ -7,9 +7,9 @@
 
 
 	//CONTENT
-	#include "job/jobs.dm"
-	#include "datums/uniforms.dm"
-	#include "items/cards_ids.dm"
+	#include "../shared/job/jobs.dm"
+	#include "../shared/datums/uniforms.dm"
+	#include "../shared/items/cards_ids.dm"
 	#include "frontier_gamemodes.dm"
 	#include "frontier_presets.dm"
 	#include "frontier_shuttles.dm"
