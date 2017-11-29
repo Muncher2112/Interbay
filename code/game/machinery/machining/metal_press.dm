@@ -62,14 +62,13 @@
 		if(!making || !src) return
 
 		//press the item, for better or worse
-		if (!making.press(user))
+		var/obj/item/pressing = making.press(user)
+		if (!pressing)
 			if (user.skillcheck(user.engineering_skill, 65, 1, message = "You try to press the object but it uselessly falls apart.  You don't think this item was meant to be pressed.."))
 				to_chat(user, "<span class='notice'>The [making] falls out of the press.  You don't think this item was meant to be pressed...</span>")
 				new  making.type(src.loc)
 		else
-			var/path = making.press(user)
-			if (path)
-				new path(loc)
+			new pressing(loc)
 		//consume object
 	busy = 0
 

@@ -123,7 +123,7 @@
 	recipes += new/datum/stack_recipe("beehive assembly", /obj/item/beehive_assembly, 4)
 	recipes += new/datum/stack_recipe("beehive frame", /obj/item/honey_frame, 1)
 	recipes += new/datum/stack_recipe("book shelf", /obj/structure/bookcase, 5, time = 15, one_per_turf = 1, on_floor = 1)
-	recipes += new/datum/stack_recipe("gun stock", /obj/item/stock, 5)
+	recipes += new/datum/stack_recipe("Revolver gun stock", /obj/item/stock, 5)
 	recipes += new/datum/stack_recipe("coilgun stock", /obj/item/weapon/coilgun_assembly, 5)
 
 /material/cardboard/generate_recipes()

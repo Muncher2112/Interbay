@@ -195,7 +195,8 @@
 				*/
 				if(prob(80))
 					hit_zone = ran_zone(hit_zone)
-				if(prob(15) && hit_zone != BP_CHEST) // Missed!
+				var/misschance = H.lying ? 30 : 15
+				if(prob(misschance) && hit_zone != BP_CHEST) // Missed!
 					if(!src.lying)
 						if(H.skillcheck(H.melee_skill, 60, 0) == CRIT_FAILURE)
 							H.resolve_critical_miss()
@@ -247,6 +248,10 @@
 			var/armour = run_armor_check(hit_zone, "melee")
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, armour, rand_damage, hit_zone)
+
+			// Nerf attacks done while lying by 1/3rd
+			if (H.lying)
+				real_damage = max(real_damage * 0.66, 1)
 
 			// Finally, apply damage to target
 			apply_damage(real_damage, (attack.deal_halloss ? PAIN : BRUTE), hit_zone, armour, damage_flags=attack.damage_flags())

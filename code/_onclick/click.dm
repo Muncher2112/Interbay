@@ -257,6 +257,15 @@
 
 /atom/movable/CtrlClick(var/mob/user)
 	if(Adjacent(user))
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
+			var/hashands = (temp && temp.is_usable())
+			if (!hashands)
+				temp = H.organs_by_name[BP_L_HAND]
+				hashands = (temp && temp.is_usable())
+			if (!hashands)
+				return
 		user.start_pulling(src)
 
 /*

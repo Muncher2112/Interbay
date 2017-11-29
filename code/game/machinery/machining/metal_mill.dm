@@ -59,14 +59,13 @@
 		if(!making || !src) return
 
 		//Mill the item, for better or worse
-		if (!making.mill(user))
+		var/obj/item/milling= making.mill(user)
+		if (!milling)
 			if (user.skillcheck(user.engineering_skill, 65, 1, message = "You try to mill the object but it uselessly falls apart.  You don't think this item was meant to be milled.."))
 				to_chat(user, "<span class='notice'>The [making] falls out of the mill.  You don't think this item was meant to be milled...</span>")
 				new making.type(src.loc)
 		else
-			var/path = making.mill(user)
-			if (path)
-				new path(loc)
+			new milling(loc)
 		//consume object
 	//user << browse(dat, "window=metal_mill")
 	//onclose(user, "metal_mill")
@@ -93,7 +92,7 @@
 		return 0
 
 	if(istype(O,/obj/item/stack))
-		to_chat(user, "<span class='notice'>The stack is to big for the mill!</span>")
+		to_chat(user, "<span class='notice'>[O] is too big for the mill!</span>")
 		return
 	//Resources are being loaded.
 	var/obj/item/eating = O
