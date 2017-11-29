@@ -120,7 +120,6 @@ proc/get_radio_key_from_channel(var/channel)
 		message = tongueless(message)
 		verb = pick("moans", "screeches")
 		. = 1
-
 	if(ending == "!")
 		message = capitalize(message)
 		message = "<b>[message]</b>"
