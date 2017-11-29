@@ -44,7 +44,7 @@
 
 /obj/item/organ/internal/brain/New(var/mob/living/carbon/holder)
 	..()
-	max_damage = 200
+	max_damage = 50
 	if(species)
 		max_damage = species.total_health
 	min_bruised_damage = max_damage*0.25

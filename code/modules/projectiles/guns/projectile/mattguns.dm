@@ -53,6 +53,7 @@
 
 /obj/item/projectile/bullet/rifle/a762/brifle
 	fire_sound = "brifle"
+	penetration_modifier = 1.5
 
 
 
