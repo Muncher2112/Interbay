@@ -28,7 +28,7 @@
 	var/new_mob_icon_file
 
 /obj/item/clothing/head/helmet/space/void/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O,/obj/item/device/kit/suit))
+/*	if(istype(O,/obj/item/device/kit/suit))		//might see about using this later
 		var/obj/item/device/kit/suit/kit = O
 		name = "[kit.new_name] suit helmet"
 		desc = kit.new_desc
@@ -45,11 +45,11 @@
 		if(istype(H))
 			species_restricted = list(H.species.get_bodytype(H))
 		kit.use(1,user)
-		return 1
+		return 1*/
 	return ..()
 
 /obj/item/clothing/suit/space/void/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O,/obj/item/device/kit/suit))
+/*	if(istype(O,/obj/item/device/kit/suit))		//ditto
 		var/obj/item/device/kit/suit/kit = O
 		name = "[kit.new_name] voidsuit"
 		desc = kit.new_desc
@@ -64,7 +64,7 @@
 		if(istype(H))
 			species_restricted = list(H.species.get_bodytype(H))
 		kit.use(1,user)
-		return 1
+		return 1*/
 	return ..()
 
 /obj/item/device/kit/paint

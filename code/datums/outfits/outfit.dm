@@ -101,20 +101,6 @@ var/list/outfits_decls_by_type_
 	if (!S || istype(S, /datum/species/human)) // null failcheck & get out here you damn humans
 		return
 
-	// Gloves
-	if (gloves && !H.get_equipped_item(slot_gloves)) // does mob not have gloves, despite the outfit has one specified?
-		var/obj/item/clothing/gloves/G = new gloves(H) // we've no use of a null object, instantize one
-		if (S.get_bodytype(H) in G.species_restricted) // what was the problem?
-			if ("exclude" in G.species_restricted) // are they excluded?
-				G.cut_fingertops()
-				// I could optimize this bit when we are trying to apply the gloves to e.g. Vox, a species still restricted despite G.cut_fingertops(). But who cares if this is codebase is like a plate of spaghetti twice over the brim, right? RIGHT?
-				H.equip_to_slot_or_del(G,slot_gloves) // try again
-		else
-			qdel(G)
-	// end Gloves
-
-// end of check_and_try_equip_xeno
-
 /decl/hierarchy/outfit/proc/equip(mob/living/carbon/human/H, var/rank, var/assignment)
 	equip_base(H)
 

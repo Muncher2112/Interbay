@@ -630,7 +630,6 @@
 	desc = "It looks like it was tailored for a monkey."
 	icon_state = "punpun"
 	worn_state = "punpun"
-	species_restricted = list("Monkey")
 	sprite_sheets = list("Monkey" = 'icons/mob/species/monkey/uniform.dmi')
 
 /obj/item/clothing/under/punpants
@@ -638,7 +637,6 @@
 	desc = "It looks like it was tailored for a monkey."
 	icon_state = "jeansmustang"
 	worn_state = "jeansmustang"
-	species_restricted = list("Monkey")
 	sprite_sheets = list("Monkey" = 'icons/mob/species/monkey/uniform.dmi')
 
 /obj/item/clothing/under/rank/psych/turtleneck/sweater
@@ -650,7 +648,6 @@
 /obj/item/clothing/under/utility/expeditionary/monkey
 	name = "adjusted expeditionary uniform"
 	desc = "The utility uniform of the SCG Expeditionary Corps, made from biohazard resistant material. This one has silver trim. It was also mangled to fit a monkey. This better be worth the NJP you'll get for making it."
-	species_restricted = list("Monkey")
 	sprite_sheets = list("Monkey" = 'icons/mob/species/monkey/uniform.dmi')
 	starting_accessories = list(/obj/item/clothing/accessory/rank/fleet/officer/wo1_monkey)
 

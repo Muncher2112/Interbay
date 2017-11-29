@@ -1128,14 +1128,8 @@
 
 //There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
 /obj/machinery/suit_cycler/proc/apply_paintjob()
-
-	if(!target_species || !target_department)
+	if(!target_department)
 		return
-
-	if(target_species)
-		if(helmet) helmet.refit_for_species(target_species)
-		if(suit) suit.refit_for_species(target_species)
-
 	switch(target_department)
 		if("Engineering")
 			if(helmet)

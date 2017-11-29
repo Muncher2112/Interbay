@@ -10,7 +10,6 @@
 	siemens_coefficient = 0.4
 
 	//Species-specific stuff.
-	species_restricted = list(SPECIES_HUMAN, SPECIES_IPC)
 	sprite_sheets = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_TAJARA = 'icons/mob/species/tajaran/helmet.dmi',
@@ -36,7 +35,6 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.4
 
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_IPC)
 	sprite_sheets = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
 		SPECIES_TAJARA = 'icons/mob/species/tajaran/suit.dmi',
@@ -69,12 +67,12 @@
 	if(tank && in_range(src,user))
 		to_chat(user, "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>")
 
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
+/*/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()
 	if(istype(helmet))
 		helmet.refit_for_species(target_species)
 	if(istype(boots))
-		boots.refit_for_species(target_species)
+		boots.refit_for_species(target_species)*/
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()

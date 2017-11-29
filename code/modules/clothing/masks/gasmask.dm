@@ -60,7 +60,6 @@
 	name = "alien mask"
 	desc = "Clearly not designed for a human face."
 	body_parts_covered = 0 //Hack to allow vox to eat while wearing this mask.
-	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
@@ -132,6 +131,5 @@
 	icon_state = "respirator"
 	flags_inv = 0
 	body_parts_covered = 0
-	species_restricted = list(SPECIES_VOX)
 	filtered_gases = list("phoron", "sleeping_agent", "oxygen")
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE

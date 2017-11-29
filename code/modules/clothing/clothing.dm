@@ -4,7 +4,6 @@
 	drop_sound = 'sound/items/drop_clothing.ogg'
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
-	var/list/species_restricted = null 				//Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
 	var/list/accessories = list()
@@ -13,8 +12,8 @@
 	var/list/starting_accessories
 	var/blood_overlay_type = "uniformblood"
 	var/visible_name = "Unknown"
-	var/can_be_worn_by_child = 0 //Snowflake shit for kids.
-	var/child_exclusive = 0
+	var/can_be_worn_by_child = FALSE //Snowflake shit for kids.
+	var/child_exclusive = FALSE
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -55,68 +54,25 @@
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 
-//BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot, disable_warning = 0)
+	var/wearable = TRUE
+	var/mob/living/carbon/human/H = M
 
-	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
+	//if we can't equip the item anyway, don't bother with child_exclusive (cuts down on spam)
 	if (!..())
 		return 0
+	if(H.isChild())
+		if(!child_exclusive || !can_be_worn_by_child)
+			wearable = FALSE
+	else
+		if(child_exclusive)
+			wearable = FALSE
 
-	if(species_restricted && istype(M,/mob/living/carbon/human))
-		var/exclusive = null
-		var/wearable = null
-		var/mob/living/carbon/human/H = M
-
-		if("exclude" in species_restricted)
-			exclusive = 1
-
-		if(H.species)
-			if(exclusive)
-				if(!(H.species.get_bodytype(H) in species_restricted))
-					wearable = 1
-			else
-				if(H.species.get_bodytype(H) in species_restricted)
-					wearable = 1
-
-			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
-				if(!disable_warning)
-					to_chat(H, "<span class='danger'>Your species cannot wear [src].</span>")
-				return 0
+	if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
+		if(!disable_warning)
+			to_chat(H, "<span class='danger'>[src] does not fit you.</span>")
+		return 0
 	return 1
-
-/obj/item/clothing/proc/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_IPC) //skrell/humans/machines can wear each other's suits
-		else
-			species_restricted = list(target_species)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_IPC) //skrell helmets fit humans too
-		if(SPECIES_HUMAN)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_IPC) //human helmets fit IPCs too
-		else
-			species_restricted = list(target_species)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -125,6 +81,7 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	can_be_worn_by_child = TRUE
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -187,6 +144,7 @@ BLIND     // can't see anything
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
 	var/light_protection = 0
+	can_be_worn_by_child = TRUE
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi',
 		)
@@ -220,7 +178,7 @@ BLIND     // can't see anything
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA, SPECIES_VOX)
+	can_be_worn_by_child = TRUE
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
 		)
@@ -265,9 +223,6 @@ BLIND     // can't see anything
 	clipped = 1
 	name = "modified [name]"
 	desc = "[desc]<br>They have had the fingertips cut off of them."
-	if("exclude" in species_restricted)
-		species_restricted -= SPECIES_UNATHI
-		species_restricted -= SPECIES_TAJARA
 	return
 
 /obj/item/clothing/gloves/mob_can_equip(mob/user)
@@ -323,6 +278,7 @@ BLIND     // can't see anything
 	var/brightness_on
 	var/on = 0
 
+	can_be_worn_by_child = TRUE
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
 		)
@@ -432,6 +388,7 @@ BLIND     // can't see anything
 	icon = 'icons/obj/clothing/masks.dmi'
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
+	can_be_worn_by_child = TRUE
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/masks.dmi',
 		)
@@ -520,7 +477,6 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.50
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude",SPECIES_UNATHI,SPECIES_TAJARA,SPECIES_VOX)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
 		)
@@ -601,7 +557,7 @@ BLIND     // can't see anything
 	blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-
+	can_be_worn_by_child = TRUE
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
 		)
@@ -884,5 +840,5 @@ BLIND     // can't see anything
 	icon = 'icons/obj/clothing/rings.dmi'
 	slot_flags = SLOT_GLOVES
 	gender = NEUTER
-	species_restricted = list("exclude",SPECIES_DIONA)
+	can_be_worn_by_child = TRUE
 	var/undergloves = 1

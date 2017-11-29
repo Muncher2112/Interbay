@@ -4,7 +4,6 @@
 	name = "magboots"
 	icon_state = "magboots0"
 	can_hold_knife = 1
-	species_restricted = null
 	force = 3
 	overshoes = 1
 	var/magpulse = 0

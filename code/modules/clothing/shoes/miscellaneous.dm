@@ -8,7 +8,6 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
-	species_restricted = null
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
@@ -79,7 +78,6 @@
 	desc = "A pair of rather plain, wooden sandals."
 	name = "sandals"
 	icon_state = "wizard"
-	species_restricted = null
 	body_parts_covered = 0
 
 	wizard_garb = 1
@@ -97,7 +95,6 @@
 	item_state = "clown_shoes"
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
-	species_restricted = null
 
 /obj/item/clothing/shoes/clown_shoes/New()
 	..()
@@ -125,7 +122,6 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = null
 
 /obj/item/clothing/shoes/cyborg
 	name = "cyborg boots"
@@ -138,7 +134,6 @@
 	icon_state = "slippers"
 	item_state = "slippers"
 	force = 0
-	species_restricted = null
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/clothing/shoes/slippers_worn
@@ -159,7 +154,6 @@
 	name = "swimming fins"
 	icon_state = "flippers"
 	item_flags = NOSLIP
-	species_restricted = null
 
 /obj/item/clothing/shoes/swimmingfins/New()
 	..()

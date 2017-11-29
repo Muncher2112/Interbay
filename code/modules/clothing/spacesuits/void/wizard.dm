@@ -40,7 +40,6 @@
 	body_parts_covered = HANDS
 	cold_protection =    HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	species_restricted = null
 	gender = PLURAL
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02

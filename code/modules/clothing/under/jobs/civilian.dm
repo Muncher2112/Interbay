@@ -198,3 +198,10 @@
 	icon_state = "miner"
 	item_state = "lb_suit"
 	worn_state = "miner"
+
+/obj/item/clothing/under/child_jumpsuit
+	name = "grey children's jumpsuit"
+	desc = "Fitted just for kids."
+	icon_state = "child_grey"
+	can_be_worn_by_child = TRUE
+	child_exclusive = TRUE

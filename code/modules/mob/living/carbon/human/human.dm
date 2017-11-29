@@ -65,8 +65,6 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[m_intent]")
 		stat("ST:", "[str]")//Stats!
 		stat("DX:", "[dex]")
 		stat("IT:", "[int]")
@@ -184,13 +182,6 @@
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
 	return 0
-
-/mob/living/carbon/human/proc/legcuffed()
-	if (istype(src.shoes, /obj/item/clothing/shoes/orange))
-		var/obj/item/clothing/shoes/orange/S = src.shoes
-		return S.chained == null ? 0 : 1
-	else
-		return 0
 
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C+75

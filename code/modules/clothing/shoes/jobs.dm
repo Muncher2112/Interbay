@@ -5,7 +5,6 @@
 	permeability_coefficient = 0.05
 	item_flags = NOSLIP
 	can_hold_knife = 1
-	species_restricted = null
 
 /obj/item/clothing/shoes/galoshes/New()
 	..()
@@ -26,7 +25,6 @@
 	desc = "Modified pair of jackboots, particularly comfortable for those species whose toes hold claws."
 	item_state = "digiboots"
 	icon_state = "digiboots"
-	species_restricted = null
 
 /obj/item/clothing/shoes/workboots
 	name = "workboots"
@@ -41,4 +39,10 @@
 	name = "toe-less workboots"
 	desc = "A pair of toeless work boots designed for use in industrial settings. Modified for species whose toes have claws."
 	icon_state = "workbootstoeless"
-	species_restricted = null
+
+/obj/item/clothing/shoes/child_shoes
+	name = "black children's shoes"
+	desc = "Shoes for the little ones."
+	icon_state = "child_black"
+	can_be_worn_by_child = TRUE
+	child_exclusive = TRUE
