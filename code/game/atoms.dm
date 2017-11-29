@@ -406,7 +406,7 @@ its easier to just keep the beam vertical.
 			return
 
 	//Nice, we can jump, let's do that then.
-	playsound(user, "sound/effects/jump_[user.gender == MALE ? "male" : "female"].ogg", 25)
+//	playsound(user, "sound/effects/jump_[user.gender == MALE ? "male" : "female"].ogg", 25)
 	playsound(user, user.gender == MALE ? 'sound/effects/jump_male.ogg' : 'sound/effects/jump_female.ogg', 25)
 	user.visible_message("[user] jumps.")
 	user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
