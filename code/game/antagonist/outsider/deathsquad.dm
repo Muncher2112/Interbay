@@ -47,7 +47,11 @@ var/datum/antagonist/deathsquad/deathsquad
 		player.equip_to_slot_or_del(new /obj/item/weapon/plastique(player), slot_l_store)
 	player.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/revolver/mateba(player), slot_belt)
 	player.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(player), slot_r_hand)
-	player.equip_to_slot_or_del(new /obj/item/weapon/rig/ert/assetprotection(player), slot_back)
+
+	//fix me! deathsquad need a suit!
+	player.equip_to_slot_or_del(new /obj/item/weapon/tank/jetpack/oxygen(player), slot_back)
+	player.equip_to_slot_or_del(new /obj/item/clothing/suit/space/void/merc/prepared(player), slot_wear_suit)
+
 	player.equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(player), slot_l_hand)
 	player.implant_loyalty(player)
 

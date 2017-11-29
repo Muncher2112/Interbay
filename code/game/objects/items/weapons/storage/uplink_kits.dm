@@ -147,15 +147,6 @@
 	for(var/reagent in reagents)
 		C.reagents.add_reagent(reagent, reagents[reagent] * C.max_storage_space)
 
-//Rig Electrowarfare and Voice Synthesiser kit
-/obj/item/weapon/storage/backpack/satchel/syndie_kit/ewar_voice
-	//name = "\improper Electrowarfare and Voice Synthesiser pack"
-	//desc = "Kit for confounding organic and synthetic entities alike."
-	startswith = list(
-		/obj/item/rig_module/electrowarfare_suite,
-		/obj/item/rig_module/voice,
-		)
-
 /obj/item/weapon/storage/secure/briefcase/heavysniper
 	startswith = list(
 		/obj/item/weapon/gun/projectile/heavysniper,

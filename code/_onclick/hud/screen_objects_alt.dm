@@ -256,7 +256,7 @@
 						selecting = BP_L_ARM
 					else
 						return 1
-			
+
 			if(46 to 48)//Neck
 				switch(icon_x)
 					if(12 to 20)
@@ -355,7 +355,7 @@
 
 		if("Reset Machine")
 			usr.unset_machine()
-		
+
 		if("health")
 			if(ishuman(usr))
 				var/mob/living/carbon/human/X = usr
@@ -401,14 +401,6 @@
 							else
 								nicename = list("right hand", "left hand", "back")
 								tankcheck = list(C.r_hand, C.l_hand, C.back)
-
-							// Rigs are a fucking pain since they keep an air tank in nullspace.
-							if(istype(C.back,/obj/item/weapon/rig))
-								var/obj/item/weapon/rig/rig = C.back
-								if(rig.air_supply)
-									from = "in"
-									nicename |= "hardsuit"
-									tankcheck |= rig.air_supply
 
 							for(var/i=1, i<tankcheck.len+1, ++i)
 								if(istype(tankcheck[i], /obj/item/weapon/tank))
@@ -526,7 +518,7 @@
 				usr.fixeye.icon_state = "fixeye_on"
 			else
 				usr.fixeye.icon_state = "fixeye"
-		
+
 		if("mood")
 			var/mob/living/carbon/C = usr
 			C.print_happiness(C)

@@ -3,13 +3,13 @@
 	if(name != GetVoice())
 		if(get_id_name("Unknown") != GetVoice() && get_id_name("Unknown") != "Unknown")
 			alt_name = "(as [get_id_name("Unknown")])"
-		
+
 		else if(get_id_name("Unknown") == "Unknown")
 			name = get_id_name("Unknown")
-		
+
 		else
 			name = get_id_name("Unknown")
-		
+
 	message = sanitize(message)
 	..(message, alt_name = alt_name, speaking = language)
 
@@ -76,18 +76,14 @@
 /mob/living/carbon/human/GetVoice()
 
 	var/voice_sub
-	if(istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
-		// todo: fix this shit
-		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
-			voice_sub = rig.speech.voice_holder.voice
-	else
-		for(var/obj/item/gear in list(wear_mask,wear_suit,head))
-			if(!gear)
-				continue
-			var/obj/item/voice_changer/changer = locate() in gear
-			if(changer && changer.active && changer.voice)
-				voice_sub = changer.voice
+
+	for(var/obj/item/gear in list(wear_mask,wear_suit,head))
+		if(!gear)
+			continue
+		var/obj/item/voice_changer/changer = locate() in gear
+		if(changer && changer.active && changer.voice)
+			voice_sub = changer.voice
+
 	if(voice_sub)
 		return voice_sub
 	if(mind && mind.changeling && mind.changeling.mimicing)

@@ -145,10 +145,3 @@
 		var/rendered = "<span class='message'>[msg]</span>"
 		carded_ai.show_message(rendered, type)
 	..()
-
-/obj/item/weapon/aicard/relaymove(var/mob/user, var/direction)
-	if(user.stat || user.stunned)
-		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
-	if(istype(rig))
-		rig.forced_move(direction, user)

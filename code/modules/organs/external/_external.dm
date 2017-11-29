@@ -732,7 +732,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					"<span class='moderate'><big><b>Your [src.name] goes flying off!</b></big></span>",\
 					"<span class='danger'>You hear a terrible sound of [gore_sound].</span>")
 				playsound(owner, severed_sound, 100, 0)
-			
+
 			else
 				playsound(owner, 'sound/effects/gore/severed.ogg', 100, 0)
 
@@ -941,13 +941,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// Fractures have a chance of getting you out of restraints
 	if (prob(25))
 		release_restraints()
-
-	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
-	// TODO: consider moving this to a suit proc or process() or something during
-	// hardsuit rewrite.
-	if(!splinted && owner && istype(owner.wear_suit, /obj/item/clothing/suit/space/rig))
-		var/obj/item/clothing/suit/space/rig/suit = owner.wear_suit
-		suit.handle_fracture(owner, src)
 
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)

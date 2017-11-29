@@ -53,10 +53,6 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	// This is not an ideal place for this but it will do for now.
-	if(wearing_rig && wearing_rig.offline)
-		wearing_rig = null
-
 	..()
 
 	if(life_tick%30==15)
@@ -282,14 +278,7 @@
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
-
-		var/obj/item/weapon/tank/rig_supply
-		if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
-			if(!rig.offline && (rig.air_supply && internal == rig.air_supply))
-				rig_supply = rig.air_supply
-
-		if (!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT)))))
+		if (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT))))
 			internal = null
 
 		if(internal)

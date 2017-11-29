@@ -583,11 +583,6 @@ meteor_act
 	// Tox and oxy don't matter to suits.
 	if(damtype != BURN && damtype != BRUTE) return
 
-	// The rig might soak this hit, if we're wearing one.
-	if(back && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
-		rig.take_hit(damage)
-
 	// We may also be taking a suit breach.
 	if(!wear_suit) return
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
@@ -690,12 +685,12 @@ meteor_act
 //We crit failed, let's see what happens to us.
 /mob/living/proc/resolve_critical_miss(var/obj/item/I)
 	var/result = rand(1,3)
-	
+
 	if(!I)
 		visible_message("<span class='danger'>[src] punches themself in the face!</span>")
 		attack_hand(src)
 		return
-	
+
 	switch(result)
 		if(1)//They drop their weapon.
 			visible_message("<span class='danger'><big>CRITICAL FAILURE! \The [I] flies out of [src]'s hand!</big></span>")

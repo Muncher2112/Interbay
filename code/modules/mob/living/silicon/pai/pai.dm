@@ -259,7 +259,7 @@
 	last_special = world.time + 100
 
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
-	if(istype(card.loc,/obj/item/rig_module) || istype(card.loc,/obj/item/integrated_circuit/manipulation/ai/))
+	if(istype(card.loc,/obj/item/integrated_circuit/manipulation/ai/))
 		to_chat(src, "There is no room to unfold inside \the [card.loc]. You're good and stuck.")
 		return 0
 	else if(istype(card.loc,/mob))
@@ -338,16 +338,9 @@
 	set name = "Rest"
 	set category = "IC"
 
-	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
-		resting = 0
-		var/obj/item/weapon/rig/rig = src.get_rig()
-		if(istype(rig))
-			rig.force_rest(src)
-	else
-		resting = !resting
-		icon_state = resting ? "[chassis]_rest" : "[chassis]"
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	resting = !resting
+	icon_state = resting ? "[chassis]_rest" : "[chassis]"
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting
 

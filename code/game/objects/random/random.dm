@@ -974,7 +974,6 @@ something, make sure it's not in one of the other lists.*/
 					prob(10);/obj/random/projectile,\
 					prob(10);/obj/random/voidhelmet,\
 					prob(10);/obj/random/voidsuit,\
-					prob(10);/obj/random/hardsuit,\
 					prob(100);/obj/random/maintenance/clean,\
 					prob(7);/obj/item/clothing/mask/muzzle,\
 					prob(8);/obj/item/clothing/mask/gas/vox,\
@@ -1057,20 +1056,6 @@ something, make sure it's not in one of the other lists.*/
 					/obj/item/clothing/suit/space/void/merc,\
 					/obj/item/clothing/suit/space/void/medical,\
 					/obj/item/clothing/suit/space/void/medical/alt)
-
-/obj/random/hardsuit
-	name = "Random Hardsuit"
-	desc = "This is a random hardsuit control module."
-	icon = 'icons/obj/rig_modules.dmi'
-	icon_state = "generic"
-	item_to_spawn()
-		return pick(/obj/item/weapon/rig/industrial,\
-					/obj/item/weapon/rig/eva,\
-					/obj/item/weapon/rig/light/hacker,\
-					/obj/item/weapon/rig/light/stealth,\
-					/obj/item/weapon/rig/light,\
-					/obj/item/weapon/rig/unathi,\
-					/obj/item/weapon/rig/unathi/fancy)
 
 /*
 	Selects one spawn point out of a group of points with the same ID and asks it to generate its items

@@ -92,12 +92,6 @@
 		if(potato && potato.cell)
 			stat("Battery charge:", "[potato.get_charge()]/[potato.cell.maxcharge]")
 
-		if(back && istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/suit = back
-			var/cell_status = "ERROR"
-			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-			stat(null, "Suit charge: [cell_status]")
-
 		if(mind)
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
@@ -1666,13 +1660,7 @@
 
 
 /mob/living/carbon/human/can_stand_overridden()
-	if(wearing_rig && wearing_rig.ai_can_move_suit(check_for_ai = 1))
-		// Actually missing a leg will screw you up. Everything else can be compensated for.
-		for(var/limbcheck in list(BP_L_LEG,BP_R_LEG))
-			var/obj/item/organ/affecting = get_organ(limbcheck)
-			if(!affecting)
-				return 0
-		return 1
+	//formerly used by rigsuits to compensate for missing organs.
 	return 0
 
 /mob/living/carbon/human/verb/pull_punches()
