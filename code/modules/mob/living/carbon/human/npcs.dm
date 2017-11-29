@@ -22,7 +22,9 @@
 		var/obj/item/II = get_inactive_hand()
 
 		if(target.stat != CONSCIOUS && prob(70) || target.is_npc)
+			target = null
 			return
+
 		var/direct = get_dir(src, target)
 		if ( (direct - 1) & direct)
 			var/turf/Step_1
@@ -105,11 +107,14 @@
 		if (stat == 2)
 			return 0
 
-		if(weakened || paralysis || handcuffed || !canmove)
+		if(weakened || paralysis || handcuffed)
 			return 1
 
 		if(resting)
 			mob_rest()
+			return 1		
+
+		if(!canmove)
 			return 1
 
 		setStaminaLoss(0)//So they don't wear themselves out.
@@ -145,7 +150,11 @@
 					target = C
 
 		// if we have found a target
-		if(target && !target.is_npc)
+		if(target)
+			if(target.is_npc)// If the target is an NPC then search again.
+				target = null
+				return
+			
 			// change the target if there is another human that is closer
 			for (var/mob/living/carbon/human/C in orange(2,src.loc))
 				if (C.stat == 2 || !can_see(src,C,viewrange))

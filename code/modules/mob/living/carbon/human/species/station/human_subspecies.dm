@@ -37,7 +37,7 @@
 	of bodies is a very real and rather ethically grey industry. Vat-grown humans tend to be paler than \
 	baseline, with no appendix and fewer inherited genetic disabilities, but a weakened metabolism."
 	icobase = 'icons/mob/human_races/subspecies/r_vatgrown.dmi'
-
+	flags = NO_PAIN
 	toxins_mod =   1.1
 	has_organ = list(
 		BP_HEART =    /obj/item/organ/internal/heart,
