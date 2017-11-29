@@ -96,6 +96,7 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/living/proc/handle_speech_problems(var/list/message_data)
 	var/message = rhtml_decode(message_data[1])
 	var/verb = message_data[2]
+	var/ending = copytext(message, length(message))
 
 	. = 0
 
@@ -118,6 +119,11 @@ proc/get_radio_key_from_channel(var/channel)
 	if(tongueless)
 		message = tongueless(message)
 		verb = pick("moans", "screeches")
+		. = 1
+
+	if(ending == "!")
+		message = capitalize(message)
+		message = "<b>[message]</b>"
 		. = 1
 
 	message_data[1] = russian_to_cp1251(message)
