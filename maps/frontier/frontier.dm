@@ -10,6 +10,7 @@
 	#include "../shared/job/jobs.dm"
 	#include "../shared/datums/uniforms.dm"
 	#include "../shared/items/cards_ids.dm"
+	#include "../shared/items/clothing.dm"
 	#include "frontier_gamemodes.dm"
 	#include "frontier_presets.dm"
 	#include "frontier_shuttles.dm"
