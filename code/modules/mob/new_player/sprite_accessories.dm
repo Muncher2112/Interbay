@@ -319,7 +319,7 @@
 
 /datum/sprite_accessory/hair/kagami
 	name = "Pigtails"
-	icon_state = "hair_kagami"
+	icon_state = "hair_pigtails"
 	gender = FEMALE
 
 /datum/sprite_accessory/hair/himecut
@@ -601,6 +601,19 @@
 	icon_state = "hair_manbun"
 	gender = MALE
 
+/datum/sprite_accessory/hair/unkempt
+	name = "Unkempt"
+	icon_state = "hair_unkempt"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/modern_woman
+	name = "Modern Woman"
+	icon_state = "hair_modernw"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/torpedo
+	name = "Torpedo"
+	icon_state = "hair_torpedo"
 
 /*
 ///////////////////////////////////
