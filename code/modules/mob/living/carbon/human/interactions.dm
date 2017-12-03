@@ -154,6 +154,7 @@
 	var/multiorgasms = 0
 	var/lastmoan
 	var/mutilated_genitals = 0 //Whether or not they can do the fug.
+	var/virgin = FALSE //:mistake:
 
 /mob/living/carbon/human/proc/cum(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole = "floor")
 	var/message = ""
@@ -310,6 +311,10 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				message = pick(" shoves their dick into [P]'s pussy.")
 				H.lastfucked = P
 				H.lfhole = hole
+			
+			if(P.virgin)
+				P.virgin = FALSE
+				H.visible_message("<font color=purple><B>[H] pop's [P]'s cherry.</B></font>")
 
 			if (prob(5) && P.stat != DEAD)
 				H.visible_message("<font color=purple><B>[H] [message]</B></font>")
@@ -412,6 +417,9 @@ mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/c
 				P.lust += H.potenzia * 2
 			else
 				H.visible_message("<font color=purple>[H] [message].</font>")
+			if(H.virgin)
+				H.virgin = FALSE
+				H.visible_message("<font color=purple><B>[P] pop's [H]'s cherry.</B></font>")
 			if (istype(P.loc, /obj/structure/closet))
 				P.visible_message("<font color=purple>[H] [message].</font>")
 				playsound(P.loc.loc, 'sound/effects/clang.ogg', 50, 0, 0)

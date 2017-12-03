@@ -57,7 +57,7 @@
 	msg += "<br>"
 
 	if (isChild())
-		msg += "[T.He] [T.is] a child.\n"
+		msg += "<b>[T.He] [T.is] a child.</b>\n"
 
 	if((!skipface || wear_id) && src != user)
 		var/mob/living/carbon/human/H = user
@@ -353,6 +353,10 @@
 
 	if(is_nude() && (potenzia > -1) && gender == MALE && species.genitals)//Interactions
 		msg += "<B>Penis size: [potenzia]cm.</B>\n"
+
+	if(is_nude() && gender == FEMALE && species.genitals)
+		if(virgin)
+			msg += "<b>Their cherry is intact!</b>\n"
 
 	if(is_nude() && mutilated_genitals)
 		msg += "<span class='warning'><B>THEIR GROIN IS DESTROYED!</B></span>\n"

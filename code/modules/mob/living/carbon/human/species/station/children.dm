@@ -22,6 +22,7 @@
 	spawn (2)
 		H.potenzia = max(1, H.potenzia - 5)
 	H.update_eyes()	//hacky fix, i don't care and i'll never ever care
+	H.virgin = TRUE
 	return ..()
 
 /decl/hierarchy/outfit/job/cadet
