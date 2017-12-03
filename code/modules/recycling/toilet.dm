@@ -16,13 +16,13 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/machinery/disposal/attack_ai(mob/user as mob)
+/obj/machinery/disposal/toilet/attack_ai(mob/user as mob)
 	return
 
-/obj/machinery/disposal/interact(mob/user, var/ai=0)
+/obj/machinery/disposal/toilet/interact(mob/user, var/ai=0)
 	return
 
-/obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+/obj/machinery/disposal/toilet/MouseDrop_T(mob/target, mob/user)
 	//No climbing into toilets.
 	return
 
@@ -120,18 +120,20 @@
 
 	//deconstruction part 1 (required because toilets don't have a control panel)
 	if(istype(I, /obj/item/weapon/screwdriver))
-		if(mode==1) // It's off but still not unscrewed
+		if(mode >= DISPOSAL_CHARGING) // It's on
 			if(contents.len > 0)
 				to_chat(user, "You start emptying the content of \the [src]... gross.")
 				if(do_after(user,20, src))
 					eject()
+				else
+					return
 
-			mode=-1 // Set it to doubleoff l0l
+			mode = DISPOSAL_DISCONNECTED
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, "You remove the screws around the power connection.")
 			return
-		else if(mode==-1)
-			mode=1
+		else if(mode == DISPOSAL_DISCONNECTED)
+			mode = DISPOSAL_CHARGING
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 			return
@@ -140,7 +142,7 @@
 	if(istype(G))
 		return	//no inserting mob into this
 
-	if(mode==-1) //no inserting things into an unpowered toilet (because deconstruction)
+	if(mode == DISPOSAL_DISCONNECTED) //no inserting things into a disconnected toilet (because it is being deconstructed)
 		to_chat(user, "\The [src]'s power connection is unscrewed.")
 		return
 
@@ -154,7 +156,7 @@
 	return
 
 /obj/machinery/disposal/toilet/CanInsertItem(var/mob/living/user=null)
-	if(mode == -1)
+	if(mode == DISPOSAL_DISCONNECTED)
 		if(user)
 			to_chat(user, "\The [src] overflows!")
 		return 0
