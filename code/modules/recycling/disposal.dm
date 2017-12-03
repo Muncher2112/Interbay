@@ -9,6 +9,11 @@
 #define PRESSURE_TANK_VOLUME 150	//L
 #define PUMP_MAX_FLOW_RATE 90		//L/s - 4 m/s using a 15 cm by 15 cm inlet
 
+#define DISPOSAL_DISCONNECTED -1
+#define DISPOSAL_OFF 0
+#define DISPOSAL_CHARGING 1
+#define DISPOSAL_CHARGED 2
+
 /obj/machinery/disposal
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
@@ -18,7 +23,7 @@
 	density = 1
 	var/ptype = DISPOSAL_BIN //used for disposal construction
 	var/datum/gas_mixture/air_contents	// internal reservoir
-	var/mode = 1	// item mode 0=off 1=charging 2=charged
+	var/mode = DISPOSAL_CHARGING
 	var/flush = 0	// true if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
 	var/flushing = 0	// true if flushing in progress
@@ -36,7 +41,7 @@
 	spawn(5)
 		trunk = locate() in src.loc
 		if(!trunk)
-			mode = 0
+			mode = DISPOSAL_OFF
 			flush = 0
 		else
 			trunk.linked = src	// link the pipe trunk to self
@@ -59,22 +64,22 @@
 		return
 
 	src.add_fingerprint(user)
-	if(mode<=0) // It's off
+	if(mode <= DISPOSAL_OFF)
 		if(istype(I, /obj/item/weapon/screwdriver))
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
-			if(mode==0) // It's off but still not unscrewed
-				mode=-1 // Set it to doubleoff l0l
+			if(mode == DISPOSAL_OFF) // It's off but still not unscrewed
+				mode = DISPOSAL_DISCONNECTED
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You remove the screws around the power connection.")
 				return
-			else if(mode==-1)
-				mode=0
+			else if(mode == DISPOSAL_DISCONNECTED)
+				mode = DISPOSAL_OFF
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I,/obj/item/weapon/weldingtool) && mode==-1)
+		else if(istype(I,/obj/item/weapon/weldingtool) && mode == DISPOSAL_DISCONNECTED)
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -116,14 +121,14 @@
 		if(ismob(G.affecting))
 			var/mob/GM = G.affecting
 			for (var/mob/V in viewers(usr))
-				V.show_message("[usr] starts putting [GM.name] into the disposal.", 3)
+				V.show_message("[usr] starts putting [GM.name] into \the [src].", 3)
 			if(do_after(usr, 20, src))
 				if (GM.client)
 					GM.client.perspective = EYE_PERSPECTIVE
 					GM.client.eye = src
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
-					C.show_message("<span class='warning'>[GM.name] has been placed in the [src] by [user].</span>", 3)
+					C.show_message("<span class='warning'>[GM.name] has been placed in \the [src] by [user].</span>", 3)
 				qdel(G)
 				admin_attack_log(usr, GM, "Placed the victim into \the [src].", "Was placed into \the [src] by the attacker.", "stuffed \the [src] with")
 		return
@@ -248,9 +253,9 @@
 
 		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
-	if(mode <= 0)
+	if(mode <= DISPOSAL_OFF)
 		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
-	else if(mode == 1)
+	else if(mode == DISPOSAL_CHARGING)
 		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
 	else
 		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
@@ -271,7 +276,7 @@
 		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
 
-	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
+	if(mode == DISPOSAL_DISCONNECTED && !href_list["eject"]) // only allow ejecting if mode is DISPOSAL_DISCONNECTED
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
 	if(..())
@@ -292,9 +297,9 @@
 
 		if(href_list["pump"])
 			if(text2num(href_list["pump"]))
-				mode = 1
+				mode = DISPOSAL_CHARGING
 			else
-				mode = 0
+				mode = DISPOSAL_OFF
 			update_icon()
 
 		if(!isAI(usr))
@@ -321,7 +326,7 @@
 /obj/machinery/disposal/update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)
-		mode = 0
+		mode = DISPOSAL_OFF
 		flush = 0
 		return
 
@@ -330,7 +335,7 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 
 	// only handle is shown if no power
-	if(stat & NOPOWER || mode == -1)
+	if(stat & NOPOWER || mode == DISPOSAL_DISCONNECTED)
 		return
 
 	// 	check for items in disposal - occupied light
@@ -338,9 +343,9 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	// charging and ready light
-	if(mode == 1)
+	if(mode == DISPOSAL_CHARGING)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-charge")
-	else if(mode == 2)
+	else if(mode == DISPOSAL_CHARGED)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-ready")
 
 // timed process
@@ -353,7 +358,7 @@
 	flush_count++
 	if( flush_count >= flush_every_ticks )
 		if( contents.len )
-			if(mode == 2)
+			if(mode == DISPOSAL_CHARGED)
 				spawn(0)
 					feedback_inc("disposal_auto_flush",1)
 					flush()
@@ -364,10 +369,10 @@
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()
 
-	if(mode != 1) //if off or ready, no need to charge
+	if(mode != DISPOSAL_CHARGING) //if off or ready, no need to charge
 		update_use_power(1)
 	else if(air_contents.return_pressure() >= SEND_PRESSURE)
-		mode = 2 //if full enough, switch to ready mode
+		mode = DISPOSAL_CHARGED //if full enough, switch to ready mode
 		update_icon()
 	else
 		src.pressurize() //otherwise charge
@@ -422,8 +427,8 @@
 	flushing = 0
 	// now reset disposal state
 	flush = 0
-	if(mode == 2)	// if was ready,
-		mode = 1	// switch to charging
+	if(mode == DISPOSAL_CHARGED)	// if was ready,
+		mode = DISPOSAL_CHARGING	// switch to charging
 	update_icon()
 	return
 
@@ -1588,7 +1593,7 @@
 	anchored = 1
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
-	var/mode = 0
+	var/mode = DISPOSAL_OFF
 	flags = OBJ_CLIMBABLE
 
 	New()
@@ -1628,17 +1633,17 @@
 			return
 		src.add_fingerprint(user)
 		if(istype(I, /obj/item/weapon/screwdriver))
-			if(mode==0)
-				mode=1
+			if(mode == DISPOSAL_OFF)
+				mode = DISPOSAL_CHARGING
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You remove the screws around the power connection.")
 				return
-			else if(mode==1)
-				mode=0
+			else if(mode == DISPOSAL_CHARGING)
+				mode = DISPOSAL_OFF
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I,/obj/item/weapon/weldingtool) && mode==1)
+		else if(istype(I,/obj/item/weapon/weldingtool) && mode == DISPOSAL_CHARGING)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
