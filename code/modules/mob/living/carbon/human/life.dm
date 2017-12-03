@@ -690,7 +690,6 @@
 			
 			adjustHalLoss(-100)
 			if(!stat)
-				next_attack_time = world.time + (weapon_speed_delay)
 				agony_scream()
 				shake_camera(src, 20, 3)
 				src.visible_message("<span class='warning'><B>[src]</B> gives into the pain!</span>")
