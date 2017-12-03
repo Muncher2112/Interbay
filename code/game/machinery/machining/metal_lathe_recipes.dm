@@ -87,9 +87,12 @@
 	path = /obj/item/clothing/ring/material
 	category = "General"
 
-/datum/metal_lathe/recipe/flashlight
-	name = "Fork"
-	path = /obj/item/device/flashlight
+/datum/metal_lathe/recipe/knife_handle
+	name = "Knife Handle"
+	path = /obj/item/weapon/material/butterflyhandle
 	category = "General"
 
-/obj/item/weapon/material/kitchen/utensil/fork
+/datum/metal_lathe/recipe/knife_blade
+	name = "Knife Blade"
+	path = /obj/item/weapon/material/butterflyblade
+	category = "General"

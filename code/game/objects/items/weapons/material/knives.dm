@@ -1,13 +1,13 @@
 /obj/item/weapon/material/butterfly
 	name = "butterfly knife"
-	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	desc = "A basic metal blade concealed in a lightweight metal grip. Small enough when folded to fit in a pocket."
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
 	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("patted", "tapped")
-	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
+	force_divisor = 0.20 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	applies_material_colour = FALSE
 
