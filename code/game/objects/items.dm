@@ -84,10 +84,17 @@
 	var/next_attack_time = 0
 	var/weapon_speed_delay = 15
 	var/drop_sound = 'sound/items/device_drop.ogg'
+	var/swing_sound = null
+	var/drawsound = null
 
 
 /obj/item/New()
 	..()
+	if(!swing_sound)
+		if(sharp || edge)
+			swing_sound = "swing_sound"
+		else
+			swing_sound = "blunt_swing"
 	if(randpixel && (!pixel_x && !pixel_y) && isturf(loc)) //hopefully this will prevent us from messing with mapper-set pixel_x/y
 		pixel_x = rand(-randpixel, randpixel)
 		pixel_y = rand(-randpixel, randpixel)
@@ -739,3 +746,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	..()
 	if(drop_sound)
 		playsound(src, drop_sound, 50, 0)
+
+
+/obj/item/proc/drawsound(mob/user)
+	if(drawsound)
+		user.visible_message("<span class = 'warning'><b>[user] grabs a weapon!</b></span>")
+		playsound(user, drawsound, 50, 1)

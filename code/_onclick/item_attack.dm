@@ -83,11 +83,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	/////////////////////////
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.do_attack_animation(M)
+	//user.do_attack_animation(M)
 
 	if(force)
 		user.adjustStaminaLoss(w_class + 3)
-
+	if(swing_sound)
+		playsound(M, swing_sound, 50, 1, -1)
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone)

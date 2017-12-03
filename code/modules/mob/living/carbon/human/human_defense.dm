@@ -215,17 +215,15 @@ meteor_act
 
 	if(!hit_zone)
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
 	if(user.skillcheck(user.melee_skill, 60, 0) == CRIT_FAILURE)
 		user.resolve_critical_miss(I)
 		return null
 
-	if(!user.combat_mode)
-		visible_message("<span class='danger'>[user] botches the attack on [src]!</span>")
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
-		return null
+	//if(!user.skillcheck(user.melee_skill, 60, 0) || !user.combat_mode)
+	//	visible_message("<span class='danger'>[user] botches the attack on [src]!</span>")
+	//	return null
 
 
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
@@ -234,7 +232,6 @@ meteor_act
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return null
 
 	var/blocked = run_armor_check(hit_zone, "melee", I.armor_penetration, "Your armor has protected your [affecting.name].", "Your armor has softened the blow to your [affecting.name].")
@@ -727,4 +724,10 @@ meteor_act
 			apply_effect(20, PARALYZE)
 			return
 
+/*
+//Add screaming here.
+/mob/living/carbon/human/IgniteMob()
+	..()
+	if(!stat &&)
 
+*/
