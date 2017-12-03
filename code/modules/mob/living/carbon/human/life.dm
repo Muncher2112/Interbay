@@ -679,10 +679,22 @@
 				qdel(a)
 
 		if(getHalLoss() >= (species.total_health - 100))
+			if(getHalLoss() >= (species.total_health - 50))
+				
+					//to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
+					//("<B>[src]</B> [species.halloss_message].")
+				Paralyse(10)
+			else
+				Weaken(1)
+				Stun(5)
+			
+			adjustHalLoss(-100)
 			if(!stat)
-				//to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
-				src.visible_message("<span class='warning'><B>[src]</B> gives into the pain!</span>")//("<B>[src]</B> [species.halloss_message].")
-			Paralyse(10)
+				next_attack_time = world.time + (weapon_speed_delay)
+				agony_scream()
+				shake_camera(src, 20, 3)
+				src.visible_message("<span class='warning'><B>[src]</B> gives into the pain!</span>")
+
 
 		if(paralysis || sleeping)
 			blinded = 1
