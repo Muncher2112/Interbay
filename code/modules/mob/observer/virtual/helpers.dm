@@ -46,13 +46,18 @@
 // Thus, unlike viewing hearing is communicative. I.e. if Mob A can hear Mob B then Mob B can also hear Mob A.
 
 // Gets the hosts of all the virtual mobs that can hear the given movable atom (or rather, it's virtual mob or turf in that existence order)
-/proc/all_hearers(var/atom/movable/heard_vmob, var/range = world.view)
+/proc/all_hearers(var/atom/movable/heard_vmob, var/range = world.view, var/ignore_vis = FALSE)
 	. = list()
 
 	ACQUIRE_VIRTUAL_OR_TURF(heard_vmob)
-	for(var/mob/observer/virtual/v_mob in hearers(range, heard_vmob))
-		if(v_mob.abilities & VIRTUAL_ABILITY_HEAR)
-			. |= v_mob.host
+	if(ignore_vis)
+		for(var/mob/observer/virtual/v_mob in range(range, heard_vmob))
+			if(v_mob.abilities & VIRTUAL_ABILITY_HEAR)
+				. |= v_mob.host
+	else
+		for(var/mob/observer/virtual/v_mob in hearers(range, heard_vmob))
+			if(v_mob.abilities & VIRTUAL_ABILITY_HEAR)
+				. |= v_mob.host
 
 /***************
 * View Helpers *
