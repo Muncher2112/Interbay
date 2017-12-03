@@ -364,9 +364,9 @@
 
 
 	mymob.zone_sel = new /obj/screen/zone_sel( null )
-	mymob.zone_sel.icon = 'icons/mob/puppet.dmi'
+	mymob.zone_sel.icon = 'icons/mob/puppet_new.dmi'//'icons/mob/puppet.dmi'
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel_new.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.overlays += image('icons/mob/zone_sel_newer.dmi', "[mymob.zone_sel.selecting]")
 	hud_elements |= mymob.zone_sel
 
 	/*
