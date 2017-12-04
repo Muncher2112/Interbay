@@ -10,7 +10,6 @@
 	..()
 	var/mob/living/carbon/C = hit_atom
 	C.Weaken(10)
-	world << "Bola throw impact"
 
 /datum/crafting_recipe/bola
 	name = "Bola"
