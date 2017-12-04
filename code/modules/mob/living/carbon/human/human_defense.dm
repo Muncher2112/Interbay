@@ -241,7 +241,7 @@ meteor_act
 		visible_message("<span class='danger'>[user] [I.get_attack_name()] [src]'s [affecting.name] with the [I], but it does no damage!")
 		return null
 
-	if(hit_zone == (BP_CHEST || BP_MOUTH || BP_THROAT || BP_HEAD))//If we're lying and we're trying to aim high, we won't be able to hit.
+	if(hit_zone == BP_CHEST || hit_zone == BP_MOUTH || hit_zone == BP_THROAT || hit_zone == BP_HEAD)//If we're lying and we're trying to aim high, we won't be able to hit.
 		if(user.lying && !src.lying)
 			to_chat(user, "<span class='notice'><b>I can't reach their [affecting.name]!</span></b>")
 			return null
@@ -313,10 +313,9 @@ meteor_act
 			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
 	
 	//Next tendon, which disables the limb, but does not remove it, making it easier to fix, and less lethal, than losing it.
-	else if(I.sharp && (I.sharpness * 2) && !(affecting.status & ORGAN_TENDON_CUT))//Yes this is the same exactly probability again. But I'm running it seperate because I don't want the two to be exclusive.
-		if(affecting.has_tendon)
-			affecting.sever_tendon()
-			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.tendon_name] tendon!</span>")
+	else if(I.sharp && (I.sharpness * 2) && !(affecting.status & ORGAN_TENDON_CUT) && affecting.has_tendon)//Yes this is the same exactly probability again. But I'm running it seperate because I don't want the two to be exclusive.
+		affecting.sever_tendon()
+		src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.tendon_name] tendon!</span>")
 
 	//Finally if we pass all that, we cut the limb off. This should reduce the number of one hit sword kills.
 	else if(I.sharp && I.edge)
