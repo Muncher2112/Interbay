@@ -12,7 +12,7 @@
 
 	var/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
-	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 100)
+	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
 	var/show_category = "All"
 
 	var/disabled = 0
@@ -149,22 +149,22 @@
 			to_chat(user, "<span class='notice'>\The [src] is full. Remove material from the lathe in order to insert more.</span>")
 			continue
 
-		total_material = eating.matter[material]
+		total_material = (eating.matter[material]/20)
 
 		//If it's a stack, we eat multiple sheets.
 		if(istype(eating,/obj/item/stack))
 			var/obj/item/stack/stack = eating
 			//Stacks only count as one metal.  This is to reduce numbers while
-			total_material = stack.get_amount()
+			total_material += (total_material) * stack.get_amount()
 		if(stored_material[material] + total_material > storage_capacity[material])
 			total_material = storage_capacity[material] - stored_material[material]
 			filltype = 1
 		else
 			filltype = 2
 
-		stored_material[material] += (2*total_material)
-		total_used += total_material //This will always be 50, meaning steel gets a horrible return rate
-		mass_per_sheet += eating.matter[material]
+		stored_material[material] += (total_material)
+		total_used += (total_material) // The old way I did this was retarded, now everything is just scaled down by 20 This means old item values still work
+		mass_per_sheet += (eating.matter[material]/20)
 
 	if(!filltype)
 		to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the lathe in order to insert more.</span>")
@@ -178,7 +178,7 @@
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
-		stack.use(max(1, round(total_used))) // Always use at least 1 to prevent infinite materials.
+		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
 		user.remove_from_mob(O)
 		qdel(O)
