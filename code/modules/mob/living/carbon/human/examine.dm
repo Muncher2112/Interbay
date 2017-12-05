@@ -65,7 +65,7 @@
 
 		msg += "[T.He] [T.is] [get_social_class()]. [classdesc]\n"
 
-
+	var/wielded = 0
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties
@@ -110,16 +110,24 @@
 			msg += "[T.He] [T.has] \icon[back] \a [back] on [T.his] back.\n"
 
 	//left hand
-	if(l_hand)
+	if(l_hand && !(l_hand.flags & ABSTRACT))
+		if(isitem(l_hand))
+			var/obj/item/I = l_hand
+			if(I.wielded)
+				wielded = 1
 		if(l_hand.blood_DNA)
-			msg += "<span class='warning'>[T.He] [T.is] holding \icon[l_hand] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [l_hand.name] in [T.his] left hand!</span>\n"
+			msg += "<span class='warning'>[T.He] [T.is] holding \icon[l_hand] [l_hand.gender==PLURAL?"some":"a"] [(l_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [l_hand.name] in [T.his] [wielded ? "hands" : "left hand"]!</span>\n"
 		else
 			msg += "[T.He] [T.is] holding \icon[l_hand] \a [l_hand] in [T.his] left hand.\n"
 
 	//right hand
-	if(r_hand)
+	if(r_hand && !(r_hand.flags & ABSTRACT))
+		if(isitem(r_hand))
+			var/obj/item/I = r_hand
+			if(I.wielded)
+				wielded = 1
 		if(r_hand.blood_DNA)
-			msg += "<span class='warning'>[T.He] [T.is] holding \icon[r_hand] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [r_hand.name] in [T.his] right hand!</span>\n"
+			msg += "<span class='warning'>[T.He] [T.is] holding \icon[r_hand] [r_hand.gender==PLURAL?"some":"a"] [(r_hand.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [r_hand.name] in [T.his] [wielded ? "hands" : "right hand"]!</span>\n"
 		else
 			msg += "[T.He] [T.is] holding \icon[r_hand] \a [r_hand] in [T.his] right hand.\n"
 

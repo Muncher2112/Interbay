@@ -93,23 +93,25 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
-
+/*
 /obj/item/weapon/gun/update_twohanding()
 	if(one_hand_penalty)
 		var/mob/living/M = loc
 		if(istype(M))
 			if(M.can_wield_item(src) && src.is_held_twohanded(M))
+			if(wielded)
 				name = "[initial(name)] (wielded)"
 			else
 				name = initial(name)
 		update_icon() // In case item_state is set somewhere else.
 	..()
-
+*/
 /obj/item/weapon/gun/update_icon()
 	if(wielded_item_state)
 		var/mob/living/M = loc
 		if(istype(M))
-			if(M.can_wield_item(src) && src.is_held_twohanded(M))
+			if(wielded)
+			//if(M.can_wield_item(src) && src.is_held_twohanded(M))
 				item_state_slots[slot_l_hand_str] = wielded_item_state
 				item_state_slots[slot_r_hand_str] = wielded_item_state
 			else
@@ -275,7 +277,7 @@
 				)
 
 	if(one_hand_penalty)
-		if(!src.is_held_twohanded(user))
+		if(!wielded)//if(!src.is_held_twohanded(user))
 			switch(one_hand_penalty)
 				if(1)
 					if(prob(50)) //don't need to tell them every single time
@@ -286,6 +288,7 @@
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
 				if(4 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
+		/*
 		else if(!user.can_wield_item(src))
 			switch(one_hand_penalty)
 				if(1)
@@ -297,7 +300,7 @@
 					to_chat(user, "<span class='warning'>You have trouble holding \the [src] steady.</span>")
 				if(4 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to hold \the [src] steady!</span>")
-
+		*/
 	if(screen_shake)
 		spawn()
 			shake_camera(user, screen_shake+1, screen_shake)

@@ -208,7 +208,7 @@
 	var/chargecost = 100 //units of charge
 	var/burn_damage_amt = 5
 
-	var/wielded = 0
+	//var/wielded = 0
 	var/cooldown = 0
 	var/busy = 0
 
@@ -223,7 +223,7 @@
 
 			make_announcement("beeps, \"Unit is re-energized.\"", "notice")
 			playsound(src, 'sound/machines/defib_ready.ogg', 50, 0)
-
+/*
 /obj/item/weapon/shockpaddles/update_twohanding()
 	var/mob/living/M = loc
 	if(istype(M) && is_held_twohanded(M))
@@ -234,7 +234,7 @@
 		name = initial(name)
 	update_icon()
 	..()
-
+*/
 /obj/item/weapon/shockpaddles/update_icon()
 	icon_state = "defibpaddles[wielded]"
 	item_state = "defibpaddles[wielded]"

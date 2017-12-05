@@ -143,6 +143,11 @@
 
 /mob/living/carbon/swap_hand()
 	src.hand = !( src.hand )
+	//var/obj/item/item_in_hand = src.get_active_hand()
+	//if(item_in_hand && item_in_hand.wielded) //this segment checks if the item in your hand is twohanded.
+	//	to_chat(usr, "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>")
+	//	return
+
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
 			hud_used.l_hand_hud_object.icon_state = "l_hand_active"

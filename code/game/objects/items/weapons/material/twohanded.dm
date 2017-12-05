@@ -18,11 +18,11 @@
  */
 /obj/item/weapon/material/twohanded
 	w_class = ITEM_SIZE_HUGE
-	var/wielded = 0
-	var/force_wielded = 0
-	var/force_unwielded
-	var/wieldsound = null
-	var/unwieldsound = null
+//	var/wielded = 0
+//	var/force_wielded = 0
+//	var/force_unwielded
+	//var/wieldsound = null
+	//var/unwieldsound = null
 	var/base_icon
 	var/base_name
 	var/unwielded_force_divisor = 0.25
@@ -78,7 +78,7 @@
 	base_icon = "fireaxe"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
-	
+
 	// 15/32 with hardness 60 (steel) and 20/42 with hardness 80 (plasteel)
 	force_divisor = 0.525
 	unwielded_force_divisor = 0.25

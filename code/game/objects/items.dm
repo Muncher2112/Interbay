@@ -86,6 +86,12 @@
 	var/drop_sound = 'sound/items/device_drop.ogg'
 	var/swing_sound = null
 	var/drawsound = null
+	var/wielded = 0
+	var/wieldsound = 'sound/weapons/thudswoosh.ogg'
+	var/unwieldsound = null
+	var/wielded_icon = null
+	var/force_unwielded = 0
+	var/force_wielded = 0
 
 
 /obj/item/New()
@@ -113,6 +119,78 @@
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+
+
+/obj/item/proc/unwield(mob/user)
+	if(!wielded || !user) 
+		return
+	wielded = 0
+	if(force_unwielded)
+		force = force_unwielded
+	else
+		force = (force / 1.5)
+	var/sf = findtext(name," (Wielded)")
+	if(sf)
+		name = copytext(name,1,sf)
+	else //something wrong
+		name = "[initial(name)]"
+	update_unwield_icon()
+	update_icon()
+	if(user)
+		user.update_inv_r_hand()
+		user.update_inv_l_hand()
+	
+	user.visible_message("<span class='warning'>[user] let's go of their other hand.")
+	if(unwieldsound)
+		playsound(loc, unwieldsound, 50, 1)
+	var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
+	if(O && istype(O))
+		O.unwield()
+	return
+
+/obj/item/proc/wield(mob/user)
+	if(wielded)
+		return
+	if(!is_held_twohanded(user))
+		return
+	if(user.get_inactive_hand())
+		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+		return
+	wielded = 1
+	if(force_wielded)
+		force = force_wielded
+	else
+		force = (force * 1.5)
+	name = "wielded [name]"
+	update_wield_icon()
+	update_icon()//Legacy
+	if(user)
+		user.update_inv_r_hand()
+		user.update_inv_l_hand()
+	user.visible_message("<span class='warning'>[user] grabs the [initial(name)] with both hands.")
+	if(wieldsound)
+		playsound(loc, wieldsound, 50, 1)
+	var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
+	O.name = "[name] - offhand"
+	O.desc = "Your second grip on the [name]"
+	user.put_in_inactive_hand(O)
+	return
+
+/obj/item/proc/update_wield_icon()
+	if(wielded && wielded_icon)
+		item_state = wielded_icon
+
+/obj/item/proc/update_unwield_icon()//That way it doesn't interupt any other special icon_states.
+	if(wielded && wielded_icon)
+		item_state = "[initial(item_state)]"
+
+//For general weapons.
+/obj/item/proc/attempt_wield(mob/user)
+	if(wielded) //Trying to unwield it
+		unwield(user)
+	else //Trying to wield it
+		wield(user)
 
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_twohanding()
@@ -143,6 +221,40 @@
 		if(istype(hand) && hand.is_usable())
 			return TRUE
 	return FALSE
+
+
+/obj/item/weapon/twohanded/offhand
+	name = "offhand"
+	icon_state = "offhand"
+	w_class = ITEM_SIZE_NO_CONTAINER
+	flags = ABSTRACT | NOBLOODY
+	//resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+/*
+/obj/item/weapon/twohanded/offhand/Destroy()
+	var/obj/item/I = user.get_active_hand()
+	if(I && I.wielded)
+		I.wielded = FALSE
+		I.update_twohanding()
+*/
+/obj/item/weapon/twohanded/offhand/unwield()
+	//if(wielded)//Only delete if we're wielded
+	wielded = FALSE
+	qdel(src)
+
+/obj/item/weapon/twohanded/offhand/wield()
+	if(wielded)//Only delete if we're wielded
+		wielded = FALSE
+		qdel(src)
+
+/obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	var/obj/item/I = user.get_active_hand()
+	var/obj/item/II = user.get_inactive_hand()
+	if(I)
+		I.unwield(user)
+	if(II)
+		II.unwield(user)
+	qdel(src)
+
 
 /obj/item/ex_act(severity)
 	switch(severity)
@@ -303,6 +415,11 @@
 		M.l_hand.update_twohanding()
 	if(M.r_hand)
 		M.r_hand.update_twohanding()
+
+	if(wielded)
+		unwield(user)
+
+
 
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(

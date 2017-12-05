@@ -477,6 +477,13 @@
 		if("drop")
 			if(usr.client)
 				usr.client.drop_item()
+		if("wield")
+			if(!ishuman(usr)) return
+			var/mob/living/carbon/human/HH = usr		
+			var/obj/item/I = HH.get_active_hand()
+			if(!I)
+				return
+			I.attempt_wield(HH)
 		if("kick")
 			if(usr.middle_click_intent == "kick")
 				usr.middle_click_intent = null

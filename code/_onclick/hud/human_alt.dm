@@ -354,6 +354,12 @@
 	mymob.surrender.screen_loc = ui_surrender
 	hud_elements |= mymob.surrender
 
+	mymob.wield_icon = new /obj/screen()
+	mymob.wield_icon.name = "wield"
+	mymob.wield_icon.icon = ui_style
+	mymob.wield_icon.icon_state = "wield"
+	mymob.wield_icon.screen_loc = ui_atk
+	hud_elements |= mymob.wield_icon
 
 	mymob.happiness_icon = new /obj/screen()
 	mymob.happiness_icon.name = "mood"
