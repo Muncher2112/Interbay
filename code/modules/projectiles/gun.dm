@@ -209,7 +209,7 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
-	var/held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
+	var/held_twohanded = wielded//(user.can_wield_item(src) && src.is_held_twohanded(user))
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
