@@ -23,7 +23,7 @@
 /datum/uplink_item/item/visible_weapons/throwing_star
 	name = "Throwing Star"
 	item_cost = 20
-	path = /obj/item/weapon/material/star/ninja
+	path = /obj/item/weapon/material/star
 
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
