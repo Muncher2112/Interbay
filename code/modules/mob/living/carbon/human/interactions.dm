@@ -226,7 +226,7 @@
 
 mob/living/carbon/human/proc/fuck(mob/living/carbon/human/H as mob, mob/living/carbon/human/P as mob, var/hole)
 	var/message = ""
-	H.adjustStaminaLoss(4)
+	H.adjustStaminaLoss(2)
 	switch(hole)
 
 		if("vaglick")
