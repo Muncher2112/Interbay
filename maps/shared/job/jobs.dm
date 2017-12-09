@@ -57,6 +57,36 @@
 						)
 
 
+/datum/map/dreyfus
+	allowed_jobs = list(
+						/datum/job/assistant,
+						/datum/job/captain,
+						/datum/job/hop,
+						/datum/job/doctor,
+						/datum/job/doctor/undertaker,
+						/datum/job/medassist,
+						/datum/job/hos,
+						/datum/job/officer,
+						/datum/job/cadet,
+						/datum/job/qm,
+						/datum/job/engineer,
+						/datum/job/jr_upkeep,
+						/datum/job/cargo_tech,
+						/datum/job/cargo_tech/machinist,
+						/datum/job/mining,
+						/datum/job/ouvrier,
+						/datum/job/chef,
+						///datum/job/chaplain,
+						/datum/job/janitor,
+						/datum/job/arbiter,
+						/datum/job/supreme_arbiter						
+						/datum/job/rd,
+						/datum/job/scientist,
+						///datum/job/raider,
+						///datum/job/raider/leader
+						)
+
+
 /datum/job/assistant
 	title = "Lackey"
 	supervisors = "Everyone"
