@@ -30,6 +30,11 @@
 	check_restraints = TRUE
 	emote_message_3p = "USER dances around happily."
 
+/decl/emote/visible/dab
+	key ="dab"
+	check_restraints = TRUE
+	emote_message_3p = "USER does a sick as fuck dab."
+
 /decl/emote/visible/roll
 	key ="roll"
 	check_restraints = TRUE
