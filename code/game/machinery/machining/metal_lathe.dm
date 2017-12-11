@@ -155,7 +155,7 @@
 		if(istype(eating,/obj/item/stack))
 			var/obj/item/stack/stack = eating
 			//Stacks only count as one metal.  This is to reduce numbers while
-			total_material += (total_material) * stack.get_amount()
+			total_material = (total_material) * stack.get_amount()
 		if(stored_material[material] + total_material > storage_capacity[material])
 			total_material = storage_capacity[material] - stored_material[material]
 			filltype = 1
@@ -178,6 +178,7 @@
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
+		world << "Using this much [(total_used/mass_per_sheet)]"
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
 		user.remove_from_mob(O)

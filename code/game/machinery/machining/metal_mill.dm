@@ -21,7 +21,6 @@
 
 
 /obj/machinery/metal_mill/New()
-
 	..()
 	//Create parts for lathe.
 

@@ -96,3 +96,18 @@
 	name = "Knife Blade"
 	path = /obj/item/weapon/material/butterflyblade
 	category = "General"
+
+/datum/metal_lathe/recipe/large_cylinder
+	name = "Large Cylinder"
+	path = /obj/item/cylinder_large
+	category = "General"
+
+/datum/metal_lathe/recipe/ammo_casing
+	name = "Ammo Casing"
+	path = /obj/item/solid_bullet_casing
+	category = "General"
+
+/datum/metal_lathe/recipe/bullet_38
+	name = "Bullet"
+	path = /obj/item/bullet_38
+	category = "General"

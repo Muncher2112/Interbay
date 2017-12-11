@@ -82,6 +82,25 @@
 	icon_state = "glass_handle"
 	matter = list("glass" = 400)
 
+/obj/item/cylinder_large
+	name = "Large Cylinder"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_LARGE
+	desc = "This is a large cylinder.  It's about the size of a canister"
+	icon_state = "cylinder_large"
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+
+	mill(var/mob/user)
+		return /obj/item/cylinder_large_hollow
+
+/obj/item/cylinder_large_hollow
+	name = "Hollowed-out Large Cylinder"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_LARGE
+	desc = "This is a large cylinder.  Been milled out."
+	icon_state = "cylinder_large_milled"
+	matter = list(DEFAULT_WALL_MATERIAL = 1000)
+
 /obj/item/cylinder
 	var/chambers = 0
 	name = "cylinder"
@@ -159,3 +178,30 @@
 
 /obj/item/weapon/gun/projectile/revolver/crafted/four_chamber
 	max_shells = 4
+
+/obj/item/solid_bullet_casing
+	name = "Solid Bullet Casing"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_SMALL
+	desc = "This is a  solid bullet casing."
+	icon_state = "solid_ammo_casing"
+	matter = list(DEFAULT_WALL_MATERIAL = 200)
+
+	mill(var/mob/user)
+		return /obj/item/bullet_casing
+
+/obj/item/bullet_casing
+	name = "Bullet Casing"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_SMALL
+	desc = "This is a bullet casing.  It doesn't have a bullet in it yet."
+	icon_state = "milled_ammo_casing"
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+
+/obj/item/bullet_38
+	name = "Bullet"
+	icon = 'icons/obj/crafting.dmi'
+	w_class = ITEM_SIZE_SMALL
+	desc = "This is a small ball of metal.  Can probably work as a bullet"
+	icon_state = ".38_bullet"
+	matter = list(DEFAULT_WALL_MATERIAL = 200)
