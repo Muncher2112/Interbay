@@ -420,6 +420,14 @@
 	worn_state = "bride_white"
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	
+/obj/item/clothing/under/maid
+	name = "maid costume"
+	desc = "Maid in China."
+	icon_state = "maid"
+	item_state = "maid"
+	worn_state = "maid"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
