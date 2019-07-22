@@ -154,6 +154,10 @@
 /atom/movable/proc/handle_fall(var/turf/landing)
 	Move(landing)
 	if(locate(/obj/structure/stairs) in landing)
+		if(isliving(src))
+			var/mob/living/L = src
+			if(L.pulling)
+				L.pulling.forceMove(landing)
 		return 1
 
 	if(istype(landing, /turf/simulated/open))
@@ -166,7 +170,6 @@
 /mob/living/carbon/human/handle_fall(var/turf/landing)
 	if(..())
 		return
-
 	if(!istype(landing, /turf/simulated/open))
 		if(statscheck(dex, 25, 0, src) && !lying)
 			to_chat(src, "<span class = 'notice'>You land softly.</span>")

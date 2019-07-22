@@ -26,7 +26,7 @@
 				icon = R.icon
 	else
 		name = "robot [initial(name)]"
-	
+
 /obj/item/robot_parts/proc/can_install(mob/user)
 	return TRUE
 
@@ -71,7 +71,7 @@
 	bp_tag = BP_CHEST
 	var/wires = 0.0
 	var/obj/item/weapon/cell/cell = null
-	
+
 /obj/item/robot_parts/chest/can_install(mob/user)
 	var/success = TRUE
 	if(!wires)
@@ -91,13 +91,13 @@
 	bp_tag = BP_HEAD
 	var/obj/item/device/flash/flash1 = null
 	var/obj/item/device/flash/flash2 = null
-	
+
 /obj/item/robot_parts/head/can_install(mob/user)
 	var/success = TRUE;
 	if(!(flash1 && flash2))
 		to_chat(user, "<span class='warning'>You need to attach a flash to it first!</span>")
-		success = FALSE:
-	return success && ..();
+		success = FALSE
+	return success && ..()
 
 /obj/item/robot_parts/robot_suit
 	name = "endoskeleton"
@@ -257,7 +257,7 @@
 		success &= can_install(user)
 		success &= head_part.can_install(user)
 		if (success)
-			
+
 			// Species selection.
 			var/species = input(user, "Select a species for the prosthetic.") as null|anything in GetCyborgSpecies()
 			if(!species)
