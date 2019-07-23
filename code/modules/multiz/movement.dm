@@ -153,6 +153,7 @@
 
 /atom/movable/proc/handle_fall(var/turf/landing)
 	Move(landing)
+	// If we are pulling something down the stairs
 	if(locate(/obj/structure/stairs) in landing)
 		if(isliving(src))
 			var/mob/living/L = src

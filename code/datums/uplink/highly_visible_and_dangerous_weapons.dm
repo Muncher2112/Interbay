@@ -6,30 +6,44 @@
 
 /datum/uplink_item/item/visible_weapons/sawnoff
 	name = "Sawnoff Shotgun"
-	item_cost = 45
+	item_cost = 35
 	path = /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
+
+/datum/uplink_item/item/visible_weapons/revolver
+	name = "Revolver"
+	item_cost = 45
+	antag_costs = list(MODE_MERCENARY = 7)
+	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
+
+/datum/uplink_item/item/visible_weapons/c45
+	name = "Vintage .45 pistol"
+	item_cost = 30
+	antag_costs = list(MODE_MERCENARY = 7)
+	path = /obj/item/weapon/gun/projectile/colt
+
+/datum/uplink_item/item/visible_weapons/old_god_sword
+	name = "Sword of the old gods TODO: Make this a thing"
+	item_cost = 45
+	antag_costs = list(MODE_MERCENARY = 7)
+	path = /obj/item/weapon/material/sword
+
+/*
+/datum/uplink_item/item/visible_weapons/throwing_star
+	name = "Throwing Star"
+	item_cost = 20
+	path = /obj/item/weapon/material/star
+
 
 /datum/uplink_item/item/visible_weapons/energy_sword
 	name = "Energy Sword"
 	item_cost = 32
 	path = /obj/item/weapon/melee/energy/sword
 
-/datum/uplink_item/item/visible_weapons/revolver
-	name = "Revolver"
-	item_cost = 56
-	antag_costs = list(MODE_MERCENARY = 7)
-	path = /obj/item/weapon/storage/backpack/satchel/syndie_kit/revolver
-
-/datum/uplink_item/item/visible_weapons/throwing_star
-	name = "Throwing Star"
-	item_cost = 20
-	path = /obj/item/weapon/material/star
-
 /datum/uplink_item/item/visible_weapons/crossbow
 	name = "Energy Crossbow"
 	item_cost = 24
 	path = /obj/item/weapon/gun/energy/crossbow
-/*
+
 /datum/uplink_item/item/visible_weapons/dartgun
 	name = "Dart Gun"
 	item_cost = 20

@@ -46,7 +46,8 @@ var/list/uplink_random_selections_
 	..()
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/revolver)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/energy_sword, 75)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/c45,50)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/old_god_sword,75)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/soap, 5, 100)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealthy_weapons/cigarette_kit)

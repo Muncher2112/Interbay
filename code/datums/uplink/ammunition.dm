@@ -7,28 +7,32 @@
 
 /datum/uplink_item/item/ammo/shotgun_shells
 	name = "Shotgun Shells box"
-	item_cost = 8
+	item_cost = 6
 	path = /obj/item/weapon/storage/box/shotgunshells
 
-/datum/uplink_item/item/ammo/shotgun_slugs
-	name = "Shotgun Slugs box"
-	item_cost = 8
-	path = /obj/item/weapon/storage/box/shotgunammo
+/datum/uplink_item/item/ammo/c45m
+	name = ".45"
+	item_cost = 4
+	path = /obj/item/ammo_magazine/c45m
 
 /datum/uplink_item/item/ammo/a357
 	name = ".357"
 	item_cost = 8
 	path = /obj/item/ammo_magazine/a357
 
+/*
+
 /datum/uplink_item/item/ammo/c38
 	name = ".38 speedloader"
 	item_cost = 8
 	path = /obj/item/ammo_magazine/c38
 
-/*
-/datum/uplink_item/item/ammo/c45m
-	name = ".45"
-	path = /obj/item/ammo_magazine/c45m
+
+/datum/uplink_item/item/ammo/shotgun_slugs
+	name = "Shotgun Slugs box"
+	item_cost = 8
+	path = /obj/item/weapon/storage/box/shotgunammo
+
 
 /datum/uplink_item/item/ammo/mc9mm
 	name = "9mm"

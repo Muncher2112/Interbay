@@ -135,7 +135,7 @@
 		ui.open()
 
 
-// Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
+// Interaction code. Gathers a list of items purchasable from the parent uplink and displays it. It also adds a lock button.
 /obj/item/device/uplink/interact(mob/user)
 	ui_interact(user)
 
@@ -238,6 +238,9 @@
 
 /obj/item/device/radio/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
+		if(!hidden_uplink.uplink_owner)
+			to_chat(user,"Hope this works")
+			hidden_uplink.uplink_owner = user.mind
 		hidden_uplink.trigger(user)
 
 /obj/item/device/multitool/uplink/New(var/loc, var/owner)
