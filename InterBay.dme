@@ -20,6 +20,7 @@
 #include "code\__datastructures\priority_queue.dm"
 #include "code\__datastructures\stack.dm"
 #include "code\__defines\_compile_options.dm"
+#include "code\__defines\_globals.dm"
 #include "code\__defines\_planes+layers.dm"
 #include "code\__defines\admin.dm"
 #include "code\__defines\appearance.dm"
