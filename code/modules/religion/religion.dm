@@ -18,3 +18,33 @@ proc/generate_random_prayer()//This generates a new one.
 	prayer += pick("Verina be praised. ", "Verina save us all. ", "Verina guide us all. ")
 	prayer += "Amen."
 	return prayer
+
+/obj/item/weapon/pen/crayon/chalk
+	name = "consecrated chalk"
+	//TODO: Make this arbitar only
+	desc = "Heretical chalk used by Old God worshipers."
+	icon_state = "crayongrey"
+	colour = "#FFFFF"
+	shadeColour = "#454545"
+	colourName = "grey"
+
+/mob/proc/make_old_god_rune(var/rune)
+	var/turf/T = get_turf(src)
+	//You need you chalk to draw runes
+	if(!istype(get_active_hand(), /obj/item/weapon/pen/crayon/chalk) && !istype(get_inactive_hand(), /obj/item/weapon/pen/crayon/chalk))
+		to_chat(src, "<span class='warning'>You can't draw old god runes without your blessed chalk!</span>")
+		return
+	var/self = "You qickly draw out the rune in your consecrated chalk."
+	var/timer = 20
+	//TODO: Make this a check tied to INT?
+	visible_message("<span class='warning'>\The [src] quickly draws on the floor and begins to whisper quietly to themselves.</span>", "<span class='notice'>[self]</span>", "You hear scratching.")
+	if(do_after(src, timer))
+		if(locate(/obj/effect/rune) in T)
+			return
+		//These variables used to just be functions that returned a hard coded value.  So don't blame me, this is actually faster.
+		var/obj/effect/rune/R = new rune(T, "#FFFFFF", "Chalk")
+		var/area/A = get_area(R)
+		log_and_message_admins("created \an [R.cultname] rune at \the [A.name] - [loc.x]-[loc.y]-[loc.z].")
+		R.add_fingerprint(src)
+		return 1
+	return 0

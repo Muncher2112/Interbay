@@ -20,20 +20,10 @@
 	item_cost = 16
 	path = /obj/item/weapon/plastique
 
-/datum/uplink_item/item/tools/emag
-	name = "Cryptographic Sequencer"
-	item_cost = 24
-	path = /obj/item/weapon/card/emag
-
 /datum/uplink_item/item/tools/flashdark
 	name = "Flashdark"
 	item_cost = 32
 	path = /obj/item/device/flashlight/flashdark
-
-/datum/uplink_item/item/tools/encryptionkey_radio
-	name = "Encrypted Radio Channel Key"
-	item_cost = 16
-	path = /obj/item/device/encryptionkey/syndicate
 
 /datum/uplink_item/item/tools/bear_trap
 	name = "Rusty bear trap"
@@ -41,6 +31,16 @@
 	path = /obj/item/weapon/beartrap
 
 /*
+/datum/uplink_item/item/tools/emag
+	name = "Cryptographic Sequencer"
+	item_cost = 24
+	path = /obj/item/weapon/card/emag
+
+/datum/uplink_item/item/tools/encryptionkey_radio
+	name = "Encrypted Radio Channel Key"
+	item_cost = 16
+	path = /obj/item/device/encryptionkey/syndicate
+
 /datum/uplink_item/item/tools/heavy_armor
 	name = "Heavy Armor Vest and Helmet"
 	item_cost = 16

@@ -556,6 +556,8 @@ var/global/datum/controller/occupations/job_master
 					to_chat(H, "<span class='danger'>Try as you might... you just can't seem to remember the prayer today. This won't look good to the Arbiters.")
 			else
 				to_chat(H, "You are a worshipper of the <b><font color='red'>[H.religion]</font>. It is not a legal religion of this land. Do not be caught by the <b>Inquisition</b>. Check your notes for who your brothers and sisters are.")
+				H.verbs += /mob/proc/blessing_rune
+				H.equip_to_storage(new /obj/item/weapon/pen/crayon/chalk)
 				if(prob(5))
 					H.mind.prayer = accepted_prayer
 					to_chat(H, "<span class='notice'>You can't believe your luck, you've managed to pick up on the selected prayer for today. It's: <b>[H.mind.prayer]</b> Remember this prayer, and Gods save you from the Arbiters.\n</span>")
