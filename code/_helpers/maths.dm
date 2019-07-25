@@ -1,12 +1,6 @@
 // Macro functions.
 #define RAND_F(LOW, HIGH) (rand()*(HIGH-LOW) + LOW)
 #define ceil(x) (-round(-(x)))
-#define EXP_DISTRIBUTION(desired_mean) ( -(1/(1/desired_mean)) * log(rand(1, 1000) * 0.001) )
-
-#define LORENTZ_DISTRIBUTION(x, s) ( s*TAN(TODEGREES(PI*(rand()-0.5))) + x )
-#define LORENTZ_CUMULATIVE_DISTRIBUTION(x, y, s) ( (1/PI)*TORADIANS(arctan((x-y)/s)) + 1/2 )
-
-#define RULE_OF_THREE(a, b, x) ((a*x)/b)
 
 // min is inclusive, max is exclusive
 /proc/Wrap(val, min, max)
@@ -135,4 +129,3 @@
 
 /proc/RoundUpToPowerOfTwo(var/val)
     return 2 ** -round(-log(2,val))
-

@@ -102,11 +102,9 @@ var/global/datum/controller/gameticker/ticker
 		to_world("<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby.")
 
 		return 0
-	to_world("Doing reset Occupations")
+
 	job_master.ResetOccupations()
-	to_world("Doing create antags")
 	src.mode.create_antagonists()
-	to_world("Doing presetup")
 	src.mode.pre_setup()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
@@ -133,10 +131,9 @@ var/global/datum/controller/gameticker/ticker
 
 	else
 		src.mode.announce()
-	to_world("Setting up economy")
+
 	setup_economy()
 	current_state = GAME_STATE_PLAYING
-	to_world("Creating characters THIS IS THE BIG STUFF")
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
