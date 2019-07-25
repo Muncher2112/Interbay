@@ -101,3 +101,12 @@
 		s.start()
 		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 		return
+
+/obj/structure/bed/chair/arbiter
+	base_icon = "throne"
+	icon_state = "throne"
+
+/obj/structure/bed/chair/arbiter/post_buckle_mob(mob/living/M)
+	M.interogation = 1
+	update_icon()
+	return ..()

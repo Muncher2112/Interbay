@@ -370,6 +370,10 @@ This function restores all organs.
 	if(blocked)
 		damage *= blocked_mult(blocked)
 
+	if(damage > 8 && src.interogation == 1)
+		if(!religion_is_legal())
+			reveal_heretics(src)
+
 	if(damage > 15)
 		make_adrenaline(round(damage/10))
 	var/datum/wound/created_wound

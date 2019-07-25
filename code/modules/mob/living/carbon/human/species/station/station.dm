@@ -20,12 +20,6 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 
-/datum/species/human/handle_post_spawn(var/mob/living/carbon/human/H)
-	if(prob(H.age))
-		H.virgin = FALSE
-	else 
-		H.virgin = TRUE
-
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return SPECIES_HUMAN
 

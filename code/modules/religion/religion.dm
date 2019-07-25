@@ -8,6 +8,18 @@
 	if(religion != LEGAL_RELIGION)
 		return 0
 	return 1
+//Reveals a random heretic
+/mob/living/proc/reveal_heretics(mob/living/M)
+	to_world("in reveal heretics [M]")
+	var/list/heretics = list()
+	for(var/mob/living/carbon/human/H in human_mob_list)
+		if(H.religion == ILLEGAL_RELIGION)
+			to_world("[H.name]")
+			heretics += "[H.name]"
+	var/name = pick(heretics)
+	emote("scream",1)
+	agony_scream()
+	say(NewStutter("[name] is one of them!"))
 
 //PRAYER
 var/accepted_prayer //The prayer that all those who are not heretics will have.

@@ -43,10 +43,6 @@
 
 	add_teeth()
 
-	potenzia = (prob(80) ? rand(9, 14) : pick(rand(5, 13), rand(15, 20)))//Interactions
-	if (prob(2)) // "30 cm penetrator"
-		potenzia = rand(25,30)
-	resistenza = (prob(80) ? rand(150, 300) : pick(rand(10, 100), rand(350,600)))
 	bladder = rand(0,100)
 	bowels = rand(0, 100)
 
@@ -649,7 +645,7 @@
 		var/rname = href_list["craft"]
 		var/datum/crafting_recipe/R = crafting_recipes[rname]
 		R.make(src, T)
-
+	/* These might actually be cool
 	///////Interactions!!///////
 	if(href_list["interaction"])
 
@@ -673,13 +669,6 @@
 			hashands = (temp && temp.is_usable())
 		var/mouthfree = !(H.wear_mask)//((H.head && (H.head.flags & HEADCOVERSMOUTH)) || (H.wear_mask && (H.wear_mask.flags & MASKCOVERSMOUTH)))
 		var/mouthfree_p = !(P.wear_mask)// ((P.head && (P.head.flags & HEADCOVERSMOUTH)) || (P.wear_mask && (P.wear_mask.flags & MASKCOVERSMOUTH)))
-		var/haspenis = H.has_penis()//((H.gender == MALE && H.potenzia > -1 && H.species.genitals))
-		var/haspenis_p = P.has_penis()//((P.gender == MALE && P.potenzia > -1  && P.species.genitals))
-		var/hasvagina = (H.gender == FEMALE && H.species.genitals && H.species.name != "Unathi" && H.species.name != "Stok")
-		var/hasvagina_p = (P.gender == FEMALE && P.species.genitals && P.species.name != "Unathi" && P.species.name != "Stok")
-		var/hasanus_p = P.species.anus
-		var/isnude = H.is_nude()
-		var/isnude_p = P.is_nude()
 		var/ya = "&#1103;"
 
 
@@ -702,31 +691,11 @@
 
 		else if (href_list["interaction"] == "kiss")
 			if((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc) && mouthfree && mouthfree_p)
-				if (H.lust == 0)
-					H.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
-					if (H.lust < 5)
-						H.lust = 5
-				else
-					H.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
+				H.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
+				if (istype(P.loc, /obj/structure/closet))
+					P.visible_message("<B>[H]</B> kisses <B>[P]</B>.")
 			else if (mouthfree)
 				H.visible_message("<B>[H]</B> blows <B>[P]</B> a kiss.")
-
-		else if (href_list["interaction"] == "lick")
-			if( ((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && mouthfree && mouthfree_p)
-				if (H.lust == 0)
-					H.visible_message("<B>[H]</B> [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"] <B>[P]</B> â ùåêó.")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<B>[H]</B> [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"] <B>[P]</B> â ùåêó.")
-					if (H.lust < 5)
-						H.lust = 5
-				else
-					H.visible_message("<B>[H]</B> îñîáî òùàòåëüíî [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"] <B>[P]</B>.")
-					if (istype(P.loc, /obj/structure/closet))
-						P.visible_message("<B>[H]</B> îñîáî òùàòåëüíî [H.gender == FEMALE ? "ëèçíóëà" : "ëèçíóë"] <B>[P]</B>.")
 
 		else if (href_list["interaction"] == "hug")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands)
@@ -809,15 +778,6 @@
 				if (istype(P.loc, /obj/structure/closet) && H.loc == P.loc)
 					P.visible_message("<span class='danger'>[H] sticks their tongue out at [P]</span>")
 
-		else if (href_list["interaction"] == "assslap")
-			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && hasanus_p && hashands)
-				H.visible_message("<span class='danger'>[H] slaps [P] right on the ass!</span>")
-				if (istype(P.loc, /obj/structure/closet))
-					P.visible_message("<span class='danger'>[H] slaps [P] right on the ass!</span>")
-				playsound(loc, 'honk/sound/interactions/slap.ogg', 50, 1, -1)
-				if (P.staminaloss < 10)
-					P.staminaloss += 5
-
 		else if (href_list["interaction"] == "pull")
 			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && hashands && !H.restrained() && P.species.name == "Tajaran")
 				if (prob(30))
@@ -830,60 +790,7 @@
 					H.visible_message("<B>[H]</B> ïûòàåòñ[ya] ïîéìàòü <B>[P]</B> çà õâîñò!")
 					if (istype(P.loc, /obj/structure/closet))
 						P.visible_message("<B>[H]</B> ïûòàåòñ[ya] ïîéìàòü <B>[P]</B> çà õâîñò!")
-
-		else if (href_list["interaction"] == "vaglick")
-			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && hasvagina_p)
-				H.fuck(H, P, "vaglick")
-
-		else if (href_list["interaction"] == "asslick")
-			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && hasanus_p)
-				usr.visible_message("<font color=purple>[H] licks [P]'s asshole.</font>")
-
-		else if (href_list["interaction"] == "fingering")
-			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && hashands && hasvagina_p)
-				H.fuck(H, P, "fingering")
-
-		else if (href_list["interaction"] == "blowjob")
-			if(((Adjacent(P) && !istype(P.loc, /obj/structure/closet)) || (H.loc == P.loc)) && isnude_p && mouthfree && haspenis_p)
-				H.fuck(H, P, "blowjob")
-
-		else if (href_list["interaction"] == "anal")
-			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasanus_p)
-				if (H.erpcooldown == 0)
-					if (H.potenzia > 0)
-						H.fuck(H, P, "anal")
-				else
-					var/message = pick("it's not erect...")//, "Êàê-òî íåò æåëàíè[ya]...", "×òî-òî íå îõîòà...", "Íåò, íå ñåé÷àñ.")
-					H << message
-		else if (href_list["interaction"] == "vaginal")
-			if (H.loc == P.loc && isnude_p && isnude && haspenis && hasanus_p)
-				if (H.erpcooldown == 0)
-					if (H.potenzia > 0)
-						H.fuck(H, P, "vaginal")
-				else
-					var/message = pick("it's not erect...")//"Íå õî÷åòñ[ya] ìíå...", "Êàê-òî íåò æåëàíè[ya]...", "×òî-òî íå îõîòà...", "Íåò, íå ñåé÷àñ.")
-					H << message
-
-		else if (href_list["interaction"] == "oral")
-			if (H.loc == P.loc && isnude && mouthfree_p && haspenis)
-				if (H.erpcooldown == 0)
-					if (H.potenzia > 0)
-						H.fuck(H, P, "oral")
-				else
-					var/message = pick("it's not erect...")//"Íå õî÷åòñ[ya] ìíå...", "Êàê-òî íåò æåëàíè[ya]...", "×òî-òî íå îõîòà...", "Íåò, íå ñåé÷àñ.")
-					H << message
-
-		else if (href_list["interaction"] == "mount")
-			if (H.loc == P.loc && isnude && isnude_p && haspenis_p && hasvagina)
-				if (P.lust <= 0)
-					var/message = pick("It's not up...")//"Èíñòðóìåíò íå ïåðåâåäåí â ðàáî÷åå ñîñòî[ya]íèå...", "Ó íåãî åùå íå âñòàë...", "À îí ëåæèò...", "Íèêàê íå íàñàäèòüñ[ya]...")
-					H << message
-				else if (H.erpcooldown == 0)
-					H.fuck(H, P, "mount")
-				else
-					var/message = pick("You have no lust now.")//"Íå õî÷åòñ[ya] ìíå...", "Êàê-òî íåò æåëàíè[ya]...", "×òî-òî íå îõîòà...", "Íåò, íå ñåé÷àñ.")
-					H << message
-
+	*/
 	..()
 	return
 
@@ -1875,17 +1782,6 @@
 //Point at which you dun breathe no more. Separate from asystole crit, which is heart-related.
 /mob/living/carbon/human/proc/nervous_system_failure()
 	return getBrainLoss() >= maxHealth * 0.75
-
-/mob/living/carbon/human/proc/has_penis()
-	if(gender == MALE && potenzia > -1 && species.genitals && !mutilated_genitals)
-		return 1
-	else return 0
-
-/mob/living/carbon/human/proc/mutilate_genitals()
-	if(!mutilated_genitals)
-		potenzia = -1
-		mutilated_genitals = 1
-		return 1
 
 /mob/living/carbon/proc/get_social_class()
 	var/socclass = social_class

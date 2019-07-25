@@ -659,8 +659,6 @@
 
 		handle_hygiene()
 
-		handle_lust()
-
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT)) )
 				if(prob(3))

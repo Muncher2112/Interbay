@@ -61,5 +61,6 @@
 
 	var/footstep = 0
 
-	//This has gameplay relevance, this is no longer just fluff.
+	//This has gameplay relevance, this is no longer just fluff. (heh)
 	var/religion = LEGAL_RELIGION
+	var/interogation = 0

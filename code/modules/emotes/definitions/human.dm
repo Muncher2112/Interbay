@@ -67,21 +67,3 @@
 
 /decl/emote/human/pee/do_emote(var/mob/living/carbon/human/user)
 	user.handle_piss()
-
-/decl/emote/human/fap
-	key = "fap"
-
-/decl/emote/human/fap/do_emote(var/mob/living/carbon/human/user)
-	if(user.erpcooldown)
-		to_chat(user, "<span class='info'>You don't feel like it right now.</span>")
-		return
-	for(var/limbcheck in list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND))//No fapping without hands or arms.
-		var/obj/item/organ/affecting = user.get_organ(limbcheck)
-		if(!affecting)
-			return
-	if(user.handcuffed)//Or if you're cuffed.
-		return
-	user.visible_message("<b>[user]</b> masturbates.")
-	user.lust += 10
-	if (user.lust >= user.resistenza)
-		user.cum(user, user)

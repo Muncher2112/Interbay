@@ -123,7 +123,6 @@
 		/decl/emote/human/pee,
 		/decl/emote/audible/clearthroat,
 		/decl/emote/audible/hem,
-		/decl/emote/human/fap
 	)
 
 /mob/living/silicon/robot

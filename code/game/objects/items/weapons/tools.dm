@@ -117,8 +117,6 @@
 	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/living/user as mob)
-	if (depotenzia(C, user))
-		return
 
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
@@ -170,6 +168,8 @@
 								"<span class='danger'>[user] tears off your tooth with [src]!</span>")
 
 				H.apply_damage(rand(1, 3), BRUTE, O)
+				if(!H.religion_is_legal())  //Tearing teeth out counts as tourture
+					H.reveal_heretics(src)
 				H.custom_pain("[pick("OH GOD YOUR MOUTH HURTS SO BAD!", "OH GOD WHY!", "OH GOD YOUR MOUTH!")]", 100, affecting = O)
 
 				playsound(H, 'sound/effects/gore/trauma3.ogg', 40, 1, -1) //And out it goes.
