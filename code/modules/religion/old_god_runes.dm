@@ -1,8 +1,8 @@
 /obj/effect/rune/old_god_rune
-	name = "rune of the Gold Gods"
+	name = "Rune of the old Gods"
 	desc = "A heretical symbols drawn in chalk."
 	anchored = 1
-	icon = 'icons/effects/uristrunes.dmi'
+	icon = 'icons/effects/religion.dmi'
 	icon_state = "blank"
 	unacidable = 1
 	plane = ABOVE_TURF_PLANE
@@ -16,6 +16,10 @@
 	blood = nblood
 	update_icon()
 
+//Not sure why the cult runes do all that crazy stuff.
+/obj/effect/rune/update_icon()
+	return
+
 /obj/effect/rune/old_god_rune/examine(var/mob/living/user)
 	. = ..()
 	//If they ARE a old gods believer
@@ -28,7 +32,17 @@
 	set name = "Blessing"
 	make_old_god_rune(/obj/effect/rune/old_god_rune/blessing)
 
+/mob/proc/claiming_rune()
+	set category = "Old God Magic"
+	set name = "Claiming"
+	make_old_god_rune(/obj/effect/rune/old_god_rune/claiming)
+
 /obj/effect/rune/old_god_rune/blessing
 	name = "Old god's blessing"
-	desc = "A strange collection of symbols drawn in chalk."
+	desc = "A blessing of the old god's written in a circle."
+	icon_state = "blessing"
 
+/obj/effect/rune/old_god_rune/claiming
+	name = "Old god's claiming"
+	desc = "A symbol of the old god's million eyes, and how he watches everywhere."
+	icon_state = "claiming"

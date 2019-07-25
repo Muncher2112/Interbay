@@ -557,6 +557,7 @@ var/global/datum/controller/occupations/job_master
 			else
 				to_chat(H, "You are a worshipper of the <b><font color='red'>[H.religion]</font>. It is not a legal religion of this land. Do not be caught by the <b>Inquisition</b>. Check your notes for who your brothers and sisters are.")
 				H.verbs += /mob/proc/blessing_rune
+				H.verbs += /mob/proc/claiming_rune
 				H.equip_to_storage(new /obj/item/weapon/pen/crayon/chalk)
 				if(prob(5))
 					H.mind.prayer = accepted_prayer

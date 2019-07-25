@@ -50,7 +50,7 @@ proc/generate_random_prayer()//This generates a new one.
 	if(!istype(get_active_hand(), /obj/item/weapon/pen/crayon/chalk) && !istype(get_inactive_hand(), /obj/item/weapon/pen/crayon/chalk))
 		to_chat(src, "<span class='warning'>You can't draw old god runes without your blessed chalk!</span>")
 		return
-	var/self = "You qickly draw out the rune in your consecrated chalk."
+	var/self = "You quickly draw out the rune in your consecrated chalk."
 	var/timer = 20
 	//TODO: Make this a check tied to INT?
 	visible_message("<span class='warning'>\The [src] quickly draws on the floor and begins to whisper quietly to themselves.</span>", "<span class='notice'>[self]</span>", "You hear scratching.")
