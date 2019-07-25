@@ -168,8 +168,7 @@
 								"<span class='danger'>[user] tears off your tooth with [src]!</span>")
 
 				H.apply_damage(rand(1, 3), BRUTE, O)
-				if(!H.religion_is_legal())  //Tearing teeth out counts as tourture
-					H.reveal_heretics(src)
+				H.reveal_heretics(src)  //Tearing teeth out counts as tourture
 				H.custom_pain("[pick("OH GOD YOUR MOUTH HURTS SO BAD!", "OH GOD WHY!", "OH GOD YOUR MOUTH!")]", 100, affecting = O)
 
 				playsound(H, 'sound/effects/gore/trauma3.ogg', 40, 1, -1) //And out it goes.

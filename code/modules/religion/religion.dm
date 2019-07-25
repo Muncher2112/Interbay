@@ -16,7 +16,11 @@
 		if(H.religion == ILLEGAL_RELIGION)
 			to_world("[H.name]")
 			heretics += "[H.name]"
-	var/name = pick(heretics)
+	var/name = ""
+	if (religion_is_legal())  //Non-heretics will say a random name
+		name = pick(human_mob_list)
+	else
+		name = pick(heretics)
 	emote("scream",1)
 	agony_scream()
 	say(NewStutter("[name] is one of them!"))
