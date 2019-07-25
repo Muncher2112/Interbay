@@ -107,6 +107,6 @@
 	icon_state = "throne"
 
 /obj/structure/bed/chair/arbiter/post_buckle_mob(mob/living/M)
-	M.interogation = 1
+	M.interogation = abs(M.interogation-1) //Trick for flipping the toggle on off
 	update_icon()
 	return ..()

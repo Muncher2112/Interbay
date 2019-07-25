@@ -168,7 +168,9 @@
 								"<span class='danger'>[user] tears off your tooth with [src]!</span>")
 
 				H.apply_damage(rand(1, 3), BRUTE, O)
-				H.reveal_heretics(src)  //Tearing teeth out counts as tourture
+				if (rand(0,100) >= 50)  //TODO: As you get hurt more, your chance to reveal other heretics increases
+					H.reveal_heretics(src)  //Tearing teeth out counts as tourture
+
 				H.custom_pain("[pick("OH GOD YOUR MOUTH HURTS SO BAD!", "OH GOD WHY!", "OH GOD YOUR MOUTH!")]", 100, affecting = O)
 
 				playsound(H, 'sound/effects/gore/trauma3.ogg', 40, 1, -1) //And out it goes.

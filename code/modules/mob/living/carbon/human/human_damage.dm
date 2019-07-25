@@ -369,9 +369,10 @@ This function restores all organs.
 
 	if(blocked)
 		damage *= blocked_mult(blocked)
-
-	if(damage > 8 && src.interogation == 1)
-		reveal_heretics(src)
+	//TODO: Make this related to CON stat (maybe)
+	if(damage > 8 && src.interogation > 0)
+		if (rand(0,100) >= 50)   //50% chance to reveal heretics TODO: Make this increaase the worse you get tortured
+			reveal_heretics(src)
 
 	if(damage > 15)
 		make_adrenaline(round(damage/10))
