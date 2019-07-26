@@ -209,17 +209,23 @@ var/global/list/string_slot_flags = list(
 		var/datum/poster/P = new T
 		poster_designs += P
 
+	//Crafting recipies
 	paths = typesof(/datum/crafting_recipe) - /datum/crafting_recipe
 	for(var/T in paths)
 		var/datum/crafting_recipe/R = new T
 		crafting_recipes[R.name] = R
-	return 1
 
-	//Religions
-	paths = typesof(/datum/religion)-/datum/religion
+		//Religions
+	paths = typesof(/datum/religion)//-/datum/religion
 	for(var/T in paths)
 		var/datum/religion/R = new T
+		to_world("[R.name]")
 		all_religions[R.name] = R
+	to_world("[all_religions]")
+
+	return 1
+
+
 
 
 /* // Uncomment to debug chemical reaction list.

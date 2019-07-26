@@ -17,7 +17,7 @@
 	update_icon()
 
 //Not sure why the cult runes do all that crazy stuff.
-/obj/effect/rune/update_icon()
+/obj/effect/rune/old_god_rune/update_icon()
 	return
 
 /obj/effect/rune/old_god_rune/examine(var/mob/living/user)
@@ -25,6 +25,11 @@
 	//If they ARE an old gods believer
 	if(!user.religion_is_legal())
 		to_chat(user, "This is \a [cultname] rune.")
+
+/obj/effect/rune/old_god_rune/attack_hand(var/mob/living/user)
+	if(user.religion_is_legal())
+		to_chat(user, "You recognize these are heretical scrawling, but you can't figure out what it's for.")
+	cast(user)
 
 
 /mob/proc/blessing_rune()
@@ -37,6 +42,7 @@
 	set name = "Claiming"
 	make_old_god_rune(/obj/effect/rune/old_god_rune/claiming)
 
+//Runes
 /obj/effect/rune/old_god_rune/blessing
 	name = "Old god's blessing"
 	desc = "A blessing of the old god's written in a circle."
@@ -46,3 +52,10 @@
 	name = "Old god's claiming"
 	desc = "A symbol of the old god's million eyes, and how he watches everywhere."
 	icon_state = "claiming"
+
+
+/obj/effect/rune/old_god_rune/blessing/cast(var/mob/living/user)
+	//var/datum/religion/old_gods/OG = all_religions[ILLEGAL_RELIGION]
+	to_world("[all_religions[ILLEGAL_RELIGION]]")
+	all_religions[ILLEGAL_RELIGION].favour += 10
+	to_world("cast blessing [all_religions[ILLEGAL_RELIGION].favour]")
