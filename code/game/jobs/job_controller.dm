@@ -545,6 +545,7 @@ var/global/datum/controller/occupations/job_master
 				var/obj/item/clothing/glasses/G = H.glasses
 				G.prescription = 7
 
+		//RELIGION  TODO: Move this to it's own controller? It should get it's own something, because I assume it will only grow
 		if(H.religion)//In case they somehow don't have one.
 			H.mind.religion = H.religion
 			if(H.religion_is_legal())

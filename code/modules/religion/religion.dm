@@ -1,5 +1,26 @@
 //PUTTING RELIGIOUS RELATED STUFF IN IT'S ON MODULES FOLDER FROM NOW ON. - Matt
 
+//DATUM STUFF
+
+/datum/religion
+	var/name = "NONE"
+	var/favour = 0
+	var/followers = list()
+
+/datum/religion/machina
+	name = "Deo Machina"
+	favour = 0
+	followers = list()
+
+/datum/religion/old_gods
+	name = "Old Gods"
+	favour = 0
+	followers = list()
+
+/datum/religion/narsie
+	name = "Narsie"
+	favour = 0
+	followers = list()
 
 //PROCS
 
@@ -8,12 +29,13 @@
 	if(religion != LEGAL_RELIGION)
 		return 0
 	return 1
+
 //Reveals a random heretic
 /mob/living/proc/reveal_heretics(mob/living/M)
 	to_world("in reveal heretics [M]")
 	var/list/heretics = list()
 	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(H.religion == ILLEGAL_RELIGION)
+		if(H.religion_is_legal())
 			to_world("[H.name]")
 			heretics += "[H.name]"
 	var/name = ""
@@ -24,6 +46,7 @@
 	emote("scream",1)
 	agony_scream()
 	say(NewStutter("[name] is one of them!"))
+
 
 //PRAYER
 var/accepted_prayer //The prayer that all those who are not heretics will have.

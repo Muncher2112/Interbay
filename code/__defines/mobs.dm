@@ -102,7 +102,7 @@
 #define COMPANY_SKEPTICAL		"Skeptical"
 #define COMPANY_OPPOSED			"Opposed"
 
-//RELIGIONS
+//RELIGIONS **MAKE SURE THESE LINE UP WITH RELIGION DATUM NAMES**
 #define LEGAL_RELIGION 			"Deo Machina"
 #define ILLEGAL_RELIGION 		"Old Gods"
 #define NARSIE_RELIGION			"Narsie"

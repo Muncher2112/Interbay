@@ -22,7 +22,7 @@
 
 /obj/effect/rune/old_god_rune/examine(var/mob/living/user)
 	. = ..()
-	//If they ARE a old gods believer
+	//If they ARE an old gods believer
 	if(!user.religion_is_legal())
 		to_chat(user, "This is \a [cultname] rune.")
 

@@ -20,7 +20,7 @@
 						///datum/job/chaplain,
 						/datum/job/janitor,
 						/datum/job/arbiter,
-						/datum/job/supreme_arbiter						
+						/datum/job/supreme_arbiter
 						///datum/job/rd,
 						///datum/job/scientist,
 						///datum/job/raider,
@@ -49,7 +49,7 @@
 						///datum/job/chaplain,
 						/datum/job/janitor,
 						/datum/job/arbiter,
-						/datum/job/supreme_arbiter						
+						/datum/job/supreme_arbiter
 						///datum/job/rd,
 						///datum/job/scientist,
 						///datum/job/raider,
@@ -79,7 +79,7 @@
 						///datum/job/chaplain,
 						/datum/job/janitor,
 						/datum/job/arbiter,
-						/datum/job/supreme_arbiter,						
+						/datum/job/supreme_arbiter,
 						/datum/job/rd,
 						/datum/job/scientist
 						///datum/job/raider,

@@ -21,9 +21,9 @@
 	antag_costs = list(MODE_MERCENARY = 7)
 	path = /obj/item/weapon/gun/projectile/colt
 
-/datum/uplink_item/item/visible_weapons/old_god_sword
-	name = "Sword of the old gods TODO: Make this a thing"
-	item_cost = 45
+/datum/uplink_item/item/visible_weapons/sword
+	name = "Stick them with the pointy end"
+	item_cost = 20
 	antag_costs = list(MODE_MERCENARY = 7)
 	path = /obj/item/weapon/material/sword
 
