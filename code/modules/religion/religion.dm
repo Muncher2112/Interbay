@@ -4,23 +4,23 @@
 
 /datum/religion
 	var/name = "NONE"
-	var/favour = 0
+	var/favor = 0
 	var/followers = list()
 
 
 /datum/religion/machina
 	name = "Deo Machina"
-	favour = 0
+	favor = 0
 	followers = list()
 
 /datum/religion/old_gods
 	name = "Old Gods"
-	favour = 0
+	favor = 0
 	followers = list()
 
 /datum/religion/narsie
 	name = "Narsie"
-	favour = 0
+	favor = 0
 	followers = list()
 
 //PROCS

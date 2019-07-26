@@ -126,4 +126,5 @@
 	to_world("Processing old_god shirine")
 	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
 		if(C.lit)
-			all_religions[ILLEGAL_RELIGION].favour += 1
+			all_religions[ILLEGAL_RELIGION].favor += 0.5
+			to_world("Favor is [all_religions[ILLEGAL_RELIGION].favor]")
