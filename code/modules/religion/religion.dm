@@ -36,7 +36,7 @@
 	to_world("in reveal heretics [M]")
 	var/list/heretics = list()
 	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(!H.religion_is_legal())
+		if(!H.religion_is_legal() && src.name != H.name)  //Don't add ourselves
 			to_world("[H.name]")
 			heretics += "[H.name]"
 	var/name = ""

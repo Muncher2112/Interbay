@@ -59,3 +59,17 @@
 	to_world("[all_religions[ILLEGAL_RELIGION]]")
 	all_religions[ILLEGAL_RELIGION].favour += 10
 	to_world("cast blessing [all_religions[ILLEGAL_RELIGION].favour]")
+
+/obj/effect/rune/old_god_rune/claiming/cast(var/mob/living/user)
+	var/turf/T = get_turf(src)
+	to_world("[T]")
+	var/candles = 0
+	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
+		to_world("[C]")
+		C.light()
+		candles = 1
+	if (candles != 0)
+		new /obj/machinery/old_god_shrine(T)
+		qdel(src)
+	else
+		fizzle(user)

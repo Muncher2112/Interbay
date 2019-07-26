@@ -65,6 +65,7 @@
 
 
 
+// LEGAL RELIGOPN
 //The machine
 /obj/machinery/arbiter_computer
 	var/mob/living/suspect
@@ -110,3 +111,19 @@
 	M.interogation = abs(M.interogation-1) //Trick for flipping the toggle on off
 	update_icon()
 	return ..()
+
+// ILLEGAL RELIGION
+
+/obj/machinery/old_god_shrine
+	name = "Old God Shrine"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "old_god_shrine"
+	density = 1
+	anchored = 1
+	use_power = 0
+
+/obj/machinery/old_god_shrine/process()
+	to_world("Processing old_god shirine")
+	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
+		if(C.lit)
+			all_religions[ILLEGAL_RELIGION].favour += 1
