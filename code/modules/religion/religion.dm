@@ -33,7 +33,6 @@
 	for (var/name in all_religions)
 		if(territory.name in all_religions[name].territories)
 			return name
-
 	return null
 
 /datum/religion/old_gods/proc/can_claim_for_gods(mob/user, atom/target)

@@ -197,12 +197,20 @@ meteor_act
 
 	return TRUE
 
+/*
+As far as I can tell, this is to handle special attack cases, like  throat slitting, dodging, missing
+They return "null" because there is no need to proceed to apply_hit_effect, or if a check is failed.
+If the item_attack does need to go to apply_hit_effect (Which seems like 75% of cases) this function should return "target_zone"
+-muncher
+*/
 /mob/living/carbon/human/resolve_item_attack(obj/item/I, mob/living/user, var/target_zone)
 
 	if(check_attack_throat(I, user))
+		//This returns null here because throat slitting gets handled in check_attack_throat
 		return null
 
 	if(check_attack_tendons(I, user, target_zone))
+		//In a similar way this handles tendone cutting
 		return null
 
 	if(user == src) // Attacking yourself can't miss
@@ -311,7 +319,7 @@ meteor_act
 			src.visible_message("<span class='danger'>[user] slices [src]'s throat!</span>")
 		else
 			src.visible_message("<span class='danger'>[user] slices open [src]'s [affecting.artery_name] artery!</span>")
-	
+
 	//Next tendon, which disables the limb, but does not remove it, making it easier to fix, and less lethal, than losing it.
 	else if(I.sharp && (I.sharpness * 2) && !(affecting.status & ORGAN_TENDON_CUT) && affecting.has_tendon)//Yes this is the same exactly probability again. But I'm running it seperate because I don't want the two to be exclusive.
 		affecting.sever_tendon()
