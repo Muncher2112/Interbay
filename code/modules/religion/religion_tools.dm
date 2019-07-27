@@ -128,3 +128,5 @@
 		if(C.lit)
 			all_religions[ILLEGAL_RELIGION].favor += 0.5
 			to_world("Favor is [all_religions[ILLEGAL_RELIGION].favor]")
+			for (var/name in all_religions[ILLEGAL_RELIGION].territories)
+				to_world("[name]")

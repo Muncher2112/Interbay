@@ -545,10 +545,11 @@ var/global/datum/controller/occupations/job_master
 				var/obj/item/clothing/glasses/G = H.glasses
 				G.prescription = 7
 
-		//RELIGION  TODO: Move this to it's own controller? It should get it's own something, because I assume it will only grow
+		//RELIGION  TODO: Move this to it's own function? It should get it's own something, because I assume it will only grow
 		if(H.religion)//In case they somehow don't have one.
 			H.mind.religion = H.religion
 			if(H.religion_is_legal())
+				all_religions[LEGAL_RELIGION].followers += H.name // I don't think I want to save copies of the entire entity.
 				to_chat(H, "You are a worshipper of <b><font color='red'>[H.religion]</font></b>. It's the only legal religion in this land, do not be swayed by the heretics of the <b>[ILLEGAL_RELIGION]</b>.")
 				if(prob(95))//Only a 5% chance to not remember the prayer.
 					H.mind.prayer = accepted_prayer
@@ -560,6 +561,7 @@ var/global/datum/controller/occupations/job_master
 				H.verbs += /mob/proc/blessing_rune
 				H.verbs += /mob/proc/claiming_rune
 				H.equip_to_storage(new /obj/item/weapon/pen/crayon/chalk)
+				all_religions[ILLEGAL_RELIGION].followers += H.name
 				if(prob(5))
 					H.mind.prayer = accepted_prayer
 					to_chat(H, "<span class='notice'>You can't believe your luck, you've managed to pick up on the selected prayer for today. It's: <b>[H.mind.prayer]</b> Remember this prayer, and Gods save you from the Arbiters.\n</span>")

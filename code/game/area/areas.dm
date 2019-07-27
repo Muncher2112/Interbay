@@ -3,9 +3,11 @@
 
 
 // ===
+//HOW IS THIS ALSO DEFINED IN ./SpaceStation13areas.dm WTF AHHHHHHHH
 /area
 	var/global/global_uid = 0
 	var/uid
+	var/valid_territory = TRUE
 
 /area/New()
 	icon_state = ""
@@ -278,7 +280,7 @@ var/list/mob/living/forced_ambiance_list = new
 			if(vent.can_pump() && has_hum)
 				hum = 1
 				break
-	
+
 	if(forced_ambience)
 		if(forced_ambience.len)
 			forced_ambiance_list |= L
@@ -296,7 +298,7 @@ var/list/mob/living/forced_ambiance_list = new
 			L.client.ambience_playing = 0
 			sound_to(L, sound(null, channel = 2))
 
-	
+
 	if(src.ambience.len && prob(35))
 		if((world.time >= L.client.played + 600))
 			var/sound = pick(ambience)

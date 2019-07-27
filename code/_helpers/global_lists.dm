@@ -216,7 +216,7 @@ var/global/list/string_slot_flags = list(
 		crafting_recipes[R.name] = R
 
 		//Religions
-	paths = typesof(/datum/religion)//-/datum/religion
+	paths = typesof(/datum/religion)-/datum/religion
 	for(var/T in paths)
 		var/datum/religion/R = new T
 		to_world("[R.name]")

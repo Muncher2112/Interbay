@@ -74,14 +74,16 @@
 
 /obj/effect/rune/old_god_rune/claiming/cast(var/mob/living/user)
 	var/turf/T = get_turf(src)
-	to_world("[T]")
+	if (!all_religions[ILLEGAL_RELIGION].can_claim_for_gods(user,T))
+		fizzle(user)
+		return
 	var/candles = 0
 	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
-		to_world("[C]")
 		C.light()
 		candles = 1
 	if (candles != 0)
 		new /obj/machinery/old_god_shrine(T)
+		all_religions[ILLEGAL_RELIGION].claim_territory(get_area(T),ILLEGAL_RELIGION)
 		qdel(src)
 	else
 		fizzle(user)

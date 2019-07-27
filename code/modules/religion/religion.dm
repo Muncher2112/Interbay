@@ -6,24 +6,54 @@
 	var/name = "NONE"
 	var/favor = 0
 	var/followers = list()
+	var/territories = list()
 
 
 /datum/religion/machina
 	name = "Deo Machina"
 	favor = 0
-	followers = list()
 
 /datum/religion/old_gods
 	name = "Old Gods"
 	favor = 0
-	followers = list()
 
 /datum/religion/narsie
 	name = "Narsie"
 	favor = 0
-	followers = list()
 
 //PROCS
+
+/datum/religion/proc/claim_territory(area/territory,var/religion)
+	all_religions[religion].territories += territory.name
+
+/datum/religion/proc/lose_territory(area/territory,var/religion)
+	all_religions[religion].territories -= territory.name
+
+/datum/religion/proc/territory_claimed(area/territory, mob/user)
+	for (var/name in all_religions)
+		if(territory.name in all_religions[name].territories)
+			return name
+
+	return null
+
+/datum/religion/old_gods/proc/can_claim_for_gods(mob/user, atom/target)
+	//Check the area for if there's another shrine already, or the arbiters have already claimed it with TODO:?????
+	var/area/A = get_area(target)
+	if(!A || !A.valid_territory)
+		to_chat(user, "<span class='warning'>The old god's refuse your petty offering</span>")
+		return FALSE
+
+	var/occupying_religion = territory_claimed(A, user)
+	if(occupying_religion == ILLEGAL_RELIGION)
+		to_chat(user,"<span class='danger'>There is already a shrine in this area!</span>")
+		return FALSE
+
+	if(occupying_religion)
+		to_chat(user, "<span class='danger'>Something in the area is blocking your connection to the Old Gods!  FInd it and destory it!</span>")
+		return FALSE
+
+	// If you pass the gaunlet of checks, you're good to proceed
+	return TRUE
 
 //Stupidly simplistic? Probably. But I'm too tired to write something more complex.
 /mob/living/proc/religion_is_legal()
@@ -34,16 +64,11 @@
 //Reveals a random heretic
 /mob/living/proc/reveal_heretics(mob/living/M)
 	to_world("in reveal heretics [M]")
-	var/list/heretics = list()
-	for(var/mob/living/carbon/human/H in human_mob_list)
-		if(!H.religion_is_legal() && src.name != H.name)  //Don't add ourselves
-			to_world("[H.name]")
-			heretics += "[H.name]"
 	var/name = ""
 	if (religion_is_legal())  //Non-heretics will say a random name
 		name = pick(human_mob_list)
 	else
-		name = pick(heretics)
+		name = pick(all_religions[ILLEGAL_RELIGION].followers)  //Wow the datums saves us an entire for loop
 	emote("scream",1)
 	agony_scream()
 	say(NewStutter("[name] is one of them!"))

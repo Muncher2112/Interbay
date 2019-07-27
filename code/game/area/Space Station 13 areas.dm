@@ -13,7 +13,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 */
 
 
-
+//HOW IS THIS ALSO DEFINED IN ./area.dm WTF AHHHHHHHH
 /area
 	var/fire = null
 	var/atmos = 1
