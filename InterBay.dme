@@ -2169,6 +2169,7 @@
 #include "code\modules\spells\aoe_turf\conjure\grove.dm"
 #include "code\modules\spells\artifacts\monster_manual.dm"
 #include "code\modules\spells\artifacts\storage.dm"
+#include "code\modules\spells\changling\stings.dm"
 #include "code\modules\spells\general\acid_spray.dm"
 #include "code\modules\spells\general\area_teleport.dm"
 #include "code\modules\spells\general\contract_spells.dm"
