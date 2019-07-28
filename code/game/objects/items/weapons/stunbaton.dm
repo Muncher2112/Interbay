@@ -12,7 +12,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
-	var/stunforce = 0
+	var/stunforce = 10 //No sure how powerful this is, we'll have to see
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/weapon/cell/bcell
@@ -50,8 +50,10 @@
 	return null
 
 /obj/item/weapon/melee/baton/update_icon()
-	if(status)
+	if(status == 1)
 		icon_state = "[initial(name)]_active"
+	else if(status == 2)
+		icon_state = "[initial(name)]_deadly"
 	else if(!bcell)
 		icon_state = "[initial(name)]_nocell"
 	else
@@ -96,11 +98,12 @@
 		..()
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
+
 	set_status(!status, user)
 	add_fingerprint(user)
 
 /obj/item/weapon/melee/baton/proc/set_status(var/newstatus, mob/user)
-	if(bcell && bcell.charge > hitcost)
+	if(bcell && bcell.charge > hitcost*status)  //This is too account for over charge status
 		if(status != newstatus)
 			change_status(newstatus)
 			to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
@@ -124,7 +127,7 @@
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
 		user.Weaken(40)
-		deductcharge(hitcost)
+		deductcharge(hitcost*status) //This is too account for over char status
 		return
 	return ..()
 
@@ -164,11 +167,13 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects
+
 	if(status)
-		target.stun_effect_act(stun, agony, hit_zone, src)
+		//If we are in deadly mode, double the damage (see /mob/living/carbon/human/say line 16)
+		target.stun_effect_act(stun*status, agony*status, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 
-		deductcharge(hitcost)
+		deductcharge(hitcost*status)
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target

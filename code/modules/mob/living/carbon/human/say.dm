@@ -11,6 +11,11 @@
 			name = get_id_name("Unknown")
 
 	message = sanitize(message)
+	if(get_active_hand())  //The hope is that if get_active_hand returns null this won't be too expensive
+		if(istype(get_active_hand(), /obj/item/weapon/melee/baton/))
+			var/obj/item/weapon/melee/baton/B = get_active_hand()
+			if (message == accepted_prayer)
+				B.set_status(2)  //Set thier baton sets to overcharged
 	..(message, alt_name = alt_name, speaking = language)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
