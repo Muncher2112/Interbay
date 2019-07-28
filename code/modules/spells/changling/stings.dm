@@ -17,7 +17,7 @@
 	invocation = "BLIND STING"
 	invocation_type = SpI_SHOUT
 	message = "<span class='danger'>You feel a prick, and suddenly the world goes dark</span>"
-	level_max = list(Sp_TOTAL = 3, Sp_SPEED = 1, Sp_POWER = 3)
+	level_max = list(Sp_TOTAL = 1)
 	cooldown_min = 50
 	range = 1
 	max_targets = 1
@@ -25,7 +25,7 @@
 	amt_eye_blind = 10
 	amt_eye_blurry = 20
 
-	hud_state = "wiz_blind"
+	hud_state = "ling_blind"
 
 /spell/targeted/sting/paralysis_sting
 	name = "Paralysis Sting"
@@ -38,9 +38,31 @@
 	invocation = "CRYO STING"
 	invocation_type = SpI_SHOUT
 	message = "<span class='danger'>You feel a prick, and your muscles start to tighten</span>"
-	level_max = list(Sp_TOTAL = 3, Sp_SPEED = 1, Sp_POWER = 3)
+	level_max = list(Sp_TOTAL = 1)
 	cooldown_min = 50
 	range = 1
 	max_targets = 1
 
 	amt_paralysis=50
+
+	hud_state = "ling_para"
+
+/spell/targeted/sting/silence_sting
+	name = "Silence Sting"
+	desc = "This sting silencees a target."
+	feedback = "SS"
+	duration = 60
+	genomecost = 60
+	charge_max = 300
+	spell_flags = 0
+	invocation = "SILENCE STING"
+	invocation_type = SpI_SHOUT
+	message = "<span class='danger'>You feel a prick, your mouth closes and your face muscles tighten painfully.</span>"
+	level_max = list(Sp_TOTAL = 1)
+	cooldown_min = 50
+	range = 1
+	max_targets = 1
+
+	amt_silence = 30
+
+	hud_state = "ling_mute"

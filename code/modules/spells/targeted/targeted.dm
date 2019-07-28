@@ -26,6 +26,8 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	var/amt_eye_blind = 0
 	var/amt_eye_blurry = 0
 
+	var/amt_silence = 0
+
 	var/list/compatible_mobs = list()
 
 
@@ -143,3 +145,4 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	target.dizziness += amt_dizziness
 	target.confused += amt_confused
 	target.stuttering += amt_stuttering
+	target.silent += amt_silence

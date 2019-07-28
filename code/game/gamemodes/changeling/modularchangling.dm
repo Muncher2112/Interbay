@@ -79,6 +79,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	genomecost = 3
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_silence_sting
+	spellpath = /spell/targeted/sting/silence_sting
 
 /datum/power/changeling/mimicvoice
 	name = "Mimic Voice"
@@ -499,8 +500,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	purchasedpowers += Thepower
 	//What if we just... use ability manager
-	//TODO: Re-factor this into using the name to grab the spell to make/add
-	// The big problem is I'm not sure how to do
+	//TODO: Completely replace the add verb part, and move completely to spells
 	if(Thepower.spellpath)
 		to_world("Testing adding spell stings")
 		var/spell/new_sting = new Thepower.spellpath
