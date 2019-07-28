@@ -9,6 +9,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/helptext = ""
 	var/isVerb = 1 	// Is it an active power, or passive?
 	var/verbpath // Path to a verb that contains the effects.
+	var/spellpath // Part of reworking changling powers into spells
 
 /datum/power/changeling
 	var/allowduringlesserform = 0
@@ -69,6 +70,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	genomecost = 2
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_blind_sting
+	spellpath = /spell/targeted/sting/bind_sting
 
 /datum/power/changeling/silence_sting
 	name = "Silence Sting"
@@ -105,6 +107,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	desc = "We silently sting a human, paralyzing them for a short time."
 	genomecost = 8
 	verbpath = /mob/proc/changeling_paralysis_sting
+	spellpath = /spell/targeted/sting/paralysis_sting
 
 /datum/power/changeling/LSDSting
 	name = "Hallucination Sting"
@@ -495,7 +498,13 @@ var/list/datum/power/changeling/powerinstances = list()
 	geneticpoints -= Thepower.genomecost
 
 	purchasedpowers += Thepower
-
+	//What if we just... use ability manager
+	//TODO: Re-factor this into using the name to grab the spell to make/add
+	// The big problem is I'm not sure how to do
+	if(Thepower.spellpath)
+		to_world("Testing adding spell stings")
+		var/spell/new_sting = new Thepower.spellpath
+		M.current.add_spell(new_sting)
 	if(!Thepower.isVerb && Thepower.verbpath)
 		call(M.current, Thepower.verbpath)()
 	else if(remake_verbs)
