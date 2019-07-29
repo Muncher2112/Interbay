@@ -8,6 +8,8 @@
 	range = 1
 	charge_type = Sp_RECHARGE
 	charge_max = 100
+	//invocation_type = SpI_SHOUT debug
+	invocation_type = SpI_NONE
 	still_recharging_msg = "<span class='notice'>Our stinger needs time to re-fill</span>"
 	var/genomecost = 10000000
 // Part the reason changling stuff should be moved under spells.  I hope this can all be removed some day soon.
@@ -65,54 +67,51 @@
 	changeling.chem_charges -= required_chems
 	return
 
-/spell/targeted/sting/bind_sting
+// All our sting spells.  Some have thier own cast functions.
+/spell/targeted/sting/blind_sting
 	name = "Blind Sting"
 	desc = "This sting inflicts a target with temporary blindness."
 	feedback = "BS"
-	duration = 300
-	//Hoping these two vars are similar
-	genomecost = 60
-	charge_max = 300
 	invocation = "BLIND STING"
-	invocation_type = SpI_SHOUT
 	message = "<span class='danger'>Your eyes burn horrificly!</span>"
-	cooldown_min = 50
 	required_chems = 10
-
 	amt_eye_blind = 10
 	amt_eye_blurry = 20
-
 	hud_state = "ling_blind"
 
 /spell/targeted/sting/paralysis_sting
 	name = "Paralysis Sting"
 	desc = "This sting paralyzies a target.  It is very obvious and can be seen by observers."
 	feedback = "PS"
-	duration = 60
-	genomecost = 60
-	charge_max = 300
 	invocation = "CRYO STING"
-	invocation_type = SpI_SHOUT
 	message = "<span class='danger'>Your muscles begin to painfully tighten.</span>"
-	cooldown_min = 50
 	required_chems = 30
 	amt_paralysis=50
-
 	hud_state = "ling_para"
 
 /spell/targeted/sting/silence_sting
 	name = "Silence Sting"
 	desc = "This sting silencees a target."
 	feedback = "SS"
-	duration = 60
-	genomecost = 60
-	charge_max = 300
 	invocation = "SILENCE STING"
-	invocation_type = SpI_SHOUT
 	message = "<span class='danger'>You feel a prick, your mouth closes and your face muscles tighten painfully.</span>"
-	cooldown_min = 50
 	required_chems = 10
-
 	amt_silence = 30
-
 	hud_state = "ling_mute"
+
+/spell/targeted/sting/Epinephrine
+	name = "Epinephrine sacs"
+	desc = "We evolve additional sacs of adrenaline throughout our body."
+	spell_flags = INCLUDEUSER | CHANGLING
+	feedback = "ES"
+	invocation = "EPINEPHRINE SACS"
+	range = -1
+	message = "<span class='danger'>You feel burst of enegry!</span>"
+	required_chems = 45
+	hud_state = "ling_nostun"
+
+/spell/targeted/sting/Epinephrine/cast(var/list/targets, mob/user)
+	for(var/mob/living/target in targets)
+		// Not sure how I feel about crossing in old changling verbs, but this is SO easy
+		target.changeling_unstun()
+	return

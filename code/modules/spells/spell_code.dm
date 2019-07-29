@@ -140,10 +140,12 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			invocation(user, targets)
 			take_charge(user, skipcharge)  //Honestly not sure what this does, call take_charge again on a connected god?  Will be over-riding it in spell-ling code
 			before_cast(targets) //applies any overlays and effects
+			/* Spell crit fail does nothing.  If you want it to uncomment this.
 			if(prob(critfailchance))
 				critfail(targets, user)
 			else
-				cast(targets, user, time)
+			*/
+			cast(targets, user, time)
 			after_cast(targets) //generates the sparks, smoke, target messages etc.
 		else
 			break

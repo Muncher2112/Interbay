@@ -70,7 +70,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	genomecost = 2
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_blind_sting
-	spellpath = /spell/targeted/sting/bind_sting
+	spellpath = /spell/targeted/sting/blind_sting
 
 /datum/power/changeling/silence_sting
 	name = "Silence Sting"
@@ -138,6 +138,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	helptext = "Gives the ability to instantly recover from stuns.  High chemical cost."
 	genomecost = 3
 	verbpath = /mob/proc/changeling_unstun
+	spellpath = /spell/targeted/sting/Epinephrine
 
 /datum/power/changeling/ChemicalSynth
 	name = "Rapid Chemical-Synthesis"
@@ -502,7 +503,6 @@ var/list/datum/power/changeling/powerinstances = list()
 	//What if we just... use ability manager
 	//TODO: Completely replace the add verb part, and move completely to spells
 	if(Thepower.spellpath)
-		to_world("Testing adding spell stings")
 		var/spell/new_sting = new Thepower.spellpath
 		M.current.add_spell(new_sting)
 	if(!Thepower.isVerb && Thepower.verbpath)
