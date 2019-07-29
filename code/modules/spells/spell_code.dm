@@ -1,3 +1,24 @@
+/*
+IM PUTTING THESE HERE WHERE I ACTUALLY NEED THEM
+#define GHOSTCAST		0x1		//can a ghost cast it?
+#define NEEDSCLOTHES	0x2		//does it need the wizard garb to cast? Nonwizard spells should not have this
+#define NEEDSHUMAN		0x4		//does it require the caster to be human?
+#define Z2NOCAST		0x8		//if this is added, the spell can't be cast at centcomm
+#define STATALLOWED		0x10	//if set, the user doesn't have to be conscious to cast. Required for ghost spells
+#define IGNOREPREV		0x20	//if set, each new target does not overlap with the previous one
+//The following flags only affect different types of spell, and therefore overlap
+//Targeted spells
+#define INCLUDEUSER		0x40	//does the spell include the caster in its target selection?
+#define SELECTABLE		0x80	//can you select each target for the spell?
+//AOE spells
+#define IGNOREDENSE		0x40	//are dense turfs ignored in selection?
+#define IGNORESPACE		0x80	//are space turfs ignored in selection?
+//End split flags
+#define CONSTRUCT_CHECK	0x100	//used by construct spells - checks for nullrods
+#define NO_BUTTON		0x200	//spell won't show up in the HUD with this
+#define CHANGLING		0x400	//changling spells (hopefully this works)
+*/
+
 var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 /spell
@@ -117,7 +138,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			break
 		if(cast_check(1,user, targets)) //we check again, otherwise you can choose a target and then wait for when you are no longer able to cast (I.E. Incapacitated) to use it.
 			invocation(user, targets)
-			take_charge(user, skipcharge)
+			take_charge(user, skipcharge)  //Honestly not sure what this does, call take_charge again on a connected god?  Will be over-riding it in spell-ling code
 			before_cast(targets) //applies any overlays and effects
 			if(prob(critfailchance))
 				critfail(targets, user)
@@ -224,10 +245,6 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if((spell_flags & Z2NOCAST) && (user_turf.z in using_map.admin_levels)) //Certain spells are not allowed on the centcomm zlevel
 		return 0
 
-	if(spell_flags & CONSTRUCT_CHECK)
-		for(var/turf/T in range(holder, 1))
-			if(findNullRod(T))
-				return 0
 
 	if(istype(user, /mob/living/simple_animal) && holder == user)
 		var/mob/living/simple_animal/SA = user
