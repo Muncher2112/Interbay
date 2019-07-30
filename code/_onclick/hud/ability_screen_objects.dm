@@ -262,6 +262,7 @@
 	icon_state = "ling_spell_base"
 	background_base_state = "ling"
 
+//Needed because it's a special type of verb_based ability.  Doesn't seem like there's any real point though
 /obj/screen/movable/ability_master/proc/add_ling_ability(var/object_given, var/verb_given, var/name_given, var/ability_icon_given, var/arguments)
 	if(!object_given)
 		message_admins("ERROR: add_ling_ability() was not given an object in its arguments.")

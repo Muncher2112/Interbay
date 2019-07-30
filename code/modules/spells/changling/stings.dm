@@ -99,10 +99,10 @@
 	amt_silence = 30
 	hud_state = "ling_mute"
 
-/spell/targeted/sting/Epinephrine
+/spell/targeted/sting/epinephrine
 	name = "Epinephrine sacs"
 	desc = "We evolve additional sacs of adrenaline throughout our body."
-	spell_flags = INCLUDEUSER | CHANGLING
+	spell_flags = INCLUDEUSER | CHANGLING //This and range = -1 target ourselves
 	feedback = "ES"
 	invocation = "EPINEPHRINE SACS"
 	range = -1
@@ -110,8 +110,25 @@
 	required_chems = 45
 	hud_state = "ling_nostun"
 
-/spell/targeted/sting/Epinephrine/cast(var/list/targets, mob/user)
+/spell/targeted/sting/epinephrine/cast(var/list/targets, mob/user)
 	for(var/mob/living/target in targets)
 		// Not sure how I feel about crossing in old changling verbs, but this is SO easy
 		target.changeling_unstun()
+	return
+
+/spell/targeted/sting/lesser_form
+	name = "Lesser form"
+	desc = "We debase ourselves and become lesser.  We become a monkey."
+	spell_flags = INCLUDEUSER | CHANGLING  //This and range = -1 target ourselves
+	feedback = "LF"
+	invocation = "LESSER_FORM"
+	range = -1
+	message = "<span class='danger'>Our genes cry out!</span>"
+	required_chems = 1
+	hud_state = "ling_monkey"
+
+/spell/targeted/sting/lesser_form/cast(var/list/targets, mob/user)
+	for(var/mob/living/target in targets)
+		// THIS IS SO EASY IT HAS TO BE WRONG
+		target.changeling_lesser_form()
 	return
