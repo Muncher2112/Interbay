@@ -74,8 +74,6 @@
 //End split flags
 #define CONSTRUCT_CHECK	0x100	//used by construct spells - checks for nullrods
 #define NO_BUTTON		0x200	//spell won't show up in the HUD with this
-#define CHANGLING		0x400	//changling spells (hopefully this works)
-//
 
 //invocation
 #define SpI_SHOUT	"shout"
