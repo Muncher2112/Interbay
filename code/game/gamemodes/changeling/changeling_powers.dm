@@ -292,7 +292,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		src.verbs += /mob/proc/changeling_transform
 
 	changeling_update_languages(changeling.absorbed_languages)
-
+	if(ability_master)
+		ability_master.New(loc,src)
+		ability_master.toggle_open(2) //forces the icons to refresh on screen
 	feedback_add_details("changeling_powers","TR")
 	return 1
 
@@ -338,6 +340,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	changeling.geneticdamage = 30
 	to_chat(H, "<span class='warning'>Our genes cry out!</span>")
 	H = H.monkeyize()
+	if(ability_master)
+		ability_master.New(H.loc,H)
+		ability_master.toggle_open(2) //forces the icons to refresh on screen
 	feedback_add_details("changeling_powers","LF")
 	return 1
 
@@ -415,6 +420,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	C.mind.transfer_to(O)
 	O.make_changeling()
 	O.changeling_update_languages(changeling.absorbed_languages)
+	if(ability_master)
+		ability_master.New(O.loc,O)
+		ability_master.toggle_open(2) //forces the icons to refresh on screen
 
 	feedback_add_details("changeling_powers","LFT")
 	qdel(C)
