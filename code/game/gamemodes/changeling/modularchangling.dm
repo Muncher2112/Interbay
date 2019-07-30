@@ -533,15 +533,4 @@ var/list/datum/power/changeling/powerinstances = list()
 	else
 		to_world("Calling verbpath")
 		call(M.current, Thepower.verbpath)()
-	/*
-	//What if we just... use ability manager
-	//TODO: Completely replace the add verb part, and move completely to spells
-	if(Thepower.spellpath)
-		var/spell/new_sting = new Thepower.spellpath
-		M.current.add_spell(new_sting)
-	if(!Thepower.isVerb && Thepower.verbpath)
-		call(M.current, Thepower.verbpath)()
-	else if(remake_verbs)
-		M.current.make_changeling()
-	*/
 
