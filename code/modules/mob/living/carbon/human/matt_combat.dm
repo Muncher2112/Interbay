@@ -31,10 +31,10 @@
 
 /mob/living/proc/attempt_dodge()//Handle parry is an object proc and it's, its own thing.
 	if(combat_mode && (defense_intent == I_DODGE) && !lying)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
-		if(staminaloss < 50 && statscheck(dex, 20))//You gotta be the master of dexterity to dodge every time.
+		if(staminaloss < 50 && statscheck(stats["dex"], 20))//You gotta be the master of dexterity to dodge every time.
 			do_dodge()
 			return	1
-		else if(staminaloss >= 50 && prob(dex + 10)) //Good reflex gives you a bit more chance to dedge
+		else if(staminaloss >= 50 && prob(stats["dex"] + 10)) //Good reflex gives you a bit more chance to dedge
 			do_dodge()
 			return	1
 

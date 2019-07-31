@@ -18,10 +18,14 @@
 
 //I am aware this is probably the worst possible way of doing it but I'm using this method till I get a better one. - Matt
 /mob
+/*
 	var/str = 10    //strength - used for hitting and lifting.
 	var/dex = 10    //dexterity - used for dodging and parrying.
 	var/int = 10    //inteligence - used for crafting and research
 	var/con = 10    //consitution - used for taking hits and cleaning shits
+*/
+	//Stats are now going into a list.  It may use more space in mem,  but having them as freefloating variables makes them a pain to access as a whole
+	var/stats = list(str = 10, dex = 10, int = 10, con = 10)
 
     //skills
 	var/melee_skill = 50
@@ -109,30 +113,53 @@
 
 
 proc/strToDamageModifier(var/strength)
-	to_world("[strength * 0.05]")
 	return strength * 0.05  //This is better then division
 
 proc/strToSpeedModifier(var/strength, var/w_class)
 	return abs(strength - 20)  //hope this is better too
 
 //Stats helpers.
-/mob/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.
-	if(stre)
-		str = stre
-	if(dexe)
-		dex = dexe
-	if(inti)
-		int = inti
 
+/mob/proc/add_stats(var/stre, var/dexe, var/inti, var/cons)//To make adding stats quicker.
+	if(stre)
+		stats["str"] = stre
+	if(dexe)
+		stats["dex"] = dexe
+	if(inti)
+		stats["int"] = inti
+	if(cons)
+		stats["con"] = cons
+
+//Different way of generating stats.  Takes a "main_stat" argument.
+// Totals top 3/4 D6 for statss.  Then puts the top stat in the "main_stat" and the rest randomly
+/mob/proc/generate_stats(var/main_stat)
+	var/list/rand_stats = list()
+	var/top_stat = 0
+	//Roll a new random roll for each stat
+	for(var/stat in stats)
+		var/roll1 = rand(1,6)
+		var/roll2 = rand(1,6)
+		var/roll3 = rand(1,6)
+		rand_stats += (roll1+roll2+roll3)
+	rand_stats = sortList(rand_stats)
+	top_stat = rand_stats[1]
+	rand_stats.Remove(top_stat)
+	for(var/stat in stats)
+		if(main_stat == stat)
+			stats[stat] = top_stat
+			rand_stats.Remove(main_stat)
+		else
+			stats[stat] = pick(rand_stats)
+			rand_stats.Remove(stats[stat])
 
 /mob/proc/adjustStrength(var/num)
-	str += num
+	stats["str"] += num
 
 /mob/proc/adjustDexterity(var/num)
-	dex += num
+	stats["dex"] += num
 
 /mob/proc/adjustInteligence(var/num)
-	int += num
+	stats["int"] += num
 
 
 

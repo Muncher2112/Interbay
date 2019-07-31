@@ -498,6 +498,7 @@
 			H.religion = LEGAL_RELIGION
 		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.add_skills(rand(60, 75), rand(60,75))
+		H.generate_stats("str")
 
 //The inquisitor, aka the supreme arbiter.
 /datum/job/supreme_arbiter
@@ -521,6 +522,7 @@
 			H.religion = LEGAL_RELIGION
 		H.add_stats(rand(9,14), rand(8,12), rand(12,16))
 		H.add_skills(rand(60, 75), rand(60,75), rand(50,75))
+		H.generate_stats("str")
 
 
 

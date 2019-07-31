@@ -112,7 +112,7 @@
 
 		if(resting)
 			mob_rest()
-			return 1		
+			return 1
 
 		if(!canmove)
 			return 1
@@ -154,7 +154,7 @@
 			if(target.is_npc)// If the target is an NPC then search again.
 				target = null
 				return
-			
+
 			// change the target if there is another human that is closer
 			for (var/mob/living/carbon/human/C in orange(2,src.loc))
 				if (C.stat == 2 || !can_see(src,C,viewrange))
@@ -320,7 +320,7 @@
 	hand = 0//Make sure one of their hands is active.
 	put_in_hands(new /obj/item/weapon/crowbar)//Give them a weapon.
 	combat_mode = 1//Put them in combat mode.
-	dex = 3
+	stats["dex"] = 3
 
 
 /mob/living/carbon/human/blank/ssd_check()
