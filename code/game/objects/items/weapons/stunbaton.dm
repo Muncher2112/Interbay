@@ -12,7 +12,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
-	var/stunforce = 10 //No sure how powerful this is, we'll have to see
+	var/stunforce = 1 //10 was way to high
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/weapon/cell/bcell

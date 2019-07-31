@@ -297,7 +297,7 @@
 
 	var/throw_range = item.throw_range
 	var/throw_delay = strToSpeedModifier(src.str, weight_class)
-	throw_delay /= (10/get_dist(src, target))
+	throw_delay /= round(10/get_dist(src, target))  //I don't want this division making gross decimals for even more divison
 
 	src.visible_message("<span class='warning'>[src] is trying to throw [item].</span>")
 	if(do_after(src, throw_delay))

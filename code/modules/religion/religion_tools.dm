@@ -121,8 +121,16 @@
 	density = 1
 	anchored = 1
 	use_power = 0
+	var/candles = list()
+
+/obj/machinery/old_god_shrine/New(l,d=0)
+	..(l)
+	for(var/obj/item/weapon/flame/candle/C in range(1, src))
+		candles += C
 
 /obj/machinery/old_god_shrine/process()
-	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
+	for(var/obj/item/weapon/flame/candle/C in candles) //Check for candles around
 		if(C.lit)
 			all_religions[ILLEGAL_RELIGION].favor += 0.5
+		else
+			candles -= C

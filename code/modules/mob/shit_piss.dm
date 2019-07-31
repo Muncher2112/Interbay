@@ -147,8 +147,8 @@
 /datum/reagent/poo/on_mob_life(var/mob/living/M)
 	if(!M)
 		M = holder.my_atom
-
-	M.adjustToxLoss(1)
+	if(!prob(10 + M.con)) //Your consitution effects how toxins effect you
+		M.adjustToxLoss(1)
 	holder.remove_reagent(src.id, 0.2)
 	..()
 	return

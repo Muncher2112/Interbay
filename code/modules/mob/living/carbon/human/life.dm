@@ -1289,7 +1289,7 @@
 				return
 			to_chat(H, "<spawn class='warning'>You smell something foul...")
 			H.add_event("disgust", /datum/happiness_event/disgust/verygross)
-			if(prob(75))
+			if(prob(75 + H.con))
 				H.vomit()
 
 //So that people will stop shitting in the fucking hallways all the time. Actually this will probably encourage them.
@@ -1301,7 +1301,7 @@
 		if(prob(2))
 			to_chat(src, "<spawn class='warning'>Something smells like shit...")
 			add_event("disgust", /datum/happiness_event/disgust/verygross)
-			if(prob(50))
+			if(prob(50 + con))
 				vomit()
 
 	for(var/obj/item/weapon/reagent_containers/food/snacks/poo/P in range(5, src))
@@ -1311,7 +1311,7 @@
 		if(prob(2))
 			to_chat(src, "<spawn class='warning'>Something smells like shit...")
 			add_event("disgust", /datum/happiness_event/disgust/verygross)
-			if(prob(50))
+			if(prob(50 + con))
 				vomit()
 
 

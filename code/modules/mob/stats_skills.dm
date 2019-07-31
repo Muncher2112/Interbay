@@ -20,7 +20,8 @@
 /mob
 	var/str = 10    //strength - used for hitting and lifting.
 	var/dex = 10    //dexterity - used for dodging and parrying.
-	var/int = 10
+	var/int = 10    //inteligence - used for crafting and research
+	var/con = 10    //consitution - used for taking hits and cleaning shits
 
     //skills
 	var/melee_skill = 50
@@ -90,36 +91,11 @@
 
 
 proc/strToDamageModifier(var/strength)
-	switch(strength)
-		if(1 to 5)
-			return 0.5
+	to_world("[strength * 0.05]")
+	return strength * 0.05  //This is better then division
 
-		if(6 to 11)
-			return 1
-
-		if(12 to 15)
-			return 1.5
-
-		if(16 to INFINITY)
-			return  1.75
-
-proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is also only used once. But I don't give a fuuuuuuuuck.
-	switch(strength)
-		if(1 to 5)
-			if(w_class > ITEM_SIZE_NORMAL)
-				return 20
-
-		if(6 to 11)
-			if(w_class > ITEM_SIZE_NORMAL)
-				return 15
-
-		if(12 to 15)
-			if(w_class > ITEM_SIZE_NORMAL)
-				return 10
-
-		if(16 to INFINITY)
-			if(w_class > ITEM_SIZE_NORMAL)
-				return 5
+proc/strToSpeedModifier(var/strength, var/w_class)
+	return abs(strength - 20)  //hope this is better too
 
 //Stats helpers.
 /mob/proc/add_stats(var/stre, var/dexe, var/inti)//To make adding stats quicker.

@@ -90,6 +90,7 @@
 		fizzle(user)
 		return
 	var/candles = 0
+
 	for(var/obj/item/weapon/flame/candle/C in range(1, src)) //Check for candles around
 		C.light()
 		candles = 1
