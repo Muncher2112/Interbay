@@ -151,6 +151,7 @@
 
 	if(user.str)//If they have strength then add it.
 		effective_force *= strToDamageModifier(user.str)
+	to_world("Effective Force: [effective_force].  StrMod: [strToDamageModifier(user.str)])") //Debugging
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, damage_flags, used_weapon=I)
 

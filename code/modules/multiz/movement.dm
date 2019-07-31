@@ -167,12 +167,12 @@
 	else if(!ishuman(src))
 		visible_message("\The [src] falls from the area above and slams into \the [landing]!", "You hear something slam into the floor.")
 
-
+//TODO:  Make this difficulty scale with how far you fall
 /mob/living/carbon/human/handle_fall(var/turf/landing)
 	if(..())
 		return
 	if(!istype(landing, /turf/simulated/open))
-		if(statscheck(dex, 25, 0, src) && !lying)
+		if(statscheck(dex, 15, 0, src) && !lying)  //Gotta be dexterous to land when falling
 			to_chat(src, "<span class = 'notice'>You land softly.</span>")
 			return
 

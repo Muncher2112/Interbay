@@ -63,7 +63,7 @@
 				return CRIT_FAILURE
 			return 0
 
-
+/*
 /mob/proc/statscheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
 	if(stat < requirement)
 		var/H = rand(1,20)// our "dice"
@@ -78,6 +78,24 @@
 	else
 		//world << "Didn't roll and passed."
 		return 1
+*/
+
+// I want to test making stats more D&D-esque.  This means every stat check makes a roll, and your (stat - 10 / 2) is added to the role, and checked.
+// This could lead to skills being only for advantage/disadvantage (Roll two dice take higher/lower)
+// This will need *major* playtesting
+/mob/proc/statscheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
+	var/roll = rand(1,20)// our "dice"
+	roll += mood_affect(1)// our skill modifier
+	roll += round((stat - 10) * 0.5) //Should round down
+	to_world("Roll: [roll], Mood affect: [mood_affect(1)], Ability modifier [round((stat - 10) * 0.5)]") //Debuging
+	to_world("Rolled a [roll] against a DC [requirement] check")  //debug
+	if(roll >= requirement)//We met the DC requirement
+		//world << "Rolled and passed."
+		return 1
+	else
+		to_chat(src, "<span class = 'warning'>[message]</span>")
+		return 0
+	return 1
 
 //having a bad mood fucks your shit up fam.
 /mob/proc/mood_affect(var/stat = null, var/skill = null)
