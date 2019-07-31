@@ -100,7 +100,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,11), rand(9,11), rand(7,10))
+		//H.add_stats(rand(9,11), rand(9,11), rand(7,10))
+		H.generate_stats("dex")
 
 
 /datum/job/captain
@@ -114,7 +115,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(6,9), rand(9,11), rand(10,12))
+		//H.add_stats(rand(6,9), rand(9,11), rand(10,12))
+		H.generate_stats("str")
 
 
 
@@ -131,7 +133,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(6,9), rand(9,11), rand(10,12))
+		//H.add_stats(rand(6,9), rand(9,11), rand(10,12))
+		H.generate_stats("int")
 
 /datum/job/employe
 	title = "Employe Administratif"
@@ -175,7 +178,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(5,7), rand(5,8), rand(12,15))
+		//H.add_stats(rand(5,7), rand(5,8), rand(12,15))
+		H.generate_stats("int")
 		H.add_skills(rand(25, 50), rand(25,50), rand(65, 75))
 
 /datum/job/scientist
@@ -191,7 +195,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+		//H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+		H.generate_stats("int")
 		H.add_skills(rand(25, 50), rand(25,50), rand(65, 75))
 
 /datum/job/doctor
@@ -209,7 +214,8 @@
 			access_chemistry, access_virology, access_cmo, access_surgery)
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+		//H.add_stats(rand(5,7), rand(5,8), rand(10,14))
+		H.generate_stats("int")
 		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
 
 /datum/job/doctor/undertaker
@@ -246,7 +252,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(12,18), rand(10,16), rand(8,12))
+		//H.add_stats(rand(12,18), rand(10,16), rand(8,12))
+		H.generate_stats("str")
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -265,7 +272,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		//H.add_stats(rand(11,16), rand(10,14), rand(7,10))
+		H.generate_stats("str")
 		H.add_skills(rand(60, 75), rand(60,75))
 
 
@@ -281,7 +289,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(8,12), rand(9,12), rand(7,10))
+		//H.add_stats(rand(8,12), rand(9,12), rand(7,10))
+		H.generate_stats("dex")
 
 /datum/job/engineer
 	title = "Upkeeper"
@@ -298,7 +307,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		H.generate_stats("int")
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
@@ -314,7 +324,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,16), rand(9,12), rand(6,9))
+		//H.add_stats(rand(9,16), rand(9,12), rand(6,9))
+		H.generate_stats("str")
 
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
@@ -330,7 +341,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+		//H.add_stats(rand(9,12), rand(9,12), rand(6,9))
+		H.generate_stats("dex")
 
 /datum/job/cargo_tech/machinist
 	title = "Machinist"
@@ -338,7 +350,8 @@
 	spawn_positions = 1
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
+		H.generate_stats("int")
 
 //kid roles
 /datum/job/ouvrier
@@ -446,7 +459,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(7,12), rand(7,12), rand(10,15))
+		//H.add_stats(rand(7,12), rand(7,12), rand(10,15))
+		H.generate_stats("con")
 
 /datum/job/chaplain
 	title = "Priest"
@@ -474,7 +488,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		H.add_stats(rand(9,12), rand(9,12), rand(5,9))
+		//H.add_stats(rand(9,12), rand(9,12), rand(5,9))
+		H.generate_stats("con")
 
 
 //CHURCH JOBS
@@ -496,9 +511,9 @@
 		..()
 		if(!H.religion_is_legal())//So that they can't be heretics.
 			H.religion = LEGAL_RELIGION
-		H.add_stats(rand(11,16), rand(10,14), rand(7,10))
-		H.add_skills(rand(60, 75), rand(60,75))
+		//H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.generate_stats("str")
+		H.add_skills(rand(60, 75), rand(60,75))
 
 //The inquisitor, aka the supreme arbiter.
 /datum/job/supreme_arbiter
@@ -520,9 +535,9 @@
 		..()
 		if(!H.religion_is_legal())//So that they can't be heretics.
 			H.religion = LEGAL_RELIGION
-		H.add_stats(rand(9,14), rand(8,12), rand(12,16))
-		H.add_skills(rand(60, 75), rand(60,75), rand(50,75))
+		//H.add_stats(rand(9,14), rand(8,12), rand(12,16))
 		H.generate_stats("str")
+		H.add_skills(rand(60, 75), rand(60,75), rand(50,75))
 
 
 
@@ -549,7 +564,8 @@
 		H.name = H.real_name
 
 		//Peacekeeper setup.
-		H.add_stats(rand(11,18), rand(10,14), rand(7,10))
+		//H.add_stats(rand(11,18), rand(10,14), rand(7,10))
+		H.generate_stats("str")
 		H.add_skills(rand(60, 75), rand(60,75))
 
 		//Some dumb if shit.

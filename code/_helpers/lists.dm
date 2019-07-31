@@ -268,7 +268,6 @@ proc/listclearnulls(list/list)
 	if(L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	to_world("in sortList [middle]")
 	return mergeLists(sortList(L.Copy(0,middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
 
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
@@ -279,7 +278,6 @@ proc/listclearnulls(list/list)
 	return sortList(Q)
 
 /proc/mergeLists(var/list/L, var/list/R)
-	to_world("in merge lists")
 	var/Li=1
 	var/Ri=1
 	var/list/result = new()
