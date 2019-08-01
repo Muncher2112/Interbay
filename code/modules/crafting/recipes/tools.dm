@@ -6,6 +6,7 @@
 
 	time = 30 			//time in 1/10th of second
 	base_chance = 100 	//base chance to get it right without skills
+	int_required = 6
 
 /datum/crafting_recipe/wirecutters
 	name = "Wirecutters"
@@ -14,6 +15,7 @@
 	result = list(/obj/item/weapon/wirecutters = 1)
 	time = 30
 	base_chance = 100
+	int_required = 6
 
 
 /datum/crafting_recipe/screwdriver
@@ -21,6 +23,6 @@
 	parts = list(/obj/item/screwdriver_head = 1, /obj/item/glass_handle = 1)
 	tools = list()
 	result = list(/obj/item/weapon/screwdriver  = 1)
-
 	time = 30
 	base_chance = 100
+	int_required = 4

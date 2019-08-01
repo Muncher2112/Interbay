@@ -650,6 +650,8 @@
 		var/rname = href_list["craft"]
 		var/datum/crafting_recipe/R = crafting_recipes[rname]
 		R.make(src, T)
+
+
 	/* These might actually be cool
 	///////Interactions!!///////
 	if(href_list["interaction"])

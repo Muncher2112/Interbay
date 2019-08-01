@@ -134,7 +134,7 @@
 
 	var/msg = words.Join(" ",first_word, end_word+ (first_word == 1) ) //Why is list.Join() being weird?
 
-	if(user.stats["int"] == 1) //illiterate :P
+	if(user.stats["int"] <= 3) //illiterate :P  stats can only go as low as three now
 		msg = uh(msg)
 
 	to_chat(user, "<i>\"[msg]\"</i>" )

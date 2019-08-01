@@ -1,3 +1,5 @@
+.//This fucking sucks.  Maybe some big brain can come along and figure out how to make this less shitty
+
 /datum/crafting_recipe/revolver_one
 	name = "Station made revolver one slot"
 	tools = list(/obj/item/weapon/screwdriver)
@@ -5,6 +7,7 @@
 	result = list(/obj/item/weapon/gun/projectile/revolver/crafted/one_chamber = 1)
 	time = 60
 	base_chance = 100
+	int_required = 12
 
 /datum/crafting_recipe/revolver_two
 	name = "Station made revolver two slot"
@@ -13,6 +16,7 @@
 	result = list(/obj/item/weapon/gun/projectile/revolver/crafted/two_chamber = 1)
 	time = 60
 	base_chance = 100
+	int_required = 12
 
 /datum/crafting_recipe/revolver_three
 	name = "Station made revolver three slot"
@@ -21,6 +25,7 @@
 	result = list(/obj/item/weapon/gun/projectile/revolver/crafted/three_chamber = 1)
 	time = 60
 	base_chance = 100
+	int_required = 12
 
 /datum/crafting_recipe/revolver_four
 	name = "Station made revolver four slot"
@@ -29,6 +34,7 @@
 	result = list(/obj/item/weapon/gun/projectile/revolver/crafted/four_chamber = 1)
 	time = 60
 	base_chance = 100
+	int_required = 12
 
 /datum/crafting_recipe/ammo_38
 	name = "38 Bullet"
@@ -37,3 +43,4 @@
 	result = list(/obj/item/ammo_casing/c38  = 1)
 	time = 30
 	base_chance = 100
+	int_required = 12

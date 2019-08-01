@@ -2,7 +2,7 @@
 	set name = "Craft Items"
 	set category = "IC"
 
-	if(stat) //zombie goasts pls go
+	if(stat) //zombie ghosts pls go
 		return
 
 	if(!crafting_recipes)
@@ -15,7 +15,7 @@
 		return
 	for(var/name in crafting_recipes)
 		var/datum/crafting_recipe/R = crafting_recipes[name]
-		if(R.can_make(src, spot))
+		if(R.can_see(src, spot))
 			dat += "<A href='?src=\ref[src];craft=[name]'>[R.name]</A> "
 			dat += "Parts: "
 			var/list/parts = list()
@@ -46,6 +46,7 @@
 
 	var/time = 0 			//time in 1/10th of second
 	var/base_chance = 100 	//base chance to get it right without skills
+	var/int_required = 0    //Anyone can learn this
 
 /datum/crafting_recipe/proc/check_parts(var/list/things)
 	if(!parts)
@@ -104,7 +105,12 @@
 
 /datum/crafting_recipe/proc/can_make(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
-	return check_parts(things) && check_tools(things)
+	return check_parts(things) && check_tools(things) && user.stats["int"] >= int_required  //Int effects what you can craft
+
+// If a user has all the stuff, but not the tool, they can still see they are on the right track
+/datum/crafting_recipe/proc/can_see(var/mob/user, var/turf/spot)
+	var/list/things = spot.contents + user.contents
+	return check_parts(things) && user.stats["int"] >= int_required
 
 /datum/crafting_recipe/proc/make(var/mob/user, var/turf/spot)
 	if(!can_make(user,spot))

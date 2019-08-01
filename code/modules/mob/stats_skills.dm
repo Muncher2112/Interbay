@@ -144,10 +144,7 @@ proc/stat_to_modifier(var/stat)
 	var/top_stat = 0
 	//Roll a new random roll for each stat
 	for(var/stat in stats)
-		var/roll1 = rand(1,6)
-		var/roll2 = rand(1,6)
-		var/roll3 = rand(1,6)
-		rand_stats += (roll1+roll2+roll3)
+		rand_stats += (rand(1,6) + rand(1,6) + rand(1,6))
 	rand_stats = insertion_sort_numeric_list_descending(rand_stats)
 	top_stat = rand_stats[1]
 	rand_stats.Remove(top_stat)
