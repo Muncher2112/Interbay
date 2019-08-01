@@ -105,12 +105,18 @@
 
 /datum/crafting_recipe/proc/can_make(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
-	return check_parts(things) && check_tools(things) && user.stats["int"] >= int_required  //Int effects what you can craft
+	if (check_tools(things))
+		to_chat(user, "You are missing the tools required.")
+		return 0
+	if (check_parts(things))
+		to_chat(user, "You are missing the partss required.")
+		return 0
+	return 1
 
 // If a user has all the stuff, but not the tool, they can still see they are on the right track
 /datum/crafting_recipe/proc/can_see(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
-	return check_parts(things) && user.stats["int"] >= int_required
+	return check_parts(things) && user.stats["int"] >= int_required  //Int effects what you can craft
 
 /datum/crafting_recipe/proc/make(var/mob/user, var/turf/spot)
 	if(!can_make(user,spot))

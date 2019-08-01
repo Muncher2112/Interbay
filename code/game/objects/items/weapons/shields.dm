@@ -28,7 +28,7 @@
 	if(user.defense_intent != I_PARRY)//If you're not on parry intent, you won't parry.
 		return 0
 
-	if(!user.skillcheck(user.melee_skill, 60, 0))//Need at least 60 skill to be able to parry effectively.
+	if(!user.statscheck(user.stats["dex"], 10, "I couldn't block in time!", "dex")) //Need to be fast to parry
 		return 0
 
 	//block as long as they are not directly behind us

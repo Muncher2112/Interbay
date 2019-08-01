@@ -198,7 +198,7 @@ meteor_act
 	return TRUE
 
 /*
-As far as I can tell, this is to handle special attack cases, like  throat slitting, dodging, missing
+As far as I can tell, this is to handle special attack cases, like  throat slitting, dodging, missing, shields
 They return "null" because there is no need to proceed to apply_hit_effect, or if a check is failed.
 If the item_attack does need to go to apply_hit_effect (Which seems like 75% of cases) this function should return "target_zone"
 -muncher

@@ -148,13 +148,9 @@ proc/stat_to_modifier(var/stat)
 	rand_stats = insertion_sort_numeric_list_descending(rand_stats)
 	top_stat = rand_stats[1]
 	rand_stats.Remove(top_stat)
-	for(var/stat in stats)
-		if(main_stat == stat)
-			stats[stat] = top_stat
-			rand_stats.Remove(stats[stat])
-		else
-			stats[stat] = pick(rand_stats)
-			rand_stats.Remove(stats[stat])
+	for(var/stat in stats - main_stat)
+		stats[stat] = pick(rand_stats)
+		rand_stats.Remove(stats[stat])
 
 /mob/proc/adjustStrength(var/num)
 	stats["str"] += num
