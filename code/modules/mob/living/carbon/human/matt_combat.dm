@@ -30,13 +30,20 @@
 			adjustStaminaLoss(1)
 
 /mob/living/proc/attempt_dodge()//Handle parry is an object proc and it's, its own thing.
-	if(combat_mode && (defense_intent == I_DODGE) && !lying)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
-		if(staminaloss < 50 && statscheck(stats["dex"], 20))//You gotta be the master of dexterity to dodge every time.
+	if (defense_intent != I_DODGE || lying)  // If they are not trying to dodge or are lying down
+		return 0
+	if(combat_mode)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
+		if(staminaloss < 50 && statscheck(stats["dex"], 12, "We couldn't dodge in time!"))//You gotta be the master of dexterity to dodge every time.
 			do_dodge()
 			return	1
-		else if(staminaloss >= 50 && prob(stats["dex"] + 10)) //Good reflex gives you a bit more chance to dedge
+		else if(staminaloss >= 50 && statscheck(stats["dex"], 16, "I'm getting too exhausted to dodge")) //It's harder to dodge when you're tired
 			do_dodge()
 			return	1
+	else
+		if(statscheck(stats["dex"], 18, "I can't dodge something I'm not ready for"))  //If you're not in combat mode, you're probably getting messed up
+			do_dodge()
+			return	1
+	return 0  //If we fail everything
 
 /mob/living/proc/do_dodge()
 	var/lol = pick(cardinal)//get a direction.

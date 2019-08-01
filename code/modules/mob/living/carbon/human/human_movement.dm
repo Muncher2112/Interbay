@@ -61,7 +61,8 @@
 
 	if(mRun in mutations)
 		tally = 0
-
+	//good dex means you run slightly faster, so delay goes down
+	tally -= (stat_to_modifier(stats["dex"]) * 0.005)
 	return (tally+config.human_delay)
 
 /mob/living/carbon/human/Allow_Spacemove(var/check_drift = 0)

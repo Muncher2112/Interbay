@@ -677,7 +677,8 @@
 				qdel(a)
 
 		if(getHalLoss() >= (species.total_health - 100))
-			if(!stat)
+			//Constitution check to see if you can take the pain
+			if(!stat && statscheck(stats["con"],20,1,"I can't take the pain!  It's too much!"))
 				//to_chat(src, "<span class='warning'>[species.halloss_message_self]</span>")
 				src.visible_message("<span class='warning'><B>[src]</B> gives into the pain!</span>")//("<B>[src]</B> [species.halloss_message].")
 			Paralyse(10)

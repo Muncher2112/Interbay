@@ -409,7 +409,7 @@ its easier to just keep the beam vertical.
 //	playsound(user, "sound/effects/jump_[user.gender == MALE ? "male" : "female"].ogg", 25)
 	playsound(user, user.gender == MALE ? 'sound/effects/jump_male.ogg' : 'sound/effects/jump_female.ogg', 25)
 	user.visible_message("[user] jumps.")
-	user.adjustStaminaLoss(rand(20,40))//Jumping is exhausting.
+	user.adjustStaminaLoss(rand(20,40) - stat_to_modifier(user.stats["dex"]))//Jumping is exhausting, but I higher dex makes it easier
 	user.throw_at(target, 5, 0.5, user)
 	user.setClickCooldown(DEFAULT_SLOW_COOLDOWN)
 

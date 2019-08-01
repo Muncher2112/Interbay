@@ -87,17 +87,20 @@
 // I want to test making stats more D&D-esque.  This means every stat check makes a roll, and your (stat - 10 / 2) is added to the role, and checked.
 // This could lead to skills being only for advantage/disadvantage (Roll two dice take higher/lower)
 // This will need *major* playtesting
-/mob/proc/statscheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
+
+// Takes a stat
+/mob/proc/statscheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
 	var/roll = rand(1,20)// our "dice"
-	roll += mood_affect(1)// our skill modifier
-	roll += round((stat - 10) * 0.5) //Should round down
-	to_world("Roll: [roll], Mood affect: [mood_affect(1)], Ability modifier [round((stat - 10) * 0.5)]") //Debuging
-	to_world("Rolled a [roll] against a DC [requirement] check")  //debug
+	to_world("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]") //Debuging
+	to_world("Rolled a [roll] against a DC [requirement] [type] check")  //debug
+	roll -= mood_affect(1)// our mood
+	roll += stat_to_modifier(stat) //our stat mod
 	if(roll >= requirement)//We met the DC requirement
 		//world << "Rolled and passed."
 		return 1
 	else
-		to_chat(src, "<span class = 'warning'>[message]</span>")
+		if(message)
+			to_chat(src, "<span class = 'warning'>[message]</span>")
 		return 0
 	return 1
 
@@ -105,11 +108,12 @@
 /mob/proc/mood_affect(var/stat = null, var/skill = null)
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
-		if(C.happiness <= MOOD_LEVEL_SAD3)
-			if(stat)
-				return 5
-			if(skill)
-				return -15
+		// We return the mood, based on MOOD_LEVEL_NEUTRAL or whatever
+		if(stat)
+			return C.happiness * -0.2  //This will be SUBTRACTED from the stat roll.  Goes from +4 to -4
+		if(skill)
+			return C.happiness //This will be ADDED to the skill roll.  Goes from +20 - -20  *PENDING REWORK&*
+	return 0
 
 
 proc/strToDamageModifier(var/strength)
@@ -117,6 +121,9 @@ proc/strToDamageModifier(var/strength)
 
 proc/strToSpeedModifier(var/strength, var/w_class)
 	return abs(strength - 20)  //hope this is better too
+
+proc/stat_to_modifier(var/stat)
+	return round((stat - 10) * 0.5)
 
 //Stats helpers.
 
@@ -141,13 +148,13 @@ proc/strToSpeedModifier(var/strength, var/w_class)
 		var/roll2 = rand(1,6)
 		var/roll3 = rand(1,6)
 		rand_stats += (roll1+roll2+roll3)
-	rand_stats = sortList(rand_stats)
+	rand_stats = insertion_sort_numeric_list_descending(rand_stats)
 	top_stat = rand_stats[1]
 	rand_stats.Remove(top_stat)
 	for(var/stat in stats)
 		if(main_stat == stat)
 			stats[stat] = top_stat
-			rand_stats.Remove(main_stat)
+			rand_stats.Remove(stats[stat])
 		else
 			stats[stat] = pick(rand_stats)
 			rand_stats.Remove(stats[stat])

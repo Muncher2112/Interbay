@@ -1314,7 +1314,6 @@
 
 	species.create_organs(src)
 	species.handle_post_spawn(src)
-
 	maxHealth = species.total_health
 
 	default_pixel_x = initial(pixel_x) + species.pixel_offset_x
