@@ -149,13 +149,13 @@
 		to_chat(user, "<span class='danger'>The gun's safety is on!</span>")
 		handle_click_empty(user)
 		return 0
-	
+
 	if(!is_jammed && prob(jam_chance))
 		playsound(src.loc, 'sound/effects/jam.ogg', 50, 1)
 		src.visible_message("<span class='danger'>[user]\'s [src] jams!</span>")
 		is_jammed = 1
 		return 0
-	
+
 	if(is_jammed)
 		handle_click_empty(user)
 		return 0
@@ -351,7 +351,7 @@
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
-	if(!user.skillcheck(user.ranged_skill, 55, 0) || !user.combat_mode)//Being unskilled at guns decreased accuracy.
+	if(!user.skillcheck(user.skills["ranged"], 55, 0) || !user.combat_mode)//Being unskilled at guns decreased accuracy.
 		P.accuracy -= 2
 
 //does the actual launching of the projectile

@@ -113,16 +113,16 @@
 	mill(var/mob/user)
 		switch(chambers)
 			if(0)
-				if (user.skillcheck(user.engineering_skill, 20, 1, message = "You mill to far into the cynlinder, and it falls apart"))
+				if (user.skillcheck(user.skills["crafting"], 30, 1, message = "You mill to far into the cynlinder, and it falls apart"))
 					return /obj/item/cylinder/one_slot
 			if(1)
-				if (user.skillcheck(user.engineering_skill, 50, 1, message = "You nick another hole, and the cylinder falls apart."))
+				if (user.skillcheck(user.skills["crafting"], 50, 1, message = "You nick another hole, and the cylinder falls apart."))
 					return /obj/item/cylinder/two_slot
 			if(2)
-				if (user.skillcheck(user.engineering_skill, 70, 1, message = "You nick another hole, and the cylinder falls apart."))
+				if (user.skillcheck(user.skills["crafting"], 70, 1, message = "You nick another hole, and the cylinder falls apart."))
 					return /obj/item/cylinder/three_slot
 			if(3)
-				if (user.skillcheck(user.engineering_skill, 80, 1, message = "You nick another hole, and the cylinder falls apart."))
+				if (user.skillcheck(user.skills["crafting"], 80, 1, message = "You nick another hole, and the cylinder falls apart."))
 					return /obj/item/cylinder/four_slot
 			if(4)
 				to_chat(usr, "<span class='notice'>You nick another hole, and the cylinder falls apart.</span>")

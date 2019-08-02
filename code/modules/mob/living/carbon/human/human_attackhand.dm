@@ -198,7 +198,7 @@
 				var/misschance = H.lying ? 30 : 15
 				if(prob(misschance) && hit_zone != BP_CHEST) // Missed!
 					if(!src.lying)
-						if(H.skillcheck(H.melee_skill, 60, 0) == CRIT_FAILURE)
+						if(H.skillcheck(H.skills["melee"], 60, 0) == CRIT_FAILURE)
 							H.resolve_critical_miss()
 							attack_message = null
 						else

@@ -180,7 +180,7 @@
 		..()
 		//H.add_stats(rand(5,7), rand(5,8), rand(12,15))
 		H.generate_stats("int")
-		H.add_skills(rand(25, 50), rand(25,50), rand(65, 75))
+		H.generate_skills("science")
 
 /datum/job/scientist
 	title = "Tenchotrainee"
@@ -197,7 +197,7 @@
 		..()
 		//H.add_stats(rand(5,7), rand(5,8), rand(10,14))
 		H.generate_stats("int")
-		H.add_skills(rand(25, 50), rand(25,50), rand(65, 75))
+		H.generate_skills("science")
 
 /datum/job/doctor
 	selection_color = "#633d63"
@@ -216,7 +216,7 @@
 		..()
 		//H.add_stats(rand(5,7), rand(5,8), rand(10,14))
 		H.generate_stats("int")
-		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
+		H.generate_skills("medical")
 
 /datum/job/doctor/undertaker
 	title = "Undertaker"
@@ -254,7 +254,7 @@
 		..()
 		//H.add_stats(rand(12,18), rand(10,16), rand(8,12))
 		H.generate_stats("str")
-		H.add_skills(rand(60, 75), rand(60,75))
+		H.generate_skills("melee")
 
 
 /datum/job/officer
@@ -274,7 +274,7 @@
 		..()
 		//H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.generate_stats("str")
-		H.add_skills(rand(60, 75), rand(60,75))
+		H.generate_skills("melee")
 
 
 /datum/job/qm
@@ -398,7 +398,7 @@
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")//Actually makes them a child. Called before ..() so they can get their clothes.
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
-		H.add_skills(rand(30,50), rand(30,50), rand(65,75))
+		H.generate_skills("medical")
 		..()
 
 
@@ -421,7 +421,7 @@
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
-		H.add_skills(rand(30,50), rand(50,65), rand(25,60))
+		H.generate_skills("melee")
 		..()
 
 /datum/job/jr_upkeep
@@ -443,7 +443,7 @@
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")
 		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
-		H.add_skills(rand(30,50), rand(50,65), rand(25,60))
+		H.generate_skills("cleaning")
 		..()
 
 
@@ -459,8 +459,8 @@
 
 	equip(var/mob/living/carbon/human/H)
 		..()
-		//H.add_stats(rand(7,12), rand(7,12), rand(10,15))
 		H.generate_stats("con")
+		H.generate_skills("cleaning")
 
 /datum/job/chaplain
 	title = "Priest"
@@ -513,7 +513,7 @@
 			H.religion = LEGAL_RELIGION
 		//H.add_stats(rand(11,16), rand(10,14), rand(7,10))
 		H.generate_stats("str")
-		H.add_skills(rand(60, 75), rand(60,75))
+		H.generate_skills("melee")
 
 //The inquisitor, aka the supreme arbiter.
 /datum/job/supreme_arbiter
@@ -537,7 +537,7 @@
 			H.religion = LEGAL_RELIGION
 		//H.add_stats(rand(9,14), rand(8,12), rand(12,16))
 		H.generate_stats("str")
-		H.add_skills(rand(60, 75), rand(60,75), rand(50,75))
+		H.generate_skills("melee")
 
 
 
@@ -566,7 +566,7 @@
 		//Peacekeeper setup.
 		//H.add_stats(rand(11,18), rand(10,14), rand(7,10))
 		H.generate_stats("str")
-		H.add_skills(rand(60, 75), rand(60,75))
+		H.generate_skills("ranged")
 
 		//Some dumb if shit.
 		if(prob(50))

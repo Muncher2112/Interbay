@@ -60,7 +60,7 @@
 		//Mill the item, for better or worse
 		var/obj/item/milling= making.mill(user)
 		if (!milling)
-			if (user.skillcheck(user.engineering_skill, 65, 1, message = "You try to mill the object but it uselessly falls apart.  You don't think this item was meant to be milled.."))
+			if (user.skillcheck(user.skills["crafting"], 65, 1, message = "You try to mill the object but it uselessly falls apart.  You don't think this item was meant to be milled.."))
 				to_chat(user, "<span class='notice'>The [making] falls out of the mill.  You don't think this item was meant to be milled...</span>")
 				new making.type(src.loc)
 		else

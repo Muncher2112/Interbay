@@ -29,7 +29,6 @@
 						I.take_damage(dam, silent=TRUE)
 						dam = 0
 
-		dam -= stat_to_modifier(M.stats["con"]) * 0.005 // Con lets us ignore a bit of toxin damage.  This is half the modifier, shift the decimal left two
 		if(dam)
 			M.adjustToxLoss(target_organ ? (dam * 0.75) : dam)
 
