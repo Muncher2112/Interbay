@@ -1,4 +1,6 @@
-# GOODNIGHT, SWEET PRINCE ;_;7
+# ITS BACK BABY
+
+#  All credit goes to mattroks101 and kyrahabattoir and all the other people who worked on this code.  
 [Baystation's Website](http://baystation12.net/) - [InterBay's Code](http://github.com/mattroks101/InterBay/)
 ---
 [![forthebadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](http://forthebadge.com)
