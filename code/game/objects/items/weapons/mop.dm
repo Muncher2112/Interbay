@@ -27,8 +27,8 @@
 			return
 
 		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
-
-		if(do_after(user, 40, T))
+		var/delay = 100 - user.skills["cleaning"] //Better at cleaning, you mop faster
+		if(do_after(user, delay, T))
 			if(T)
 				T.clean(src, user)
 			to_chat(user, "<span class='notice'>You have finished mopping!</span>")

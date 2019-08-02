@@ -480,6 +480,8 @@
 		return 0
 	if(Check_Shoegrip())
 		return 0
+	if (!statcheck(stats["dex"], 5, "I can't keep my grip!", "dex"))
+		prob_slip = max(prob_slip,75)
 	return prob_slip
 
 #define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);

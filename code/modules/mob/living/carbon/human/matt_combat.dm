@@ -33,14 +33,14 @@
 	if (defense_intent != I_DODGE || lying)  // If they are not trying to dodge or are lying down
 		return 0
 	if(combat_mode)//Todo, make use of the check_shield_arc proc to make sure you can't dodge from behind.
-		if(staminaloss < 50 && statscheck(stats["dex"], 12, "We couldn't dodge in time!"))//You gotta be the master of dexterity to dodge every time.
+		if(staminaloss < 50 && statcheck(stats["dex"], 12, "We couldn't dodge in time!"))//You gotta be the master of dexterity to dodge every time.
 			do_dodge()
 			return	1
-		else if(staminaloss >= 50 && statscheck(stats["dex"], 16, "I'm getting too exhausted to dodge")) //It's harder to dodge when you're tired
+		else if(staminaloss >= 50 && statcheck(stats["dex"], 16, "I'm getting too exhausted to dodge")) //It's harder to dodge when you're tired
 			do_dodge()
 			return	1
 	else
-		if(statscheck(stats["dex"], 18, "I can't dodge something I'm not ready for"))  //If you're not in combat mode, you're probably getting messed up
+		if(statcheck(stats["dex"], 18, "I can't dodge something I'm not ready for"))  //If you're not in combat mode, you're probably getting messed up
 			do_dodge()
 			return	1
 	return 0  //If we fail everything

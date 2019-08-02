@@ -102,6 +102,7 @@
 		..()
 		//H.add_stats(rand(9,11), rand(9,11), rand(7,10))
 		H.generate_stats("dex")
+		H.generate_skills("cleaning")
 
 
 /datum/job/captain
@@ -117,6 +118,7 @@
 		..()
 		//H.add_stats(rand(6,9), rand(9,11), rand(10,12))
 		H.generate_stats("str")
+		H.generate_skills("melee")
 
 
 
@@ -135,6 +137,7 @@
 		..()
 		//H.add_stats(rand(6,9), rand(9,11), rand(10,12))
 		H.generate_stats("int")
+		H.generate_skills("range")
 
 /datum/job/employe
 	title = "Employe Administratif"
@@ -290,7 +293,8 @@
 	equip(var/mob/living/carbon/human/H)
 		..()
 		//H.add_stats(rand(8,12), rand(9,12), rand(7,10))
-		H.generate_stats("dex")
+		H.generate_stats("int")
+		H.generate_skills("crafting")
 
 /datum/job/engineer
 	title = "Upkeeper"
@@ -309,6 +313,7 @@
 		..()
 		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
 		H.generate_stats("int")
+		H.generate_skills("engineering")
 
 /datum/job/mining
 	selection_color = "#7c6a2e"
@@ -326,6 +331,7 @@
 		..()
 		//H.add_stats(rand(9,16), rand(9,12), rand(6,9))
 		H.generate_stats("str")
+		H.generate_skills("cleaning")
 
 /datum/job/cargo_tech
 	selection_color = "#7c6a2e"
@@ -343,6 +349,7 @@
 		..()
 		//H.add_stats(rand(9,12), rand(9,12), rand(6,9))
 		H.generate_stats("dex")
+		H.generate_skills("crafting")
 
 /datum/job/cargo_tech/machinist
 	title = "Machinist"
@@ -352,6 +359,7 @@
 		..()
 		//H.add_stats(rand(10,15), rand(7,10), rand(9,14))
 		H.generate_stats("int")
+		H.generate_skills("crafting")
 
 //kid roles
 /datum/job/ouvrier
@@ -420,7 +428,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		H.set_species("Child")
-		H.add_stats(rand(3,6), rand(12,16), rand(6,9))
+		H.generate_stats(rand(3,6), rand(12,16), rand(6,9))
 		H.generate_skills("melee")
 		..()
 
@@ -460,7 +468,7 @@
 	equip(var/mob/living/carbon/human/H)
 		..()
 		H.generate_stats("con")
-		H.generate_skills("cleaning")
+		H.generate_skills("cooking")
 
 /datum/job/chaplain
 	title = "Priest"
@@ -490,6 +498,7 @@
 		..()
 		//H.add_stats(rand(9,12), rand(9,12), rand(5,9))
 		H.generate_stats("con")
+		H.generate_skills("cleaning")
 
 
 //CHURCH JOBS

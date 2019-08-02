@@ -40,7 +40,7 @@
 */
 
 // Takes a stat *VALUE*.
-/mob/proc/statscheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
+/mob/proc/statcheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
 	var/roll = rand(1,20)// our "dice"
 	to_world("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]") //Debuging
 	to_world("Rolled a [roll] against a DC [requirement] [type] check")  //debug
@@ -146,7 +146,8 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 	return crit_failure_chance + crit_failure_modifier + crit_mood_modifier
 
 
-/mob/proc/skillcheck(var/skill, var/requirement, var/show_message, var/message = "I have failed to do this.")//1 - 100
+/mob/proc/skillcheck(var/skill, var/requirement, var/message = null, var/type = null)//1 - 100
+	to_world("[type] check!  Skill value: [skill], DC [requirement]") //Debuging
 	if(skill >= requirement)//If we already surpass the skill requirements no need to roll.
 		if(prob(get_success_chance()))//Only thing we roll for is a crit success.
 			return CRIT_SUCCESS
@@ -157,7 +158,7 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 				return CRIT_SUCCESS
 			return 1
 		else
-			if(show_message)//If we don't pass then we return failure
+			if(message)//If we don't have a message, just return failure
 				to_chat(src, "<span class = 'warning'>[message]</span>")
 			if(prob(get_failure_chance()))//And roll for a crit failure.
 				return CRIT_FAILURE
@@ -166,13 +167,13 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 //Skill helpers.
 /mob/proc/skillnumtodesc(var/skill)
 	switch(skill)
-		if(0 to 25)
+		if(0 to 24)
 			return "<small><i>pathetic</i></small>"
-		if(25 to 45)
+		if(25 to 44)
 			return "unskilled"
-		if(45 to 60)
+		if(45 to 59)
 			return pick("alright", "ok", "not bad")
-		if(60 to 80)
+		if(60 to 79)
 			return "skilled"
 		if(80 to INFINITY)
 			return "<b>GOD LIKE</b>"
@@ -219,7 +220,7 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 
 
 /* LEGACY STAT CODE
-/mob/proc/statscheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
+/mob/proc/statcheck(var/stat, var/requirement, var/show_message, var/message = "I have failed to do this.")//Requirement needs to be 1 through 20
 	if(stat < requirement)
 		var/H = rand(1,20)// our "dice"
 		H += mood_affect(1)// our skill modifier

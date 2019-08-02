@@ -186,7 +186,8 @@
 				slip_dist = 4
 				slip_stun = 3
 
-			if(M.slip("the [floor_type] floor", slip_stun))
+			if(M.slip_chance(75))
+				M.slip("the [floor_type] floor", slip_stun)
 				for(var/i = 1 to slip_dist)
 					step(M, M.dir)
 					sleep(1)

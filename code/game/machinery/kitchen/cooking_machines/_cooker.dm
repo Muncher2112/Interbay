@@ -127,7 +127,7 @@
 
 	// Set cooked data.
 	var/obj/item/weapon/reagent_containers/food/snacks/food_item = cooking_obj
-	if(istype(food_item) && islist(food_item.cooked))
+	if(istype(food_item) && islist(food_item.cooked) )
 		result.cooked = food_item.cooked.Copy()
 	else
 		result.cooked = list()
@@ -149,6 +149,10 @@
 		var/overcook_period = max(Floor(cook_time/5),1)
 		cooking_obj = result
 		while(1)
+			//Before we wait to see if we burn it, let's do a skillcheck
+			if(!user.skillcheck(user.skills["cooking"], 50, "You forgot a crucial step, and the [food_item.name] is going to be ruined!", "cooking"))
+				overcook_period = 0 //If you fuck up that check, you're gonna fuck up your food.  Ideally this can be saved by a robust player
+				burn_chance = 50
 			sleep(overcook_period)
 			if(!cooking || !result || result.loc != src)
 				failed = 1
