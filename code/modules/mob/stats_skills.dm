@@ -20,7 +20,6 @@
 //I am aware this is probably the worst possible way of doing it but I'm using this method till I get a better one. - Matt
 /mob
 	var/stats = list(str = 10, dex = 10, int = 10, con = 10)
-	//var/skills = list(abc = 1, xyz = 2)
 	var/skills = list("melee" = 40, "ranged" = 40, "medical" = 40, "engineering" = 40, "crafting" = 40, "cooking" = 40, "science" = 40, "cleaning" = 40)
 
 /*    ===== STATS ====
@@ -180,9 +179,6 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 
 // 3 rand(1,34) are rolled, and totaled for each skill.  Main Skill is set the higest, rest are picked at random.
 /mob/proc/generate_skills(var/main_skill)
-	to_world("In generate skills")
-	for(var/skill in skills)
-		to_world("[skill]")
 	var/list/rand_skills = list()
 	var/top_skill = 0
 	//Roll a new random roll for each stat
@@ -192,9 +188,7 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 	top_skill = rand_skills[1]
 	rand_skills.Remove(top_skill)
 	skills[main_skill] = top_skill
-	to_world("[main_skill]")
 	for(var/skill in skills - main_skill)
-		to_world("In generate skills [skill]")
 		skills[skill] = pick(rand_skills)
 		rand_skills.Remove(skills[skill])
 /*
