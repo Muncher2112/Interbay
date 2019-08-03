@@ -140,6 +140,7 @@ var/global/datum/controller/gameticker/ticker
 	data_core.manifest()
 
 	callHook("roundstart")
+	Master.RoundStart()
 
 	shuttle_controller.initialize_shuttles()
 
