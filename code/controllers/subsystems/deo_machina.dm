@@ -6,9 +6,11 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	wait = 600  //1 minutes
 	priority = 20
 	flags = SS_BACKGROUND
-	var/request_type = null
+	var/obj/request_item = null
 	var/request_amount = -1
 	var/visible_shrines = list()
+	var/list/requestable_items = list(/obj/item/metal_bar,/obj/item/weapon/screwdriver)
+	var/list/bannable_items = list()
 
 
 /datum/controller/subsystem/verina_controller/New()
@@ -19,7 +21,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	//enqueue()
 	if(state == SS_RUNNING)
 		to_world("Verina subsystem is running!")
-		//look_for_shrines()
+		generate_request()
 
 /datum/controller/subsystem/verina_controller/Initialize(time = null)
 	to_world("Good morning!  Your station's Deo Machina sactioned AI is starting up!  The time is [time]")
@@ -37,3 +39,9 @@ var/datum/controller/subsystem/verina_controller/SSverina
 		to_world("[get_area(S)]")
 		shrine_locations += get_area(S)
 	return shrine_locations
+
+/datum/controller/subsystem/verina_controller/proc/generate_request()
+	request_item = "[pick(requestable_items)]"
+	request_item = new request_item
+	request_amount = rand(0,100)
+	to_world("We are requesting [request_amount] [request_item.name]s")

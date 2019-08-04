@@ -235,8 +235,7 @@ var/global/list/default_medbay_channels = list(
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-//			log_debug(channel=\"[channel]\" switching to \"[channels[1]]\"")
-
+		//log_debug(channel=\"[channel]\" switching to \"[channels[1]]\"")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -263,7 +262,6 @@ var/global/list/default_medbay_channels = list(
 	if(channels && channels.len > 0)
 		if (message_mode == "department") // Department radio shortcut
 			message_mode = channels[1]
-
 		if (channels[message_mode]) // only broadcast if the channel is set on
 			return secure_radio_connections[message_mode]
 
@@ -357,7 +355,6 @@ var/global/list/default_medbay_channels = list(
 
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
-
 	if(subspace_transmission)
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
@@ -410,7 +407,6 @@ var/global/list/default_medbay_channels = list(
 
 
   /* ###### Intercoms and station-bounced radios ###### */
-
 	var/filter_type = 2
 
 	/* --- Intercoms can only broadcast to other intercoms, but bounced radios can broadcast to bounced radios and intercoms --- */
@@ -749,7 +745,7 @@ var/global/list/default_medbay_channels = list(
 	invisibility = 101
 	listening = 0
 	canhear_range = 0
-	channels=list("Engineering","Security", "Medical", "Command")
+	channels=list("Engineering" = 1,"Security" = 1, "Medical" = 1, "Command" = 1, "Inquisition" = 1)
 
 /obj/item/device/radio/announcer/Destroy()
 	crash_with("attempt to delete a [src.type] detected, and prevented.")

@@ -151,4 +151,5 @@
 		return 0
 	else if(!cameranet.is_visible(src))
 		return 0
+	global_headset.autosay("Heretical Shrine detected in [get_area(src)]","Verina","Inquisition")
 	return 1
