@@ -92,6 +92,9 @@
 /obj/machinery/arbiter_computer/attack_hand(mob/user as mob)
 	..()
 	visible_message("<span class='notice'>The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
+	//visible_message("<span class='notice'>The [src] beeps: \"Verina's current request is [SSverina.last_fire]\"</span>")
+	var/list/visible_locations = SSverina.get_shrine_locations()
+	visible_message("<span class='notice'>The [src] beeps: \"I have detected shrines in the following locations: [visible_locations.Join(", ")]\"</span>")
 
 
 /obj/machinery/arbiter_computer/emag_act(var/remaining_charges, var/mob/user)
@@ -121,16 +124,31 @@
 	density = 1
 	anchored = 1
 	use_power = 0
-	var/candles = list()
+	var/list/candles = list()
 
 /obj/machinery/old_god_shrine/New(l,d=0)
 	..(l)
 	for(var/obj/item/weapon/flame/candle/C in range(1, src))
 		candles += C
+	if(near_camera())
+		SSverina.visible_shrines += src
 
 /obj/machinery/old_god_shrine/process()
+	if (candles.len == 0)
+		Destroy()
 	for(var/obj/item/weapon/flame/candle/C in candles) //Check for candles around
 		if(C.lit)
 			all_religions[ILLEGAL_RELIGION].favor += 0.5
 		else
 			candles -= C
+
+/obj/machinery/old_god_shrine/Destroy()
+	SSverina.visible_shrines -= src
+	..()
+
+/obj/machinery/old_god_shrine/proc/near_camera()
+	if (!isturf(loc))
+		return 0
+	else if(!cameranet.is_visible(src))
+		return 0
+	return 1
