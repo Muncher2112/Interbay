@@ -269,7 +269,6 @@ proc/get_radio_key_from_channel(var/channel)
 		if(M)
 			M << speech_bubble
 			M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
-
 	for(var/obj/O in listening_obj)
 		spawn(0)
 			if(O) //It's possible that it could be deleted in the meantime.

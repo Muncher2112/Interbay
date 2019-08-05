@@ -103,6 +103,11 @@
 	set_status(!status, user)
 	add_fingerprint(user)
 
+/obj/item/weapon/melee/baton/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
+	if (msg == accepted_prayer && istype(M.get_active_hand(), /obj/item/weapon/melee/baton/))
+		set_status(2)  //Set thier baton sets to overcharged
+	return
+
 /obj/item/weapon/melee/baton/proc/set_status(var/newstatus, mob/user)
 	if(bcell && bcell.charge > hitcost*status)  //This is too account for over charge status
 		if(status != newstatus)
