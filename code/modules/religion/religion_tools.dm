@@ -119,8 +119,20 @@
 	name = "Deo Machina offering pad"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcaster_off"
-	density = 1
-	anchored = 1
+	anchored = 1.0
+
+/obj/machinery/offering_pad/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
+	if (msg == accepted_prayer)
+		var/list/mobs = list()
+		var/list/objs = list()
+		get_mobs_and_objs_in_view_fast(loc,0,mobs,objs)
+		for (var/object in objs)
+			if (istype(object,SSverina.request_item.type))
+				SSverina.request_amount -= 1
+				to_world("Accepted!  Request num is now [SSverina.request_amount]")
+				playsound(get_turf(src), 'sound/misc/interference.ogg', 25, 1, extrarange = 3, falloff = 5)
+				qdel(object)
+				flick("broadcaster_send", src)
 
 // ILLEGAL RELIGION
 

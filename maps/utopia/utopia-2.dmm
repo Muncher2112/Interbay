@@ -841,7 +841,7 @@
 "qi" = (/obj/effect/floor_decal/spline/plain{dir = 4},/turf/simulated/floor/wood,/area/chapel)
 "qj" = (/obj/effect/floor_decal/chapel,/obj/effect/floor_decal/spline/plain{dir = 4},/turf/simulated/floor/tiled/dark,/area/chapel)
 "qk" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/chapel)
-"ql" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/wood,/area/chapel)
+"ql" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/offering_pad{step_x = 1},/turf/simulated/floor/wood,/area/chapel)
 "qm" = (/obj/effect/floor_decal/chapel{tag = "icon-chapel (WEST)"; icon_state = "chapel"; dir = 8},/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/tiled/dark,/area/chapel)
 "qn" = (/obj/effect/floor_decal/spline/plain{dir = 8},/turf/simulated/floor/wood,/area/chapel)
 "qo" = (/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/turf/simulated/floor/plating,/area/maintenance/dormitory)
