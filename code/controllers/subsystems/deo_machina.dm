@@ -3,7 +3,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 //The main controller of verina.  Will manage a few small subsystems, and manage what they are doing based on crew input
 /datum/controller/subsystem/verina_controller
 	name = "Verina"
-	wait = 300  //30 minutes
+	wait = 300  //30 seconds
 	priority = 20
 	flags = SS_BACKGROUND
 	var/obj/request_item = null
@@ -15,22 +15,17 @@ var/datum/controller/subsystem/verina_controller/SSverina
 
 
 /datum/controller/subsystem/verina_controller/New()
-	to_world("SSVERINA IS BEING ADDED TO GLOBAL")
 	NEW_SS_GLOBAL(SSverina)
 
 /datum/controller/subsystem/verina_controller/fire()
 	//enqueue()
 	if(state == SS_RUNNING)
-		to_world("Verina subsystem is running!")
 		if(request_item)
 			request_time -= 30
-			to_world("We have a request out.  Check if it's complete")
 			if(request_amount <= 0)
-				to_world("The request is complete!")
 				reward()
 				generate_request()
 			else if (request_time <= 0)
-				to_world("The request is failed!")
 				punish()
 				generate_request()
 			else
@@ -52,19 +47,25 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/controller/subsystem/verina_controller/proc/get_shrine_locations()
 	var/shrine_locations = list()
 	for(var/obj/machinery/old_god_shrine/S in visible_shrines)
-		to_world("[get_area(S)]")
 		shrine_locations += get_area(S)
 	return shrine_locations
 
 /datum/controller/subsystem/verina_controller/proc/generate_request()
-	request_item = "[pick(requestable_items)]"
 	request_item = new request_item
-	request_amount = rand(0,25)
+	request_amount = rand(1,50)
 	request_time = rand(300,600)
-	to_world("We are requesting [request_amount] [request_item.name]s, in [request_time/60] seconds")
 
 /datum/controller/subsystem/verina_controller/proc/reward()
-	to_world("Picking reward")
+	var/datum/supply_order/supply_reward = pick(supply_controller.master_supply_list)
+	var/datum/supply_order/O = new /datum/supply_order()
+	supply_controller.ordernum++
+	O.ordernum = supply_controller.ordernum
+	O.object = supply_reward
+	O.orderedby = "Verina"
+	O.reason = "For completing Verina's request!"
+	O.orderedrank = "God"
+	O.comment = "#[O.ordernum] Well done servant of Verina." // crates will be labeled with this.
+	supply_controller.shoppinglist += O
 
 /datum/controller/subsystem/verina_controller/proc/punish()
 	to_world("Picking Punishment")

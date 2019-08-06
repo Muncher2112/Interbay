@@ -129,7 +129,6 @@
 		for (var/object in objs)
 			if (istype(object,SSverina.request_item.type))
 				SSverina.request_amount -= 1
-				to_world("Accepted!  Request num is now [SSverina.request_amount]")
 				playsound(get_turf(src), 'sound/misc/interference.ogg', 25, 1, extrarange = 3, falloff = 5)
 				qdel(object)
 				flick("broadcaster_send", src)
