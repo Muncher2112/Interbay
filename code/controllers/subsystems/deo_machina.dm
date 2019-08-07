@@ -75,6 +75,24 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	reward = new reward
 	reward.do_reward()
 
+/datum/reward/money
+	name = "Money" //LOADSA EMONE
+	value = 10
+
+/datum/reward/money/do_reward()
+	for(var/datum/money_account/account in all_money_accounts)
+		account.money += 10
+
+/datum/reward/happiness/
+	name = "Happiness"
+	value = 25
+
+/datum/reward/happiness/do_reward()
+	for(var/mob/living/carbon/human/H in living_mob_list_)
+		if(H.religion == LEGAL_RELIGION)
+			to_world("Giving happiness to")
+			H.add_event("fulfilledrequest", /datum/happiness_event/request_fulfilled)
+
 /datum/reward/random_crate
 	name = "Random Crate"
 	value = 50

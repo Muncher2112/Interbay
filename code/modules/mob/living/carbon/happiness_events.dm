@@ -137,17 +137,6 @@
 	happiness = -12
 	timeout = 1800
 
-/datum/happiness_event/badsex
-	description = "<span class='warning'>Ugh, that sex was horrible.\n"
-	happiness = -4
-	timeout = 1800
-
-//Good sex here too because why not.
-/datum/happiness_event/came
-	description = "<span class='binfo'>I came!\n"
-	happiness = 10
-	timeout = 1800
-
 //For when you get branded.
 /datum/happiness_event/humiliated
 	description = "<span class='danger'>I've been humiliated, and I am embarassed.</span>\n"
@@ -160,6 +149,11 @@
 	happiness = 10
 	timeout = 1800
 
+//When you fulfill an AI request
+/datum/happiness_event/request_fulfilled
+	description = "<span class='binfo'>My god is pleased with me!</span>\n"
+	happiness = 10
+	timeout = 1800
 
 //Unused so far but I want to remember them to use them later.
 /datum/happiness_event/disturbing
