@@ -65,6 +65,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/reward/
 	var/name = null
 	var/value = null //Having these gated by value might be useful at some point, doing it out of 100 right now because I don't know cargo values
+	var/message = null
 
 /datum/reward/proc/do_reward()
 	to_world("You should not be seeing this!")
@@ -74,10 +75,12 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/datum/reward/reward = pick(rewards)
 	reward = new reward
 	reward.do_reward()
+	priority_announcement.Announce("As a reward for fulfilling Her Grace's request for [SSverina.request_item], [station_name()] [reward.message]", "Verina", 'sound/misc/notice2.ogg')
 
 /datum/reward/money
 	name = "Money" //LOADSA EMONE
 	value = 10
+	message="has been gracedwith a bonus!  Praise be Verina!"
 
 /datum/reward/money/do_reward()
 	for(var/datum/money_account/account in all_money_accounts)
@@ -86,16 +89,17 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/reward/happiness/
 	name = "Happiness"
 	value = 25
+	message="will received a burst of soothing psychic energy that will effect all true believers."
 
 /datum/reward/happiness/do_reward()
 	for(var/mob/living/carbon/human/H in living_mob_list_)
 		if(H.religion == LEGAL_RELIGION)
-			to_world("Giving happiness to")
 			H.add_event("fulfilledrequest", /datum/happiness_event/request_fulfilled)
 
 /datum/reward/random_crate
 	name = "Random Crate"
 	value = 50
+	message="has been graced with a suprise shipment!"
 
 /datum/reward/random_crate/do_reward()
 	var/datum/supply_order/supply_reward = pick(supply_controller.master_supply_list)
