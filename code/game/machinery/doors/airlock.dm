@@ -3,7 +3,7 @@
 #define BOLTS_CUT 2
 /obj/machinery/door/airlock
 	name = "airlock"
-	icon = 'icons/obj/doors/Doorint.dmi'
+	icon = 'icons/obj/doors/Doormaint_int.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
 
@@ -98,7 +98,7 @@
 
 /obj/machinery/door/airlock/virology
 	name = "Airlock"
-	icon = 'icons/obj/doors/Doormed_test.dmi'
+	icon = 'icons/obj/doors/Doormed.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_viro
 
 /* New Maintenance block */
