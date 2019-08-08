@@ -137,7 +137,7 @@
 		..()
 		//H.add_stats(rand(6,9), rand(9,11), rand(10,12))
 		H.generate_stats("int")
-		H.generate_skills("range")
+		H.generate_skills("ranged")
 
 /datum/job/employe
 	title = "Employe Administratif"

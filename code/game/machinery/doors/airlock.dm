@@ -98,13 +98,55 @@
 
 /obj/machinery/door/airlock/virology
 	name = "Airlock"
-	icon = 'icons/obj/doors/Doorviro.dmi'
+	icon = 'icons/obj/doors/Doormed_test.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_viro
 
+/* New Maintenance block */
 /obj/machinery/door/airlock/maintenance
 	name = "Maintenance Access"
 	icon = 'icons/obj/doors/Doormaint.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
+
+/obj/machinery/door/airlock/maintenance_cargo
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_cargo
+
+/obj/machinery/door/airlock/maintenance_command
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_command.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_command
+
+/obj/machinery/door/airlock/maintenance_engineering
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_engi.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_engi
+
+/obj/machinery/door/airlock/maintenance_medical
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_med.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_med
+
+/obj/machinery/door/airlock/maintenance_rnd
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_rnd.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_rnd
+
+/obj/machinery/door/airlock/maintenance_security
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_sec.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_sec
+
+/obj/machinery/door/airlock/maintenance_common
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_common.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_common
+
+/obj/machinery/door/airlock/maintenance_interior
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_int.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_int
+
 
 /obj/machinery/door/airlock/external
 	name = "External Airlock"
