@@ -152,7 +152,7 @@
 //When you fulfill an AI request
 /datum/happiness_event/request_fulfilled
 	description = "<span class='binfo'>My god is pleased with me!</span>\n"
-	happiness = 10
+	happiness = 20
 	timeout = 1800
 
 //Unused so far but I want to remember them to use them later.

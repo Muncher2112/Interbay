@@ -13,21 +13,28 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/list/requestable_items = list(/obj/item/metal_bar,/obj/item/weapon/screwdriver)
 	var/list/bannable_items = list()
 	var/list/rewards = list()
+	var/list/punishments = list()
+	var/datum/punishment/active_punishment = null
 
 /datum/controller/subsystem/verina_controller/New()
 	NEW_SS_GLOBAL(SSverina)
 	rewards = typesof(/datum/reward) - /datum/reward
+	punishments = typesof(/datum/punishment) - /datum/punishment
 
 /datum/controller/subsystem/verina_controller/fire()
 	if(!rewards)  //I hope this doesn't happen every time
 		rewards = typesof(/datum/reward) - /datum/reward
+	if(!punishments)  //I hope this doesn't happen every time
+		punishments = typesof(/datum/punishment) - /datum/punishment
 	if(state == SS_RUNNING)
+		//Handle requests
 		if(request_item)
 			request_time -= 30
 			if(request_amount <= 0)
 				reward()
 				generate_request()
 			else if (request_time <= 0)
+				to_world("You failed, generating punishment!")
 				punish()
 				generate_request()
 			else
@@ -35,6 +42,13 @@ var/datum/controller/subsystem/verina_controller/SSverina
 
 		if(!request_item) //Only generate if a request isn't set
 			generate_request()
+		//Handle punishments.  Count it down, and undo it if it's done
+		if(active_punishment)
+			if(active_punishment.timer <= 0)
+				active_punishment.undo_punishment()
+				active_punishment = null
+			else
+				active_punishment.timer -= 30
 
 /datum/controller/subsystem/verina_controller/Initialize(time = null)
 	to_world("Good morning!  Your station's Deo Machina sactioned AI is starting up!  The time is [time]")
@@ -55,8 +69,9 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/controller/subsystem/verina_controller/proc/generate_request()
 	var/list/request_type = pick(requestable_items)
 	request_item = new request_type
-	request_amount = rand(0,1)
-	request_time = rand(300,600)
+	request_amount = rand(1,2)
+	//request_time = rand(300,600)
+	request_time = rand(0,1)
 
 /*	Rewards get defined individually with thier own special verb
 	All reward code should be self contained.  All the actual "reward" function will do is
@@ -64,7 +79,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 */
 /datum/reward/
 	var/name = null
-	var/value = null //Having these gated by value might be useful at some point, doing it out of 100 right now because I don't know cargo values
+	var/value = 0 //Having these gated by value might be useful at some point, doing it out of 100 right now because I don't know cargo values
 	var/message = null
 
 /datum/reward/proc/do_reward()
@@ -80,11 +95,11 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/reward/money
 	name = "Money" //LOADSA EMONE
 	value = 10
-	message="has been gracedwith a bonus!  Praise be Verina!"
+	message="has been graced with a bonus!  Praise be Verina!"
 
 /datum/reward/money/do_reward()
 	for(var/datum/money_account/account in all_money_accounts)
-		account.money += 10
+		account.money += rand(10,25)
 
 /datum/reward/happiness/
 	name = "Happiness"
@@ -114,5 +129,53 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	O.comment = "#[O.ordernum] Well done servant of Verina." // crates will be labeled with this.
 	supply_controller.shoppinglist += O
 
+
+// Punishments work the same as rewards, but have a time limit, and need to save info to undo themselves
+
 /datum/controller/subsystem/verina_controller/proc/punish()
-	to_world("Picking Punishment")
+	punishments = typesof(/datum/punishment) - /datum/punishment
+	var/datum/punishment/punishment = pick(punishments)
+	punishment = new punishment
+	punishment.do_punishment()
+	active_punishment = punishment //Need to save this to undo it later
+	priority_announcement.Announce("As a punishment for failing to fulfillHer Grace's request for [SSverina.request_item], [station_name()] [punishment.message]", "Verina", 'sound/misc/notice2.ogg')
+
+
+/datum/punishment/
+	var/name = null
+	var/value = null
+	var/message = null
+	var/timer = 600 // 1 minute?
+
+/datum/punishment/proc/do_punishment()
+	to_world("You should not be seeing this!")
+
+/datum/punishment/proc/undo_punishment()
+	to_world("You should not be seeing this!")
+
+/datum/punishment/tax/
+	name = "tax"
+	value = 25
+	message = "has had a lump sum removed from all station acounts."
+
+/datum/punishment/tax/do_punishment()
+	for(var/datum/money_account/account in all_money_accounts)
+		account.money -= rand(10,30)
+
+/datum/punishment/tax/undo_punishment()
+	return //You don't get your money back
+
+/datum/punishment/disable_machinary/
+	name = "Disable Machinary"
+	value = 35
+	message = "has had a on-board machine disabled until Verina is placated."
+	var/obj/machinery/machine_disabled = null
+
+/datum/punishment/disable_machinary/do_punishment()
+	var/obj/machinery/target = pick(religion_controlled_machines) //Pick a machine to disable
+	to_world("Disabling [target]")
+	target.religion_denied = 1
+	machine_disabled = target
+
+/datum/punishment/disable_machinary/undo_punishment()
+	machine_disabled.religion_denied = 0 //Turn the machine back on

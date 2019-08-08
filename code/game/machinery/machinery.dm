@@ -114,6 +114,8 @@ Class Procs:
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/clicksound			// sound played on succesful interface use by a carbon lifeform
 	var/clickvol = 40		// sound played on succesful interface use
+	var/religion_controlled = 0 // Use by religion to disable machines
+	var/religion_denied = 0 // Use by religion to disable machines
 
 /obj/machinery/New(l, d=0)
 	..(l)
@@ -124,6 +126,8 @@ Class Procs:
 	else
 		machines += src
 		machinery_sort_required = 1
+	if(religion_controlled)
+		religion_controlled_machines += src
 
 /obj/machinery/Destroy()
 	machines -= src

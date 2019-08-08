@@ -76,6 +76,7 @@ var/global/list/crafting_recipes = list()
 
 //Religion
 var/global/list/all_religions = list()
+var/global/list/religion_controlled_machines = list()
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(

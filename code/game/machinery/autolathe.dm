@@ -9,6 +9,7 @@
 	active_power_usage = 2000
 	clicksound = "keyboard"
 	clickvol = 30
+	religion_controlled = 1
 
 	var/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
@@ -39,7 +40,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
 	RefreshParts()
-	
+
 /obj/machinery/autolathe/Destroy()
 	qdel(wires)
 	wires = null
@@ -52,8 +53,7 @@
 /obj/machinery/autolathe/interact(mob/user as mob)
 
 	update_recipe_list()
-
-	if(..() || (disabled && !panel_open))
+	if(..() || (disabled && !panel_open) || religion_denied)
 		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
 		return
 
