@@ -9,7 +9,7 @@
 	icon_state = "body_scanner_0"
 	density = 1
 	anchored = 1
-
+	religion_controlled = 1
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
@@ -183,7 +183,7 @@
 	icon_state = "body_scannerconsole"
 	density = 1
 	anchored = 1
-
+	religion_controlled = 1
 
 /obj/machinery/body_scanconsole/New()
 	..()
@@ -220,6 +220,9 @@
 
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
+		return
+	if(religion_denied)
+		to_chat(user, "<span class='warning'>Verina, has disabled the body dispenser</span>")
 		return
 	if(stat & (NOPOWER|BROKEN))
 		return

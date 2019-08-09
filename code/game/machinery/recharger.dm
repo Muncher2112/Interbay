@@ -9,6 +9,7 @@ obj/machinery/recharger
 	use_power = 1
 	idle_power_usage = 4
 	active_power_usage = 30 KILOWATTS
+	religion_controlled = 1
 	var/obj/item/charging = null
 	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/magnetic/railgun, /obj/item/weapon/melee/baton, /obj/item/weapon/cell, /obj/item/modular_computer/, /obj/item/device/suit_sensor_jammer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/shield_diffuser)
 	var/icon_state_charged = "recharger2"
@@ -31,6 +32,9 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		if(!powered())
 			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
+			return
+		if(religion_denied)
+			to_chat(user, "<span class='warning'>You have failed verina, and she is displeased.</span>")
 			return
 		if (istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
 			to_chat(user, "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>")

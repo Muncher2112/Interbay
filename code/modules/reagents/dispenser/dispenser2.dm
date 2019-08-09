@@ -4,6 +4,7 @@
 	icon_state = "dispenser"
 	clicksound = "button"
 	clickvol = 20
+	religion_controlled = 1
 
 	var/list/spawn_cartridges = null // Set to a list of types to spawn one of each on New()
 
@@ -139,7 +140,9 @@
 /obj/machinery/chemical_dispenser/Topic(href, href_list)
 	if(..())
 		return 1
-
+	if(religion_denied)
+		to_chat(usr, "<span class='danger'>Verina has disabled the chem dispenser.</span>")
+		return
 	if(href_list["amount"])
 		amount = round(text2num(href_list["amount"]), 1) // round to nearest 1
 		amount = max(0, min(120, amount)) // Since the user can actually type the commands himself, some sanity checking
