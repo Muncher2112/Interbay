@@ -34,7 +34,6 @@ var/datum/controller/subsystem/verina_controller/SSverina
 				reward()
 				generate_request()
 			else if (request_time <= 0)
-				to_world("You failed, generating punishment!")
 				punish()
 				generate_request()
 			else
@@ -69,9 +68,8 @@ var/datum/controller/subsystem/verina_controller/SSverina
 /datum/controller/subsystem/verina_controller/proc/generate_request()
 	var/list/request_type = pick(requestable_items)
 	request_item = new request_type
-	request_amount = rand(1,2)
-	//request_time = rand(300,600)
-	request_time = rand(0,1)
+	request_amount = rand(5,30)
+	request_time = rand(180,600)
 
 /*	Rewards get defined individually with thier own special verb
 	All reward code should be self contained.  All the actual "reward" function will do is
@@ -133,6 +131,8 @@ var/datum/controller/subsystem/verina_controller/SSverina
 // Punishments work the same as rewards, but have a time limit, and need to save info to undo themselves
 
 /datum/controller/subsystem/verina_controller/proc/punish()
+	if(active_punishment)
+		active_punishment.undo_punishment()
 	punishments = typesof(/datum/punishment) - /datum/punishment
 	var/datum/punishment/punishment = pick(punishments)
 	punishment = new punishment
@@ -145,13 +145,14 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/name = null
 	var/value = null
 	var/message = null
-	var/timer = 600 // 1 minute?
+	var/timer = 180 //3 minutes?
 
 /datum/punishment/proc/do_punishment()
 	to_world("You should not be seeing this!")
 
 /datum/punishment/proc/undo_punishment()
 	to_world("You should not be seeing this!")
+
 
 /datum/punishment/tax/
 	name = "tax"
@@ -173,9 +174,11 @@ var/datum/controller/subsystem/verina_controller/SSverina
 
 /datum/punishment/disable_machinary/do_punishment()
 	var/obj/machinery/target = pick(religion_controlled_machines) //Pick a machine to disable
-	to_world("Disabling [target]")
+	//to_world("Disabling [target]")
 	target.religion_denied = 1
+	target.overlays += image('icons/effects/effects.dmi',"energynet")
 	machine_disabled = target
 
 /datum/punishment/disable_machinary/undo_punishment()
 	machine_disabled.religion_denied = 0 //Turn the machine back on
+	machine_disabled.overlays.Cut()

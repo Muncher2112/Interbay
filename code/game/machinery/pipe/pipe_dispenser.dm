@@ -83,7 +83,11 @@
 /obj/machinery/pipedispenser/Topic(href, href_list)
 	if(..())
 		return
-	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	//This is here because the attack_hand check was not working
+	if(religion_denied)
+		to_chat(usr, "<span class='danger'>Verina has disabled the pipe dispenser.</span>")
+		return
+	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr) || religion_denied)
 		usr << browse(null, "window=pipedispenser")
 		return
 	usr.set_machine(src)
@@ -108,6 +112,8 @@
 
 /obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	src.add_fingerprint(usr)
+	if(..())
+		return
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
 		to_chat(usr, "<span class='notice'>You put \the [W] back into \the [src].</span>")
 		user.drop_item()
@@ -206,6 +212,10 @@ Nah
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
+	//This is here because the attack_hand check was not working
+	if(religion_denied)
+		to_chat(usr, "<span class='danger'>Verina has disabled the pipe dispenser.</span>")
+		return
 	if(href_list["dmake"])
 		if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=pipedispenser")

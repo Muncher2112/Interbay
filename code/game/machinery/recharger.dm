@@ -18,6 +18,8 @@ obj/machinery/recharger
 	var/portable = 1
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+	if(..())
+		return
 	if(istype(user,/mob/living/silicon))
 		return
 

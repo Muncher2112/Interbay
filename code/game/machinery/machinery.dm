@@ -262,6 +262,11 @@ Class Procs:
 		to_chat(user, "Verina has disabled [src]")
 		return 1
 
+/obj/machinery/Topic(href, href_list)
+	if (religion_denied == 1)  //This is here so we can just switch any object on and off.
+		to_chat(user, "Verina has disabled [src]")
+		return 1
+
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
