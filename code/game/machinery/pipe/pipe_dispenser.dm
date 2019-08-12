@@ -83,9 +83,6 @@
 /obj/machinery/pipedispenser/Topic(href, href_list)
 	if(..())
 		return
-	if(religion_denied)
-		to_chat(usr, "<span class='danger'>Verina has disabled the pipe dispenser.</span>")
-		return 1
 	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
 		return
@@ -209,9 +206,6 @@ Nah
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	if(religion_denied)
-		to_chat(usr, "<span class='danger'>Verina has disabled the pipe dispenser.</span>")
-		return
 	if(href_list["dmake"])
 		if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=pipedispenser")

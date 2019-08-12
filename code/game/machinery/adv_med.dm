@@ -221,9 +221,6 @@
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
 		return
-	if(religion_denied)
-		to_chat(user, "<span class='warning'>Verina, has disabled the body dispenser</span>")
-		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))

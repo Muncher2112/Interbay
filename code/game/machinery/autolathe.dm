@@ -53,7 +53,7 @@
 /obj/machinery/autolathe/interact(mob/user as mob)
 
 	update_recipe_list()
-	if(..() || (disabled && !panel_open) || religion_denied)
+	if(..() || (disabled && !panel_open))
 		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
 		return
 
@@ -206,6 +206,8 @@
 	return
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
+	if(..())
+		return
 	user.set_machine(src)
 	interact(user)
 
