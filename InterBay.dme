@@ -2079,6 +2079,7 @@
 #include "code\modules\recycling\disposal.dm"
 #include "code\modules\recycling\sortingmachinery.dm"
 #include "code\modules\recycling\toilet.dm"
+#include "code\modules\religion\arbiter_computer.dm"
 #include "code\modules\religion\old_god_runes.dm"
 #include "code\modules\religion\religion.dm"
 #include "code\modules\religion\religion_clothes.dm"

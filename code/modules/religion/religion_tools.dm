@@ -25,7 +25,9 @@
 		return
 
 	else if(do_after(user,30))
-		if(L.religion_is_legal() && !L.reagents.has_reagent("unrevelator"))//Unrevelator can trick the result.
+		if(L.reagents.has_reagent("unrevelator")) //Unrevelator can trick the result.
+			stored_info = 2
+		else if(!L.religion_is_legal())
 			stored_info = 2
 		else
 			stored_info = 1
@@ -67,44 +69,6 @@
 
 // LEGAL RELIGOPN
 //The machine
-/obj/machinery/arbiter_computer
-	var/mob/living/suspect
-	name = "Heretic scanner machine"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "arbiter_computer"
-	density = 1
-	anchored = 1
-
-/obj/machinery/arbiter_computer/attackby(var/obj/item/I, var/mob/user)
-	if(!istype(I,/obj/item/device/arbiter_scanner))
-		return
-
-	var/obj/item/device/arbiter_scanner/scanner = I
-	if(!scanner.stored_info)
-		visible_message("<span class='notice'>The [src] beeps: \"No data detected.\"</span>")
-		return
-	if(scanner.stored_info == 2)
-		visible_message("<span class='notice'>The [src] beeps: \"Subject <b>IS</b> a heretic.\"</span>")
-		return
-	else
-		visible_message("<span class='notice'>The [src] beeps: \"Subject is <b>NOT</b> a heretic.\"</span>")
-
-/obj/machinery/arbiter_computer/attack_hand(mob/user as mob)
-	..()
-	visible_message("<span class='notice'>The [src] beeps: \"Scan subject with arbiter scanner, and then use the scanner on this machine for results.\"</span>")
-	//visible_message("<span class='notice'>The [src] beeps: \"Verina's current request is [SSverina.last_fire]\"</span>")
-	var/list/visible_locations = SSverina.get_shrine_locations()
-	visible_message("<span class='notice'>The [src] beeps: \"I have detected shrines in the following locations: [visible_locations.Join(", ")]\"</span>")
-
-
-/obj/machinery/arbiter_computer/emag_act(var/remaining_charges, var/mob/user)
-	if(!emagged)
-		emagged = 1
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		s.set_up(2, 1, src)
-		s.start()
-		visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
-		return
 
 /obj/structure/bed/chair/arbiter
 	base_icon = "throne"

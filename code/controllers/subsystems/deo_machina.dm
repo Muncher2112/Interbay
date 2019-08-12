@@ -12,6 +12,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/visible_shrines = list()
 	var/list/requestable_items = list(/obj/item/metal_bar,/obj/item/weapon/screwdriver)
 	var/list/bannable_items = list()
+	var/list/banned_items = list()
 	var/list/rewards = list()
 	var/list/punishments = list()
 	var/datum/punishment/active_punishment = null
@@ -138,7 +139,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	punishment = new punishment
 	punishment.do_punishment()
 	active_punishment = punishment //Need to save this to undo it later
-	priority_announcement.Announce("As a punishment for failing to fulfillHer Grace's request for [SSverina.request_item], [station_name()] [punishment.message]", "Verina", 'sound/misc/notice2.ogg')
+	priority_announcement.Announce("As a punishment for failing to fulfill Her Grace's request for [SSverina.request_item], [station_name()] [punishment.message]", "Verina", 'sound/misc/notice2.ogg')
 
 
 /datum/punishment/
