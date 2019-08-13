@@ -2,12 +2,8 @@
 	The global hud:
 	Uses the same visual objects for all players.
 */
-var/datum/global_hud/global_hud = new()
-var/list/global_huds = list(
-		global_hud.nvg,
-		global_hud.thermal,
-		global_hud.meson,
-		global_hud.science)
+
+GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new())
 
 /datum/global_hud
 	var/obj/screen/nvg
@@ -47,6 +43,7 @@ var/list/global_huds = list(
 	var/obj/screen/lingchemdisplay
 	var/obj/screen/r_hand_hud_object
 	var/obj/screen/l_hand_hud_object
+	var/obj/screen/swaphands_hud_object
 	var/obj/screen/action_intent
 	var/obj/screen/move_intent
 

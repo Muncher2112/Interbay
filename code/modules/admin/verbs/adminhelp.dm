@@ -2,6 +2,66 @@
 //This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as")
 
+/proc/generate_ahelp_key_words(var/mob/mob, var/msg)
+	var/list/surnames = list()
+	var/list/forenames = list()
+	var/list/ckeys = list()
+
+	//explode the input msg into a list
+	var/list/msglist = splittext(msg, " ")
+
+	for(var/mob/M in GLOB.mob_list)
+		var/list/indexing = list(M.real_name, M.name)
+		if(M.mind)	indexing += M.mind.name
+
+		for(var/string in indexing)
+			var/list/L = splittext(string, " ")
+			var/surname_found = 0
+			//surnames
+			for(var/i=L.len, i>=1, i--)
+				var/word = ckey(L[i])
+				if(word)
+					surnames[word] = M
+					surname_found = i
+					break
+			//forenames
+			for(var/i=1, i<surname_found, i++)
+				var/word = ckey(L[i])
+				if(word)
+					forenames[word] = M
+			//ckeys
+			ckeys[M.ckey] = M
+
+	var/ai_found = 0
+	msg = ""
+	var/list/mobs_found = list()
+	for(var/original_word in msglist)
+		var/word = ckey(original_word)
+		if(word)
+			if(!(word in adminhelp_ignored_words))
+				if(word == "ai" && !ai_found)
+					ai_found = 1
+					msg += "<b>[original_word] <A HREF='?_src_=holder;adminchecklaws=\ref[mob]'>(CL)</A></b> "
+					continue
+				else
+					var/mob/found = ckeys[word]
+					if(!found)
+						found = surnames[word]
+						if(!found)
+							found = forenames[word]
+					if(found)
+						if(!(found in mobs_found))
+							mobs_found += found
+							msg += "<b>[original_word] <A HREF='?_src_=holder;adminmoreinfo=\ref[found]'>(?)</A>"
+							if(!ai_found && isAI(found))
+								ai_found = 1
+								msg += " <A HREF='?_src_=holder;adminchecklaws=\ref[mob]'>(CL)</A>"
+							msg += "</b> "
+							continue
+		msg += "[original_word] "
+
+	return msg
+
 /client/verb/adminhelp(msg as text)
 	set category = "Admin"
 	set name = "Adminhelp"
@@ -29,7 +89,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/list/surnames = list()
 	var/list/forenames = list()
 	var/list/ckeys = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		var/list/indexing = list(M.real_name, M.name)
 		if(M.mind)	indexing += M.mind.name
 
@@ -90,7 +150,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	var/admin_number_afk = 0
 
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
 			if(X.is_afk())
 				admin_number_afk++
@@ -102,7 +162,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 				to_chat(X, msg)
 	//show it to the person adminhelping too
 	to_chat(src, "<font color='blue'>PM to-<b>Staff </b>: [original_msg]</font>")
-	var/admin_number_present = admins.len - admin_number_afk
+	var/admin_number_present = GLOB.admins.len - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
 	if(admin_number_present <= 0)
 		adminmsg2adminirc(src, null, "[html_decode(original_msg)] - !![admin_number_afk ? "All admins AFK ([admin_number_afk])" : "No admins online"]!!")

@@ -157,10 +157,10 @@
 					H.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")
 					var/smashsound = pick("sound/effects/gore/smash[rand(1,3)].ogg", "sound/effects/gore/trauma1.ogg")
 					playsound(M, smashsound, 50, 1, -1)
-					H.emote("scream")		
+					H.emote("scream")
 					H.Stun(5)
 					H.Weaken(5)
-					step(H,pick(cardinal))//move them
+					step(H,pick(GLOB.cardinal))//move them
 					H.apply_damage(rand(30) , BRUTE)
 
 	translate_turfs(turf_translation, current_location.base_area, current_location.base_turf)

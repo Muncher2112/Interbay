@@ -77,7 +77,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
+	GLOB.processing_objects.Remove(src)
 
 //////////////////
 //FINE SMOKABLES//
@@ -158,13 +158,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
 		set_light(0.75, 0.25, "#E38F46")
-		processing_objects.Add(src)
+		GLOB.processing_objects.Add(src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	playsound(src, 'sound/items/cig_snuff.ogg', 25, 1)
 	set_light(0)
 	lit = 0
-	processing_objects.Remove(src)
+	GLOB.processing_objects.Remove(src)
 	update_icon()
 
 /obj/item/clothing/mask/smokable/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -436,7 +436,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		item_state = icon_on
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		processing_objects.Add(src)
+		GLOB.processing_objects.Add(src)
 		if(ismob(loc))
 			var/mob/living/M = loc
 			M.update_inv_wear_mask(0)
@@ -456,7 +456,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message("<span class='notice'>[user] puts out [src].</span>", "<span class='notice'>You put out [src].</span>")
 		lit = 0
 		update_icon()
-		processing_objects.Remove(src)
+		GLOB.processing_objects.Remove(src)
 	else if (smoketime)
 		var/turf/location = get_turf(user)
 		user.visible_message("<span class='notice'>[user] empties out [src].</span>", "<span class='notice'>You empty out [src].</span>")
@@ -547,7 +547,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				playsound(src.loc, 'sound/items/zippo_open.ogg', 100, 1, -4)
 				lit = 1
 				set_light(2, 1, "#E38F46")
-				processing_objects.Add(src)
+				GLOB.processing_objects.Add(src)
 				icon_state = "[base_state]on"
 				item_state = "[base_state]on"
 			else
@@ -556,13 +556,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				if(prob(50))
 					return
 				else
-					lit = 1
-					set_light(2, 1, "#E38F46")
-					processing_objects.Add(src)
-					icon_state = "[base_state]on"
-					item_state = "[base_state]on"
-			
-			
+					to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
+					if (user.l_hand == src)
+						user.apply_damage(2,BURN,BP_L_HAND)
+					else
+						user.apply_damage(2,BURN,BP_R_HAND)
+					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
+				playsound(src.loc, "light_bic", 100, 1, -4)
+
+			set_light(2)
+			GLOB.processing_objects.Add(src)
 		else
 			lit = 0
 			icon_state = "[base_state]"
@@ -571,7 +574,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				playsound(src.loc, 'sound/items/zippo_close.ogg', 100, 1, -4)
 
 			set_light(0)
-			processing_objects.Remove(src)
+			GLOB.processing_objects.Remove(src)
 	else
 		return ..()
 	return

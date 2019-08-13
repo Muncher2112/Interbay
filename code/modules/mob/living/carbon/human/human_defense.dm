@@ -309,7 +309,7 @@ If the item_attack does need to go to apply_hit_effect (Which seems like 75% of 
 		return 0
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay(GLOB.hit_appends)	//forcesay checks stat already
 
 	//Ok this block of text handles cutting arteries, tendons, and limbs off.
 	//First we cut an artery, the reason for that, is that arteries are funninly enough, not that lethal, and don't have the biggest impact. They'll still make you bleed out, but they're less immediately lethal.
@@ -701,7 +701,7 @@ If the item_attack does need to go to apply_hit_effect (Which seems like 75% of 
 		if(1)//They drop their weapon.
 			visible_message("<span class='danger'><big>CRITICAL FAILURE! \The [I] flies out of [src]'s hand!</big></span>")
 			drop_from_inventory(I)
-			throw_at(get_edge_target_turf(I, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
+			throw_at(get_edge_target_turf(I, pick(GLOB.alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
 			return
 		if(2)
 			visible_message("<span class='danger'><big>CRITICAL FAILURE! [src] botches the attack, stumbles, and falls!</big></span>")

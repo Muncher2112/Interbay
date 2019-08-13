@@ -329,7 +329,7 @@
 				W.lit = 1
 				W.damtype = "burn"
 				W.icon_state = "match_lit"
-				processing_objects.Add(W)
+				GLOB.processing_objects.Add(W)
 			else
 				playsound(src.loc, 'sound/items/matchstick_hit.ogg', 25, 0, -1)
 		W.update_icon()

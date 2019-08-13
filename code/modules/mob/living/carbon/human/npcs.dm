@@ -305,6 +305,9 @@
 //AN ACTUAL HOSTILE NPC
 /mob/living/carbon/human/blank/New(var/new_loc)
 	..(new_loc, "Vat-Grown Human")
+
+/mob/living/carbon/human/blank/Initialize(var/new_loc)
+	. = ..()
 	var/number = "[pick(possible_changeling_IDs)]-[rand(1,30)]"
 	fully_replace_character_name("Subject [number]")
 	zone_sel = new /obj/screen/zone_sel( null )

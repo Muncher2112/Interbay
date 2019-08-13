@@ -46,7 +46,7 @@
 	return 0  //If we fail everything
 
 /mob/living/proc/do_dodge()
-	var/lol = pick(cardinal)//get a direction.
+	var/lol = pick(GLOB.cardinal)//get a direction.
 	adjustStaminaLoss(15)//add some stamina loss
 	playsound(loc, 'sound/weapons/punchmiss.ogg', 80, 1)//play a sound
 	step(src,lol)//move them

@@ -17,7 +17,8 @@
 
 	var/const/climb_time = 2 SECONDS
 
-/obj/structure/ladder/initialize()
+/obj/structure/ladder/Initialize()
+	. = ..()
 	// the upper will connect to the lower
 	if(allowed_directions & DOWN) //we only want to do the top one, as it will initialize the ones before it.
 		for(var/obj/structure/ladder/L in GetBelow(src))
@@ -132,15 +133,16 @@
 	anchored = 1
 	plane = ABOVE_TURF_PLANE
 
-	initialize()
+	Initialize()
 		for(var/turf/turf in locs)
 			var/turf/simulated/open/above = GetAbove(turf)
 			if(!above)
 				warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
-				return qdel(src)
+				return INITIALIZE_HINT_QDEL
 			if(!istype(above))
 				above.ChangeTurf(/turf/simulated/open)
-	//Think this can be removed?  Old stairs code from before 512
+		. = ..()
+
 	Uncross(atom/movable/A)
 		if(A.dir == dir)
 			// This is hackish but whatever.

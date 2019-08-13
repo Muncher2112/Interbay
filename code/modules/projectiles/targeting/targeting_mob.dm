@@ -26,9 +26,9 @@
 	. = ..(gibbed, deathmessage, show_dead_message)
 	if(.)
 		if(isinspace())
-			deaths_in_space++
+			GLOB.deaths_in_space++
 		stop_aiming(no_message=1)
-		total_deaths++
+		GLOB.total_deaths++
 
 /mob/living/update_canmove()
 	..()

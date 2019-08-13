@@ -36,7 +36,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 
 	if(max_targets == 0) //unlimited
 		if(range == -2)
-			targets = living_mob_list_
+			targets = GLOB.living_mob_list_
 		else
 			for(var/mob/living/target in view_or_range(range, holder, selection_type))
 				targets += target
@@ -48,7 +48,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 			var/list/possible_targets = list()
 			var/list/starting_targets
 			if(range == -2)
-				starting_targets = living_mob_list_
+				starting_targets = GLOB.living_mob_list_
 			else
 				starting_targets = view_or_range(range, holder, selection_type)
 
@@ -76,7 +76,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 		var/list/starting_targets
 
 		if(range == -2)
-			starting_targets = living_mob_list_
+			starting_targets = GLOB.living_mob_list_
 		else
 			starting_targets = view_or_range(range, holder, selection_type)
 

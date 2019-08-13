@@ -46,7 +46,7 @@
 		if(user.statcheck(user.stats["str"], 5, "I couldn't keep the grip on my weapon!", "str"))
 			user.visible_message("<span class='danger'>\The [src] flies out of \the [user]'s hand!</span>")
 			user.drop_from_inventory(src)
-			throw_at(get_edge_target_turf(src, pick(alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
+			throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
 		to_world("Parry returning 1")
 		return 1
 	return 0

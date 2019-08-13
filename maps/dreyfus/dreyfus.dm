@@ -49,7 +49,7 @@
 
 	#include "../../code/modules/lobby_music/generic_songs.dm"
 
-	#define USING_MAP_DATUM /datum/map/dreyfus
+	#define using_map_DATUM /datum/map/dreyfus
 
 #elif !defined(MAP_OVERRIDE)
 

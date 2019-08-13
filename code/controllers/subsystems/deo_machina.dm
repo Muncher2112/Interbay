@@ -106,7 +106,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	message="will received a burst of soothing psychic energy that will effect all true believers."
 
 /datum/reward/happiness/do_reward()
-	for(var/mob/living/carbon/human/H in living_mob_list_)
+	for(var/mob/living/carbon/human/H in GLOB.living_mob_list_)
 		if(H.religion == LEGAL_RELIGION)
 			H.add_event("fulfilledrequest", /datum/happiness_event/request_fulfilled)
 

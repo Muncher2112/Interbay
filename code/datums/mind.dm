@@ -84,7 +84,7 @@
 			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
-		nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+		GLOB.nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
@@ -120,7 +120,7 @@
 		output += "<HR><B>The Prayer Of Deo Machina:</B> [prayer]<br>"
 	if(religion == ILLEGAL_RELIGION)
 		var/brothers_message = "Your fellow resisters are here too, they are:<br>"
-		for(var/mob/living/carbon/human/H in human_mob_list)
+		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 			if(H.religion == ILLEGAL_RELIGION)
 				brothers_message += "<b> [H.name]</b><br>"
 		output += brothers_message

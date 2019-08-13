@@ -51,7 +51,7 @@
 
 /obj/effect/overlay/temp/New()
 	if(randomdir)
-		dir = pick(cardinal)
+		dir = pick(GLOB.cardinal)
 
 	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
@@ -70,7 +70,7 @@
 /obj/effect/overlay/temp/dir_setting/bloodsplatter/New(loc, set_dir, blood_color)
 	if(blood_color)
 		color = blood_color
-	if(set_dir in cornerdirs)
+	if(set_dir in GLOB.cornerdirs)
 		icon_state = "[splatter_type][pick(1, 2, 6)]"
 	else
 		icon_state = "[splatter_type][pick(3, 4, 5)]"

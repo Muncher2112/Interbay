@@ -26,7 +26,7 @@
 
 	#include "../../code/modules/lobby_music/generic_songs.dm"
 
-	#define USING_MAP_DATUM /datum/map/utopia
+	#define using_map_DATUM /datum/map/utopia
 
 #elif !defined(MAP_OVERRIDE)
 

@@ -135,12 +135,12 @@
 				target = new_turf
 				if(new_turf.density)
 					break
-			T.throw_at(get_edge_target_turf(T,pick(alldirs)),rand(1,3),30)
+			T.throw_at(get_edge_target_turf(T,pick(GLOB.alldirs)),rand(1,3),30)
 			T.loc:add_blood(owner)
 
 			teeth.zero_amount() //Try to delete the teeth
 			done = 1
-			teeth_lost = drop
+			GLOB.teeth_lost = drop
 	return done
 
 

@@ -65,7 +65,7 @@
 	to_world("in reveal heretics [M]")
 	var/name = ""
 	if (religion_is_legal())  //Non-heretics will say a random name
-		name = pick(human_mob_list)
+		name = pick(GLOB.human_mob_list)
 	else
 		name = pick(all_religions[ILLEGAL_RELIGION].followers)  //Wow the datums saves us an entire for loop
 	emote("scream",1)

@@ -91,7 +91,7 @@ datum/controller/vote
 
 		//default-vote for everyone who didn't vote
 		if(!config.vote_no_default && choices.len)
-			var/non_voters = (clients.len - total_votes)
+			var/non_voters = (GLOB.clients.len - total_votes)
 			if(non_voters > 0)
 				if(mode == "restart")
 					choices["Continue Playing"] += non_voters
@@ -247,7 +247,7 @@ datum/controller/vote
 										spawn(10)
 											autotransfer()
 				if("map")
-					var/datum/map/M = all_maps[.[1]]
+					var/datum/map/M = GLOB.all_maps[.[1]]
 					fdel("use_map")
 					text2file(M.path, "use_map")
 
@@ -354,7 +354,7 @@ datum/controller/vote
 				if("map")
 					if(!config.allow_map_switching)
 						return 0
-					for(var/name in all_maps)
+					for(var/name in GLOB.all_maps)
 						choices.Add(name)
 				if("custom")
 					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))

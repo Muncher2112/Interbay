@@ -11,6 +11,16 @@
 /proc/error(msg)
 	to_world_log("## ERROR: [msg][log_end]")
 
+/proc/log_ss(subsystem, text, log_world = TRUE)
+	if (!subsystem)
+		subsystem = "UNKNOWN"
+	var/msg = "[subsystem]: [text]"
+	game_log("SS", msg)
+	if (log_world)
+		to_world_log("SS[subsystem]: [text]")
+
+/proc/log_ss_init(text)
+	game_log("SS", "[text]")
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
@@ -24,7 +34,7 @@
 	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
 
 /proc/log_admin(text)
-	admin_log.Add(text)
+	GLOB.admin_log.Add(text)
 	if (config.log_admin)
 		game_log("ADMIN", text)
 
@@ -42,7 +52,7 @@
 	to_debug_listeners(text, "WARNING")
 
 /proc/to_debug_listeners(text, prefix = "DEBUG")
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
 			to_chat(C, "[prefix]: [text]")
 

@@ -38,7 +38,7 @@
 
 	var/list/match = list()
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(restrict_type && !istype(M, restrict_type))
 			continue
 		var/strings = list(M.name, M.ckey)
@@ -75,10 +75,17 @@
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 	icon_size = WORLD_ICON_SIZE
 	fps = 20
+#ifdef GC_FAILURE_HARD_LOOKUP
+	loop_checks = FALSE
+#endif
 
 #define RECOMMENDED_VERSION 511
 /world/New()
+	//set window title
+	name = "[server_name] - [GLOB.using_map.full_name]"
+
 	//logs
+	SetupLogs()
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
 	diary = file("data/logs/[date_string].log")
@@ -109,12 +116,10 @@
 	load_mods()
 	//end-emergency fix
 
-	src.update_status()
-
 	. = ..()
 
 #ifdef UNIT_TEST
-	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
+	log_unit_test("Unit Tests Enabled. This will destroy the world when testing is complete.")
 	load_unit_test_changes()
 #endif
 
@@ -125,12 +130,8 @@
 	populate_material_list()
 
 	if(config.generate_map)
-		if(using_map.perform_map_generation())
-			using_map.refresh_mining_turfs()
-
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
-	populate_metal_lathe_recipes()
+		if(GLOB.using_map.perform_map_generation())
+			GLOB.using_map.refresh_mining_turfs()
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
@@ -138,17 +139,14 @@
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 
+	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
-	spawn(1)
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
-		master_controller.setup()
 #ifdef UNIT_TEST
+	spawn(1)
 		initialize_unit_tests()
 #endif
-
-
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
@@ -170,7 +168,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				n++
 		return n
@@ -190,13 +188,13 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["players"] = 0
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
-		s["map"] = using_map.full_name
+		s["map"] = GLOB.using_map.full_name
 
 		if(input["status"] == "2")
 			var/list/players = list()
 			var/list/admins = list()
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.is_stealthed())
 						continue
@@ -211,7 +209,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/n = 0
 			var/admins = 0
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.is_stealthed())
 						continue	//so stealthmins aren't revealed by the hub
@@ -225,7 +223,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(s)
 
 	else if(T == "manifest")
-		data_core.get_manifest_list()
+		GLOB.data_core.get_manifest_list()
 		var/list/positions = list()
 
 		// We rebuild the list in the format external tools expect
@@ -391,7 +389,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/client/C
 		var/req_ckey = ckey(input["adminmsg"])
 
-		for(var/client/K in clients)
+		for(var/client/K in GLOB.clients)
 			if(K.ckey == req_ckey)
 				C = K
 				break
@@ -413,7 +411,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		sound_to(C, 'sound/effects/adminhelp.ogg')
 		to_chat(C, message)
 
-		for(var/client/A in admins)
+		for(var/client/A in GLOB.admins)
 			if(A != C)
 				to_chat(A, amessage)
 		return "Message Successful"
@@ -477,7 +475,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/target = ckey(input["target"])
 
 		var/client/C
-		for(var/client/K in clients)
+		for(var/client/K in GLOB.clients)
 			if(K.ckey == target)
 				C = K
 				break
@@ -500,7 +498,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	processScheduler.stop()
 
 	if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			to_chat(C, link("byond://[config.server]"))
 
 	if(config.wait_for_sigusr1_reboot && reason != 3)
@@ -546,7 +544,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
 	config.loadsql("config/dbconfig.txt")
-	config.loadforumsql("config/forumdbconfig.txt")
 
 /hook/startup/proc/loadMods()
 	world.load_mods()
@@ -572,7 +569,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.ckey_directory[ckey])
 
 /world/proc/load_mentors()
 	if(config.admin_legacy_system)
@@ -592,7 +589,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.ckey_directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""
@@ -628,7 +625,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "AI allowed"
 
 	var/n = 0
-	for (var/mob/M in player_list)
+	for (var/mob/M in GLOB.player_list)
 		if (M.client)
 			n++
 
@@ -647,6 +644,15 @@ var/world_topic_spam_protect_time = world.timeofday
 	/* does this help? I do not know */
 	if (src.status != s)
 		src.status = s
+
+/world/proc/SetupLogs()
+	GLOB.log_directory = "data/logs/[time2text(world.realtime, "YYYY/MM/DD")]/round-"
+	if(game_id)
+		GLOB.log_directory += "[game_id]"
+	else
+		GLOB.log_directory += "[replacetext(time_stamp(), ":", ".")]"
+
+	GLOB.world_runtime_log << "\n\nStarting up round ID [game_id]. [time_stamp()]\n---------------------"
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0

@@ -320,7 +320,7 @@
 			if(T2.CanInsertItem(src)) //attempt to insert the shit into the toilet.
 				V.forceMove(T2)
 			else
-				shit_left++
+				GLOB.shit_left++
 
 		else if(w_uniform)
 			message = "<B>[src]</B> shits \his pants."
@@ -340,7 +340,7 @@
 			if(reagents)
 				reagents.trans_to(V, rand(1,5))
 
-			shit_left++//Global var for round end, not how much piss is left.
+			GLOB.shit_left++//Global var for round end, not how much piss is left.
 
 		playsound(src.loc, 'sound/effects/poo2.ogg', 60, 1)
 		bowels -= rand(60,80)
@@ -391,7 +391,7 @@
 		if(reagents)
 			reagents.trans_to(D, rand(1,8))
 		message = "<B>[src]</B> pisses on the [TT.name]."
-		piss_left++//Global var for round end, not how much piss is left.
+		GLOB.piss_left++//Global var for round end, not how much piss is left.
 
 	bladder -= 50
 	visible_message("[message]")

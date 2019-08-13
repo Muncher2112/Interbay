@@ -23,7 +23,7 @@
 
 	var/list/supplylist
 
-/obj/machinery/computer/supply/initialize()
+/obj/machinery/computer/supply/Initialize()
 	..()
 	generateSupplyList()
 
@@ -133,7 +133,7 @@
 	return data
 
 
-/obj/machinery/computer/supply/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = default_state)
+/obj/machinery/computer/supply/tg_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = tgui_process.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "cargo", name , 1000, 800, master_ui, state)
@@ -287,7 +287,7 @@
 				overview = new /obj/item/weapon/paper(src.loc)
 				overview.name = "Export overview"
 				var/info = list()
-				info += "<center><BR><b><large>[using_map.station_name]</large></b><BR><i>[station_date]</i><BR><i>Export overview<field></i></center><hr>"
+				info += "<center><BR><b><large>[GLOB.using_map.station_name]</large></b><BR><i>[station_date]</i><BR><i>Export overview<field></i></center><hr>"
 				for(var/source in point_source_descriptions)
 					info += "[point_source_descriptions[source]]: [supply_controller.point_sources[source] || 0]<br/>"
 				overview.info = jointext(info, null)
@@ -332,10 +332,10 @@
 
 		if(isreciept)
 			reqform.name = "Cargo Reciept - [O.object.name]"
-			reqform.info += "<h3>[using_map.station_name] Supply Requisition Reciept</h3><hr>"
+			reqform.info += "<h3>[GLOB.using_map.station_name] Supply Requisition Reciept</h3><hr>"
 		else
 			reqform.name = "Requisition Form - [O.object.name]"
-			reqform.info += "<h3>[using_map.station_name] Supply Requisition Form</h3><hr>"
+			reqform.info += "<h3>[GLOB.using_map.station_name] Supply Requisition Form</h3><hr>"
 
 		reqform.info += "INDEX: #[O.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [O.orderedby]<br>"
