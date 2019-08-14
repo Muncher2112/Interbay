@@ -284,15 +284,15 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				if(mob.staminaloss > 25 && mob.staminaloss <= 75)
+				if(mob.staminaloss > 50 && mob.staminaloss <= 150)
 					move_delay += 3
-				else if(mob.staminaloss > 75)
+				else if(mob.staminaloss > 150)
 					move_delay += 6
-				move_delay += 1+config.run_speed
-				if(mob.staminaloss < 25)
+				move_delay += config.run_speed
+				if(mob.staminaloss < 50)
 					mob.adjustStaminaLoss(1)
 			if("walk")
-				move_delay += 7+config.walk_speed
+				move_delay += config.walk_speed
 		move_delay += mob.movement_delay()
 
 		if(istype(mob.buckled, /obj/vehicle))

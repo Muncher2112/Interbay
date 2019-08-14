@@ -784,6 +784,8 @@
 		weakened = max(max(weakened,amount),0)
 		update_canmove()	//updates lying, canmove and icons
 		resting = 1
+		if(l_hand) unEquip(l_hand)
+		if(r_hand) unEquip(r_hand)
 	return
 
 /mob/proc/SetWeakened(amount)
@@ -1063,6 +1065,21 @@ mob/proc/yank_out_object()
 /mob/proc/setStaminaLoss(var/amount)
 	if(status_flags & GODMODE)	return 0
 	staminaloss = amount
+
+/mob/proc/report_stamina()
+	var/msg = "You should not see this!"
+	if(getStaminaLoss())
+		switch((getStaminaLoss()))
+			if(150 to INFINITY)
+				msg = "I can barely move."
+			if(100 to 150)
+				msg = "I need to catch my breath!"
+			if(50 to 100)
+				msg = "I'm getting a little winded."
+			else
+				msg = "I feel like I could run forever!"
+	to_chat(src, msg)
+	return
 
 /client/proc/check_has_body_select()
 	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)

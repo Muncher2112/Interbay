@@ -42,8 +42,8 @@
 // Takes a stat *VALUE*.
 /mob/proc/statcheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
 	var/roll = rand(1,20)// our "dice"
-	to_world("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]") //Debuging
-	to_world("Rolled a [roll] against a DC [requirement] [type] check")  //debug
+	//to_world("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]") //Debuging
+	//to_world("Rolled a [roll] against a DC [requirement] [type] check")  //debug
 	roll -= mood_affect(1)// our mood
 	roll += stat_to_modifier(stat) //our stat mod
 	if(roll >= requirement)//We met the DC requirement
