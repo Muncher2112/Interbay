@@ -179,6 +179,8 @@
 	var/stunned = 0
 	var/weakened = 0
 	var/drowsyness = 0.0//Carbon
+	var/staminaloss = 0
+	var/maxHealth = 100
 
 	var/memory = ""
 	var/flavor_text = ""

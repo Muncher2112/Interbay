@@ -3,7 +3,7 @@
 	see_invisible = SEE_INVISIBLE_LIVING
 
 	//Health and life related vars
-	var/maxHealth = 100 //Maximum health that should be possible.
+	maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
 
 	var/hud_updateflag = 0
@@ -16,7 +16,6 @@
 	//var/halloss = 0   //Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
 	var/lisp = 0
-	var/staminaloss = 0
 	var/tongueless = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for

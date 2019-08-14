@@ -284,7 +284,13 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
+				if(mob.staminaloss > 25 && mob.staminaloss <= 75)
+					move_delay += 3
+				else if(mob.staminaloss > 75)
+					move_delay += 6
 				move_delay += 1+config.run_speed
+				if(mob.staminaloss < 25)
+					mob.adjustStaminaLoss(1)
 			if("walk")
 				move_delay += 7+config.walk_speed
 		move_delay += mob.movement_delay()

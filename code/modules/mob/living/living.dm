@@ -179,7 +179,7 @@ default behaviour is:
 		src.adjustBrainLoss(src.health + src.maxHealth * 2) // Deal 2x health in BrainLoss damage, as before but variable.
 		updatehealth()
 		to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
-	else 
+	else
 		to_chat(src, "<span class='notice'>You are too alive to die.</span>")
 
 
@@ -269,17 +269,6 @@ default behaviour is:
 
 /mob/living/proc/setHalLoss(var/amount)
 	adjustBruteLoss((amount * 0.5)-getBruteLoss())
-
-/mob/living/proc/getStaminaLoss()//Stamina shit.
-	return staminaloss
-
-/mob/living/proc/adjustStaminaLoss(var/amount)
-	if(status_flags & GODMODE)	return 0
-	staminaloss = min(max(staminaloss + amount, 0),(maxHealth*2))
-
-/mob/living/proc/setStaminaLoss(var/amount)
-	if(status_flags & GODMODE)	return 0
-	staminaloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return 0
