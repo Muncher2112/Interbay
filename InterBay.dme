@@ -1285,6 +1285,7 @@
 #include "code\modules\crafting\parts\lathe_items.dm"
 #include "code\modules\crafting\recipes\guns.dm"
 #include "code\modules\crafting\recipes\items.dm"
+#include "code\modules\crafting\recipes\structures.dm"
 #include "code\modules\crafting\recipes\tools.dm"
 #include "code\modules\customitems\item_spawning.dm"
 #include "code\modules\detectivework\footprints.dm"

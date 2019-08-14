@@ -92,9 +92,18 @@
 		get_mobs_and_objs_in_view_fast(loc,0,mobs,objs)
 		for (var/object in objs)
 			if (istype(object,SSverina.request_item.type))
-				SSverina.request_amount -= 1
+				if (istype(object,/obj/item/stack))
+					var/obj/item/stack/S = object
+					if (S.amount >= SSverina.request_amount)
+						S.amount -= SSverina.request_amount
+						SSverina.request_amount = 0
+					else
+						SSverina.request_amount -= S.amount
+						qdel(S)
+				else
+					SSverina.request_amount -= 1
+					qdel(object)
 				playsound(get_turf(src), 'sound/misc/interference.ogg', 25, 1, extrarange = 3, falloff = 5)
-				qdel(object)
 				flick("broadcaster_send", src)
 
 // ILLEGAL RELIGION

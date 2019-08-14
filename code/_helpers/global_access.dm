@@ -91,6 +91,8 @@
 			return global.SSatoms;
 		if("SSgarbage")
 			return global.SSgarbage;
+		if("SSverina")
+			return global.SSverina;
 		if("SSlegacy")
 			return global.SSlegacy;
 		if("TELEBLOCK")

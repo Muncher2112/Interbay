@@ -1,8 +1,7 @@
 /var/global/list/metal_lathe_recipes
 /var/global/list/metal_lathe_categories
 
-/proc/populate_metal_lathe_recipes()
-
+/hook/roundstart/proc/populate_metal_lathe_recipes()
 	//Create global metal_lathe recipe list if it hasn't been made already.
 	metal_lathe_recipes = list()
 	metal_lathe_categories = list()

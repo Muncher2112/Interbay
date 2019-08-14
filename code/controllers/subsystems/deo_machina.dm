@@ -10,7 +10,15 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/request_amount = -1
 	var/request_time = -1
 	var/visible_shrines = list()
-	var/list/requestable_items = list(/obj/item/metal_bar,/obj/item/weapon/screwdriver)
+	var/list/requestable_items = list(
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/gun/projectile/revolver/crafted/,
+		/obj/item/weapon/light/tube,
+		/obj/item/weapon/wrench,
+		/obj/item/weapon/cell/device/,
+		/obj/item/stack/material/phoron
+	)
 	var/list/bannable_items = list()
 	var/list/banned_items = list()
 	var/list/rewards = list()
