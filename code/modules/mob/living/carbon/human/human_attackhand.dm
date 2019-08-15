@@ -244,7 +244,7 @@
 				real_damage *= 2 // Hulks do twice the damage
 				rand_damage *= 2
 			real_damage = (max(1, real_damage) * strToDamageModifier(H.stats["str"]))
-			to_world("Real damage: [real_damage].  StrMod: [strToDamageModifier(H.stats["str"])])") //Debugging
+			log_debug("Real damage: [real_damage].  StrMod: [strToDamageModifier(H.stats["str"])])") //Debugging
 
 			var/armour = run_armor_check(hit_zone, "melee")
 			// Apply additional unarmed effects.

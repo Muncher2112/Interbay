@@ -46,8 +46,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 				punish()
 				generate_request()
 			else
-				to_world("Request for [request_amount] [request_item.name]s in [round(request_time/60)] minutes")
-
+				log_debug("Request for [request_amount] [request_item.name]s in [round(request_time/60)] minutes")
 		if(!request_item) //Only generate if a request isn't set
 			generate_request()
 		//Handle punishments.  Count it down, and undo it if it's done
@@ -66,7 +65,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	..("Verina is here")
 
 /datum/controller/subsystem/verina_controller/Recover()
-	to_world("Verina is recovering!")
+	log_debug("Verina is recovering!")
 
 /datum/controller/subsystem/verina_controller/proc/get_shrine_locations()
 	var/shrine_locations = list()
@@ -157,10 +156,10 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/timer = 180 //3 minutes?
 
 /datum/punishment/proc/do_punishment()
-	to_world("You should not be seeing this!")
+	log_debug("You should not be seeing this!")
 
 /datum/punishment/proc/undo_punishment()
-	to_world("You should not be seeing this!")
+	log_debug("You should not be seeing this!")
 
 
 /datum/punishment/tax/
@@ -183,7 +182,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 
 /datum/punishment/disable_machinary/do_punishment()
 	var/obj/machinery/target = pick(religion_controlled_machines) //Pick a machine to disable
-	//to_world("Disabling [target]")
+	log_debug(to_world("Disabling [target]"))
 	target.religion_denied = 1
 	target.overlays += image('icons/effects/effects.dmi',"energynet")
 	machine_disabled = target

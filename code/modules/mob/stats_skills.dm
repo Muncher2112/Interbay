@@ -42,8 +42,8 @@
 // Takes a stat *VALUE*.
 /mob/proc/statcheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
 	var/roll = rand(1,20)// our "dice"
-	//to_world("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]") //Debuging
-	//to_world("Rolled a [roll] against a DC [requirement] [type] check")  //debug
+	log_debug("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]")
+	log_debug("Rolled a [roll] against a DC [requirement] [type] check")
 	roll -= mood_affect(1)// our mood
 	roll += stat_to_modifier(stat) //our stat mod
 	if(roll >= requirement)//We met the DC requirement
@@ -147,7 +147,7 @@ proc/conToToxinModifier(var/constitution, var/w_class)
 
 
 /mob/proc/skillcheck(var/skill, var/requirement, var/message = null, var/type = null)//1 - 100
-	to_world("[type] check!  Skill value: [skill], DC [requirement]") //Debuging
+	log_debug("[type] check!  Skill value: [skill], DC [requirement]") //Debuging
 	if(skill >= requirement)//If we already surpass the skill requirements no need to roll.
 		if(prob(get_success_chance()))//Only thing we roll for is a crit success.
 			return CRIT_SUCCESS
