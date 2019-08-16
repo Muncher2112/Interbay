@@ -86,7 +86,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	//user.do_attack_animation(M)
 
 	if(force)
-		user.adjustStaminaLoss(w_class + 3)
+		user.adjustStaminaLoss(w_class * 3)
 	if(swing_sound)
 		playsound(M, swing_sound, 50, 1, -1)
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)

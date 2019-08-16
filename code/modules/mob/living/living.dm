@@ -612,9 +612,12 @@ default behaviour is:
 
 	if(staminaloss && !combat_mode)//If we're not doing anything, we're not in combat mode, and we've lost stamina we can wait to gain it back.
 		if(lying)
-			adjustStaminaLoss(-5)
+			adjustStaminaLoss(-10)
 		else
-			adjustStaminaLoss(-1)
+			adjustStaminaLoss(-2)
+	if(m_intent == "walk")
+		adjustStaminaLoss(-3)
+
 
 	if(staminaloss >= STAMINA_EXHAUST && !stat)//Oh shit we've lost too much stamina and now we're tired!
 		Exhaust()

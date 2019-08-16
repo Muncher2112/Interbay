@@ -3,7 +3,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 //The main controller of verina.  Will manage a few small subsystems, and manage what they are doing based on crew input
 /datum/controller/subsystem/verina_controller
 	name = "Verina"
-	wait = 300  //30 seconds
+	wait = 600  //60 seconds
 	priority = 20
 	flags = SS_BACKGROUND
 	var/obj/request_item = null
