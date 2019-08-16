@@ -33,7 +33,7 @@
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
-		scan.dropInto(loc)
+		scan.loc = get_turf(src)
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(scan)
 		scan = null
@@ -247,12 +247,12 @@ What a mess.*/
 					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_hand())
 						usr.put_in_hands(scan)
 					else
-						scan.dropInto(loc)
+						scan.loc = get_turf(src)
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
-						I.dropInto(src)
+						I.loc = src
 						scan = I
 
 			if("Log Out")
