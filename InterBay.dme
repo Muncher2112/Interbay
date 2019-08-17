@@ -1286,6 +1286,7 @@
 #include "code\modules\crafting\crafting.dm"
 #include "code\modules\crafting\parts\lathe_items.dm"
 #include "code\modules\crafting\recipes\airlocks.dm"
+#include "code\modules\crafting\recipes\clothing.dm"
 #include "code\modules\crafting\recipes\guns.dm"
 #include "code\modules\crafting\recipes\items.dm"
 #include "code\modules\crafting\recipes\structures.dm"

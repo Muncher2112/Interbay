@@ -28,6 +28,12 @@
 	desc = "A helmet with 'SOL CENTRAL GOVERNMENT' printed on the back in gold lettering."
 	icon_state = "helmet_command"
 
+/obj/item/clothing/head/helmet/handmade
+	name = "handmade combat helmet"
+	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
+	icon_state = "hm_helmet"
+	armor = list(melee = 35, bullet = 30, energy = 30, bomb = 0, bio = 0, rad = 0)
+
 /obj/item/clothing/head/helmet/solgov/security
 	name = "security helmet"
 	desc = "A helmet with 'MASTER AT ARMS' printed on the back in silver lettering."

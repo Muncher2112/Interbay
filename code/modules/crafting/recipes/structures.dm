@@ -4,7 +4,7 @@
 	tools = list(/obj/item/weapon/weldingtool = 1)
 	result = list(/obj/structure/bed/chair = 1)
 	time = 30
-	base_chance = 100
+	base_chance = 150
 
 /datum/crafting_recipe/bed
 	name = "Bed"

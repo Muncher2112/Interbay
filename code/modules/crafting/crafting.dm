@@ -46,7 +46,6 @@
 	var/list/parts 			//type paths of items consumed associated with how many are needed
 	var/list/tools 			//type paths of items needed but not consumed
 	var/result 				//type path of item resulting from this craft
-	var/flags				//Used for stuff like building structures
 	var/time = 0 			//time in 1/10th of second
 	var/base_chance = 100 	//base chance to get it right without skills
 	var/int_required = 0    //Anyone can learn this
@@ -120,7 +119,7 @@
 // If a user has all the stuff, but not the tool, they can still see they are on the right track
 /datum/crafting_recipe/proc/can_see(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
-	return check_parts(things) && user.stats["int"] >= int_required  //Int effects what you can craft
+	return check_parts(things) && user.stats["int"] >= int_required && result//Int effects what you can craft
 
 /datum/crafting_recipe/proc/make(var/mob/user, var/turf/spot)
 	if(!can_make(user,spot))
