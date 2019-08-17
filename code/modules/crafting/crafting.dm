@@ -1,3 +1,6 @@
+#define CRAFT_ONE_PER_TURF 1
+#define CRAFT_ON_FLOOR     2
+
 /mob/living/carbon/human/verb/craft()
 	set name = "Craft Items"
 	set category = "IC"
@@ -42,11 +45,12 @@
 	var/name = "" 			//in-game display name
 	var/list/parts 			//type paths of items consumed associated with how many are needed
 	var/list/tools 			//type paths of items needed but not consumed
-	var/list/result 		//type path of item resulting from this craft
-
+	var/result 				//type path of item resulting from this craft
+	var/flags				//Used for stuff like building structures
 	var/time = 0 			//time in 1/10th of second
 	var/base_chance = 100 	//base chance to get it right without skills
 	var/int_required = 0    //Anyone can learn this
+	var/related_skill = null
 
 /datum/crafting_recipe/proc/check_parts(var/list/things)
 	if(!parts)
@@ -105,11 +109,11 @@
 
 /datum/crafting_recipe/proc/can_make(var/mob/user, var/turf/spot)
 	var/list/things = spot.contents + user.contents
-	if (check_tools(things))
+	if (!check_tools(things))
 		to_chat(user, "You are missing the tools required.")
 		return 0
-	if (check_parts(things))
-		to_chat(user, "You are missing the partss required.")
+	if (!check_parts(things))
+		to_chat(user, "You are missing the parts required.")
 		return 0
 	return 1
 
