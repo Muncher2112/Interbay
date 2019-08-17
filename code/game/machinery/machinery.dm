@@ -127,7 +127,7 @@ Class Procs:
 		GLOB.machines += src
 		machinery_sort_required = 1
 	if(religion_controlled)
-		religion_controlled_machines += src
+		GLOB.religion_controlled_machines += src
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src

@@ -24,14 +24,14 @@
 //PROCS
 
 /datum/religion/proc/claim_territory(area/territory,var/religion)
-	all_religions[religion].territories += territory.name
+	GLOB.all_religions[religion].territories += territory.name
 
 /datum/religion/proc/lose_territory(area/territory,var/religion)
-	all_religions[religion].territories -= territory.name
+	GLOB.all_religions[religion].territories -= territory.name
 
 /datum/religion/proc/territory_claimed(area/territory, mob/user)
-	for (var/name in all_religions)
-		if(territory.name in all_religions[name].territories)
+	for (var/name in GLOB.all_religions)
+		if(territory.name in GLOB.all_religions[name].territories)
 			return name
 	return null
 
@@ -62,12 +62,11 @@
 
 //Reveals a random heretic
 /mob/living/proc/reveal_heretics(mob/living/M)
-	to_world("in reveal heretics [M]")
 	var/name = ""
 	if (religion_is_legal())  //Non-heretics will say a random name
 		name = pick(GLOB.human_mob_list)
 	else
-		name = pick(all_religions[ILLEGAL_RELIGION].followers)  //Wow the datums saves us an entire for loop
+		name = pick(GLOB.all_religions[ILLEGAL_RELIGION].followers)  //Wow the datums saves us an entire for loop
 	emote("scream",1)
 	agony_scream()
 	say(NewStutter("[name] is one of them!"))
@@ -82,6 +81,11 @@ proc/generate_random_prayer()//This generates a new one.
 	prayer += pick("Verina be praised. ", "Verina save us all. ", "Verina guide us all. ")
 	prayer += "Amen."
 	return prayer
+
+/mob/living/proc/recite_prayer()
+	set category = "Deo Machina"
+	set name = "Recite the prayer"
+	say(mind.prayer)
 
 /obj/item/weapon/pen/crayon/chalk
 	name = "consecrated chalk"

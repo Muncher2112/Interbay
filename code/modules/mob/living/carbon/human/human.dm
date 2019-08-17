@@ -94,7 +94,7 @@
 
 		//Religion
 		if (!religion_is_legal())
-			stat("Old God favor:",all_religions[ILLEGAL_RELIGION].favor)
+			stat("Old God favor:",GLOB.all_religions[ILLEGAL_RELIGION].favor)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)

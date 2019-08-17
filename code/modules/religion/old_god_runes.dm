@@ -67,10 +67,10 @@
 /
 /obj/effect/rune/old_god_rune/blessing/cast(var/mob/living/user)
 	// I'm not sure if this works, need to do a lot more testing.
-	if (all_religions[ILLEGAL_RELIGION].favor < 100 || !user)  //100 favor for 1 force
+	if (GLOB.all_religions[ILLEGAL_RELIGION].favor < 100 || !user)  //100 favor for 1 force
 		fizzle(user)
 		return
-	all_religions[ILLEGAL_RELIGION].favor -= 100
+	GLOB.all_religions[ILLEGAL_RELIGION].favor -= 100
 	var/obj/item/weapon/target
 	for(var/obj/item/weapon/W in get_turf(src))
 		// Need to check the weapon's sharpness and force to make sure it's suitable for the blessing
@@ -86,7 +86,7 @@
 
 /obj/effect/rune/old_god_rune/claiming/cast(var/mob/living/user)
 	var/turf/T = get_turf(src)
-	if (!all_religions[ILLEGAL_RELIGION].can_claim_for_gods(user,T))
+	if (!GLOB.all_religions[ILLEGAL_RELIGION].can_claim_for_gods(user,T))
 		fizzle(user)
 		return
 	var/candles = 0
@@ -96,16 +96,16 @@
 		candles = 1
 	if (candles != 0)
 		new /obj/machinery/old_god_shrine(T)
-		all_religions[ILLEGAL_RELIGION].claim_territory(get_area(T),ILLEGAL_RELIGION)
+		GLOB.all_religions[ILLEGAL_RELIGION].claim_territory(get_area(T),ILLEGAL_RELIGION)
 		qdel(src)
 	else
 		fizzle(user)
 
 /obj/effect/rune/old_god_rune/healing/cast(var/mob/living/user)
-	if (all_religions[ILLEGAL_RELIGION].favor < 100 || !user)  //If we don't have enough favor or no user
+	if (GLOB.all_religions[ILLEGAL_RELIGION].favor < 100 || !user)  //If we don't have enough favor or no user
 		fizzle(user)
 		return
-	all_religions[ILLEGAL_RELIGION].favor -= 100
+	GLOB.all_religions[ILLEGAL_RELIGION].favor -= 100
 	var/mob/living/carbon/target = null
 	for(var/mob/living/carbon/M in get_turf(src))
 		if(!M.religion_is_legal(M) && M.stat != DEAD)

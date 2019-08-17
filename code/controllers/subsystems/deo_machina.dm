@@ -181,7 +181,7 @@ var/datum/controller/subsystem/verina_controller/SSverina
 	var/obj/machinery/machine_disabled = null
 
 /datum/punishment/disable_machinary/do_punishment()
-	var/obj/machinery/target = pick(religion_controlled_machines) //Pick a machine to disable
+	var/obj/machinery/target = pick(GLOB.religion_controlled_machines) //Pick a machine to disable
 	log_debug(to_world("Disabling [target]"))
 	target.religion_denied = 1
 	target.overlays += image('icons/effects/effects.dmi',"energynet")

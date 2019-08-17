@@ -129,7 +129,7 @@
 		Destroy()
 	for(var/obj/item/weapon/flame/candle/C in candles) //Check for candles around
 		if(C.lit)
-			all_religions[ILLEGAL_RELIGION].favor += 0.5
+			GLOB.all_religions[ILLEGAL_RELIGION].favor += 0.5
 		else
 			candles -= C
 

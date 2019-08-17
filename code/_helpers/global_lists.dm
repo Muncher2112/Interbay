@@ -66,10 +66,6 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 //Crafting
 var/global/list/crafting_recipes = list()
 
-//Religion
-var/global/list/all_religions = list()
-var/global/list/religion_controlled_machines = list()
-
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
 	"head" = HEAD,
@@ -213,9 +209,7 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/religion/R = new T
 		to_world("[R.name]")
-		all_religions[R.name] = R
-	to_world("[all_religions]")
-
+		GLOB.all_religions[R.name] = R
 	return 1
 
 
