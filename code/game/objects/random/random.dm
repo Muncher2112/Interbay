@@ -409,6 +409,7 @@ obj/random/closet //A couple of random closets to spice up maint
 	desc = "This is a random closet."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "syndicate1"
+
 obj/random/closet/item_to_spawn()
 	return pick(/obj/structure/closet,\
 				/obj/structure/closet/firecloset,\
@@ -958,7 +959,8 @@ something, make sure it's not in one of the other lists.*/
 					prob(200);/obj/random/suit,\
 					prob(300);/obj/random/clothing,\
 					prob(200);/obj/random/accessory,\
-					prob(100);/obj/random/cash)
+					prob(100);/obj/random/cash,
+					prob(100);/obj/item/weapon/tape_roll)
 
 /obj/random/loot /*Better loot for away missions and salvage */
 	name = "random loot"
@@ -1125,6 +1127,7 @@ var/list/random_useful_
 		random_useful_ += /obj/item/stack/material/cardboard
 		random_useful_ += /obj/item/weapon/storage/fancy/cigarettes
 		random_useful_ += /obj/item/weapon/deck/cards
+		random_useful_ += /obj/item/weapon/tape_roll
 	return pick(random_useful_)
 
 /proc/get_random_junk_type()
