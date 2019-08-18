@@ -1291,6 +1291,8 @@
 #include "code\modules\crafting\recipes\clothing.dm"
 #include "code\modules\crafting\recipes\furniture.dm"
 #include "code\modules\crafting\recipes\guns.dm"
+#include "code\modules\crafting\recipes\machinery.dm"
+#include "code\modules\crafting\recipes\medical.dm"
 #include "code\modules\crafting\recipes\misc.dm"
 #include "code\modules\crafting\recipes\structures.dm"
 #include "code\modules\crafting\recipes\tools.dm"

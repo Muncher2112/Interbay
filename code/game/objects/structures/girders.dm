@@ -10,12 +10,19 @@
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
+	var/dismantle_materials_count = 5
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
 	anchored = 0
 	health = 50
 	cover = 25
+
+//Low girders are used to build low walls
+/obj/structure/girder/low
+	health = 120
+	cover = 25 //how much cover the girder provides against projectiles.
+	dismantle_materials_count = 3
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)

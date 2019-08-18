@@ -55,7 +55,7 @@ for reference:
 
 //Barricades!
 /obj/structure/barricade
-	name = "barricade"
+	name = "wooden barricade"
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
@@ -63,12 +63,19 @@ for reference:
 	density = 1
 	var/health = 100
 	var/maxhealth = 100
+	var/material_name = "wood"
 	var/material/material
 	flags = OBJ_CLIMBABLE
 
-/obj/structure/barricade/New(var/newloc, var/material_name)
+/obj/structure/barricade/steel
+	name = "steel barricade"
+	health = 300
+	maxhealth = 300
+	material_name = "steel"
+
+/obj/structure/barricade/New(var/newloc, var/new_material_name)
 	..(newloc)
-	if(!material_name)
+	if(!material_name && !material)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")
 	if(!material)

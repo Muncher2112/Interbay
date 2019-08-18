@@ -2,6 +2,7 @@
 	category = "Airlocks"
 	time = 150
 	parts = list(/obj/item/stack/material/steel/ = 10)
+	tools = list(/obj/item/weapon/weldingtool = 1)
 	result = null
 	related_skill = SKILL_ENG
 
