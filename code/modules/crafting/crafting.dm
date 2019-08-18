@@ -45,11 +45,12 @@
 	var/name = "" 			//in-game display name
 	var/list/parts 			//type paths of items consumed associated with how many are needed
 	var/list/tools 			//type paths of items needed but not consumed
-	var/result 				//type path of item resulting from this craft
+	var/list/result 				//type path of item resulting from this craft
 	var/time = 0 			//time in 1/10th of second
 	var/base_chance = 100 	//base chance to get it right without skills
 	var/int_required = 0    //Anyone can learn this
 	var/related_skill = null
+	var/category = "Misc"
 
 /datum/crafting_recipe/proc/check_parts(var/list/things)
 	if(!parts)
@@ -137,3 +138,9 @@
 			user << "<span class='notice'>You make \a [name].</span>"
 		else
 			user << "<span class='warning'>You've failed to make \a [name].</span>"
+
+/datum/crafting_recipe/proc/get_description(pass_steps)
+	. = list()
+	var/atom/A = result[1]
+	.+="[initial(A.desc)]<br>"
+	return jointext(., "<br>")

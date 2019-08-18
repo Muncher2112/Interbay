@@ -1,0 +1,2 @@
+GLOBAL_LIST_EMPTY(all_religions)
+GLOBAL_LIST_EMPTY(religion_controlled_machines)
