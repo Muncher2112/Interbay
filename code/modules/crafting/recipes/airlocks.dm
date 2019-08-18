@@ -3,6 +3,7 @@
 	time = 150
 	parts = list(/obj/item/stack/material/steel/ = 10)
 	result = null
+	related_skill = SKILL_ENG
 
 /datum/crafting_recipe/airlock/standard
 	name = "standard airlock assembly"

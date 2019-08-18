@@ -9,6 +9,11 @@
 
 	material = DEFAULT_TABLE_MATERIAL
 
+/obj/structure/table/rack/shelf
+	name = "shelf"
+	desc = "For collecting dust, heads of the enemies and tools."
+	icon_state = "shelf"
+
 /obj/structure/table/rack/New()
 	..()
 	verbs -= /obj/structure/table/verb/do_flip

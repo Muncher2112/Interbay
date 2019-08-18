@@ -33,6 +33,19 @@
 	//var/LeftSide = list(0,0,0)// Ќужны дл€ хранени€ данных
 	//var/RightSide = list(0,0,0)
 	var/check = 0
+	var/icon_modifier = ""	//adds string to icon path for color variations
+
+/obj/structure/railing/grey
+	name = "grey railing"
+	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	icon_modifier = "grey_"
+	icon_state = "grey_railing0"
+
+/obj/structure/railing/Created(var/mob/user)
+	anchored = FALSE
+	// this way its much easier to build it, and there is no need to update_icon after that, flip will take care of that
+	spawn()
+		flip(user)
 
 /obj/structure/railing/New(loc, constructed=0)
 	..()
@@ -48,7 +61,7 @@
 	broken = 1
 	for(var/obj/structure/railing/R in oview(src, 1))
 		R.update_icon()
-	..()
+	. = ..()
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
@@ -87,7 +100,6 @@
 
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
 	check = 0
-	//if (!anchored) return
 	var/Rturn = turn(src.dir, -90)
 	var/Lturn = turn(src.dir, 90)
 //Thanks ruskies, comments that i don't understand
@@ -142,29 +154,29 @@
 	//icon_state = "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 	overlays.Cut()
 	if (!check || !anchored)//|| !anchored
-		icon_state = "railing0"
+		icon_state = "[icon_modifier]railing0"
 	else
-		icon_state = "railing1"
+		icon_state = "[icon_modifier]railing1"
 		//лева€ сторона
 		if (check & 32)
-			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "corneroverlay")
+			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]corneroverlay")
 			//world << "32 check"
 		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "frontoverlay_l")
+			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]frontoverlay_l")
 			//world << "16 check"
 		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "frontoverlay_r")
+			overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]frontoverlay_r")
 			//world << "no 4 or 2 check"
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
+						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32)
 					if (SOUTH)
-						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
+						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32)
 					if (EAST)
-						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
+						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32)
 					if (WEST)
-						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
+						overlays += image ('maps/dreyfus/icons/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32)
 
 
 //obj/structure/railing/proc/NeighborsCheck2()
@@ -255,7 +267,7 @@
 		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrew \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 		if(do_after(user, 10, src))
-			user << (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>")
+			user.visible_message((anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
 			anchored = !anchored
 			update_icon()
 			return

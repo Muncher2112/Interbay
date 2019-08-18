@@ -577,3 +577,19 @@ its easier to just keep the beam vertical.
 		do_climb(target)
 	else
 		return ..()
+
+//This proc is called when objects are created during the round by players.
+//This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
+/atom/proc/Created(var/mob/user)
+	return
+	//Should be called when:
+		//An item is printed at an autolathe or protolathe **COMPLETE**
+		//Item is created at mech fab, organ printer, prosthetics builder, or any other machine which creates things
+		//An item is constructed from sheets or any similar crafting system
+
+	//Should NOT be called when:
+		//An item is mapped in
+		//An item is adminspawned
+		//An item is spawned by events
+		//An item is delivered on the cargo shuttle
+		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)

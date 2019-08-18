@@ -85,7 +85,7 @@
 
 	if(href_list["build"])
 		var/datum/crafting_recipe/CR = locate(href_list["build"])
-		CR.make(usr)
+		CR.make(usr,get_step(usr, usr.dir))
 	else if(href_list["view_vars"] && check_rights())
 		usr.client.debug_variables(locate(href_list["view_vars"]))
 	else if(href_list["category"])
