@@ -153,6 +153,7 @@
 	icon_state = "cylinder_4"
 
 /obj/item/stock
+	name = "stock"
 	icon = 'icons/obj/crafting.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	desc = "This is reciever."

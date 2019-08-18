@@ -55,6 +55,8 @@
 			"icon" = getAtomCacheFilename(CR.result[1]),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
+			"ingredients" = CR.get_ingredients(),
+			"tool" = CR.get_tools()
 		)
 	var/list/items = list()
 	for(var/datum/crafting_recipe/recipe in SScraft.categories[curr_category])

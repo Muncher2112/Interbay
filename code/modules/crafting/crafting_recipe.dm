@@ -99,8 +99,26 @@
 		else
 			user << "<span class='warning'>You've failed to make \a [name].</span>"
 
-/datum/crafting_recipe/proc/get_description(pass_steps)
+/datum/crafting_recipe/proc/get_description()
 	. = list()
 	var/atom/A = result[1]
 	.+="[initial(A.desc)]<br>"
 	return jointext(., "<br>")
+
+/datum/crafting_recipe/proc/get_ingredients()
+	var/list/ingredients = list()
+	for (var/part in parts)
+		var/atom/A = new part
+		ingredients += "[A.name]x[parts[part]]"  //This is to make lists of <Part>x<amount> without needing processing later
+		qdel(A)
+	var/return_text = "Ingredients: " + jointext(ingredients, ", ")
+	return return_text
+
+/datum/crafting_recipe/proc/get_tools()
+	var/list/required_tools = list()
+	for (var/tool in tools)
+		var/atom/A = new tool
+		required_tools += "[A.name]x1"  //This is to make lists of <Part>x<amount> without needing processing later
+		qdel(A)
+	var/return_text = "<br>" + "Tools: " +jointext(required_tools, ", ")
+	return return_text
