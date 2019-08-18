@@ -49,20 +49,20 @@
 	data["cur_category"] = curr_category
 	var/datum/crafting_recipe/CR = get_item(usr)
 	data["cur_item"] = null
-
 	if(CR)
 		data["cur_item"] = list(
 			"name" = CR.name,
+			"icon" = getAtomCacheFilename(CR.result[1]),
 			"ref"  = "\ref[CR]",
 			"desc" = CR.get_description(),
 		)
-
 	var/list/items = list()
 	for(var/datum/crafting_recipe/recipe in SScraft.categories[curr_category])
-		items += list(list(
-			"name" = capitalize(recipe.name),
-			"ref" = "\ref[recipe]"
-		))
+		if(recipe.result)
+			items += list(list(
+				"name" = capitalize(recipe.name),
+				"ref" = "\ref[recipe]"
+			))
 	data["items"] = items
 	//user << browse(text("<HEAD><TITLE>Crafting menu</TITLE></HEAD><TT>[]</TT>", data), "window=secure_rec;size=600x400")
 	if (!ui)
