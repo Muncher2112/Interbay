@@ -4,7 +4,7 @@
 	throw_range = 1
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
-	icon_state = "beartrap0"
+	icon_state = "beartrap"
 	randpixel = 0
 	desc = "A mechanically activated leg trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
 	throwforce = 0
@@ -16,6 +16,10 @@
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
+
+/obj/item/weapon/beartrap/Initialize()
+	.=..()
+	update_icon()
 
 /obj/item/weapon/beartrap/user_unbuckle_mob(mob/user as mob)
 	if(buckled_mob && can_use(user))
@@ -109,10 +113,76 @@
 			update_icon()
 	..()
 
+
 /obj/item/weapon/beartrap/update_icon()
 	..()
-
 	if(!deployed)
-		icon_state = "beartrap0"
+		icon_state = "[initial(icon_state)]0"
 	else
-		icon_state = "beartrap1"
+		icon_state = "[initial(icon_state)]1"
+
+
+/**********************************
+	Makeshift Trap
+**********************************/
+/*
+	Can be constructed from stuff you find in maintenance
+	Slightly worse stats all around
+	Has integrity that depletes and it will eventually break
+*/
+/obj/item/weapon/beartrap/makeshift
+	//base_damage = 16
+	//fail_damage = 4
+	//base_difficulty = 80
+	name = "jury-rigged mechanical trap"
+	desc = "A wicked looking construct of spiky bits of metal and wires. Will snap shut on anyone who steps in it. It'll do some nasty damage."
+	icon_state = "sawtrap"
+	matter = list(MATERIAL_STEEL = 15)
+	var/integrity = 100
+
+
+//It takes 5 damage whenever it snaps onto a mob
+/obj/item/weapon/beartrap/makeshift/attack_mob(mob/living/L)
+	.=..()
+	integrity -= 4
+	spawn(5)
+		check_integrity()
+
+//Takes 1 damage every time they fail to open it
+/*
+/obj/item/weapon/beartrap/makeshift/fail_attempt(var/user, var/difficulty)
+	.=..()
+	integrity -= 0.8
+	spawn(5)
+		check_integrity()
+*/
+/obj/item/weapon/beartrap/makeshift/proc/check_integrity()
+	if (prob(integrity))
+		return
+
+	break_apart()
+
+
+/obj/item/weapon/beartrap/makeshift/proc/break_apart()
+	visible_message(SPAN_DANGER("\the [src] shatters into fragments!"))
+	new /obj/item/stack/material/steel(loc, 10)
+	new /obj/item/weapon/material/shard/shrapnel(loc)
+	new /obj/item/weapon/material/shard/shrapnel(loc)
+	qdel(src)
+
+
+/**********************************
+	Armed Subtypes
+**********************************/
+/*
+	Used for random trap spawners.
+	These start already deployed and will entrap the first creature that steps on it
+*/
+
+/obj/item/weapon/beartrap/armed
+	deployed = TRUE
+
+
+
+/obj/item/weapon/beartrap/makeshift/armed
+	deployed = TRUE

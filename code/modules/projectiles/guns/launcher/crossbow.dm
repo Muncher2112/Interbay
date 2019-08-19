@@ -273,3 +273,85 @@
 		return
 	else
 		..()
+
+/*////////////////////////////
+//	Rapid Crossbow Device	//
+*/////////////////////////////
+/obj/item/weapon/arrow/RCD
+	name = "flashforged bolt"
+	desc = "The ultimate ghetto deconstruction implement."
+	throwforce = 4
+
+/obj/item/weapon/gun/launcher/crossbow/RCD
+	name = "rapid crossbow device"
+	desc = "A hacked together RCD turns an innocent construction tool into the penultimate deconstruction tool. Flashforges bolts using matter units when the string is drawn back."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "rxb"
+	slot_flags = null
+	//draw_time = 10
+	var/stored_matter = 0
+	var/max_stored_matter = 40
+	var/boltcost = 10
+
+/obj/item/weapon/gun/launcher/crossbow/RCD/proc/genBolt(var/mob/user)
+	if(stored_matter >= boltcost && !bolt)
+		bolt = new/obj/item/weapon/arrow/RCD(src)
+		stored_matter -= boltcost
+		to_chat(user, "<span class='notice'>The RXD flashforges a new bolt!</span>")
+		update_icon()
+	else
+		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
+		flick("[icon_state]-empty", src)
+
+/obj/item/weapon/gun/launcher/crossbow/RCD/attack_self(mob/living/user as mob)
+	if(tension)
+		user.visible_message("[user] relaxes the tension on [src]'s string.","You relax the tension on [src]'s string.")
+		tension = 0
+		update_icon()
+	else
+		genBolt(user)
+		draw(user)
+
+/obj/item/weapon/gun/launcher/crossbow/RCD/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/rcd_ammo))
+		if((stored_matter + 10) > max_stored_matter)
+			to_chat(user, "<span class='notice'>The RXD can't hold that many additional matter-units.</span>")
+			return
+		stored_matter += 10
+		qdel(W)
+		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		to_chat(user, "<span class='notice'>The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
+		update_icon()
+		return
+	if(istype(W, /obj/item/weapon/arrow/RCD))
+		var/obj/item/weapon/arrow/RCD/A = W
+		if((stored_matter + 5) > max_stored_matter)
+			to_chat(user, "<span class='notice'>Unable to reclaim flashforged bolt. The RXD can't hold that many additional matter-units.</span>")
+			return
+		stored_matter += 5
+		qdel(A)
+		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		to_chat(user, "<span class='notice'>Flashforged bolt reclaimed. The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
+		update_icon()
+		return
+
+/obj/item/weapon/gun/launcher/crossbow/RCD/update_icon()
+	overlays.Cut()
+	if(bolt)
+		overlays += "rxb-bolt"
+	var/ratio = 0
+	if(stored_matter < boltcost)
+		ratio = 0
+	else
+		ratio = stored_matter / max_stored_matter
+		ratio = max(round(ratio, 0.25) * 100, 25)
+	overlays += "rxb-[ratio]"
+	if(tension > 1)
+		icon_state = "rxb-drawn"
+	else
+		icon_state = "rxb"
+
+/obj/item/weapon/gun/launcher/crossbow/RCD/examine(var/user)
+	. = ..()
+	if(.)
+		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")

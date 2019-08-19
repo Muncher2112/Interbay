@@ -110,3 +110,25 @@
 	icon_state = "revolver"
 	desc += " Someone snipped off the barrel's toy mark. How dastardly."
 	return 1
+
+
+/obj/item/weapon/gun/projectile/revolver/crafted
+	max_shells = 0
+	starts_loaded = 0
+	icon_state = "crafted_revolver"
+	desc = "An ugly revolver made right here on the station.  Looks like it will take .38 ammo"
+	jam_chance = 20
+	caliber = "38"
+	ammo_type = /obj/item/ammo_casing/c38
+
+/obj/item/weapon/gun/projectile/revolver/crafted/one_chamber
+	max_shells = 1
+
+/obj/item/weapon/gun/projectile/revolver/crafted/two_chamber
+	max_shells = 2
+
+/obj/item/weapon/gun/projectile/revolver/crafted/three_chamber
+	max_shells = 3
+
+/obj/item/weapon/gun/projectile/revolver/crafted/four_chamber
+	max_shells = 4
