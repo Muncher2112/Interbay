@@ -33,22 +33,22 @@
 
 	return 0
 
+//The point of this is for weapons that blocks puts significant stress on your hand, making it hard to hold (Sword, crowbar)
+//It's in  a different funtion so we can make it more difficult then the default parry check, which is used for shields, which anoyone can use to parry.
 /obj/item/proc/default_sword_parry(mob/living/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	//Ok this if looks like a bit of a mess, and it is. Basically you need to have the sword in your active hand, and pass the default parry check
-	//and also pass the prob which is your melee skill divided by two + the swords block chance. Complicated, I know, but hopefully it'll balance out.
 
-	if(default_parry_check(user, attacker, damage_source) && user.statcheck(user.stats["str"], 10, "I couldn't stop the blow!", "str") && (user.get_active_hand() == src))//You gotta be holding onto that sheesh bro.
-		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		if(parry_sounds)
-			playsound(user.loc, pick(parry_sounds), 50, 1)
-		user.adjustStaminaLoss(10)
-		health -= 0.5
-		if(user.statcheck(user.stats["str"], 5, "I couldn't keep the grip on my weapon!", "str"))
-			user.visible_message("<span class='danger'>\The [src] flies out of \the [user]'s hand!</span>")
-			user.drop_from_inventory(src)
-			throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
-		to_world("Parry returning 1")
-		return 1
+	if(default_parry_check(user, attacker, damage_source) && (user.get_active_hand() == src))//You gotta be holding onto that sheesh bro
+		if(prob((user.skills["melee"]/2) + block_chance)) //a check on block chanc
+			user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+			if(parry_sounds)
+				playsound(user.loc, pick(parry_sounds), 50, 1)
+			user.adjustStaminaLoss(10)
+			health -= 0.5
+			if(!user.statcheck(user.stats["str"], 8, "I couldn't keep the grip on my weapon!", "str"))
+				user.visible_message("<span class='danger'>\The [src] flies out of \the [user]'s hand!</span>")
+				user.drop_from_inventory(src)
+				throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1,3), throw_speed)//Throw that sheesh away
+			return 1
 	return 0
 
 

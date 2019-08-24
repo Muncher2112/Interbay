@@ -59,6 +59,7 @@
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
+	heal_brute = 0
 	origin_tech = list(TECH_BIO = 1)
 	animal_heal = 5
 
@@ -71,7 +72,7 @@
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
 		return 1
-
+	
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting) //nullchecked by ..()
@@ -103,6 +104,9 @@
 					user.visible_message("<span class='notice'>\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>", \
 					                              "<span class='notice'>You place a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>" )
 				W.bandage()
+				if (user.skillcheck(user.skills[SKILL_MED], 65, null, "Medical"))
+					heal_brute += user.skills[SKILL_MED] * 0.1
+				W.heal_damage(heal_brute)
 				used++
 			affecting.update_damages()
 			if(used == amount)
@@ -186,6 +190,8 @@
 					                              "<span class='notice'>You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].</span>" )
 				W.bandage()
 				W.disinfect()
+				if (user.skillcheck(user.skills[SKILL_MED], 65, null, "Medical"))
+					heal_brute += user.skills[SKILL_MED] * 0.1
 				W.heal_damage(heal_brute)
 				used++
 			affecting.update_damages()
@@ -201,7 +207,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 0
+	heal_burn = 5
 	origin_tech = list(TECH_BIO = 1)
 	animal_heal = 7
 
@@ -222,10 +228,12 @@
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
 			if(!do_mob(user, M, 10))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
-				return 1
+				return 1 
 			user.visible_message( 	"<span class='notice'>[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.</span>", \
 									"<span class='notice'>You cover wounds on [M]'s [affecting.name] with regenerative membrane.</span>" )
-			affecting.heal_damage(0,heal_burn)
+			if (user.skillcheck(user.skills[SKILL_MED], 65, null, "Medical"))
+				heal_burn += user.skills[SKILL_MED] * 0.1
+			affecting.heal_damage(0)
 			use(1)
 			affecting.salve()
 

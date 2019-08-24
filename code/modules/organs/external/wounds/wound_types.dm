@@ -56,8 +56,6 @@
 	..()
 	if(!autoheal_cutoff)
 		autoheal_cutoff = initial(autoheal_cutoff)
-	if (user.skillcheck(user.skills[SKILL_MED], 65, 1, message = "You've wrapped the wound, but you're not sure if you did it right"))
-		autoheal_cutoff += user.skills[SKILL_MED] * 0.1
 
 /datum/wound/cut/is_surgical()
 	return autoheal_cutoff == 0

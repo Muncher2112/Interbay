@@ -14,3 +14,9 @@
 	name = "bandages"
 	result = list(/obj/item/stack/medical/bruise_pack/handmade = 1)
 	parts = list(/obj/item/clothing = 1)
+
+/datum/crafting_recipe/medical/splint
+	name = "Makeshift splint"
+	tools = list(/obj/item/weapon/tape_roll = 1)
+	result = list(/obj/item/stack/medical/splint/ghetto/ = 1)
+	parts = list(/obj/item/stack/rods = 1)

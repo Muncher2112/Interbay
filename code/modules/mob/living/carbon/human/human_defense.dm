@@ -225,7 +225,7 @@ If the item_attack does need to go to apply_hit_effect (Which seems like 75% of 
 		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
 		return null
 
-	if(user.skillcheck(user.skills["melee"], 60, 0) == CRIT_FAILURE)
+	if(user.skillcheck(user.skills["melee"], 60, 0, "Crit check") == CRIT_FAILURE)
 		user.resolve_critical_miss(I)
 		return null
 
@@ -352,7 +352,7 @@ If the item_attack does need to go to apply_hit_effect (Which seems like 75% of 
 					apply_effect(6, WEAKEN, blocked)
 		//Apply blood
 		attack_bloody(I, user, effective_force, hit_zone)
-	if(user.skillcheck(user.skills["melee"],0,0) == CRIT_SUCCESS)
+	if(user.skillcheck(user.skills["melee"],0,0, "Crit check") == CRIT_SUCCESS)
 		resolve_critical_hit()
 
 	return 1
