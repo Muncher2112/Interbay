@@ -1,6 +1,7 @@
 /obj/machinery/iv_drip
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
+	icon_state = "empty"
 	anchored = 0
 	density = 1
 
@@ -12,8 +13,10 @@
 /obj/machinery/iv_drip/update_icon()
 	if(src.attached)
 		icon_state = "hooked"
+	else if(beaker)
+		icon_state = "full"
 	else
-		icon_state = ""
+		icon_state = "empty"
 
 	overlays = null
 

@@ -118,8 +118,8 @@
 	/obj/item/weapon/material/shard = 50, 		\
 	)
 
-	min_duration = 90
-	max_duration = 110
+	min_duration = 40
+	max_duration = 60
 
 /datum/surgery_step/generic/cut_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())

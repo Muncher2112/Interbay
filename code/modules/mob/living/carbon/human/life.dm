@@ -78,15 +78,6 @@
 
 		if(!client && !mind)
 			species.handle_npc(src)
-		
-		//Handle sleeping
-		if(sleeping)
-			var/heal_amt = -0.5
-			if(in_bed)
-				heal_amt = -1.5
-			src.adjustBruteLoss(heal_amt)
-			src.adjustFireLoss(heal_amt)
-
 
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
@@ -708,6 +699,18 @@
 						emote("snore")
 					else
 						agony_moan()//emote("groan")
+				//Handle healing
+				var/heal_amt = -0.5
+				if(in_bed)
+					//only heal organs in bed
+					for(var/obj/item/organ/internal/E in bad_internal_organs)
+						E.damage += heal_amt
+						if(E.damage <= 0)
+							bad_internal_organs -= E
+					//Now set for external stuff
+					heal_amt = -1.5
+				src.adjustBruteLoss(heal_amt)
+				src.adjustFireLoss(heal_amt)
 			if(prob(2) && is_asystole() && isSynthetic())
 				visible_message(src, "<b>[src]</b> [pick("emits low pitched whirr","beeps urgently")]")
 		//CONSCIOUS

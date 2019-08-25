@@ -70,6 +70,10 @@
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
 
+/obj/item/organ/internal/process()
+	if (damage > 0 && owner && !(src in owner.bad_internal_organs))
+		owner.bad_internal_organs += src
+
 
 /obj/item/organ/internal/penis
 	name = "penis"

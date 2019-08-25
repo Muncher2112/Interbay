@@ -91,7 +91,7 @@
 					adjustOxyLoss(-(min(getOxyLoss(), 5)))
 					updatehealth()
 					to_chat(src, "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
-					if(prob(15))
+					if(prob(H.skills[SKILL_MED]))
 						resuscitate()
 
 			else if(!(M == src && apply_pressure(M, M.zone_sel.selecting)))

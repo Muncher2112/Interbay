@@ -245,9 +245,10 @@ var/list/organ_cache = list()
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
+//All intenal stuff hapens here
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
+	log_debug("Organ take damage is being called!  [src] is being damgaed for [amount]!")
 	amount = round(amount, 0.1)
-	amount -= conToToxinModifier(owner.stats["con"]) // Con lets us ignore a bit of toxin damage.  This is half the modifier, shift the decimal left one
 	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else

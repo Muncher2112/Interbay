@@ -40,6 +40,20 @@
 		overlays += filling
 	overlays += image('icons/obj/bloodpack.dmi', "top")
 
+/obj/structure/closet/crate/freezer/blood_storage
+	name = "Blood Storage"
+	var/list/blood_types = list("APlus","AMinus","BPlus","BMinus","OPlus","OMinus")
+	var/blood_type_path = "/obj/item/weapon/reagent_containers/blood/"
+	New()
+		..()
+		for(var/i = 1 to blood_types.len)
+			var/pack_path = blood_type_path + blood_types[i]
+			//Two per type
+			new pack_path(src)
+			new pack_path(src)
+		return
+
+
 /obj/item/weapon/reagent_containers/blood/APlus
 	blood_type = "A+"
 
