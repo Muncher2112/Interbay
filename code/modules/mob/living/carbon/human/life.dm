@@ -81,9 +81,11 @@
 		
 		//Handle sleeping
 		if(sleeping)
-			to_world("[src] is sleeping")
-			src.adjustBruteLoss(-0.5)
-			src.adjustFireLoss(-0.5)
+			var/heal_amt = -0.5
+			if(in_bed)
+				heal_amt = -1.5
+			src.adjustBruteLoss(heal_amt)
+			src.adjustFireLoss(heal_amt)
 
 
 	if(!handle_some_updates())

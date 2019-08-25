@@ -33,7 +33,7 @@
 	for(var/datum/wound/W in affected.wounds)
 		if(W.damage_type == CUT && W.damage)
 			// Close it up to a point that it can be bandaged and heal naturally!
-			W.heal_damage(rand(10,20)+10)
+			W.heal_damage(rand(10,20)+user.skills[SKILL_MED] * 0.1)
 			if(W.damage >= W.autoheal_cutoff)
 				user.visible_message("<span class='notice'>\The [user] partially closes a wound on [target]'s [affected.name] with \the [tool].</span>", \
 				"<span class='notice'>You partially close a wound on [target]'s [affected.name] with \the [tool].</span>")

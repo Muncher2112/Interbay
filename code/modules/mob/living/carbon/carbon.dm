@@ -375,7 +375,14 @@
 		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		usr.sleeping = 20 //Short nap
+		usr.sleeping = 40 //longish nap
+		var/turf/T = get_turf(src)
+		var/list/mobs = list()
+		var/list/objs = list()
+		get_mobs_and_objs_in_view_fast(T,0,mobs,objs)
+		for (var/object in objs)
+			if (istype(object,/obj/structure/bed/))
+				in_bed = 1
 
 /mob/living/carbon/Bump(var/atom/movable/AM, yes)
 	if(now_pushing || !yes)

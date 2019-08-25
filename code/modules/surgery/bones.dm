@@ -18,7 +18,7 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 50
+	min_duration = 40
 	max_duration = 60
 	shock_level = 20
 
@@ -59,8 +59,8 @@
 	/obj/item/weapon/wrench = 75		\
 	)
 
-	min_duration = 60
-	max_duration = 70
+	min_duration = 40
+	max_duration = 60
 	shock_level = 40
 	delicate = 1
 
@@ -85,10 +85,12 @@
 		user.visible_message("<span class='notice'>[user] sets the [bone] n place with \the [tool].</span>", \
 			"<span class='notice'>You set the [bone] in place with \the [tool].</span>")
 		affected.stage = 2
+		affected.status &= ~ORGAN_BROKEN
 	else
-		user.visible_message("<span class='notice'>[user] sets the [bone]</span> <span class='warning'>in the WRONG place with \the [tool].</span>", \
-			"<span class='notice'>You set the [bone]</span> <span class='warning'>in the WRONG place with \the [tool].</span>")
-		affected.fracture()
+		if (!user.skillcheck(user.skills[SKILL_MED], 50, null, "Medical"))
+			user.visible_message("<span class='notice'>[user] sets the [bone]</span> <span class='warning'>in the WRONG place with \the [tool].</span>", \
+				"<span class='notice'>You set the [bone]</span> <span class='warning'>in the WRONG place with \the [tool].</span>")
+			affected.fracture()
 
 /datum/surgery_step/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -107,8 +109,8 @@
 	/obj/item/weapon/wrench = 75		\
 	)
 
-	min_duration = 60
-	max_duration = 70
+	min_duration = 40
+	max_duration = 60
 	shock_level = 40
 	delicate = 1
 
@@ -148,8 +150,8 @@
 	can_infect = 1
 	blood_level = 1
 
-	min_duration = 50
-	max_duration = 60
+	min_duration = 30
+	max_duration = 50
 	shock_level = 20
 
 /datum/surgery_step/finish_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -170,7 +172,7 @@
 	var/bone = affected.encased ? "[target]'s [affected.encased]" : "bones in [target]'s [affected.name]"
 	user.visible_message("<span class='notice'>[user] has mended the damaged [bone] with \the [tool].</span>"  , \
 		"<span class='notice'>You have mended the damaged [bone] with \the [tool].</span>" )
-	affected.status &= ~ORGAN_BROKEN
+	affected.heal_damage(user.skills[SKILL_MED] * 0.1)
 	affected.stage = 0
 
 /datum/surgery_step/finish_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

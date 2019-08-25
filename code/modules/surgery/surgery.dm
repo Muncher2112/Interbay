@@ -127,7 +127,7 @@
 				M.op_stage.in_progress += zone
 				S.begin_step(user, M, zone, src)		//start on it
 				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(user.skillcheck(user.skills["medical"], 75, null) || user.statcheck(user.stats["int"], 10 ,0))
+				if(user.skillcheck(user.skills["medical"], 65, null, "Medical") || user.statcheck(user.stats["int"], 8 ,0, "Int"))
 					if(prob(S.success_chance(user, M, src)) && do_mob(user, M, rand(S.min_duration, S.max_duration)))
 						S.end_step(user, M, zone, src)		//finish successfully
 				else if ((src in user.contents) && user.Adjacent(M))			//or

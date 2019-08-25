@@ -192,6 +192,7 @@
 				W.disinfect()
 				if (user.skillcheck(user.skills[SKILL_MED], 65, null, "Medical"))
 					heal_brute += user.skills[SKILL_MED] * 0.1
+					affecting.status &= ~ORGAN_ARTERY_CUT
 				W.heal_damage(heal_brute)
 				used++
 			affecting.update_damages()
