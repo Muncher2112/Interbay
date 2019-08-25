@@ -36,17 +36,15 @@
 #define ui_storage1 "SOUTH-1,4"
 #define ui_storage2 "SOUTH-1,5"
 
-#define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
-#define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
 /*
 #define ui_inv1 "6:16,1:5"			//borgs
 #define ui_inv2 "7:16,1:5"			//borgs
 #define ui_inv3 "8:16,1:5"			//borgs
 #define ui_borg_store "9:16,1:5"	//borgs
-*/
+
 #define ui_monkey_mask "SOUTH+1,1"	//monkey
 #define ui_monkey_back "SOUTH+1,3"	//monkey
-
+*/
 //Lower right, persistant menu
 #define ui_swaphand1 "SOUTH-1,6"
 #define ui_dropbutton "SOUTH-1,7"

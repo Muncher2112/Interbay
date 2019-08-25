@@ -93,8 +93,6 @@
 #define MIN_SUPPLIED_LAW_NUMBER 15
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
-#define MAX_SUPPLIED_LAW_NUMBER 50
-
 // NT's alignment towards the character
 #define COMPANY_LOYAL 			"Loyal"
 #define COMPANY_SUPPORTATIVE	"Supportive"
@@ -314,7 +312,7 @@
 #define STARVATION_OXY_HEAL_RATE 1 //While starving, THIS much oxygen damage is restored per life tick (instead of the default 5)
 
 //Temperature stuff
-//BODYTEMP_COLD_DAMAGE_LIMIT 			 -13°C Below which freezing damage occurs.						(defined in items_clothing.dm)
-#define TEMPERATURE_REFRESHING 	278.15	//5°C  Below which drinks and foods are considered refreshing.
-#define TEMPERATURE_WARM 		323.15	//50°C Above which drinks and foods are considered warm.
-//BODYTEMP_HEAT_DAMAGE_LIMIT 			  87°C Above which burn damage occurs.							(defined in items_clothing.dm)
+//BODYTEMP_COLD_DAMAGE_LIMIT 			 -13ï¿½C Below which freezing damage occurs.						(defined in items_clothing.dm)
+#define TEMPERATURE_REFRESHING 	278.15	//5ï¿½C  Below which drinks and foods are considered refreshing.
+#define TEMPERATURE_WARM 		323.15	//50ï¿½C Above which drinks and foods are considered warm.
+//BODYTEMP_HEAT_DAMAGE_LIMIT 			  87ï¿½C Above which burn damage occurs.							(defined in items_clothing.dm)

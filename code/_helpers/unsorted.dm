@@ -7,6 +7,7 @@
 //Checks if all high bits in req_mask are set in bitfield
 #define BIT_TEST_ALL(bitfield, req_mask) ((~(bitfield) & (req_mask)) == 0)
 
+#define SIGN(x) (x < 0 ? -1  : 1)
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
 

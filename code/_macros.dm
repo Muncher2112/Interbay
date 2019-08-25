@@ -11,8 +11,6 @@
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
-#define isairlock(A) istype(A, /obj/machinery/door/airlock)
-
 #define isatom(A) istype(A, /atom)
 
 #define isbrain(A) istype(A, /mob/living/carbon/brain)

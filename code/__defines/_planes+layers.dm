@@ -88,7 +88,6 @@ What is the naming convention for planes or layers?
 
 #define ABOVE_TURF_PLANE              -18 // For items which should appear above turfs but below other objects and hiding mobs, eg: wires & pipes
 
-	#define HOLOMAP_LAYER               1 // NOTE: ENSURE this is equal to the one at ABOVE_PLATING_PLANE!
 	#define DECAL_LAYER                 2
 	#define RUNE_LAYER                  3
 	#define ABOVE_TILE_LAYER            4
@@ -161,7 +160,7 @@ What is the naming convention for planes or layers?
 #define LIGHTING_PLANE 			       -2 // For Lighting. - The highest plane (ignoring all other even higher planes)
 
 	#define LIGHTBULB_LAYER        0
-	#define LIGHTING_LAYER         1
+	//#define LIGHTING_LAYER         1 Hope we don't need this
 	#define ABOVE_LIGHTING_LAYER   2
 	#define SUPER_PORTAL_LAYER     3
 	#define NARSIE_GLOW            4
