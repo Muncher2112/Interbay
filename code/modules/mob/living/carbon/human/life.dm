@@ -702,7 +702,9 @@
 				//Handle healing
 				var/heal_amt = -0.5
 				if(in_bed)
-					//only heal organs in bed
+					//only heal organs and blood in bed
+					if (get_effective_blood_volume() > 75)
+						vessel.add_reagent("blood",5)
 					for(var/obj/item/organ/internal/E in bad_internal_organs)
 						E.damage += heal_amt
 						if(E.damage <= 0)

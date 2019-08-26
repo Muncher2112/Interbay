@@ -115,7 +115,9 @@ default behaviour is:
 			if(!(tmob.status_flags & CANPUSH))
 				now_pushing = 0
 				return
-
+			if(!src.statcheck(src.stats["str"], tmob.stats["str"], "I can't push past [tmob], he's too strong!", "str"))
+				now_pushing = 0
+				return
 			tmob.LAssailant = src
 
 		now_pushing = 0

@@ -1,4 +1,4 @@
-.//This fucking sucks.  Maybe some big brain can come along and figure out how to make this less shitty
+//This fucking sucks.  Maybe some big brain can come along and figure out how to make this less shitty
 
 /datum/crafting_recipe/ammo
 	name = "Bullet"

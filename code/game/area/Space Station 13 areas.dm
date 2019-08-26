@@ -62,7 +62,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /////////
 
 /area/space
-	name = "\improper Space"
+	name = "improper Space"
 	icon_state = "space"
 	requires_power = 1
 	always_unpowered = 1

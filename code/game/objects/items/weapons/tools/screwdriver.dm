@@ -14,7 +14,7 @@
 	throw_speed = 3
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
-	center_of_mass = "x=16;y=7"
+	//center_of_mass = list("x"=16, "y"=10)
 	attack_verb = list("stabbed")
 	lock_picking_level = 5
 	weapon_speed_delay = 10

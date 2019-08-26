@@ -1,5 +1,3 @@
-#define ZONE_BLOCKED 2
-#define AIR_BLOCKED 1
 //Interactions
 /turf/simulated/wall/proc/toggle_open(var/mob/user)
 
@@ -39,9 +37,6 @@
 
 	can_open = WALL_CAN_OPEN
 	update_icon()
-
-#undef ZONE_BLOCKED
-#undef AIR_BLOCKED
 
 /turf/simulated/wall/proc/update_air()
 	if(!air_master)
@@ -131,9 +126,6 @@
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if (!user.)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 
 	//get the user's location
 	if(!istype(user.loc, /turf))	return	//can't do this stuff whilst inside objects and such

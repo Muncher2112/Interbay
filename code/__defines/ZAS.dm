@@ -6,3 +6,5 @@
 #define BLOCKED 3
 
 #define ZONE_MIN_SIZE 14 //zones with less than this many turfs will always merge, even if the connection is not direct
+
+#define ADIABATIC_EXPONENT 0.667 //Actually adiabatic exponent - 1.

@@ -49,7 +49,7 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
-#define isspace(A) istype(A, /turf/space)
+//#define isspace(A) istype(A, /turf/space) Oh shit I hope this doesn't break anything
 
 #define isspace(A) istype(A, /area/space)
 

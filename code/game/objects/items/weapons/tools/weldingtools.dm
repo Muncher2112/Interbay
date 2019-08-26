@@ -7,7 +7,7 @@
 	icon_state = "welder"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	center_of_mass = "x=14;y=15"
+	//center_of_mass = "x=14;y=15"
 
 	//Amount of OUCH when it's thrown
 	force = 3.0

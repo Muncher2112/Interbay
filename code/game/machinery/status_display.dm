@@ -217,8 +217,6 @@ var/list/status_icons_to_colour = list(
 			mode = STATUS_DISPLAY_TIME
 	update()
 
-#undef CHARS_PER_LINE
-#undef FOND_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef SCROLL_SPEED

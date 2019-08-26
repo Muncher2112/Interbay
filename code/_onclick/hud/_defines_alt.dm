@@ -92,10 +92,12 @@
 #define ui_kick_jump "CENTER+3:16,SOUTH:5"
 
 //Gun buttons
+/* oh god oh fuck
 #define ui_gun1 "9, SOUTH"
 #define ui_gun2 "10, SOUTH"
 #define ui_gun3 "11, SOUTH"
 #define ui_gun_select "10, SOUTH-1"
+*/
 
 //Upper-middle right (damage indicators)
 #define ui_toxin "EAST+1, NORTH-6"//6
