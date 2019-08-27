@@ -359,7 +359,6 @@
 		locked = 1
 
 		for(var/mob/living/M in contents)
-			to_world("Making M buried")
 			M.buried = TRUE
 			if (M.stat!=2)
 				if (!iscarbon(M))
