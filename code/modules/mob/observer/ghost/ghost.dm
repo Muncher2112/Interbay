@@ -485,6 +485,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.images -= ghost_image //remove ourself
 
 /mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_time = 0)
+	to_world("Trying to respawn, [mind.current] ")
 	if(!client)
 		return 0
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse == CORPSE_CAN_REENTER)
@@ -495,7 +496,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(feedback)
 			to_chat(src, "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>")
 		return 0
-
+	to_world("[mind.current]")
+	if(mind.current) //If our current body is destroyed (incinerator etc.) it copunts as buried
+		to_world("[mind.current.buried]")
+		if(!mind.current.buried)  //If our body is in a morgue tray
+			to_chat(src, "<span class='warning'>Your soul can't find rest...</span>")
+			return 0
 	var/timedifference = world.time - timeofdeath
 	if(!client.holder && respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
 		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
@@ -537,7 +543,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/verb/respawn()
 	set name = "Respawn"
 	set category = "OOC"
-
 	if (!(config.abandon_allowed))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return

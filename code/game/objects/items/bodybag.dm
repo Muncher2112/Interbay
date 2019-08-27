@@ -42,6 +42,20 @@
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
 
+
+/obj/structure/closet/body_bag/Entered(atom/movable/AM)
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		H.buried = TRUE
+	..()
+
+/obj/structure/closet/body_bag/Exited(atom/movable/AM)
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		H.in_stasis = 0
+		H.buried = FALSE
+	. = ..()
+
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text

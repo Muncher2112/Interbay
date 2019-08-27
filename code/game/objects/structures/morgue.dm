@@ -71,6 +71,9 @@
 			if (!( A.anchored ))
 				A.forceMove(src)
 				limit++
+				if(istype(A,/mob/living))
+					var/mob/living/corpse = A
+					corpse.buried = TRUE
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		qdel(src.connected)
 		src.connected = null
@@ -85,6 +88,9 @@
 			src.icon_state = "morgue0"
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(src.connected.loc)
+				if(istype(A,/mob/living))
+					var/mob/living/corpse = A
+					corpse.buried = FALSE
 
 			src.connected.icon_state = "morguet"
 			src.connected.set_dir(src.dir)
@@ -163,6 +169,9 @@
 			if (!( A.anchored ))
 				A.forceMove(src.connected)
 				limit++
+			if(istype(A,/mob/living))
+				var/mob/living/corpse = A
+				corpse.buried = TRUE
 			//Foreach goto(26)
 		src.connected.connected = null
 		src.connected.update()
@@ -350,6 +359,8 @@
 		locked = 1
 
 		for(var/mob/living/M in contents)
+			to_world("Making M buried")
+			M.buried = TRUE
 			if (M.stat!=2)
 				if (!iscarbon(M))
 					M.emote("scream")

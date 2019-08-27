@@ -247,7 +247,7 @@ var/list/organ_cache = list()
 //Note: external organs have their own version of this proc
 //All intenal stuff hapens here
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
-	log_debug("Organ take damage is being called!  [src] is being damgaed for [amount]!")
+	//log_debug("Organ take damage is being called!  [src] is being damgaed for [amount]!")
 	amount = round(amount, 0.1)
 	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)

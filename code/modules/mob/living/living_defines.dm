@@ -63,3 +63,4 @@
 	//This has gameplay relevance, this is no longer just fluff. (heh)
 	var/religion = LEGAL_RELIGION
 	var/interogation = 0
+	var/buried = FALSE //Used for respawning
