@@ -33,15 +33,14 @@
 	This will need to be tweaked and tested. the old stats check is commented at the bottom.
 */
 
-// Takes a stat *VALUE*.
+// Takes a stat *VALUE*, Difficulty, message (null if none), type of check for easy debugging (not in all checks because of old code or incompetence)
 /mob/proc/statcheck(var/stat, var/requirement, var/message = null, var/type = null)//Requirement needs to be 1 through 20
 	var/roll = rand(1,20)// our "dice"
-	//log_debug("Roll: [roll], Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]")
-	log_debug("[src] Rolled a [roll] against a DC [requirement] [type] check")
+	log_debug("[src] Rolled a [roll] against a DC [requirement] [type] check, Mood affect: (-)[mood_affect(1)], Ability modifier [stat_to_modifier(stat)]")
 	roll -= mood_affect(1)// our mood
 	roll += stat_to_modifier(stat) //our stat mod
 	if(roll >= requirement)//We met the DC requirement
-		//world << "Rolled and passed."
+		log_debug("Rolled and passed.")
 		return 1
 	else
 		if(message)

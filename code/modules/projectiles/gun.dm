@@ -351,6 +351,8 @@
 		//Kinda balanced by fact you need like 2 seconds to aim
 		//As opposed to no-delay pew pew
 		P.accuracy += 2
+	if(user.has_trait("Marksman"))
+		P.accuracy += 4
 	if(!user.skillcheck(user.skills["ranged"], 55, "How the heck do you aim this thing?!") || !user.combat_mode)//Being unskilled at guns decreased accuracy.
 		P.accuracy -= 2
 

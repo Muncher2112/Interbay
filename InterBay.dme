@@ -1523,6 +1523,7 @@
 #include "code\modules\mob\say.dm"
 #include "code\modules\mob\shit_piss.dm"
 #include "code\modules\mob\stats_skills.dm"
+#include "code\modules\mob\traits.dm"
 #include "code\modules\mob\transform_procs.dm"
 #include "code\modules\mob\typing_indicator.dm"
 #include "code\modules\mob\update_icons.dm"

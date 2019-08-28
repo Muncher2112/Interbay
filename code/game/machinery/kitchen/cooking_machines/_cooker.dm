@@ -153,6 +153,7 @@
 			if(!user.skillcheck(user.skills["cooking"], 50, "You forgot a crucial step, and the [food_item.name] is going to be ruined!", "cooking"))
 				overcook_period = 0 //If you fuck up that check, you're gonna fuck up your food.  Ideally this can be saved by a robust player
 				burn_chance = 50
+			//Mast
 			sleep(overcook_period)
 			if(!cooking || !result || result.loc != src)
 				failed = 1
@@ -168,7 +169,7 @@
 				smoke.start()
 				failed = 1
 
-			if(failed)
+			if(failed && !user.has_trait("master_chef"))
 				cooking = 0
 				icon_state = off_icon
 				break
